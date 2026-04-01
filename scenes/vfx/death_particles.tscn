@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://05xvjdcwl8v6"]
+
+[ext_resource type="Texture2D" uid="uid://dl6hextvcruo7" path="res://assets/sprites/death.png" id="1_j5v76"]
+[ext_resource type="Script" uid="uid://cdpjrkxfmldoj" path="res://scripts/death_particles.gd" id="2_u27mo"]
+[ext_resource type="AudioStream" uid="uid://bfspawusvdcbl" path="res://assets/sounds/enemyDeath.wav" id="3_wgkg3"]
+
+[sub_resource type="Curve" id="Curve_r62r7"]
+_data = [Vector2(0, 1), 0.0, -0.04224711, 0, 0, Vector2(1, 0), -0.18776548, 0.0, 0, 0]
+point_count = 2
+
+[node name="DeathParticles" type="CPUParticles2D" unique_id=941221201]
+emitting = false
+amount = 32
+texture = ExtResource("1_j5v76")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_amount_curve = SubResource("Curve_r62r7")
+script = ExtResource("2_u27mo")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1822353327]
+stream = ExtResource("3_wgkg3")
+autoplay = true
+area_mask = 4
+
+[connection signal="finished" from="." to="." method="_on_finished"]

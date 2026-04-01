@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dgpvs5v2thds4"]
+
+[ext_resource type="Script" uid="uid://kyd4tt246f38" path="res://scripts/game.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Shader" uid="uid://c7vh3m6r5r7v1" path="res://assets/shaders/vignette.gdshader" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://3b75reufoy48" path="res://scenes/hud.tscn" id="3_lnu2h"]
+[ext_resource type="Shader" uid="uid://bh26vo877j38w" path="res://assets/shaders/glowing.gdshader" id="4_p57ef"]
+
+[sub_resource type="Environment" id="Environment_lnu2h"]
+background_mode = 3
+background_energy_multiplier = 0.0
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 1.0
+adjustment_saturation = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
+shader = ExtResource("2_lbhrr")
+shader_parameter/alpha = 0.25
+shader_parameter/color = Vector3(0, 0, 0)
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
+normal = Vector2(0, 1)
+distance = -160.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+distance = -160.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u5sy4"]
+normal = Vector2(1, 0)
+distance = -320.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gee14"]
+normal = Vector2(-1, 0)
+distance = -320.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
+shader = ExtResource("4_p57ef")
+shader_parameter/intensity = 4.0
+
+[node name="Game" type="Node2D" unique_id=2139425347]
+script = ExtResource("1_lnu2h")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1110885900]
+zoom = Vector2(2, 2)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Camera2D" unique_id=1967100556]
+environment = SubResource("Environment_lnu2h")
+
+[node name="BackgroundFX" type="CanvasLayer" parent="Camera2D" unique_id=334990757]
+layer = -1
+
+[node name="Control" type="Control" parent="Camera2D/BackgroundFX" unique_id=974894522]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vignette" type="ColorRect" parent="Camera2D/BackgroundFX/Control" unique_id=1945285196]
+z_index = 100
+z_as_relative = false
+material = SubResource("ShaderMaterial_lbhrr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="ColorRect" parent="Camera2D/BackgroundFX/Control" unique_id=2136925182]
+z_index = -101
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.14712, 0.1264, 0.16, 1)
+
+[node name="Border" type="StaticBody2D" parent="." unique_id=49029521]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="Border" unique_id=784764466]
+shape = SubResource("WorldBoundaryShape2D_p57ef")
+
+[node name="Bottom" type="CollisionShape2D" parent="Border" unique_id=617175067]
+shape = SubResource("WorldBoundaryShape2D_iywne")
+
+[node name="Left" type="CollisionShape2D" parent="Border" unique_id=964889722]
+shape = SubResource("WorldBoundaryShape2D_u5sy4")
+
+[node name="Right" type="CollisionShape2D" parent="Border" unique_id=402786132]
+shape = SubResource("WorldBoundaryShape2D_gee14")
+
+[node name="HUD" parent="." unique_id=1917983879 instance=ExtResource("3_lnu2h")]
+
+[node name="Player" parent="." unique_id=1337371867 groups=["player"] instance=ExtResource("1_uwrxv")]
+material = SubResource("ShaderMaterial_u5sy4")

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dxxfi6a63vf74"]
+
+[ext_resource type="Texture2D" uid="uid://dl6hextvcruo7" path="res://assets/sprites/death.png" id="1_yik17"]
+[ext_resource type="Texture2D" uid="uid://cdctyjii77qsn" path="res://assets/sprites/line.png" id="3_ax8ow"]
+[ext_resource type="Script" uid="uid://dancn2ehbmn2m" path="res://scripts/player_death_particles.gd" id="4_nmitn"]
+[ext_resource type="AudioStream" uid="uid://dhxk4rfqojjfc" path="res://assets/sounds/playerDeath.wav" id="4_u6swk"]
+
+[sub_resource type="Curve" id="Curve_r62r7"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 7.283998, 0, 0, Vector2(1, 0), 1.2070626, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ax8ow"]
+_data = [Vector2(0, 1), 0.0, -1.173533, 0, 1, Vector2(0.38297874, 0.55056185), -1.173533, -0.89228994, 1, 1, Vector2(1, 0), -0.89228994, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_nmitn"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.90529835, 0, 0, Vector2(1, 4), 11.104978, 0.0, 0, 0]
+point_count = 2
+
+[node name="PlayerDeathParticles" type="CPUParticles2D" unique_id=941221201]
+emitting = false
+amount = 64
+texture = ExtResource("1_yik17")
+one_shot = true
+explosiveness = 1.0
+emission_shape = 5
+emission_points = PackedVector2Array()
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 400.0
+tangential_accel_min = -2000.0
+tangential_accel_max = 2000.0
+scale_amount_curve = SubResource("Curve_r62r7")
+color = Color(0, 0.8039216, 1, 1)
+script = ExtResource("4_nmitn")
+
+[node name="SecondaryParticles" type="CPUParticles2D" parent="." unique_id=2130140545]
+emitting = false
+amount = 32
+texture = ExtResource("3_ax8ow")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 180.0
+initial_velocity_max = 360.0
+split_scale = true
+scale_curve_x = SubResource("Curve_ax8ow")
+scale_curve_y = SubResource("Curve_nmitn")
+color = Color(0, 0.8039216, 1, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=440164365]
+stream = ExtResource("4_u6swk")
+autoplay = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bgbai02d6pg6j"]
+
+[ext_resource type="Script" uid="uid://c1fycr5vohp0p" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://bpcljtlmsgsbr" path="res://assets/sprites/enemies/enemy.png" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://bkcqulecdnf0a" path="res://assets/sprites/ui/enemy_health_bar.png" id="3_5uy6h"]
+[ext_resource type="Texture2D" uid="uid://n7gcrf4v1ers" path="res://assets/sprites/ui/enemy_health_bar_fill.png" id="4_c4w8v"]
+[ext_resource type="AudioStream" uid="uid://b03t7a2c5fmlo" path="res://assets/sounds/shoot.wav" id="5_c4w8v"]
+[ext_resource type="AudioStream" uid="uid://b5vk5jwukluox" path="res://assets/sounds/hit.wav" id="5_xwavj"]
+[ext_resource type="AudioStream" uid="uid://bfspawusvdcbl" path="res://assets/sounds/enemyDeath.wav" id="7_md484"]
+[ext_resource type="AudioStream" uid="uid://candfkhw5jyif" path="res://assets/sounds/explosion.wav" id="8_ipns3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=42998734]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1262311736]
+texture = ExtResource("2_md0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499631409]
+shape = SubResource("RectangleShape2D_md0e3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2115442086]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=780554673]
+shape = SubResource("RectangleShape2D_4ra3w")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1801220664]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 14.0
+offset_right = 24.0
+offset_bottom = 54.0
+grow_horizontal = 2
+value = 100.0
+rounded = true
+texture_under = ExtResource("3_5uy6h")
+texture_progress = ExtResource("4_c4w8v")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1309863838]
+stream = ExtResource("5_xwavj")
+max_polyphony = 64
+area_mask = 4
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="." unique_id=1028169257]
+stream = ExtResource("5_c4w8v")
+max_polyphony = 64
+area_mask = 4
+
+[node name="Death" type="AudioStreamPlayer2D" parent="." unique_id=520829343]
+stream = ExtResource("7_md484")
+max_polyphony = 64
+area_mask = 4
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="." unique_id=1887748599]
+stream = ExtResource("8_ipns3")
+max_polyphony = 64
+area_mask = 4
+
+[connection signal="area_entered" from="Area2D" to="." method="_damagedByBullet"]

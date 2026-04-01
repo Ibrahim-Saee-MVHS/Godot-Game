@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://bbfef8ks2x5ft"]
+
+[ext_resource type="Script" uid="uid://dw1i8068oyg2j" path="res://scripts/health_box.gd" id="1_12c87"]
+[ext_resource type="Shader" uid="uid://dxyg7pm35iv4u" path="res://assets/shaders/unglowing.gdshader" id="1_fhgpo"]
+[ext_resource type="Texture2D" uid="uid://byvfb5wt48pvd" path="res://assets/sprites/health.png" id="1_hpwdt"]
+[ext_resource type="Texture2D" uid="uid://cp4p8x6ktp0q4" path="res://assets/gradient_ring.tres" id="2_12c87"]
+
+[sub_resource type="Curve" id="Curve_5cn8h"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 2.0, 0, 1, Vector2(1, 2), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_u02si"]
+offsets = PackedFloat32Array(0.3, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhgpo"]
+size = Vector2(28, 28)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12c87"]
+shader = ExtResource("1_fhgpo")
+
+[sub_resource type="Animation" id="Animation_fhgpo"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_12c87"]
+resource_name = "box"
+length = 2.2
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 2), Vector2(0, 2), Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_5cn8h"]
+resource_name = "glow"
+length = 2.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeshInstance2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.999, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(64, 64), Vector2(32, 32), Vector2(64, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u02si"]
+_data = {
+&"RESET": SubResource("Animation_fhgpo"),
+&"box": SubResource("Animation_12c87"),
+&"glow": SubResource("Animation_5cn8h")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2qbln"]
+blend_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_2qbln"]
+
+[sub_resource type="Gradient" id="Gradient_hpwdt"]
+offsets = PackedFloat32Array(0, 0.8012048)
+colors = PackedColorArray(0, 1, 0.84705883, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fhgpo"]
+gradient = SubResource("Gradient_hpwdt")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[node name="HealthBox" type="Area2D" unique_id=224882807]
+collision_layer = 16
+script = ExtResource("1_12c87")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=166804854]
+z_index = 3
+emitting = false
+amount = 2
+texture = ExtResource("2_12c87")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_5cn8h")
+color = Color(0, 1, 0.84705883, 1)
+color_ramp = SubResource("Gradient_u02si")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1763240516]
+z_index = 2
+shape = SubResource("RectangleShape2D_fhgpo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=897758657]
+z_index = 2
+material = SubResource("ShaderMaterial_12c87")
+texture = ExtResource("1_hpwdt")
+
+[node name="Box" type="AnimationPlayer" parent="Sprite2D" unique_id=398130378]
+libraries/ = SubResource("AnimationLibrary_u02si")
+autoplay = &"box"
+speed_scale = 0.5
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=492736944]
+z_index = 1
+material = SubResource("CanvasItemMaterial_2qbln")
+scale = Vector2(64, 64)
+mesh = SubResource("QuadMesh_2qbln")
+texture = SubResource("GradientTexture2D_fhgpo")
+
+[node name="Glow" type="AnimationPlayer" parent="MeshInstance2D" unique_id=710530512]
+root_node = NodePath("../../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_u02si")
+autoplay = &"glow"
+speed_scale = 0.5

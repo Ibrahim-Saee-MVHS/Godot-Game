@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://cbk6dfldu3sbl"]
+
+[ext_resource type="Script" uid="uid://bakmn77nvgsms" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="2_ekxnf"]
+[ext_resource type="Shader" uid="uid://4rnau7rf7hl4" path="res://assets/shaders/rainbow.gdshader" id="3_bqqt6"]
+
+[sub_resource type="Animation" id="Animation_l6cm7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ekxnf"]
+resource_name = "fade_in"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bqqt6"]
+_data = {
+&"RESET": SubResource("Animation_l6cm7"),
+&"fade_in": SubResource("Animation_ekxnf")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu84c"]
+shader = ExtResource("3_bqqt6")
+shader_parameter/new_color = Vector3(1, 0, 0)
+shader_parameter/deltaTime = 0.0
+
+[sub_resource type="SystemFont" id="SystemFont_ekxnf"]
+font_names = PackedStringArray("Times New Roman")
+
+[node name="MainMenu" type="Control" unique_id=1931972441]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=645406527]
+libraries/ = SubResource("AnimationLibrary_bqqt6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1543946928]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="PlayGame" type="Button" parent="." unique_id=1442578348]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -26.5
+offset_right = 113.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="Exit" type="Button" parent="." unique_id=1163726982]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = 86.0
+offset_right = 113.0
+offset_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "Exit
+"
+
+[node name="Game" type="Label" parent="." unique_id=1553699702]
+material = SubResource("ShaderMaterial_wu84c")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -206.0
+offset_right = 139.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(144, 54)
+theme_override_fonts/font = SubResource("SystemFont_ekxnf")
+theme_override_font_sizes/font_size = 96
+text = "GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="PlayGame" to="." method="_startGame"]
+[connection signal="pressed" from="Exit" to="." method="_exit"]

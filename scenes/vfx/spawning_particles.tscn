@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bhbu586x7vfx2"]
+
+[ext_resource type="Texture2D" uid="uid://dw63bg6h06tme" path="res://assets/sprites/enemies/spawn.png" id="1_gho1i"]
+[ext_resource type="Script" uid="uid://b7n7v5sr5awv6" path="res://scripts/enemy_spawning.gd" id="2_tyiyh"]
+[ext_resource type="AudioStream" uid="uid://brxwkdl68g4lp" path="res://assets/sounds/spawn.wav" id="3_a1de7"]
+
+[sub_resource type="Curve" id="Curve_c61y8"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="SpawningParticles" type="CPUParticles2D" unique_id=248687763]
+amount = 32
+texture = ExtResource("1_gho1i")
+lifetime = 3.0
+explosiveness = 0.75
+emission_shape = 6
+emission_ring_inner_radius = 24.0
+emission_ring_radius = 32.0
+spread = 128.0
+gravity = Vector2(0, 0)
+radial_accel_min = -6.0
+radial_accel_max = -4.0
+scale_amount_curve = SubResource("Curve_c61y8")
+script = ExtResource("2_tyiyh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1012791427]
+stream = ExtResource("3_a1de7")
+volume_db = 2.0
+max_polyphony = 64
+area_mask = 2

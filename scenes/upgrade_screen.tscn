@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://cfkksd5jl58bw"]
+
+[ext_resource type="Texture2D" uid="uid://byvfb5wt48pvd" path="res://assets/sprites/health.png" id="1_3vsiv"]
+[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_4pa2q"]
+[ext_resource type="Script" uid="uid://oyw2o0peb3lb" path="res://scripts/upgrade_screen.gd" id="1_qtyd3"]
+
+[node name="UpgradeScreen" type="CanvasLayer" unique_id=1468165750]
+script = ExtResource("1_qtyd3")
+
+[node name="Control" type="Control" parent="." unique_id=708455145]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=666696413]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 146.0
+offset_top = 95.0
+offset_right = -146.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Upgrade1" type="MarginContainer" parent="Control/HBoxContainer" unique_id=268889631]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 48
+
+[node name="Button" type="Button" parent="Control/HBoxContainer/Upgrade1" unique_id=1564255251]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/HBoxContainer/Upgrade1/Button" unique_id=1214828573]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17266187
+anchor_top = 0.10666667
+anchor_right = 0.8633093
+anchor_bottom = 0.53333336
+offset_right = 1.5258789e-05
+offset_bottom = -1.5258789e-05
+grow_horizontal = 2
+texture = ExtResource("1_3vsiv")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Control/HBoxContainer/Upgrade1/Button" unique_id=171170278]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5711111
+anchor_right = 1.0
+anchor_bottom = 0.7777778
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_font_sizes/font_size = 32
+text = "Spread Shot"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Description" type="Label" parent="Control/HBoxContainer/Upgrade1/Button" unique_id=1243406143]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7777778
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_font_sizes/font_size = 24
+text = "+1 BULLETS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Upgrade2" type="MarginContainer" parent="Control/HBoxContainer" unique_id=1405706600]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="Button" type="Button" parent="Control/HBoxContainer/Upgrade2" unique_id=835679690]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/HBoxContainer/Upgrade2/Button" unique_id=716567793]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17266187
+anchor_top = 0.10666667
+anchor_right = 0.8633093
+anchor_bottom = 0.53333336
+offset_right = 1.5258789e-05
+offset_bottom = -1.5258789e-05
+grow_horizontal = 2
+texture = ExtResource("1_3vsiv")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Control/HBoxContainer/Upgrade2/Button" unique_id=1847801825]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5711111
+anchor_right = 1.0
+anchor_bottom = 0.7777778
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_font_sizes/font_size = 32
+text = "Spread Shot"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Description" type="Label" parent="Control/HBoxContainer/Upgrade2/Button" unique_id=1541872346]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7777778
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_font_sizes/font_size = 24
+text = "+1 BULLETS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Upgrade3" type="MarginContainer" parent="Control/HBoxContainer" unique_id=648230405]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 48
+
+[node name="Button" type="Button" parent="Control/HBoxContainer/Upgrade3" unique_id=1826419373]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Control/HBoxContainer/Upgrade3/Button" unique_id=1974509961]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17266187
+anchor_top = 0.10666667
+anchor_right = 0.8633093
+anchor_bottom = 0.53333336
+offset_right = 1.5258789e-05
+offset_bottom = -1.5258789e-05
+grow_horizontal = 2
+texture = ExtResource("1_3vsiv")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Control/HBoxContainer/Upgrade3/Button" unique_id=887366026]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5711111
+anchor_right = 1.0
+anchor_bottom = 0.7777778
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_font_sizes/font_size = 32
+text = "Spread Shot"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Description" type="Label" parent="Control/HBoxContainer/Upgrade3/Button" unique_id=1889224728]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7777778
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_font_sizes/font_size = 24
+text = "+1 BULLETS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

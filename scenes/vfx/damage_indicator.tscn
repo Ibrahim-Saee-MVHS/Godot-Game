@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cpc4ver6obett"]
+
+[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_b44tu"]
+[ext_resource type="Script" uid="uid://dxbbjmke2dn1p" path="res://scripts/damage_indicator.gd" id="2_87rnl"]
+
+[sub_resource type="Animation" id="Animation_pdomm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g2vom"]
+resource_name = "fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 2, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7s5y6"]
+_data = {
+&"RESET": SubResource("Animation_pdomm"),
+&"fade": SubResource("Animation_g2vom")
+}
+
+[node name="Label" type="Label" unique_id=1652367835]
+offset_right = 18.0
+offset_bottom = 9.0
+pivot_offset = Vector2(26, 9)
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_b44tu")
+theme_override_font_sizes/font_size = 10
+text = "-45"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_87rnl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1096670113]
+libraries/ = SubResource("AnimationLibrary_7s5y6")
+autoplay = &"fade"
+speed_scale = 2.0

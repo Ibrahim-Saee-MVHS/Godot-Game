@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://85o4ycoxlnbg"]
+
+[ext_resource type="Texture2D" uid="uid://cp4p8x6ktp0q4" path="res://assets/gradient_ring.tres" id="1_1mlas"]
+[ext_resource type="Script" uid="uid://q5tfirb0twwt" path="res://scripts/health_spawn_particles.gd" id="1_7mfui"]
+
+[sub_resource type="Curve" id="Curve_ebdvi"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2j51h"]
+offsets = PackedFloat32Array(0, 0.22033899)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[node name="HealthSpawnParticles" type="CPUParticles2D" unique_id=307064568]
+amount = 3
+texture = ExtResource("1_1mlas")
+lifetime = 2.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_ebdvi")
+color = Color(0, 1, 0.84705883, 1)
+color_ramp = SubResource("Gradient_2j51h")
+script = ExtResource("1_7mfui")

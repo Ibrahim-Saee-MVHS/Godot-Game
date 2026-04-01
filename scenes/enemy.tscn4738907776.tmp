@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bgbai02d6pg6j"]
+
+[ext_resource type="Script" uid="uid://c1fycr5vohp0p" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://bpcljtlmsgsbr" path="res://assets/sprites/enemies/enemy.png" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://bkcqulecdnf0a" path="res://assets/sprites/ui/enemy_health_bar.png" id="3_5uy6h"]
+[ext_resource type="Texture2D" uid="uid://n7gcrf4v1ers" path="res://assets/sprites/ui/enemy_health_bar_fill.png" id="4_c4w8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=42998734]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1262311736]
+texture = ExtResource("2_md0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499631409]
+shape = SubResource("RectangleShape2D_md0e3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2115442086]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=780554673]
+shape = SubResource("RectangleShape2D_4ra3w")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1801220664]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 14.0
+offset_right = 24.0
+offset_bottom = 54.0
+grow_horizontal = 2
+value = 100.0
+rounded = true
+texture_under = ExtResource("3_5uy6h")
+texture_progress = ExtResource("4_c4w8v")
+
+[connection signal="area_entered" from="Area2D" to="." method="_damagedByBullet"]

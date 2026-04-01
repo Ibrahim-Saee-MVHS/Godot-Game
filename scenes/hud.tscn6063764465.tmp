@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://3b75reufoy48"]
+
+[ext_resource type="Script" uid="uid://1roebfvruoe" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="2_oo0fn"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1917983879]
+script = ExtResource("1_ahhtf")
+
+[node name="Control" type="Control" parent="." unique_id=741827052]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="Label" parent="Control" unique_id=478938766]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 11.0
+offset_right = 224.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 32
+text = "Health: 10/10"
+
+[node name="EXP" type="Label" parent="Control" unique_id=1387493285]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.0
+offset_top = 37.0
+offset_right = 103.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 32
+text = "Points:
+0"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Control" unique_id=1598292508]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -46.5
+offset_right = 206.0
+offset_bottom = 46.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_oo0fn")
+theme_override_font_sizes/font_size = 32
+vertical_alignment = 1
