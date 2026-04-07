@@ -44,6 +44,7 @@ shader_parameter/intensity = 4.0
 script = ExtResource("1_lnu2h")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1110885900]
+process_mode = 3
 zoom = Vector2(2, 2)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Camera2D" unique_id=1967100556]
@@ -86,6 +87,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.14712, 0.1264, 0.16, 1)
 
+[node name="HUD" parent="." unique_id=1917983879 instance=ExtResource("3_lnu2h")]
+
 [node name="Border" type="StaticBody2D" parent="." unique_id=49029521]
 collision_layer = 0
 collision_mask = 0
@@ -101,8 +104,6 @@ shape = SubResource("WorldBoundaryShape2D_u5sy4")
 
 [node name="Right" type="CollisionShape2D" parent="Border" unique_id=402786132]
 shape = SubResource("WorldBoundaryShape2D_gee14")
-
-[node name="HUD" parent="." unique_id=1917983879 instance=ExtResource("3_lnu2h")]
 
 [node name="Player" parent="." unique_id=1337371867 groups=["player"] instance=ExtResource("1_uwrxv")]
 material = SubResource("ShaderMaterial_u5sy4")

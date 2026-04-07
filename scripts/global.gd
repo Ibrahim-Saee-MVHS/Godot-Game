@@ -4,6 +4,7 @@ var SCREENSHAKEAMOUNT: float = 0.0
 var SCREENSHAKEPOWER: float = 0.0
 var VIGNETTECOLOR: Vector3 = Vector3(0, 0, 0)
 var VIGNETTEINTENSITY: float = 0.25
+
 @onready var DAMAGEINDICATOR = preload("res://scenes/vfx/damage_indicator.tscn")
 @onready var SFX = {
 	select = preload("res://assets/sounds/blipSelect.wav"),

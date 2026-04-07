@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="2_oo0fn"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1917983879]
+process_mode = 3
 script = ExtResource("1_ahhtf")
 
 [node name="Control" type="Control" parent="." unique_id=741827052]

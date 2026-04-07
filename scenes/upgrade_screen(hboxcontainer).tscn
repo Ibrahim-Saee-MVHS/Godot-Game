@@ -1,16 +1,99 @@
-[gd_scene format=3 uid="uid://cfkksd5jl58bw"]
+[gd_scene format=3 uid="uid://37a6j3oxxmx5"]
 
-[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_4pa2q"]
-[ext_resource type="Script" uid="uid://oyw2o0peb3lb" path="res://scripts/upgrade_screen.gd" id="1_qtyd3"]
-[ext_resource type="Texture2D" uid="uid://d7ewgm01468y" path="res://assets/sprites/upgrade_icons/hearty.png" id="2_5x7eg"]
-[ext_resource type="Texture2D" uid="uid://dfejj035emagk" path="res://assets/sprites/upgrade_icons/spread_shot.png" id="4_1ogmj"]
-[ext_resource type="Texture2D" uid="uid://y4kqfcajq5ed" path="res://assets/sprites/upgrade_icons/speed_up.png" id="5_ald31"]
-
-[sub_resource type="Animation" id="Animation_1ogmj"]
-length = 0.001
+[ext_resource type="Script" uid="uid://oyw2o0peb3lb" path="res://scripts/upgrade_screen.gd" id="1_55kjt"]
+[ext_resource type="Texture2D" uid="uid://d7ewgm01468y" path="res://assets/sprites/upgrade_icons/hearty.png" id="2_beysn"]
+[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="3_io6t5"]
+[ext_resource type="Texture2D" uid="uid://dfejj035emagk" path="res://assets/sprites/upgrade_icons/spread_shot.png" id="4_7tq0l"]
+[ext_resource type="Texture2D" uid="uid://y4kqfcajq5ed" path="res://assets/sprites/upgrade_icons/speed_up.png" id="5_o6rf7"]
 
 [sub_resource type="Animation" id="Animation_5x7eg"]
-resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/HBoxContainer/Upgrade1:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:canInteract")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/HBoxContainer/Upgrade3:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:buttonsDisabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1ogmj"]
+resource_name = "up"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75),
+"transitions": PackedFloat32Array(1.3660456, 0.8408961, 1),
+"update": 0,
+"values": [Vector2(0, 640), Vector2(0, -64), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_viwe2"]
 resource_name = "upgradesDown"
@@ -136,8 +219,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ald31"]
 _data = {
-&"RESET": SubResource("Animation_1ogmj"),
-&"default": SubResource("Animation_5x7eg"),
+&"RESET": SubResource("Animation_5x7eg"),
+&"up": SubResource("Animation_1ogmj"),
 &"upgradesDown": SubResource("Animation_viwe2"),
 &"upgradesUp": SubResource("Animation_ald31")
 }
@@ -196,7 +279,7 @@ func randomizeUpgrade():
 
 [node name="UpgradeScreen" type="CanvasLayer" unique_id=1468165750]
 process_mode = 3
-script = ExtResource("1_qtyd3")
+script = ExtResource("1_55kjt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030319857]
 libraries/ = SubResource("AnimationLibrary_ald31")
@@ -219,28 +302,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="Control" parent="Control" unique_id=1524653978]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=2116811998]
 layout_mode = 1
-anchor_left = 0.11400001
-anchor_top = 0.141
-anchor_right = 0.88600004
-anchor_bottom = 0.84400004
-offset_left = 0.07998657
-offset_top = -0.2400055
-offset_right = -0.080078125
-offset_bottom = -0.16015625
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 146.0
+offset_top = 90.0
+offset_right = -146.0
+offset_bottom = -100.00012
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Upgrade1" type="MarginContainer" parent="Control/HBoxContainer" unique_id=268889631]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -224.49963
-offset_right = 329.0
-offset_bottom = 224.49963
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 48
 script = SubResource("GDScript_5x7eg")
@@ -259,7 +334,7 @@ anchor_bottom = 0.53333336
 offset_right = 1.5258789e-05
 offset_bottom = -1.5258789e-05
 grow_horizontal = 2
-texture = ExtResource("2_5x7eg")
+texture = ExtResource("2_beysn")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
@@ -271,7 +346,7 @@ anchor_right = 1.0
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_fonts/font = ExtResource("3_io6t5")
 theme_override_font_sizes/font_size = 32
 text = "Hearty"
 horizontal_alignment = 1
@@ -286,7 +361,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_fonts/font = ExtResource("3_io6t5")
 theme_override_font_sizes/font_size = 24
 text = "+5 HEALTH"
 horizontal_alignment = 1
@@ -294,18 +369,7 @@ autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Upgrade2" type="MarginContainer" parent="Control/HBoxContainer" unique_id=1405706600]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -164.5
-offset_top = -224.49951
-offset_right = 164.5
-offset_bottom = 224.49951
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
@@ -325,7 +389,7 @@ anchor_bottom = 0.53333336
 offset_right = 1.5258789e-05
 offset_bottom = -1.5258789e-05
 grow_horizontal = 2
-texture = ExtResource("4_1ogmj")
+texture = ExtResource("4_7tq0l")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
@@ -337,7 +401,7 @@ anchor_right = 1.0
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_fonts/font = ExtResource("3_io6t5")
 theme_override_font_sizes/font_size = 32
 text = "Spread Shot"
 horizontal_alignment = 1
@@ -352,7 +416,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_fonts/font = ExtResource("3_io6t5")
 theme_override_font_sizes/font_size = 24
 text = "+2 BULLETS"
 horizontal_alignment = 1
@@ -360,17 +424,7 @@ autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Upgrade3" type="MarginContainer" parent="Control/HBoxContainer" unique_id=648230405]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -330.00043
-offset_top = -224.49915
-offset_bottom = 224.49915
-grow_horizontal = 0
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 48
 script = SubResource("GDScript_5x7eg")
@@ -389,7 +443,7 @@ anchor_bottom = 0.53333336
 offset_right = 1.5258789e-05
 offset_bottom = -1.5258789e-05
 grow_horizontal = 2
-texture = ExtResource("5_ald31")
+texture = ExtResource("5_o6rf7")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
@@ -401,7 +455,7 @@ anchor_right = 1.0
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_fonts/font = ExtResource("3_io6t5")
 theme_override_font_sizes/font_size = 32
 text = "Speed Up"
 horizontal_alignment = 1
@@ -416,7 +470,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
+theme_override_fonts/font = ExtResource("3_io6t5")
 theme_override_font_sizes/font_size = 24
 text = "+2 SPEED"
 horizontal_alignment = 1

@@ -17,21 +17,34 @@ var MAXINVULNERABILITY: float = 4
 @onready var Bullet = preload("res://scenes/player_bullet.tscn")
 @onready var Death = preload("res://scenes/vfx/player_death.tscn")
 @onready var GameOver = preload("res://scenes/game_over.tscn")
+@onready var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
 var shaderMaterial = ShaderMaterial.new()
 
-func _ready() -> void:
-	HEALTH = MAXHEALTH
+var UPGRADE = {
+	health = 0,
+	firerate = 0,
+	damage = 0,
+	speed = 0,
+}
 
-func level():
+func _ready() -> void:
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500)
 	MAXFIRERATE = clamp(8 - ( float(LEVEL - 1) / 4), 2, 16)
 	DAMAGE = clamp(4 + ( float(LEVEL - 1) / 8), 4, 32)
+	HEALTH = MAXHEALTH
+
+func level():
+	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
+	MAXFIRERATE = clamp(8 - ( float(LEVEL - 1) / 4)  + UPGRADE.firerate, 2, 16)
+	DAMAGE = clamp(4 + ( float(LEVEL - 1) / 8)  + UPGRADE.damage, 4, 32)
 	if EXP >= EXPMAX:
 		LEVEL += 1
 		EXP = 0
 		EXPMAX *= 2
-		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500) # health isnt 5 less when level up
+		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
 		HEALTH = clamp(HEALTH + 5, HEALTH, MAXHEALTH)
+		get_parent().add_child(UpgradeScreen.instantiate())
+
 func getPlayerInput():
 	var x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y = Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -39,6 +52,7 @@ func getPlayerInput():
 
 func _process(delta):
 	level()
+	SPEED = SPEED + (UPGRADE.speed * 500)
 	
 	$Sprite2D.material = shaderMaterial
 	if INVULNERABILITY <= 0:
