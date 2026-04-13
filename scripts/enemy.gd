@@ -15,7 +15,7 @@ var HITSTUN: float
 var shootPitch: float = 1.0
 var player_position: Vector2
 var multiplier: float = 1.0
-@onready var Bullet = preload("res://scenes/enemy_bullet.tscn")
+@onready var Bullet = preload("res://scenes/bullet_types/enemy_bullet.tscn")
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
 var shaderMaterial = ShaderMaterial.new()
 

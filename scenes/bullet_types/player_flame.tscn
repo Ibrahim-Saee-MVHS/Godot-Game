@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bwo3r0gbvhjo7"]
+
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/player_bullet.gd" id="1_ogojx"]
+[ext_resource type="Texture2D" uid="uid://dl6hextvcruo7" path="res://assets/sprites/death.png" id="2_qr30t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
+radius = 11.045361
+
+[sub_resource type="Curve" id="Curve_elrkp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8vc0o"]
+offsets = PackedFloat32Array(0, 0.6130137, 1)
+colors = PackedColorArray(1, 0.796875, 0, 1, 1, 0.20703125, 0.57873535, 1, 0.08730757, 0.08106995, 0.08984375, 1)
+
+[node name="PlayerBullet" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ogojx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CircleShape2D_qx7rs")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1732719251]
+amount = 64
+texture = ExtResource("2_qr30t")
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_curve = SubResource("Curve_elrkp")
+color_ramp = SubResource("Gradient_8vc0o")

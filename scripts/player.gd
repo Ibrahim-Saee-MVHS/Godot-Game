@@ -1,11 +1,12 @@
 class_name Player
 extends CharacterBody2D
 
-@export var SPEED = 8000
+@export var DEFAULTSPEED = 8000
 @export var MAXHEALTH: int = 50
 @export var DAMAGE: float = 4
 @export var BULLETSPEED = 250
 @export var BULLETAMOUNT: int = 1
+var SPEED: float
 var HEALTH: int
 var MAXFIRERATE: float = 8
 var FIRERATE: float = 0
@@ -14,7 +15,10 @@ var EXP: int = 0
 var EXPMAX: int = 2
 var INVULNERABILITY: float = 0
 var MAXINVULNERABILITY: float = 4
-@onready var Bullet = preload("res://scenes/player_bullet.tscn")
+var ABILITY: StringName
+var ABILITYDURATION: float
+var ABILITYCOOLDOWN: float
+@onready var Bullet = preload("res://scenes/bullet_types/player_bullet.tscn")
 @onready var Death = preload("res://scenes/vfx/player_death.tscn")
 @onready var GameOver = preload("res://scenes/game_over.tscn")
 @onready var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
@@ -25,25 +29,28 @@ var UPGRADE = {
 	firerate = 0,
 	damage = 0,
 	speed = 0,
+	bulletType = "normal"
 }
 
 func _ready() -> void:
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500)
 	MAXFIRERATE = clamp(8 - ( float(LEVEL - 1) / 4), 2, 16)
 	DAMAGE = clamp(4 + ( float(LEVEL - 1) / 8), 4, 32)
+	SPEED = DEFAULTSPEED
 	HEALTH = MAXHEALTH
 
 func level():
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
-	MAXFIRERATE = clamp(8 - ( float(LEVEL - 1) / 4)  + UPGRADE.firerate, 2, 16)
-	DAMAGE = clamp(4 + ( float(LEVEL - 1) / 8)  + UPGRADE.damage, 4, 32)
+	MAXFIRERATE = clamp(8 - ( float(LEVEL - 1) / 4) + UPGRADE.firerate, 2, 16)
+	DAMAGE = clamp(4 + ( float(LEVEL - 1) / 8) + UPGRADE.damage, 4, 32)
 	if EXP >= EXPMAX:
 		LEVEL += 1
 		EXP = 0
 		EXPMAX *= 2
 		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
 		HEALTH = clamp(HEALTH + 5, HEALTH, MAXHEALTH)
-		get_parent().add_child(UpgradeScreen.instantiate())
+		if HEALTH > 0:
+			get_parent().add_child(UpgradeScreen.instantiate())
 
 func getPlayerInput():
 	var x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -52,7 +59,10 @@ func getPlayerInput():
 
 func _process(delta):
 	level()
-	SPEED = SPEED + (UPGRADE.speed * 100)
+	SPEED = DEFAULTSPEED + (UPGRADE.speed * 200)
+	
+	if Input.is_action_just_pressed("quick_upgrade"):
+		EXP += 2
 	
 	$Sprite2D.material = shaderMaterial
 	if INVULNERABILITY <= 0:

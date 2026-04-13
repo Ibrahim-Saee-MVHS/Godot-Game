@@ -1,0 +1,24 @@
+{
+	"validUpgrades": [
+		"hearty",
+		"spread_shot",
+		"speed_up",
+	],
+	"upgradeInfo": {
+		"hearty": {
+			"sprite": "res://assets/sprites/upgrade_icons/hearty.png",
+			"name": "Hearty",
+			"description": "Give +5 HEALTH and heals the player",
+		},
+		"spread_shot": {
+			"sprite": "res://assets/sprites/upgrade_icons/spread_shot.png",
+			"name": "Spread Shot",
+			"description": "Give +2 BULLETS",
+		},
+		"speed_up": {
+			"sprite": "res://assets/sprites/upgrade_icons/speed_up.png",
+			"name": "Speed Up",
+			"description": "Speeds up the player by +4",
+		},
+	}
+}

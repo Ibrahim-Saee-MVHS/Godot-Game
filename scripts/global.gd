@@ -6,11 +6,17 @@ var VIGNETTECOLOR: Vector3 = Vector3(0, 0, 0)
 var VIGNETTEINTENSITY: float = 0.25
 var save_directory = "user://UpgradeShooter/"
 
+var upgradesJson: Dictionary
+var validUpgrades: Array
+var upgradeInfo: Dictionary
 
-func _process(delta: float) -> void:
+func _ready() -> void:
+	loadJSONUpgrades()
+
+func _process(_delta: float) -> void:
 	var settings = ConfigFile.new()
 	settings.load(str(Global.save_directory) + "settings.cfg")
-	get_tree().root.content_scale_size = 1 - (settings.get_value("video", "render_scale") - 1) / 4 
+	get_tree().root.content_scale_factor = 1 - (settings.get_value("video", "render_scale")) / 4 
 
 func spawnDamageIndicator(globalPos, damage):
 	var damageIndicator = DAMAGEINDICATOR.instantiate()
@@ -30,6 +36,15 @@ func checkSettingsConfig():
 		defaultSettings.set_value("audio", "music_volume", 100)
 		defaultSettings.set_value("audio", "sound_volume", 100)
 		defaultSettings.save("user://settings.cfg")
+
+func loadJSONUpgrades():
+	var file = FileAccess.open("res://scripts/upgrades.json", FileAccess.READ)
+	upgradesJson = JSON.parse_string(file.get_as_text())
+	validUpgrades = upgradesJson.get("validUpgrades")
+	upgradeInfo = upgradesJson.get("upgradeInfo")
+	for i in range(upgradeInfo.size()):
+		upgradeInfo.get(validUpgrades[i]).set("sprite", load(upgradeInfo.get(validUpgrades[i]).get("sprite")))
+	
 
 @onready var DAMAGEINDICATOR = preload("res://scenes/vfx/damage_indicator.tscn")
 @onready var SFX = {
@@ -55,13 +70,15 @@ var enemyTypes: Array[String] = [
 	"spreader",
 	"juggernaut",
 	"bomber",
+	"grenadier",
 ]
 
 var enemyColor = {
 	"player": Color("00cdffff"),
 	"normal": Color("ff004cff"),
 	"repeater": Color("ffd73eff"),
-	"juggernaut": Color("2659ffff"),
-	"bomber": Color("5eff92ff"),
 	"spreader": Color("ff693fff"),
+	"juggernaut": Color("2643ffff"),
+	"bomber": Color("5eff92ff"),
+	"grenadier": Color("905effff"),
 }

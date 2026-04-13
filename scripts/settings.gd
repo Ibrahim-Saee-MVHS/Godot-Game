@@ -11,7 +11,7 @@ func loadSettings():
 
 func save():
 	var settings = ConfigFile.new()
-	settings.set_value("video", "render_scale", $"RenderScale/HSlider".value + 1)
+	settings.set_value("video", "render_scale", $"RenderScale/HSlider".value)
 	
 	settings.set_value("audio", "music_volume", 100)
 	settings.set_value("audio", "sound_volume", 100)

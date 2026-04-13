@@ -42,7 +42,7 @@ func spawnEnemies():
 		for i in randi_range(1, ENEMYSPAWNAMOUNT):
 			ENEMYSPAWNTIMER = randf_range(ENEMYMINSPAWNTIMER, ENEMYMAXSPAWNTIMER)
 			var newSpawnParticles = EnemySpawnParticles.instantiate()
-			newSpawnParticles.global_position = generateSpawnPosition(60)
+			newSpawnParticles.global_position = generateSpawnPosition(0)
 			newSpawnParticles.TYPE = randomType()
 			newSpawnParticles.statMultiplier = 1.0 + (DIFFICULTY / 2)
 			add_child(newSpawnParticles)
@@ -70,7 +70,7 @@ func vignetteUpdate(delta):
 
 func randomType():
 	# start from 0 and end at 1 lower than the amount of types
-	var rng: float = randf_range(0, 2 + clamp(DIFFICULTY / 3, 0, 6))
+	var rng: float = randf_range(0, 0 + clamp(DIFFICULTY / 3, 0, 6))
 	rng = clamp(rng, 0, Global.enemyTypes.size() - 1)
 	return Global.enemyTypes[roundi(rng)]
 

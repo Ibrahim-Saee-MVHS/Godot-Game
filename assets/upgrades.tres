@@ -1,0 +1,67 @@
+[gd_resource type="Theme" format=3 uid="uid://cfnpremejr0ll"]
+
+[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="5_c85k3"]
+
+[sub_resource type="Gradient" id="Gradient_ppujx"]
+colors = PackedColorArray(0.23352385, 0.12542725, 0.234375, 0.5019608, 0.296875, 0.14611816, 0.23445225, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uo3wy"]
+gradient = SubResource("Gradient_ppujx")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i2301"]
+texture = SubResource("GradientTexture2D_uo3wy")
+
+[sub_resource type="Gradient" id="Gradient_g4xfr"]
+colors = PackedColorArray(0.2509804, 0.3137255, 0.38431373, 0.19607843, 0.43137255, 0.49803922, 0.5254902, 0.19607843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_upyru"]
+gradient = SubResource("Gradient_g4xfr")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8fx3"]
+texture = SubResource("GradientTexture2D_upyru")
+
+[sub_resource type="Gradient" id="Gradient_b8haa"]
+colors = PackedColorArray(0.2509804, 0.3137255, 0.38431373, 0.5019608, 0.43137255, 0.49803922, 0.5254902, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ppujx"]
+gradient = SubResource("Gradient_b8haa")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uo3wy"]
+texture = SubResource("GradientTexture2D_ppujx")
+
+[sub_resource type="Gradient" id="Gradient_k3n2s"]
+colors = PackedColorArray(0.2509804, 0.3137255, 0.38431373, 0.29411766, 0.43137255, 0.49803922, 0.5254902, 0.29411766)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b8haa"]
+gradient = SubResource("Gradient_k3n2s")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ppujx"]
+texture = SubResource("GradientTexture2D_b8haa")
+
+[sub_resource type="Gradient" id="Gradient_c85k3"]
+colors = PackedColorArray(0.22745098, 0.26666668, 0.33333334, 0.29411766, 0.2509804, 0.3137255, 0.38431373, 0.29411766)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n2ec7"]
+gradient = SubResource("Gradient_c85k3")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3352q"]
+texture = SubResource("GradientTexture2D_n2ec7")
+
+[resource]
+default_font = ExtResource("5_c85k3")
+default_font_size = 32
+Button/styles/disabled = SubResource("StyleBoxTexture_i2301")
+Button/styles/focus = SubResource("StyleBoxTexture_v8fx3")
+Button/styles/hover = SubResource("StyleBoxTexture_uo3wy")
+Button/styles/normal = SubResource("StyleBoxTexture_ppujx")
+Button/styles/pressed = SubResource("StyleBoxTexture_3352q")

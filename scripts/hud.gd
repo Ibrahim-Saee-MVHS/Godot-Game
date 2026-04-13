@@ -16,6 +16,7 @@ func _process(_delta):
 		$Control/Stats.text = "Stats:" + "\n" + str(generateStats())
 	else:
 		$Control/Stats.visible = false
+		
 	if Input.is_action_just_pressed("debug_key"):
 		debug_mode = !debug_mode
 	
