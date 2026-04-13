@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cfkksd5jl58bw"]
 
-[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_4pa2q"]
 [ext_resource type="Script" uid="uid://oyw2o0peb3lb" path="res://scripts/upgrade_screen.gd" id="1_qtyd3"]
 [ext_resource type="Texture2D" uid="uid://d7ewgm01468y" path="res://assets/sprites/upgrade_icons/hearty.png" id="2_5x7eg"]
 [ext_resource type="Texture2D" uid="uid://dfejj035emagk" path="res://assets/sprites/upgrade_icons/spread_shot.png" id="4_1ogmj"]
@@ -23,7 +22,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -1.6666667e-05, 0, 0, 0, 0, -1.6666667e-05, 0, 0, 0, 640, -0.53333336, -1130.0112, 0, 0),
+"points": PackedFloat32Array(0, -1.6666667e-05, 0, 0, 0, 0, -1.6666667e-05, 0, 0, 0, 1280, -0.53333336, -1130.0112, 0, 0),
 "times": PackedFloat32Array(0, 0.5, 1.5)
 }
 tracks/1/type = "bezier"
@@ -34,7 +33,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -1.6666667e-05, 0, 0, 0, 0, -1.6666667e-05, 0, 0, 0, 640, -0.53333336, -1130.0112, 0, 0),
+"points": PackedFloat32Array(0, -1.6666667e-05, 0, 0, 0, 0, -1.6666667e-05, 0, 0, 0, 1280, -0.53333336, -1130.0112, 0, 0),
 "times": PackedFloat32Array(0, 1, 2)
 }
 tracks/2/type = "bezier"
@@ -45,7 +44,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -1.6666667e-05, 0, 0, 0, 0, -1.6666667e-05, 0, 0, 0, 640, -0.53333336, -1130.0112, 0, 0),
+"points": PackedFloat32Array(0, -1.6666667e-05, 0, 0, 0, 0, -1.6666667e-05, 0, 0, 0, 1280, -0.53333336, -1130.0112, 0, 0),
 "times": PackedFloat32Array(0, 1.5, 2.25)
 }
 tracks/3/type = "value"
@@ -84,7 +83,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(640, -1.6666667e-05, 0, 0, 0, 640, -1.6666667e-05, 0, 0, 0, 0, -0.285, 0, 0, 0),
+"points": PackedFloat32Array(1280, -1.6666667e-05, 0, 0, 0, 1280, -1.6666667e-05, 0, 0, 0, 0, -0.285, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.98333335, 1.5)
 }
 tracks/1/type = "bezier"
@@ -95,7 +94,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(640, -1.6666667e-05, 0, 0, 0, 640, -1.6666667e-05, 0, 0, 0, 0, -0.285, 0, 0, 0),
+"points": PackedFloat32Array(1280, -1.6666667e-05, 0, 0, 0, 1280, -1.6666667e-05, 0, 0, 0, 0, -0.285, 0, 0, 0),
 "times": PackedFloat32Array(0, 1.25, 1.75)
 }
 tracks/2/type = "bezier"
@@ -106,7 +105,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(640, -1.6666667e-05, 0, 0, 0, 640, -1.6666667e-05, 0, 0, 0, 0, -0.285, 0, 0, 0),
+"points": PackedFloat32Array(1280, -1.6666667e-05, 0, 0, 0, 1280, -1.6666667e-05, 0, 0, 0, 0, -0.285, 0, 0, 0),
 "times": PackedFloat32Array(0, 1.5, 2)
 }
 tracks/3/type = "value"
@@ -197,6 +196,7 @@ func randomizeUpgrade():
 [node name="UpgradeScreen" type="CanvasLayer" unique_id=1468165750]
 process_mode = 3
 script = ExtResource("1_qtyd3")
+buttonsDisabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030319857]
 libraries/ = SubResource("AnimationLibrary_ald31")
@@ -237,9 +237,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -224.49963
+offset_top = -224.99994
 offset_right = 329.0
-offset_bottom = 224.49963
+offset_bottom = 224.00067
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 48
@@ -271,8 +271,6 @@ anchor_right = 1.0
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
-theme_override_font_sizes/font_size = 32
 text = "Hearty"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -286,7 +284,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
 theme_override_font_sizes/font_size = 24
 text = "+5 HEALTH"
 horizontal_alignment = 1
@@ -301,9 +298,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -164.5
-offset_top = -224.49951
+offset_top = -224.99994
 offset_right = 164.5
-offset_bottom = 224.49951
+offset_bottom = 224.00049
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -337,8 +334,6 @@ anchor_right = 1.0
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
-theme_override_font_sizes/font_size = 32
 text = "Spread Shot"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -352,7 +347,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
 theme_override_font_sizes/font_size = 24
 text = "+2 BULLETS"
 horizontal_alignment = 1
@@ -367,8 +361,8 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -330.00043
-offset_top = -224.49915
-offset_bottom = 224.49915
+offset_top = -224.99994
+offset_bottom = 223.9992
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -401,8 +395,6 @@ anchor_right = 1.0
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
-theme_override_font_sizes/font_size = 32
 text = "Speed Up"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -416,7 +408,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_4pa2q")
 theme_override_font_sizes/font_size = 24
 text = "+2 SPEED"
 horizontal_alignment = 1

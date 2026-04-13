@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://3b75reufoy48"]
 
 [ext_resource type="Script" uid="uid://1roebfvruoe" path="res://scripts/hud.gd" id="1_ahhtf"]
-[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="2_oo0fn"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1917983879]
 process_mode = 3
@@ -21,8 +20,6 @@ offset_left = 18.0
 offset_top = 11.0
 offset_right = 224.0
 offset_bottom = 56.0
-theme_override_fonts/font = ExtResource("2_oo0fn")
-theme_override_font_sizes/font_size = 32
 text = "Health: 10/10"
 
 [node name="Level" type="Label" parent="Control" unique_id=1669112242]
@@ -31,8 +28,6 @@ offset_left = 18.0
 offset_top = 56.0
 offset_right = 262.0
 offset_bottom = 101.0
-theme_override_fonts/font = ExtResource("2_oo0fn")
-theme_override_font_sizes/font_size = 32
 text = "Level: 1"
 
 [node name="EXP" type="Label" parent="Control" unique_id=1387493285]
@@ -45,8 +40,6 @@ offset_top = 37.0
 offset_right = 103.0
 offset_bottom = 130.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_oo0fn")
-theme_override_font_sizes/font_size = 32
 text = "EXP:
 0/2"
 horizontal_alignment = 1
@@ -60,6 +53,5 @@ offset_top = -46.5
 offset_right = 206.0
 offset_bottom = 156.0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_oo0fn")
 theme_override_font_sizes/font_size = 16
 vertical_alignment = 1

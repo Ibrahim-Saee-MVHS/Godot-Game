@@ -6,13 +6,14 @@ func _process(delta: float) -> void:
 	$Game.rotation += deg_to_rad(25) * delta
 
 func _startGame():
-	$AnimationPlayer.play("fade_in")
+	$AnimationPlayer.play("fade_in_game")
+
+func _settings() -> void:
+	get_tree().change_scene_to_file("res://scenes/settings.tscn")
 
 func _exit() -> void:
 	get_tree().quit()
-	
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "fade_in":
-		get_tree().change_scene_to_file("res://scenes/game.tscn")
 
-	
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "fade_in_game":
+		get_tree().change_scene_to_file("res://scenes/game.tscn")

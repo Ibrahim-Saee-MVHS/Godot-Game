@@ -23,6 +23,7 @@ Global="*uid://cdrhjugrj6tpf"
 
 window/size/viewport_width=1280
 window/size/viewport_height=640
+window/stretch/mode="viewport"
 
 [editor]
 
@@ -32,6 +33,11 @@ version_control/autoload_on_startup=true
 [global_group]
 
 player=""
+
+[gui]
+
+theme/custom="uid://bej02ygti5nxu"
+theme/custom_font="uid://dm7col5e5mkj4"
 
 [input]
 

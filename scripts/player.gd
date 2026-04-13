@@ -52,7 +52,7 @@ func getPlayerInput():
 
 func _process(delta):
 	level()
-	SPEED = SPEED + (UPGRADE.speed * 500)
+	SPEED = SPEED + (UPGRADE.speed * 100)
 	
 	$Sprite2D.material = shaderMaterial
 	if INVULNERABILITY <= 0:
