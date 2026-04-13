@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bwo3r0gbvhjo7"]
 
 [ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/player_bullet.gd" id="1_ogojx"]
-[ext_resource type="Texture2D" uid="uid://dl6hextvcruo7" path="res://assets/sprites/death.png" id="2_qr30t"]
+[ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/sprites/flame.png" id="2_ogojx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
 radius = 11.045361
@@ -14,7 +14,7 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.7123288, 1)
 colors = PackedColorArray(1, 0.89367676, 0.4765625, 1, 0.74609375, 0.09034729, 0.25940692, 1, 0.10752523, 0.09336853, 0.11328125, 1)
 
-[node name="PlayerBullet" type="Area2D" unique_id=1432198597]
+[node name="PlayerFlame" type="Area2D" unique_id=1432198597]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_ogojx")
@@ -23,8 +23,11 @@ script = ExtResource("1_ogojx")
 shape = SubResource("CircleShape2D_qx7rs")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1732719251]
+emitting = false
 amount = 64
-texture = ExtResource("2_qr30t")
+texture = ExtResource("2_ogojx")
+one_shot = true
+randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 8.0
 direction = Vector2(0, -1)
@@ -32,5 +35,7 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 40.0
+angle_min = -720.0
+angle_max = 720.0
 scale_amount_curve = SubResource("Curve_elrkp")
 color_ramp = SubResource("Gradient_8vc0o")

@@ -139,6 +139,10 @@ func _damagedByBullet(area):
 		$Hit.playing = true
 		Global.spawnDamageIndicator(global_position, -area.DAMAGE)
 		shaderMaterial.shader = Global.shaders.flash
-		HITSTUN = 1
 		HEALTH -= area.DAMAGE
-		area.queue_free()
+		if area.TYPE == "flame":
+			area.get_node("CollisionShape2D").disabled = true
+			area.get_node("CPUParticles2D").emitting = false
+		else:
+			HITSTUN = 1
+			area.queue_free()

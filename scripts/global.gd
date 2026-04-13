@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var settings = ConfigFile.new()
 	settings.load(str(Global.save_directory) + "settings.cfg")
-	get_tree().root.content_scale_factor = 1 - (settings.get_value("video", "render_scale")) / 4 
+	
 
 func spawnDamageIndicator(globalPos, damage):
 	var damageIndicator = DAMAGEINDICATOR.instantiate()

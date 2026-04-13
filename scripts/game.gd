@@ -70,7 +70,7 @@ func vignetteUpdate(delta):
 
 func randomType():
 	# start from 0 and end at 1 lower than the amount of types
-	var rng: float = randf_range(0, 0 + clamp(DIFFICULTY / 3, 0, 6))
+	var rng: float = randf_range(0, 0.5 + clamp(DIFFICULTY / 3, 0, 6))
 	rng = clamp(rng, 0, Global.enemyTypes.size() - 1)
 	return Global.enemyTypes[roundi(rng)]
 

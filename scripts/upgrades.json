@@ -3,6 +3,10 @@
 		"hearty",
 		"spread_shot",
 		"speed_up",
+		"quick_fingers",
+		"bullet_enhancer",
+		"reinforced_chamber",
+		"flamethrower",
 	],
 	"upgradeInfo": {
 		"hearty": {
@@ -19,6 +23,26 @@
 			"sprite": "res://assets/sprites/upgrade_icons/speed_up.png",
 			"name": "Speed Up",
 			"description": "Speeds up the player by +4",
+		},
+		"quick_fingers": {
+			"sprite": "res://assets/sprites/upgrade_icons/quick_fingers.png",
+			"name": "Quick Fingers",
+			"description": "-2 FIRERATE",
+		},
+		"bullet_enhancer": {
+			"sprite": "res://assets/sprites/upgrade_icons/bullet_enhancer.png",
+			"name": "Bullet Enhancer",
+			"description": "+1 DAMAGE",
+		},
+		"reinforced_chamber": {
+			"sprite": "res://assets/sprites/upgrade_icons/reinforced_chamber.png",
+			"name": "Reinforced Chamber",
+			"description": "+6 BULLET SPEED but +4 FIRERATE",
+		},
+		"flamethrower": {
+			"sprite": "res://assets/sprites/upgrade_icons/flamethrower.png",
+			"name": "Flamerthrower",
+			"description": "Changes BULLET TYPE to Flames",
 		},
 	}
 }

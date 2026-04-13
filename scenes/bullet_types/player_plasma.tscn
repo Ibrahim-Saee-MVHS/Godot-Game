@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://5v1xl0www8gf"]
+
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/player_bullet.gd" id="1_66uen"]
+[ext_resource type="Texture2D" uid="uid://cgdsuf6n53h41" path="res://assets/sprites/player_plasma.png" id="2_66uen"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
+radius = 11.045361
+
+[node name="PlayerPlasma" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_66uen")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2082530001]
+texture = ExtResource("2_66uen")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CircleShape2D_qx7rs")
+
+[node name="Lightning" type="Marker2D" parent="." unique_id=1222856522]

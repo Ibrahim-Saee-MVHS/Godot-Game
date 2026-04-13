@@ -44,7 +44,19 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.health += 5
 			get_parent().get_node("Player").HEALTH += get_parent().get_node("Player").MAXHEALTH
 		"spread_shot":
-			get_parent().get_node("Player").BULLETAMOUNT += 2
+			get_parent().get_node("Player").UPGRADE.bulletAmount += 2
 		"speed_up":
 			get_parent().get_node("Player").UPGRADE.speed += 4
+		"quick_fingers":
+			get_parent().get_node("Player").UPGRADE.firerate -= 2
+		"bullet_enhancer":
+			get_parent().get_node("Player").UPGRADE.damage += 1
+		"reinforced_chamber":
+			get_parent().get_node("Player").UPGRADE.bulletSpeed += 6
+			get_parent().get_node("Player").UPGRADE.firerate += 4
+		"flamethrower":
+			get_parent().get_node("Player").bulletType = "flame"
+			get_parent().get_node("Player").BASEFIRERATE = 1.0
+			get_parent().get_node("Player").BASEDAMAGE = 0.01
+			get_parent().get_node("Player").BASEBULLETSPEED = 120
 	endUpgrade()
