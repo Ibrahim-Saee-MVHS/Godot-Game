@@ -7,12 +7,12 @@
 radius = 11.045361
 
 [sub_resource type="Curve" id="Curve_elrkp"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20491797), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_8vc0o"]
-offsets = PackedFloat32Array(0, 0.6130137, 1)
-colors = PackedColorArray(1, 0.796875, 0, 1, 1, 0.20703125, 0.57873535, 1, 0.08730757, 0.08106995, 0.08984375, 1)
+offsets = PackedFloat32Array(0, 0.7123288, 1)
+colors = PackedColorArray(1, 0.89367676, 0.4765625, 1, 0.74609375, 0.09034729, 0.25940692, 1, 0.10752523, 0.09336853, 0.11328125, 1)
 
 [node name="PlayerBullet" type="Area2D" unique_id=1432198597]
 collision_layer = 4
