@@ -67,4 +67,4 @@ stream = ExtResource("8_ipns3")
 max_polyphony = 64
 area_mask = 4
 
-[connection signal="area_entered" from="Area2D" to="." method="_damagedByBullet"]
+[connection signal="area_entered" from="Area2D" to="." method="_gotDamaged"]

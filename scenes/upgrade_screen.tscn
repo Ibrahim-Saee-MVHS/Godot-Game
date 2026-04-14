@@ -226,8 +226,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade1/Button" unique_id=171170278]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.06405694
 anchor_top = 0.5711111
-anchor_right = 1.0
+anchor_right = 0.93594307
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
@@ -245,7 +246,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 text = "+5 HEALTH"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -288,11 +289,12 @@ texture = ExtResource("4_1ogmj")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=1847801825]
+[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=1701668393]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.06405694
 anchor_top = 0.5711111
-anchor_right = 1.0
+anchor_right = 0.93594307
 anchor_bottom = 0.7777778
 grow_horizontal = 2
 grow_vertical = 0
@@ -310,7 +312,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 text = "+2 BULLETS"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -351,12 +353,15 @@ texture = ExtResource("5_ald31")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=887366026]
+[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=1388117986]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.06405694
 anchor_top = 0.5711111
-anchor_right = 1.0
+anchor_right = 0.93594307
 anchor_bottom = 0.7777778
+offset_left = -3.0517578e-05
+offset_right = -3.0517578e-05
 grow_horizontal = 2
 grow_vertical = 0
 text = "Speed Up"
@@ -373,7 +378,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 text = "+2 SPEED"
 horizontal_alignment = 1
 autowrap_mode = 3

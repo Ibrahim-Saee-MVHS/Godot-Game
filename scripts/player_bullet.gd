@@ -1,17 +1,26 @@
 class_name PlayerBullet
 extends Area2D
 
-var TYPE
+var EXPLOSION = preload("res://scenes/explosion.tscn")
+
+var TYPE: String
 var SPEED: float
-var DAMAGE
-var MOVEDIR
+var DAMAGE: float
+var MOVEDIR: float
+var KNOCKBACK: float
 var despawnTimer = 60
-var piercing
+var piercing: float
+var explosiveness: float
 
 func _ready():
+	if TYPE == "normal":
+		KNOCKBACK = 4000
 	if TYPE == "flame":
 		$CPUParticles2D.emitting = true
 		despawnTimer = 5
+		KNOCKBACK = 0
+	if TYPE == "plasma":
+		KNOCKBACK = 0
 
 func _process(delta):
 	if TYPE == "flame":

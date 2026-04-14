@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c77en13o6dl2f"]
+
+[ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/sprites/flame.png" id="1_17npe"]
+[ext_resource type="Script" uid="uid://k4ttkxiumvwh" path="res://scripts/explosion.gd" id="1_nfeox"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nfeox"]
+radius = 42.0
+
+[sub_resource type="Curve" id="Curve_aw4cw"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, -0.94958013, 0, 1, Vector2(0.68840575, 1.3463036), -3.8184178, -3.8184178, 0, 0, Vector2(0.9927535, 0), -4.42357, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_3el85"]
+offsets = PackedFloat32Array(0, 0.48347107, 1)
+colors = PackedColorArray(1, 0.8984375, 0, 1, 0.89192706, 0.27336496, 0.10800679, 1, 0.33053905, 0.29416403, 0.35026044, 1)
+
+[node name="Explosion" type="Area2D" unique_id=602356627]
+script = ExtResource("1_nfeox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1874691363]
+shape = SubResource("CircleShape2D_nfeox")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1515322070]
+emitting = false
+amount = 48
+texture = ExtResource("1_17npe")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 256.0
+damping_min = 32.0
+damping_max = 64.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_aw4cw")
+color_ramp = SubResource("Gradient_3el85")
+
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

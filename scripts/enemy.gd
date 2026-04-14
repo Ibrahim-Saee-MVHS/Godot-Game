@@ -18,6 +18,7 @@ var multiplier: float = 1.0
 @onready var Bullet = preload("res://scenes/bullet_types/enemy_bullet.tscn")
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
 var shaderMaterial = ShaderMaterial.new()
+var knockback: Vector2
 
 func _ready():
 	setStats()
@@ -111,10 +112,15 @@ func shoot(delta, spread):
 			get_parent().add_child(BULLET)
 	else:
 		FIRERATE -= 10 * delta
+	
+	if HITSTUN <= 0:
+		knockback = Vector2(0, 0)
+	else:
+		HITSTUN -= 10 * delta
 
 func _physics_process(delta):
 	var initialVelocity = Vector2(SPEED, 0).rotated(MOVEDIR) * delta
-	if HITSTUN <= 0:
+	if knockback == Vector2(0, 0):
 		velocity = initialVelocity
 		if global_position.distance_to(player_position) > 64:
 			move_and_slide()
@@ -124,16 +130,13 @@ func _physics_process(delta):
 		elif TYPE == "bomber":
 			$Explosion.pitch_scale = shootPitch + randf_range(-0.1, 0.1)
 			$Explosion.playing = true
-			get_parent().get_node("Player").POINTS += 2
 			shoot(delta, deg_to_rad(360))
 			queue_free()
 	else:
-		velocity = -initialVelocity * 2
+		velocity = -(knockback * 2) * delta
 		move_and_slide()
-		HITSTUN -= 10 * delta
 
-		
-func _damagedByBullet(area):
+func _gotDamaged(area):
 	if area is PlayerBullet and HITSTUN <= 0:
 		$Hit.pitch_scale = randf_range(0.9, 1.1)
 		$Hit.playing = true
@@ -143,6 +146,9 @@ func _damagedByBullet(area):
 		if area.TYPE == "flame":
 			area.get_node("CollisionShape2D").disabled = true
 			area.get_node("CPUParticles2D").emitting = false
+		elif area.TYPE == "plasma":
+			HITSTUN = 2
 		else:
 			HITSTUN = 1
+			knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
 			area.queue_free()

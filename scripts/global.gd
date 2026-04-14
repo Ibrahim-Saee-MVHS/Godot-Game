@@ -40,8 +40,8 @@ func checkSettingsConfig():
 func loadJSONUpgrades():
 	var file = FileAccess.open("res://scripts/upgrades.json", FileAccess.READ)
 	upgradesJson = JSON.parse_string(file.get_as_text())
-	validUpgrades = upgradesJson.get("validUpgrades")
-	upgradeInfo = upgradesJson.get("upgradeInfo")
+	validUpgrades = upgradesJson.keys()
+	upgradeInfo = upgradesJson
 	for i in range(upgradeInfo.size()):
 		upgradeInfo.get(validUpgrades[i]).set("sprite", load(upgradeInfo.get(validUpgrades[i]).get("sprite")))
 	

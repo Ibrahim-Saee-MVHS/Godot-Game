@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/player_bullet.gd" id="1_66uen"]
 [ext_resource type="Texture2D" uid="uid://cgdsuf6n53h41" path="res://assets/sprites/player_plasma.png" id="2_66uen"]
+[ext_resource type="Texture2D" uid="uid://53wh6tjot6qi" path="res://assets/sprites/plasma_electricity.png" id="3_3202q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
-radius = 11.045361
+radius = 17.0
+
+[sub_resource type="Curve" id="Curve_ry35n"]
+_data = [Vector2(0, 1), 0.0, -0.9296707, 0, 1, Vector2(0.48550722, 0.54863816), -0.9296707, -1.0739301, 1, 0, Vector2(1, 0), -1.0972763, 0.0, 0, 0]
+point_count = 3
 
 [node name="PlayerPlasma" type="Area2D" unique_id=1432198597]
 collision_layer = 4
@@ -12,9 +17,22 @@ collision_mask = 2
 script = ExtResource("1_66uen")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2082530001]
+z_index = 1
 texture = ExtResource("2_66uen")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
 shape = SubResource("CircleShape2D_qx7rs")
 
-[node name="Lightning" type="Marker2D" parent="." unique_id=1222856522]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1219030038]
+amount = 16
+texture = ExtResource("3_3202q")
+local_coords = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 16.0
+initial_velocity_max = 64.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_ry35n")
+color = Color(0, 0.7999997, 1, 1)

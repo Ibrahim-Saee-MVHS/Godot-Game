@@ -56,7 +56,8 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.firerate += 4
 		"flamethrower":
 			get_parent().get_node("Player").bulletType = "flame"
-			get_parent().get_node("Player").BASEFIRERATE = 1.0
-			get_parent().get_node("Player").BASEDAMAGE = 0.01
-			get_parent().get_node("Player").BASEBULLETSPEED = 120
+		"plasma_rounds":
+			get_parent().get_node("Player").bulletType = "plasma"
+		"normalcy":
+			get_parent().get_node("Player").bulletType = "normal"
 	endUpgrade()

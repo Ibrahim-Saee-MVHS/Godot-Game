@@ -7,6 +7,8 @@ extends CharacterBody2D
 @export var BASEBULLETSPEED: int = 250
 @export var BASEBULLETAMOUNT: int = 1
 @export var BASEFIRERATE: float = 8
+var BULLETVARIANCE: float = 0
+var MAXBULLETAMOUNT: int = 9
 var DAMAGE: float
 var BULLETSPEED: int
 var BULLETAMOUNT: int
@@ -40,24 +42,27 @@ var UPGRADE = {
 	damage = 0,
 	speed = 0,
 	bulletSpeed = 0,
-	bulletAmount= 0,
+	bulletAmount = 0,
+	bulletVariance = 0,
+	piercing = 0,
+	explosiveness = 0, # for bullets
+	destructiveness = 0, # for detonation ability
 }
 
 func _ready() -> void:
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500)
-	MAXFIRERATE = clamp(BASEFIRERATE - ( float(LEVEL - 1) / 4), 2, 16)
-	DAMAGE = clamp(BASEDAMAGE + ( float(LEVEL - 1) / 8), 4, 32)
+	MAXFIRERATE = clamp(BASEFIRERATE, 2, 16)
+	DAMAGE = clamp(BASEDAMAGE, 4, 32)
 	BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 	BULLETSPEED = BASEBULLETSPEED
 	BULLETAMOUNT = BASEBULLETAMOUNT
+	MAXBULLETAMOUNT = 9
 	SPEED = BASESPEED
 	HEALTH = MAXHEALTH
 	EXPMAX = 4
 
 func level():
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
-	MAXFIRERATE = clamp(BASEFIRERATE - ( float(LEVEL - 1) / 8) + UPGRADE.firerate, 1, 16)
-	DAMAGE = clamp(BASEDAMAGE + ( float(LEVEL - 1) / 16) + UPGRADE.damage, 0.01, 32)
 	if EXP >= EXPMAX:
 		LEVEL += 1
 		EXP = 0
@@ -74,11 +79,12 @@ func getPlayerInput():
 
 func _process(delta):
 	level()
-	if bulletType == "flame":
-		MAXFIRERATE = BASEFIRERATE
+	setBaseStats()
+	MAXFIRERATE = clamp(BASEFIRERATE + UPGRADE.firerate, 1, 16)
+	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
 	SPEED = BASESPEED + (UPGRADE.speed * 200)
-	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 125, 1000)
-	BULLETAMOUNT = BASEBULLETAMOUNT + UPGRADE.bulletAmount
+	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
+	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
 	
 	if Input.is_action_just_pressed("quick_upgrade"):
 		EXP += EXPMAX
@@ -92,10 +98,7 @@ func _process(delta):
 			shaderMaterial.shader = Global.shaders.tint
 		
 	if Input.is_action_pressed("shoot") and FIRERATE <= 0:
-		if bulletType == "flame":
-			shoot(deg_to_rad(45 * BULLETAMOUNT), 5)
-		else:
-			shoot(BULLETSPREAD, 0)
+		shoot(BULLETSPREAD, BULLETVARIANCE)
 	elif FIRERATE > 0 and HEALTH >= 0:
 		FIRERATE -= 10 * delta
 	if HEALTH <= 0:
@@ -113,6 +116,33 @@ func _process(delta):
 		FIRERATE = 1000
 		SPEED = 0
 
+func setBaseStats():
+	BASESPEED = 8000
+	if bulletType == "normal":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 8.0
+		BASEDAMAGE = 4.0
+		BASEBULLETSPEED = 250
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 9
+	if bulletType == "flame":
+		BULLETSPREAD = deg_to_rad(45 * BULLETAMOUNT)
+		BULLETVARIANCE = 5
+		BASEFIRERATE = 1.0
+		BASEDAMAGE = 0.01
+		BASEBULLETSPEED = 125
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 3
+	if bulletType == "plasma":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 10.0
+		BASEDAMAGE = 4.0
+		BASEBULLETSPEED = 75
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 3
+
 func shoot(spread, variance):
 	var startDir = -spread / 2
 	var dirSteps = spread / (BULLETAMOUNT - 1)
@@ -127,6 +157,8 @@ func shoot(spread, variance):
 		BULLET.TYPE = bulletType
 		BULLET.SPEED = BULLETSPEED
 		BULLET.DAMAGE = DAMAGE
+		BULLET.piercing = UPGRADE.piercing
+		BULLET.explosiveness = UPGRADE.explosiveness
 		BULLET.MOVEDIR = (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance))
 		get_parent().add_child(BULLET)
 
