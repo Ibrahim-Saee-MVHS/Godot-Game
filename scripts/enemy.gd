@@ -100,7 +100,7 @@ func setStats():
 		DAMAGE = 6 * multiplier
 		EXP = 6 * 1 + multiplier / 4
 		bulletType = "bomb"
-		explosiveness = 0.75 * multiplier /4
+		explosiveness = 2.5 * multiplier / 4
 		shootPitch = 0.5
 
 func _process(delta):
@@ -153,6 +153,7 @@ func shoot(delta, spread):
 			BULLET.DAMAGE = DAMAGE
 			BULLET.MOVEDIR = MOVEDIR + dirOffset
 			BULLET.explosiveness = explosiveness
+			BULLET.destination_position = player_position
 			get_parent().add_child(BULLET)
 	else:
 		FIRERATE -= 10 * delta

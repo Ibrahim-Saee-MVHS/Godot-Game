@@ -39,7 +39,7 @@
 		"sprite": "res://assets/sprites/upgrade_icons/flamethrower.png",
 		"name": "Flamerthrower",
 		"description": "Changes BULLET TYPE to Flames. Continuous stream with low damage, Stack for stronger Flame and reach",
-		"weight": 20.25,
+		"weight": 0.25,
 	},
 	"plasma_rounds": {
 		"sprite": "res://assets/sprites/upgrade_icons/plasma_rounds.png",
@@ -50,7 +50,13 @@
 	"normalcy": {
 		"sprite": "res://assets/sprites/upgrade_icons/normalcy.png",
 		"name": "Normalcy",
-		"description": "Reverts BULLET TYPE to standard bullets and normal size.",
+		"description": "Reverts BULLET TYPE to standard non-explosive bullets and normal size",
 		"weight": 1,
+	},
+	"sulfuric_ammo": {
+		"sprite": "res://assets/sprites/upgrade_icons/sulfuric_ammo.png",
+		"name": "Sulfuric Ammo",
+		"description": "+0.25 EXPLOSIVENESS, Only works with Normal BULLET TYPE",
+		"weight": 0.5,
 	},
 }

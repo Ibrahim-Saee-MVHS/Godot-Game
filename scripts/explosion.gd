@@ -12,7 +12,7 @@ func _ready():
 	$Wave.emitting = true
 
 func initializeExplosion():
-	SIZE = clampf(SIZE, 0.5, 8)
+	SIZE = clampf(SIZE, 0, 8)
 	$CollisionShape2D.shape.radius = 64 * SIZE
 	DAMAGE = maxf(6 * SIZE, 1)
 	$Fire.initial_velocity_min = 64 * SIZE

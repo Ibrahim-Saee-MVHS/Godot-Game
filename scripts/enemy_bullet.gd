@@ -12,6 +12,7 @@ var KNOCKBACK: float
 var despawnTimer = 60
 var piercing: float
 var explosiveness: float
+var destination_position: Vector2
 
 func _ready():
 	$Outline.self_modulate = Global.enemyColor.get(COLOR)
@@ -24,7 +25,7 @@ func _process(delta):
 	despawnTimer -= 10 * delta
 	
 	if TYPE == "bomb":
-		SPEED -= 100 * delta
+		SPEED -= (-global_position.distance_to(destination_position) + 100) * delta
 	
 	if despawnTimer <= 0:
 		if TYPE == "bomb":

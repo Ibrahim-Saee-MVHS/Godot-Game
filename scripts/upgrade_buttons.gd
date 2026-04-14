@@ -42,6 +42,8 @@ func randomizeUpgrade():
 		totalUpgrades.erase("plasma_rounds")
 	if player.BULLETAMOUNT + 2 >= player.MAXBULLETAMOUNT:
 		totalUpgrades.erase("spread_shot")
+	if player.bulletType != "normal" or player.UPGRADE.explosiveness >= 2:
+		totalUpgrades.erase("sulfuric_ammo")
 	
 	for i in range(totalUpgrades.size()):
 		totalWeights.append(upgradeInfo.get(totalUpgrades[i]).get("weight"))
