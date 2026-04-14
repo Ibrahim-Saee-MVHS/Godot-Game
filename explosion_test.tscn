@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bf168y6rfmvcm"]
+
+[ext_resource type="Script" uid="uid://c1dx84bf4a57n" path="res://explosion_test.gd" id="1_lbqmn"]
+
+[node name="Control" type="Control" unique_id=1734098377]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1362931690]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 26.0
+offset_top = -21.0
+offset_right = 450.0
+offset_bottom = 21.0
+grow_vertical = 2
+placeholder_text = "input explosion size"
+script = ExtResource("1_lbqmn")
+
+[node name="Button" type="Button" parent="TextEdit" unique_id=1731185681]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = 40.0
+offset_right = 74.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "kaboom"
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=546405718]
+position = Vector2(935, 339)
+
+[connection signal="pressed" from="TextEdit/Button" to="TextEdit" method="_on_button_pressed"]

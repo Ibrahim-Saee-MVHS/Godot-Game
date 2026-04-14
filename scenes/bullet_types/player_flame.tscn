@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bwo3r0gbvhjo7"]
 
 [ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/player_bullet.gd" id="1_ogojx"]
-[ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/sprites/flame.png" id="2_ogojx"]
+[ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/particles/flame.png" id="2_ogojx"]
+[ext_resource type="Gradient" uid="uid://vgleqkp4r0bf" path="res://assets/particles/normal_fire.tres" id="3_qr30t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
 radius = 11.045361
@@ -9,10 +10,6 @@ radius = 11.045361
 [sub_resource type="Curve" id="Curve_elrkp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20491797), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_8vc0o"]
-offsets = PackedFloat32Array(0, 0.7123288, 1)
-colors = PackedColorArray(1, 0.89367676, 0.4765625, 1, 0.74609375, 0.09034729, 0.25940692, 1, 0.24269475, 0.22152539, 0.25130206, 1)
 
 [node name="PlayerFlame" type="Area2D" unique_id=1432198597]
 collision_layer = 4
@@ -38,4 +35,4 @@ initial_velocity_max = 40.0
 angle_min = -720.0
 angle_max = 720.0
 scale_amount_curve = SubResource("Curve_elrkp")
-color_ramp = SubResource("Gradient_8vc0o")
+color_ramp = ExtResource("3_qr30t")

@@ -22,13 +22,17 @@ var EXP: int = 0
 var EXPMAX: int
 var INVULNERABILITY: float = 0
 var MAXINVULNERABILITY: float = 4
-var ABILITY: StringName
+var ABILITY: String
 var ABILITYDURATION: float
 var ABILITYCOOLDOWN: float
 @onready var Death = preload("res://scenes/vfx/player_death.tscn")
 @onready var GameOver = preload("res://scenes/game_over.tscn")
 @onready var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
+@onready var ExplosionNode = preload("res://scenes/explosion.tscn")
 var shaderMaterial = ShaderMaterial.new()
+var knockbackDir: float
+var knockbackPower: float
+var knockback: Vector2
 
 var bulletType = "normal"
 var Projectiles = {
@@ -44,6 +48,7 @@ var UPGRADE = {
 	bulletSpeed = 0,
 	bulletAmount = 0,
 	bulletVariance = 0,
+	bulletUpgrades = 0,
 	piercing = 0,
 	explosiveness = 0, # for bullets
 	destructiveness = 0, # for detonation ability
@@ -56,6 +61,7 @@ func _ready() -> void:
 	BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 	BULLETSPEED = BASEBULLETSPEED
 	BULLETAMOUNT = BASEBULLETAMOUNT
+	bulletType = "normal"
 	MAXBULLETAMOUNT = 9
 	SPEED = BASESPEED
 	HEALTH = MAXHEALTH
@@ -68,7 +74,7 @@ func level():
 		EXP = 0
 		EXPMAX += 4
 		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
-		HEALTH = clamp(HEALTH + 5, HEALTH, MAXHEALTH)
+		HEALTH = clamp(HEALTH + 5, 0, MAXHEALTH)
 		if HEALTH > 0:
 			get_parent().add_child(UpgradeScreen.instantiate())
 
@@ -80,6 +86,7 @@ func getPlayerInput():
 func _process(delta):
 	level()
 	setBaseStats()
+	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
 	MAXFIRERATE = clamp(BASEFIRERATE + UPGRADE.firerate, 1, 16)
 	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
 	SPEED = BASESPEED + (UPGRADE.speed * 200)
@@ -92,6 +99,9 @@ func _process(delta):
 	$Sprite2D.material = shaderMaterial
 	if INVULNERABILITY <= 0:
 		shaderMaterial.shader = null
+		knockbackPower = 0
+		knockbackDir = 0
+		knockback = Vector2(0, 0)
 	else:
 		INVULNERABILITY -= 10 * delta
 		if INVULNERABILITY < MAXINVULNERABILITY - 1:
@@ -147,8 +157,12 @@ func shoot(spread, variance):
 	var startDir = -spread / 2
 	var dirSteps = spread / (BULLETAMOUNT - 1)
 	var currentBullet = Projectiles.get(bulletType)
-	$Shoot.pitch_scale = randf_range(0.8, 1.2)
-	$Shoot.playing = true
+	if bulletType == "flame":
+		$FlameThrow.pitch_scale = randf_range(0.5, 1.5)
+		$FlameThrow.playing = true
+	else:
+		$Shoot.pitch_scale = randf_range(0.8, 1.2)
+		$Shoot.playing = true
 	FIRERATE = MAXFIRERATE
 	for i in range(BULLETAMOUNT):
 		var BULLET = currentBullet.instantiate()
@@ -159,29 +173,57 @@ func shoot(spread, variance):
 		BULLET.DAMAGE = DAMAGE
 		BULLET.piercing = UPGRADE.piercing
 		BULLET.explosiveness = UPGRADE.explosiveness
+		BULLET.upgrades = UPGRADE.bulletUpgrades
 		BULLET.MOVEDIR = (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance))
 		get_parent().add_child(BULLET)
 
 func _physics_process(delta):
 	var input = getPlayerInput()
 	var screenSize = get_viewport_rect().size / 4
-	velocity = input * SPEED * delta
+	if knockbackPower <= 0:
+		velocity = input * SPEED * delta
+	else:
+		knockback = -Vector2(knockbackPower * 5000, 0).rotated(knockbackDir)
+		velocity = knockback * delta
+		knockbackPower -= 20 * delta
 	move_and_slide()
 	position = position.clamp(-screenSize + Vector2(8, 8), screenSize - Vector2(8, 8))
 
+func explode(power, isPlayer, explosion_position):
+	var EXPLOSION = ExplosionNode.instantiate()
+	EXPLOSION.global_position = explosion_position
+	EXPLOSION.SIZE = power
+	EXPLOSION.playerExplosion = isPlayer
+	get_parent().add_child(EXPLOSION)
+
+func dealDamage(damage):
+	$Hit.pitch_scale = randf_range(0.9, 1.1)
+	$Hit.playing = true
+	Global.SCREENSHAKEAMOUNT = 100 * 1 + (damage/2)
+	Global.SCREENSHAKEPOWER = 0.5 + (damage/10)
+	Global.VIGNETTEINTENSITY = 0.5
+	Global.VIGNETTECOLOR = Vector3(1, 0, 0)
+	shaderMaterial.shader = Global.shaders.flash
+	INVULNERABILITY = MAXINVULNERABILITY
+	HEALTH -= damage
+	Global.spawnDamageIndicator(global_position, -damage)
+
 func _on_area_2d_area_entered(area):
-	if area is EnemyBullet and INVULNERABILITY <= 0:
-		$Hit.pitch_scale = randf_range(0.9, 1.1)
-		$Hit.playing = true
-		Global.SCREENSHAKEAMOUNT = 100 * 1 + (area.DAMAGE/2)
-		Global.SCREENSHAKEPOWER = 0.5 + (area.DAMAGE/10)
-		Global.VIGNETTEINTENSITY = 0.5
-		Global.VIGNETTECOLOR = Vector3(1, 0, 0)
-		shaderMaterial.shader = Global.shaders.flash
-		INVULNERABILITY = MAXINVULNERABILITY
-		HEALTH -= area.DAMAGE
-		Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-		area.queue_free()
+	if INVULNERABILITY <= 0:
+		# bullets
+		if area is EnemyBullet:
+			if area.explosiveness <= 0:
+				dealDamage(area.DAMAGE)
+				area.queue_free()
+			# explosive bullets
+			elif area.TYPE != "bomb":
+				explode(area.explosiveness, false, area.global_position)
+				area.queue_free()
+		# explosions
+		if area is Explosion and area.playerExplosion == false:
+			dealDamage(area.DAMAGE)
+			knockbackPower = 6
+			knockbackDir = (area.global_position - global_position).angle()
 	if area is HealthBox:
 		$Health.pitch_scale = randf_range(0.9, 1.1)
 		$Health.playing = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw63bg6h06tme"
-path="res://.godot/imported/spawn.png-851a1a3431c5d37e06993b7073818a51.ctex"
+uid="uid://dhfi2738iv06n"
+path="res://.godot/imported/bomb_outline.png-fa7b992690a90256dc81e951aef8323e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/spawn.png"
-dest_files=["res://.godot/imported/spawn.png-851a1a3431c5d37e06993b7073818a51.ctex"]
+source_file="res://assets/sprites/enemies/bomb_outline.png"
+dest_files=["res://.godot/imported/bomb_outline.png-fa7b992690a90256dc81e951aef8323e.ctex"]
 
 [params]
 

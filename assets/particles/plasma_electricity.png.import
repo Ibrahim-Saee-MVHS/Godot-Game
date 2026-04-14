@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8r6s3sx2fr8k"
-path="res://.godot/imported/normal_spawn.png-a2cae5f9b622a6c7bb5477c87ae24def.ctex"
+uid="uid://53wh6tjot6qi"
+path="res://.godot/imported/plasma_electricity.png-f694d27723f2daacfd646bd4670a43c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/normal_spawn.png"
-dest_files=["res://.godot/imported/normal_spawn.png-a2cae5f9b622a6c7bb5477c87ae24def.ctex"]
+source_file="res://assets/particles/plasma_electricity.png"
+dest_files=["res://.godot/imported/plasma_electricity.png-f694d27723f2daacfd646bd4670a43c5.ctex"]
 
 [params]
 

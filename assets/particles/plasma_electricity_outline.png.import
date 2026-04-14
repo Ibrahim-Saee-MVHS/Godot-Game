@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgqla1yroclt8"
-path="res://.godot/imported/repeater_bullet.png-a6764dd81a8243591663a5087ef79854.ctex"
+uid="uid://jcjhyb8lebi3"
+path="res://.godot/imported/plasma_electricity_outline.png-22c6c44929df9412adf4bda905627d23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/repeater_bullet.png"
-dest_files=["res://.godot/imported/repeater_bullet.png-a6764dd81a8243591663a5087ef79854.ctex"]
+source_file="res://assets/particles/plasma_electricity_outline.png"
+dest_files=["res://.godot/imported/plasma_electricity_outline.png-22c6c44929df9412adf4bda905627d23.ctex"]
 
 [params]
 

@@ -38,19 +38,19 @@
 	"flamethrower": {
 		"sprite": "res://assets/sprites/upgrade_icons/flamethrower.png",
 		"name": "Flamerthrower",
-		"description": "Changes BULLET TYPE to Flames. Continuous stream with low damage",
-		"weight": 0.25,
+		"description": "Changes BULLET TYPE to Flames. Continuous stream with low damage, Stack for stronger Flame and reach",
+		"weight": 20.25,
 	},
 	"plasma_rounds": {
 		"sprite": "res://assets/sprites/upgrade_icons/plasma_rounds.png",
 		"name": "Plasma Rounds",
-		"description": "Changes BULLET TYPE to Plasma. Pierces enemies and has slight AOE",
+		"description": "Changes BULLET TYPE to Plasma. Pierces enemies and has slight AOE, Stack for greater area",
 		"weight": 0.25,
 	},
 	"normalcy": {
 		"sprite": "res://assets/sprites/upgrade_icons/normalcy.png",
 		"name": "Normalcy",
-		"description": "Reverts BULLET TYPE to standard bullets.",
+		"description": "Reverts BULLET TYPE to standard bullets and normal size.",
 		"weight": 1,
 	},
 }

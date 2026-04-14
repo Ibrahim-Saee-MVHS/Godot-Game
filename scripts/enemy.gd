@@ -12,11 +12,18 @@ var HEALTH: int
 var MOVEDIR: float
 var BULLETAMOUNT: int = 1
 var HITSTUN: float
+var BULLETSPEED: float
 var shootPitch: float = 1.0
 var player_position: Vector2
 var multiplier: float = 1.0
-@onready var Bullet = preload("res://scenes/bullet_types/enemy_bullet.tscn")
+var explosiveness: float
+var bulletType: String
+@onready var Projectiles = {
+	"normal": preload("res://scenes/bullet_types/enemy_bullet.tscn"),
+	"bomb": preload("res://scenes/bullet_types/enemy_bomb.tscn"),
+}
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
+@onready var ExplosionNode = preload("res://scenes/explosion.tscn")
 var shaderMaterial = ShaderMaterial.new()
 var knockback: Vector2
 
@@ -34,41 +41,67 @@ func setStats():
 		MAXHEALTH = 25 * multiplier
 		MAXFIRERATE = 10
 		BULLETAMOUNT = 1
+		BULLETSPEED = 200
 		DAMAGE = 1 * multiplier
 		EXP = 4 * 1 + multiplier / 4
+		bulletType = "normal"
+		explosiveness = 0
 		shootPitch = 1.0
 	if TYPE == "repeater":
 		SPEED = 4100
 		MAXHEALTH = 16 * multiplier
 		MAXFIRERATE = 4 * multiplier
 		BULLETAMOUNT = 1
+		BULLETSPEED = 250
 		DAMAGE = 1 * multiplier
 		EXP = 6 * 1 + multiplier / 4
+		bulletType = "normal"
+		explosiveness = 0
 		shootPitch = 1.25
 	if TYPE == "juggernaut":
 		SPEED = 3000
 		MAXHEALTH = 40 * multiplier
 		MAXFIRERATE = 20
 		BULLETAMOUNT = 3
+		BULLETSPEED = 200
 		DAMAGE = 6
 		EXP = 8 * 1 + multiplier / 4
+		bulletType = "normal"
+		explosiveness = 0
 		shootPitch = 0.5
 	if TYPE == "bomber":
 		SPEED = clamp(6000 + (10 * multiplier), 6000, 8000)
-		MAXHEALTH = 8  * multiplier
+		MAXHEALTH = 10 * multiplier
 		MAXFIRERATE = 0
 		BULLETAMOUNT = 16
-		DAMAGE = 18 * multiplier
+		BULLETSPEED = 300
+		DAMAGE = 4 * multiplier / 4
 		EXP = 12 * 1 + multiplier / 4
+		bulletType = "bomb"
+		explosiveness = 0
 		shootPitch = 1.0
 	if TYPE == "spreader":
 		SPEED = 4000
 		MAXHEALTH = 40 * multiplier
 		MAXFIRERATE = 8
 		BULLETAMOUNT = clamp(ceil(3 * multiplier), 3, 9)
+		BULLETSPEED = 200
 		DAMAGE = 2 * multiplier
 		EXP = 6 * 1 + multiplier / 4
+		bulletType = "normal"
+		explosiveness = 0
 		shootPitch = 1.0
+	if TYPE == "grenadier":
+		SPEED = 6000
+		MAXHEALTH = 32 * multiplier
+		MAXFIRERATE = 18
+		BULLETAMOUNT = clamp(floor(1 * multiplier), 1, 6)
+		BULLETSPEED = 200
+		DAMAGE = 6 * multiplier
+		EXP = 6 * 1 + multiplier / 4
+		bulletType = "bomb"
+		explosiveness = 0.75 * multiplier /4
+		shootPitch = 0.5
 
 func _process(delta):
 	$Sprite2D.material = shaderMaterial
@@ -81,6 +114,10 @@ func _process(delta):
 		shaderMaterial.shader = null
 	if TYPE != "bomber":
 		shoot(delta, deg_to_rad(6.25 * BULLETAMOUNT))
+	else:
+		if global_position.distance_to(player_position) <= 64:
+			explode(DAMAGE, false, global_position)
+			queue_free()
 	if HEALTH <= 0:
 		var DEATH = Death.instantiate()
 		DEATH.global_position = global_position
@@ -93,6 +130,10 @@ func _process(delta):
 	if get_parent().get_node("Player").HEALTH <= 0:
 		FIRERATE = 10
 		SPEED = 0
+	if HITSTUN <= 0:
+		knockback = Vector2(0, 0)
+	else:
+		HITSTUN -= 10 * delta
 
 func shoot(delta, spread):
 	var startDir = -spread / 2
@@ -101,22 +142,20 @@ func shoot(delta, spread):
 		$Shoot.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
 		$Shoot.playing = true
 		FIRERATE = MAXFIRERATE
+		var currentBullet = Projectiles.get(bulletType)
 		for i in range(BULLETAMOUNT):
-			var BULLET = Bullet.instantiate()
+			var BULLET = currentBullet.instantiate()
 			var dirOffset = startDir + (dirSteps * i) if BULLETAMOUNT > 1 else 0
 			BULLET.global_position = global_position
-			BULLET.SPEED = 200
+			BULLET.COLOR = TYPE
+			BULLET.TYPE = bulletType
+			BULLET.SPEED = BULLETSPEED
 			BULLET.DAMAGE = DAMAGE
-			BULLET.TYPE = TYPE
 			BULLET.MOVEDIR = MOVEDIR + dirOffset
+			BULLET.explosiveness = explosiveness
 			get_parent().add_child(BULLET)
 	else:
 		FIRERATE -= 10 * delta
-	
-	if HITSTUN <= 0:
-		knockback = Vector2(0, 0)
-	else:
-		HITSTUN -= 10 * delta
 
 func _physics_process(delta):
 	var initialVelocity = Vector2(SPEED, 0).rotated(MOVEDIR) * delta
@@ -127,28 +166,47 @@ func _physics_process(delta):
 		elif global_position.distance_to(player_position) < 32:
 			velocity = -initialVelocity
 			move_and_slide()
-		elif TYPE == "bomber":
-			$Explosion.pitch_scale = shootPitch + randf_range(-0.1, 0.1)
-			$Explosion.playing = true
-			shoot(delta, deg_to_rad(360))
-			queue_free()
 	else:
 		velocity = -(knockback * 2) * delta
 		move_and_slide()
 
+func explode(power, isPlayer, explosion_position):
+	var EXPLOSION = ExplosionNode.instantiate()
+	EXPLOSION.global_position = explosion_position
+	EXPLOSION.SIZE = power
+	EXPLOSION.playerExplosion = isPlayer
+	get_parent().add_child(EXPLOSION)
+
 func _gotDamaged(area):
-	if area is PlayerBullet and HITSTUN <= 0:
-		$Hit.pitch_scale = randf_range(0.9, 1.1)
-		$Hit.playing = true
-		Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-		shaderMaterial.shader = Global.shaders.flash
-		HEALTH -= area.DAMAGE
-		if area.TYPE == "flame":
-			area.get_node("CollisionShape2D").disabled = true
-			area.get_node("CPUParticles2D").emitting = false
-		elif area.TYPE == "plasma":
-			HITSTUN = 2
-		else:
-			HITSTUN = 1
-			knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
-			area.queue_free()
+	if HITSTUN <= 0:
+		if area is PlayerBullet:
+			# bullets
+			if area.explosiveness <= 0:
+				$Hit.pitch_scale = randf_range(0.9, 1.1)
+				$Hit.playing = true
+				Global.spawnDamageIndicator(global_position, -area.DAMAGE)
+				shaderMaterial.shader = Global.shaders.flash
+				HEALTH -= area.DAMAGE
+				if area.TYPE == "flame":
+					area.get_node("CPUParticles2D").set_deferred("emitting", false)
+					area.get_node("CollisionShape2D").set_deferred("disabled", true)
+				elif area.TYPE == "plasma":
+					HITSTUN = 2
+				else:
+					HITSTUN = 1
+					knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
+					area.queue_free()
+			# explosive bullets
+			else:
+				explode(area.explosiveness, true, area.global_position)
+				knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
+				area.queue_free()
+		# explosions
+		if area is Explosion and area.playerExplosion == true:
+			$Hit.pitch_scale = randf_range(0.9, 1.1)
+			$Hit.playing = true
+			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
+			shaderMaterial.shader = Global.shaders.flash
+			HEALTH -= area.DAMAGE
+			HITSTUN = 4
+			knockback = Vector2(area.SIZE * 500, 0).rotated((area.global_position - global_position).angle())

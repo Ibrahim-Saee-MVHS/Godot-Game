@@ -42,7 +42,7 @@ func upgradePlayer():
 	match selectedUpgrade:
 		"hearty":
 			get_parent().get_node("Player").UPGRADE.health += 5
-			get_parent().get_node("Player").HEALTH += get_parent().get_node("Player").MAXHEALTH
+			get_parent().get_node("Player").HEALTH = get_parent().get_node("Player").MAXHEALTH + 5
 		"spread_shot":
 			get_parent().get_node("Player").UPGRADE.bulletAmount += 2
 		"speed_up":
@@ -55,9 +55,18 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.bulletSpeed += 6
 			get_parent().get_node("Player").UPGRADE.firerate += 4
 		"flamethrower":
-			get_parent().get_node("Player").bulletType = "flame"
+			if get_parent().get_node("Player").bulletType != "flame":
+				get_parent().get_node("Player").bulletType = "flame"
+				get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
+			else:
+				get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 		"plasma_rounds":
-			get_parent().get_node("Player").bulletType = "plasma"
+			if get_parent().get_node("Player").bulletType != "plasma":
+				get_parent().get_node("Player").bulletType = "plasma"
+				get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
+			else:
+				get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 		"normalcy":
 			get_parent().get_node("Player").bulletType = "normal"
+			get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
 	endUpgrade()

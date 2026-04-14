@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ootu8jb5gyyx"
-path="res://.godot/imported/repeater.png-23eb084f347eff1e7a31f3cf4802f08d.ctex"
+uid="uid://dybyv7ynb37hv"
+path="res://.godot/imported/flame.png-541f7b95233c63c810ce4b543249088d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/repeater.png"
-dest_files=["res://.godot/imported/repeater.png-23eb084f347eff1e7a31f3cf4802f08d.ctex"]
+source_file="res://assets/particles/flame.png"
+dest_files=["res://.godot/imported/flame.png-541f7b95233c63c810ce4b543249088d.ctex"]
 
 [params]
 

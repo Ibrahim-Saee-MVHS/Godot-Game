@@ -8,7 +8,7 @@ func _ready():
 
 func _process(_delta):
 	player = get_parent().get_node("Player")
-	$Control/Health.text = "Health: " + str(clamp(player.HEALTH, 0, player.MAXHEALTH)) + "/" + str(player.MAXHEALTH)
+	$Control/Health.text = "Health: " + str(player.HEALTH) + "/" + str(player.MAXHEALTH)
 	$Control/Level.text = "Level: " + str(player.LEVEL)
 	$Control/EXP.text = "EXP:\n" + str(player.EXP) + "/" + str(player.EXPMAX)
 	if debug_mode == true:

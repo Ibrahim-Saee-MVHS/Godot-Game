@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://53wh6tjot6qi"
-path="res://.godot/imported/plasma_electricity.png-e0da9a7e630dfdbb2a4bf15cf21109a7.ctex"
+uid="uid://dl6hextvcruo7"
+path="res://.godot/imported/death.png-1d3b1fd39102ed18c0d5eb75af3545a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/plasma_electricity.png"
-dest_files=["res://.godot/imported/plasma_electricity.png-e0da9a7e630dfdbb2a4bf15cf21109a7.ctex"]
+source_file="res://assets/particles/death.png"
+dest_files=["res://.godot/imported/death.png-1d3b1fd39102ed18c0d5eb75af3545a6.ctex"]
 
 [params]
 

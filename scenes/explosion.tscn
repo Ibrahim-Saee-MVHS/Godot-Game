@@ -1,27 +1,40 @@
 [gd_scene format=3 uid="uid://c77en13o6dl2f"]
 
-[ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/sprites/flame.png" id="1_17npe"]
+[ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/particles/flame.png" id="1_17npe"]
 [ext_resource type="Script" uid="uid://k4ttkxiumvwh" path="res://scripts/explosion.gd" id="1_nfeox"]
+[ext_resource type="Texture2D" uid="uid://cp4p8x6ktp0q4" path="res://assets/particles/gradient_ring.tres" id="3_aw4cw"]
+[ext_resource type="AudioStream" uid="uid://candfkhw5jyif" path="res://assets/sounds/explosion.wav" id="4_3el85"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nfeox"]
-radius = 42.0
+radius = 64.0
 
-[sub_resource type="Curve" id="Curve_aw4cw"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, -0.94958013, 0, 1, Vector2(0.68840575, 1.3463036), -3.8184178, -3.8184178, 0, 0, Vector2(0.9927535, 0), -4.42357, 0.0, 1, 0]
+[sub_resource type="Curve" id="Curve_3el85"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 6.3609705, 0, 0, Vector2(0.71739125, 3), 0.0, 0.0, 0, 0, Vector2(1, 0), -21.585974, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_3el85"]
 offsets = PackedFloat32Array(0, 0.48347107, 1)
-colors = PackedColorArray(1, 0.8984375, 0, 1, 0.89192706, 0.27336496, 0.10800679, 1, 0.33053905, 0.29416403, 0.35026044, 1)
+colors = PackedColorArray(1, 0.8984375, 0, 1, 0.89192706, 0.27336496, 0.10800679, 1, 0.3304, 0.294, 0.35, 0.5019608)
+
+[sub_resource type="Curve" id="Curve_aw4cw"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 6.3609705, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hbmxj"]
+offsets = PackedFloat32Array(0, 0.33471075, 1)
+colors = PackedColorArray(0.9007721, 0.93077314, 0.93359375, 1, 0.5035, 0.5216083, 0.53, 1, 0.4465, 0.46138334, 0.47, 0)
 
 [node name="Explosion" type="Area2D" unique_id=602356627]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_nfeox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1874691363]
 shape = SubResource("CircleShape2D_nfeox")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1515322070]
+[node name="Fire" type="CPUParticles2D" parent="." unique_id=1515322070]
 emitting = false
 amount = 48
 texture = ExtResource("1_17npe")
@@ -29,15 +42,35 @@ one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 1.0
+direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 64.0
 initial_velocity_max = 256.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+scale_amount_curve = SubResource("Curve_3el85")
+color_ramp = SubResource("Gradient_3el85")
+
+[node name="Wave" type="CPUParticles2D" parent="." unique_id=1872761679]
+emitting = false
+amount = 1
+texture = ExtResource("3_aw4cw")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
 damping_min = 32.0
 damping_max = 64.0
 angle_min = -720.0
 angle_max = 720.0
 scale_amount_curve = SubResource("Curve_aw4cw")
-color_ramp = SubResource("Gradient_3el85")
+color_ramp = SubResource("Gradient_hbmxj")
 
-[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]
+[node name="Sound" type="AudioStreamPlayer2D" parent="." unique_id=1877479282]
+stream = ExtResource("4_3el85")
+max_polyphony = 64
+area_mask = 4
+
+[connection signal="finished" from="Fire" to="." method="_on_fire_finished"]
