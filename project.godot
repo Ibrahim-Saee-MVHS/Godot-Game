@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="School Game"
+config/name="Level Shooter"
 run/main_scene="uid://cbk6dfldu3sbl"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dmjpwof5b0fst"
 
 [autoload]
 

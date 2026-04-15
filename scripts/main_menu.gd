@@ -3,7 +3,7 @@ extends Control
 var color = 0
 
 func _process(delta: float) -> void:
-	$Game.rotation += deg_to_rad(25) * delta
+	pass
 
 func _startGame():
 	$AnimationPlayer.play("fade_in_game")
