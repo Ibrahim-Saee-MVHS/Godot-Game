@@ -38,7 +38,7 @@ func setStats():
 	$Sprite2D.self_modulate = Global.enemyColor.get(TYPE)
 	if TYPE == "normal":
 		SPEED = 4000
-		MAXHEALTH = 25 * multiplier
+		MAXHEALTH = 26 * multiplier
 		MAXFIRERATE = 10
 		BULLETAMOUNT = 1
 		BULLETSPEED = 200
@@ -49,8 +49,8 @@ func setStats():
 		shootPitch = 1.0
 	if TYPE == "repeater":
 		SPEED = 4100
-		MAXHEALTH = 16 * multiplier
-		MAXFIRERATE = 4 * multiplier
+		MAXHEALTH = 20 * multiplier
+		MAXFIRERATE = clamp(4 + (-0.25 * multiplier), 2.5, 4)
 		BULLETAMOUNT = 1
 		BULLETSPEED = 250
 		DAMAGE = 1 * multiplier
@@ -65,18 +65,18 @@ func setStats():
 		BULLETAMOUNT = 3
 		BULLETSPEED = 200
 		DAMAGE = 6
-		EXP = 8 * 1 + multiplier / 4
+		EXP = 8 * 1 + multiplier / 3
 		bulletType = "normal"
 		explosiveness = 0
 		shootPitch = 0.5
 	if TYPE == "bomber":
 		SPEED = clamp(6000 + (10 * multiplier), 6000, 8000)
-		MAXHEALTH = 10 * multiplier
+		MAXHEALTH = 16 * multiplier
 		MAXFIRERATE = 0
 		BULLETAMOUNT = 16
 		BULLETSPEED = 300
 		DAMAGE = 4 * multiplier / 4
-		EXP = 12 * 1 + multiplier / 4
+		EXP = 12 * 1 + multiplier / 2
 		bulletType = "bomb"
 		explosiveness = 0
 		shootPitch = 1.0
@@ -84,7 +84,7 @@ func setStats():
 		SPEED = 4000
 		MAXHEALTH = 40 * multiplier
 		MAXFIRERATE = 8
-		BULLETAMOUNT = clamp(ceil(3 * multiplier), 3, 9)
+		BULLETAMOUNT = clamp(ceil(3 * multiplier), 3, 6)
 		BULLETSPEED = 200
 		DAMAGE = 2 * multiplier
 		EXP = 6 * 1 + multiplier / 4
@@ -95,12 +95,12 @@ func setStats():
 		SPEED = 6000
 		MAXHEALTH = 32 * multiplier
 		MAXFIRERATE = 18
-		BULLETAMOUNT = clamp(floor(1 * multiplier), 1, 6)
+		BULLETAMOUNT = clamp(floor(1 * multiplier), 1, 3)
 		BULLETSPEED = 200
 		DAMAGE = 6 * multiplier
-		EXP = 6 * 1 + multiplier / 4
+		EXP = 8 * 1 + multiplier / 3
 		bulletType = "bomb"
-		explosiveness = 2.5 * multiplier / 4
+		explosiveness = clamp(2.5 * multiplier / 4, 2.5, 4)
 		shootPitch = 0.5
 
 func _process(delta):

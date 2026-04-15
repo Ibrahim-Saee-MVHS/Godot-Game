@@ -7,7 +7,7 @@ extends Node2D
 @export var ENEMYMAXSPAWNTIMER: int = 24
 @export var ENEMYMINSPAWNTIMER: int = 8
 @export var HEALTHMAXSPAWNTIMER: int = 48
-@export var HEALTHMINSPAWNTIMER: int = 8
+@export var HEALTHMINSPAWNTIMER: int = 16
 var ENEMYSPAWNTIMER: float
 var HEALTHSPAWNTIMER: float
 var screenSize
@@ -16,7 +16,7 @@ var shake: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ENEMYSPAWNTIMER = randf_range(1, ENEMYMINSPAWNTIMER)
-	HEALTHSPAWNTIMER = 0 # randf_range(HEALTHMINSPAWNTIMER, HEALTHMAXSPAWNTIMER)
+	HEALTHSPAWNTIMER = randf_range(HEALTHMINSPAWNTIMER, HEALTHMAXSPAWNTIMER)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,7 +49,7 @@ func spawnEnemies():
 			newSpawnParticles.TYPE = randomType()
 			newSpawnParticles.statMultiplier = 1.0 + (DIFFICULTY / 2)
 			add_child(newSpawnParticles)
-		DIFFICULTY += 0.25
+		DIFFICULTY += 0.1
 		
 		ENEMYSPAWNAMOUNT = clamp(1 + floori(DIFFICULTY), 1, 6)
 		ENEMYMAXSPAWNTIMER = clamp(ENEMYMAXSPAWNTIMER - floori(DIFFICULTY / 2), 16, 64)
