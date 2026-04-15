@@ -42,13 +42,14 @@ func upgradePlayer():
 	match selectedUpgrade:
 		"hearty":
 			get_parent().get_node("Player").UPGRADE.health += 5
-			get_parent().get_node("Player").HEALTH = get_parent().get_node("Player").MAXHEALTH + 5
+			get_parent().get_node("Player").MAXHEALTH = get_parent().get_node("Player").MAXHEALTH + 5
+			get_parent().get_node("Player").HEALTH = get_parent().get_node("Player").MAXHEALTH
 		"spread_shot":
 			get_parent().get_node("Player").UPGRADE.bulletAmount += 2
 		"speed_up":
 			get_parent().get_node("Player").UPGRADE.speed += 4
 		"quick_fingers":
-			get_parent().get_node("Player").UPGRADE.firerate -= 2
+			get_parent().get_node("Player").UPGRADE.firerate -= 3
 		"bullet_enhancer":
 			get_parent().get_node("Player").UPGRADE.damage += 2
 		"reinforced_chamber":
@@ -77,5 +78,24 @@ func upgradePlayer():
 		"cailber_increase":
 			get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 		"flashtime":
-			get_parent().get_node("Player").ABILITY = "flashtime"
+			if get_parent().get_node("Player").ABILITY != "flashtime":
+				get_parent().get_node("Player").ABILITY = "flashtime"
+				get_parent().get_node("Player").UPGRADE.abilityPower = 0
+				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
+				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
+			else:
+				get_parent().get_node("Player").UPGRADE.abilityPower += 1
+				get_parent().get_node("Player").UPGRADE.abilityDuration += 2
+		"detonation":
+			if get_parent().get_node("Player").ABILITY != "detonation":
+				get_parent().get_node("Player").ABILITY = "detonation"
+				get_parent().get_node("Player").UPGRADE.abilityPower = 0
+				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
+				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
+				get_parent().get_node("Player").UPGRADE.health -= 50
+			else:
+				get_parent().get_node("Player").UPGRADE.abilityPower += 0.5
+				get_parent().get_node("Player").UPGRADE.abilityCooldown -= 4
+		"cooldown_reduction":
+			get_parent().get_node("Player").UPGRADE.abilityCooldown -= 5
 	endUpgrade()

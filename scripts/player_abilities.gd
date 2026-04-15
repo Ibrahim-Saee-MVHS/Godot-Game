@@ -2,10 +2,12 @@ extends Node
 
 var abilityTimer: float = 0.0
 var ExplosionNode = preload("res://scenes/explosion.tscn")
+var FlashtimeFX = preload("res://scenes/vfx/flashtime.tscn")
 
-var abilites = [
-	flashtime
-]
+var ICONS = {
+	"flashtime" = preload("res://assets/sprites/ability_icons/flashtime.png"),
+	"detonation" = preload("res://assets/sprites/ability_icons/detonation.png"),
+}
 
 func _ready() -> void:
 	abilityTimer = 0
@@ -21,9 +23,10 @@ func detonation(power, position):
 	EXPLOSION.global_position = position
 	EXPLOSION.SIZE = power
 	EXPLOSION.playerExplosion = true
-	get_parent().add_child(EXPLOSION)
+	get_tree().current_scene.add_child(EXPLOSION)
 
 func flashtime(power, duration):
 	abilityTimer = duration
-	Engine.time_scale = 1 - (0.125 * power)
-	print("Flashtime!")
+	Engine.time_scale = clamp(1 - (0.25 * power), 0.125, 1)
+	var FLASHTIME = FlashtimeFX.instantiate()
+	get_tree().current_scene.get_node("Camera2D/BackgroundFX/Control").add_child(FLASHTIME)

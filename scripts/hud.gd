@@ -5,6 +5,7 @@ var debug_mode = false
 
 func _ready():
 	player = get_parent().get_node("Player")
+	$Control/Ability.visible = false
 
 func _process(_delta):
 	player = get_parent().get_node("Player")
@@ -16,6 +17,14 @@ func _process(_delta):
 		$Control/Stats.text = "Stats:" + "\n" + str(generateStats())
 	else:
 		$Control/Stats.visible = false
+	if player.ABILITY != "":
+		$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)
+		$Control/Ability/Frame/Text.text = Global.upgradeInfo.get(player.ABILITY).get("name")
+		$Control/Ability/Frame/Bar.max_value = player.ABILITYMAXCOOLDOWN
+		$Control/Ability/Frame/Bar.value = player.ABILITYCOOLDOWN
+		$Control/Ability.visible = true
+	else:
+		$Control/Ability.visible = false
 		
 	if Input.is_action_just_pressed("debug_key"):
 		debug_mode = !debug_mode
@@ -28,6 +37,7 @@ func generateStats():
 	var BULLETAMOUNT = str("Bullets: ", player.BULLETAMOUNT, "\n")
 	var INVULNERABILITY = str("Invulerability: ", snapped(player.INVULNERABILITY, 0.1), "/", player.MAXINVULNERABILITY, "\n")
 	var ABILITY = str("Ability: ", player.ABILITY, "\n")
+	var ABILITYPOWER = str("Ability: ", player.ABILITYPOWER, "\n")
 	var ABILITYCOOLDOWN = str("Ability Cooldown: ", snapped(player.ABILITYCOOLDOWN, 0.1), "/", player.ABILITYMAXCOOLDOWN, "\n")
 	var ABILITYDURATION = str("Ability Duration: ", snapped(Abilities.abilityTimer, 0.1), "/", player.ABILITYDURATION, "\n")
-	return str(DAMAGE + SPEED + FIRERATE + BULLETSPEED + BULLETAMOUNT + INVULNERABILITY + ABILITY + ABILITYCOOLDOWN + ABILITYDURATION)
+	return str(DAMAGE + SPEED + FIRERATE + BULLETSPEED + BULLETAMOUNT + INVULNERABILITY + ABILITY + ABILITYPOWER + ABILITYCOOLDOWN + ABILITYDURATION)

@@ -72,12 +72,12 @@ func _ready() -> void:
 	EXPMAX = 4
 
 func level():
-	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
+	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
 	if EXP >= EXPMAX:
 		LEVEL += 1
 		EXP = 0
 		EXPMAX += 4
-		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 50, 500)
+		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
 		HEALTH = clamp(HEALTH + 5, 0, MAXHEALTH)
 		if HEALTH > 0:
 			get_parent().add_child(UpgradeScreen.instantiate())
@@ -97,8 +97,9 @@ func _process(delta):
 	SPEED = BASESPEED + (UPGRADE.speed * 200)
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
 	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
+	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, 6, 48)
 	
-	if Input.is_action_just_pressed("quick_upgrade"):
+	if Input.is_action_just_pressed("quick_upgrade") and OS.has_feature("editor"):
 		EXP += EXPMAX
 	
 	$Sprite2D.material = shaderMaterial

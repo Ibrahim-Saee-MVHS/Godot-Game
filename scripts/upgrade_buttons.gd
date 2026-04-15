@@ -28,7 +28,6 @@ func randomizeUpgrades():
 		UPGRADES[1] = randomizeUpgrade()
 	while UPGRADES[2] == UPGRADES[1] or UPGRADES[2] == UPGRADES[0]:
 		UPGRADES[2] = randomizeUpgrade()
-	print(validUpgrades)
 
 func randomizeUpgrade():
 	# the duplicate() part is to make sure both arrays are unique and wont modify the important one
@@ -48,6 +47,12 @@ func randomizeUpgrade():
 		totalUpgrades.erase("sulfuric_ammo")
 	if player.bulletType != "normal" or player.UPGRADE.bulletUpgrades >= 4:
 		totalUpgrades.erase("cailber_increase")
+	if player.ABILITY == "flashtime" and player.ABILITYPOWER >= 3:
+		totalUpgrades.erase("flashtime")
+	if player.ABILITY == "detonation" and player.ABILITYPOWER >= 2:
+		totalUpgrades.erase("detonation")
+	if player.ABILITYMAXCOOLDOWN - 5 <= 6 or player.ABILITY == "":
+		totalUpgrades.erase("cooldown_reduction")
 	
 	for i in range(totalUpgrades.size()):
 		totalWeights.append(upgradeInfo.get(totalUpgrades[i]).get("weight"))
