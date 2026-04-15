@@ -87,15 +87,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.14712, 0.1264, 0.16, 1)
 
-[node name="Flashtime" type="ColorRect" parent="Camera2D/BackgroundFX/Control" unique_id=820284716]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.7294118, 0.7647059, 0.09803922)
-
 [node name="HUD" parent="." unique_id=1917983879 instance=ExtResource("3_lnu2h")]
 
 [node name="Border" type="StaticBody2D" parent="." unique_id=49029521]
