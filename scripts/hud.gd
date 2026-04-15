@@ -17,7 +17,7 @@ func _process(_delta):
 		$Control/Stats.text = "Stats:" + "\n" + str(generateStats())
 	else:
 		$Control/Stats.visible = false
-	if player.ABILITY != "":
+	if player.ABILITY != "none":
 		$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)
 		$Control/Ability/Frame/Text.text = Global.upgradeInfo.get(player.ABILITY).get("name")
 		$Control/Ability/Frame/Bar.max_value = player.ABILITYMAXCOOLDOWN

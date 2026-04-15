@@ -13,6 +13,8 @@ func _process(_delta: float) -> void:
 	if get_parent().get_node("Player").HEALTH <= 0:
 		get_tree().paused = false
 		queue_free()
+	if Engine.time_scale < 1.0:
+		$AnimationPlayer.speed_scale = 2.0 / Engine.time_scale
 	
 	$Control/Control/HBoxContainer/Upgrade1/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade2/Button.disabled = buttonsDisabled
@@ -54,7 +56,7 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.damage += 2
 		"reinforced_chamber":
 			get_parent().get_node("Player").UPGRADE.bulletSpeed += 6
-			get_parent().get_node("Player").UPGRADE.firerate += 4
+			get_parent().get_node("Player").UPGRADE.firerate += 2.5
 		"flamethrower":
 			if get_parent().get_node("Player").bulletType != "flame":
 				get_parent().get_node("Player").bulletType = "flame"
@@ -80,6 +82,7 @@ func upgradePlayer():
 		"flashtime":
 			if get_parent().get_node("Player").ABILITY != "flashtime":
 				get_parent().get_node("Player").ABILITY = "flashtime"
+				get_parent().get_node("Player").ABILITYCOOLDOWN = 0
 				get_parent().get_node("Player").UPGRADE.abilityPower = 0
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
 				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
@@ -89,6 +92,7 @@ func upgradePlayer():
 		"detonation":
 			if get_parent().get_node("Player").ABILITY != "detonation":
 				get_parent().get_node("Player").ABILITY = "detonation"
+				get_parent().get_node("Player").ABILITYCOOLDOWN = 0
 				get_parent().get_node("Player").UPGRADE.abilityPower = 0
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
 				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
@@ -98,4 +102,14 @@ func upgradePlayer():
 				get_parent().get_node("Player").UPGRADE.abilityCooldown -= 4
 		"cooldown_reduction":
 			get_parent().get_node("Player").UPGRADE.abilityCooldown -= 5
+		"dash":
+			if get_parent().get_node("Player").ABILITY != "dash":
+				get_parent().get_node("Player").ABILITY = "dash"
+				get_parent().get_node("Player").ABILITYCOOLDOWN = 0
+				get_parent().get_node("Player").UPGRADE.abilityPower = 0
+				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
+				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
+			else:
+				get_parent().get_node("Player").UPGRADE.abilityPower += 0.25
+				get_parent().get_node("Player").UPGRADE.abilityDuration += 0.1
 	endUpgrade()

@@ -2,7 +2,7 @@ extends Control
 
 var color = 0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _startGame():

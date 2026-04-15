@@ -70,6 +70,7 @@ func _ready() -> void:
 	SPEED = BASESPEED
 	HEALTH = MAXHEALTH
 	EXPMAX = 4
+	ABILITY = "none"
 
 func level():
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
@@ -118,7 +119,7 @@ func _process(delta):
 	elif FIRERATE > 0 and HEALTH >= 0:
 		FIRERATE -= 10 * delta
 	if Input.is_action_pressed("ability") and ABILITYCOOLDOWN <= 0:
-		activateAbility()
+		activateAbility(delta)
 	elif ABILITYCOOLDOWN > 0 and Abilities.abilityTimer <= 0 and HEALTH >= 0:
 		ABILITYCOOLDOWN -= 1 * delta
 	if HEALTH <= 0:
@@ -153,7 +154,7 @@ func setBaseStats():
 		BASEDAMAGE = 0.01
 		BASEBULLETSPEED = 125
 		BASEBULLETAMOUNT = 1
-		MAXBULLETAMOUNT = 3
+		MAXBULLETAMOUNT = 1
 	if bulletType == "plasma":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 		BULLETVARIANCE = 0
@@ -187,32 +188,39 @@ func shoot(spread, variance):
 		BULLET.MOVEDIR = (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance))
 		get_parent().add_child(BULLET)
 
-func activateAbility():
-	if ABILITY == "flashtime":
-		Abilities.flashtime(ABILITYPOWER, ABILITYDURATION)
+func activateAbility(delta):
 	if ABILITY == "detonation":
 		Abilities.detonation(ABILITYPOWER, global_position)
+	if ABILITY == "flashtime":
+		Abilities.flashtime(ABILITYPOWER, ABILITYDURATION)
+	if ABILITY == "dash":
+		Abilities.dash(ABILITYPOWER, ABILITYDURATION, get_global_mouse_position(), global_position, delta)
 	ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func setAbilityStats():
-	if ABILITY == "flashtime":
-		ABILITYPOWER = 1 + UPGRADE.abilityPower
-		ABILITYDURATION = 10 + UPGRADE.abilityDuration
-		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
 	if ABILITY == "detonation":
 		ABILITYPOWER = 1 + UPGRADE.abilityPower
 		ABILITYDURATION = 0
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
+	if ABILITY == "flashtime":
+		ABILITYPOWER = 1 + UPGRADE.abilityPower
+		ABILITYDURATION = 10 + UPGRADE.abilityDuration
+		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
+	if ABILITY == "dash":
+		ABILITYPOWER = (4 + UPGRADE.abilityPower) * 10
+		ABILITYDURATION = 0.1 + UPGRADE.abilityDuration
+		ABILITYMAXCOOLDOWN = 8 + UPGRADE.abilityCooldown
 
 func _physics_process(delta):
 	var input = getPlayerInput()
 	var screenSize = get_viewport_rect().size / 4
-	if knockbackPower <= 0:
-		velocity = input * SPEED * delta
-	else:
-		knockback = -Vector2(knockbackPower * 5000, 0).rotated(knockbackDir)
-		velocity = knockback * delta
-		knockbackPower -= 20 * delta
+	if not (ABILITY == "dash" and Abilities.abilityTimer > 0):
+		if knockbackPower <= 0:
+			velocity = input * SPEED * delta
+		else:
+			knockback = -Vector2(knockbackPower * 5000, 0).rotated(knockbackDir)
+			velocity = knockback * delta
+			knockbackPower -= 20 * delta
 	move_and_slide()
 	position = position.clamp(-screenSize + Vector2(8, 8), screenSize - Vector2(8, 8))
 

@@ -7,6 +7,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
 radius = 18.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3202q"]
+blend_mode = 1
+
 [sub_resource type="Curve" id="Curve_ry35n"]
 _data = [Vector2(0, 1), 0.0, -0.9296707, 0, 1, Vector2(0.48550722, 0.54863816), -0.9296707, -1.0739301, 1, 0, Vector2(1, 0), -1.0972763, 0.0, 0, 0]
 point_count = 3
@@ -24,6 +27,7 @@ texture = ExtResource("2_66uen")
 shape = SubResource("CircleShape2D_qx7rs")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1219030038]
+material = SubResource("CanvasItemMaterial_3202q")
 amount = 48
 texture = ExtResource("3_3202q")
 local_coords = true

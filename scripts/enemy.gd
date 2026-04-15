@@ -100,7 +100,7 @@ func setStats():
 		DAMAGE = 6 * multiplier
 		EXP = 8 * 1 + multiplier / 3
 		bulletType = "bomb"
-		explosiveness = clamp(2.5 * multiplier / 4, 2.5, 4)
+		explosiveness = clamp(0.5 * multiplier / 4, 0.5, 1)
 		shootPitch = 0.5
 
 func _process(delta):

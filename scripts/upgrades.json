@@ -32,7 +32,7 @@
 	"reinforced_chamber": {
 		"sprite": "res://assets/sprites/upgrade_icons/reinforced_chamber.png",
 		"name": "Reinforced Chamber",
-		"description": "+6 BULLET SPEED but +4 FIRERATE (Slower)",
+		"description": "+6 BULLET SPEED but +2.5 FIRERATE (Slower)",
 		"weight": 0.5,
 	},
 	"flamethrower": {
@@ -69,7 +69,7 @@
 		"sprite": "res://assets/sprites/upgrade_icons/flashtime.png",
 		"name": "Flashtime",
 		"description": "Slows the world down, Stack for slower world view and +2 ABILITY DURATION",
-		"weight": 0.25,
+		"weight": 90.25,
 	},
 	"detonation": {
 		"sprite": "res://assets/sprites/upgrade_icons/detonation.png",
@@ -82,5 +82,11 @@
 		"name": "Cooldown Reduction",
 		"description": "-5 ABILITY COOLDOWN (Faster)",
 		"weight": 0.4,
+	},
+	"dash": {
+		"sprite": "res://assets/sprites/upgrade_icons/dash.png",
+		"name": "Dash",
+		"description": "You can dash to avoid damage and obstacles. Stack for faster and longer dash",
+		"weight": 0.25,
 	},
 }

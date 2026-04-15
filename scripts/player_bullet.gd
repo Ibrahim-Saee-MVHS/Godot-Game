@@ -59,6 +59,7 @@ func _process(delta):
 			despawnTimer -= 10 * delta
 	else:
 		despawnTimer -= 10 * delta
+		
 	position += Vector2(SPEED, 0).rotated(MOVEDIR) * delta
 	if despawnTimer <= 0:
 		queue_free()

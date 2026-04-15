@@ -51,8 +51,10 @@ func randomizeUpgrade():
 		totalUpgrades.erase("flashtime")
 	if player.ABILITY == "detonation" and player.ABILITYPOWER >= 2:
 		totalUpgrades.erase("detonation")
-	if player.ABILITYMAXCOOLDOWN - 5 <= 6 or player.ABILITY == "":
+	if player.ABILITYMAXCOOLDOWN <= 6 or player.ABILITY == "none":
 		totalUpgrades.erase("cooldown_reduction")
+	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 0.75:
+		totalUpgrades.erase("dash")
 	
 	for i in range(totalUpgrades.size()):
 		totalWeights.append(upgradeInfo.get(totalUpgrades[i]).get("weight"))
