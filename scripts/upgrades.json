@@ -69,7 +69,7 @@
 		"sprite": "res://assets/sprites/upgrade_icons/flashtime.png",
 		"name": "Flashtime",
 		"description": "Slows the world down, Stack for slower world view and +2 ABILITY DURATION",
-		"weight": 90.25,
+		"weight": 0.25,
 	},
 	"detonation": {
 		"sprite": "res://assets/sprites/upgrade_icons/detonation.png",
