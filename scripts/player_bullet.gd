@@ -28,7 +28,7 @@ func _ready():
 		$CPUParticles2D.emitting = true
 		despawnTimer = 5 + (2 * upgrades)
 		KNOCKBACK = 0
-		DAMAGE += 0.01 + (0.05 * upgrades)
+		DAMAGE = (DAMAGE / 100) + 0.01 + (0.01 * upgrades)
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
 	if TYPE == "plasma":
 		KNOCKBACK = 0

@@ -23,6 +23,9 @@ func _process(delta: float) -> void:
 	screenSize = get_viewport_rect().size / 4
 	ENEMYSPAWNTIMER -= 1 * delta
 	
+	if Input.is_action_just_pressed("force_spawn_enemy") and OS.has_feature("editor"):
+		spawnEnemies()
+	
 	screenShake(delta)
 	vignetteUpdate(delta)
 	if get_node("Player").HEALTH > 0:
