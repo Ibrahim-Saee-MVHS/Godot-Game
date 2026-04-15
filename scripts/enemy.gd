@@ -176,7 +176,7 @@ func explode(power, isPlayer, explosion_position):
 	EXPLOSION.global_position = explosion_position
 	EXPLOSION.SIZE = power
 	EXPLOSION.playerExplosion = isPlayer
-	get_parent().add_child(EXPLOSION)
+	get_parent().call_deferred("add_child", EXPLOSION)
 
 func _gotDamaged(area):
 	if HITSTUN <= 0:

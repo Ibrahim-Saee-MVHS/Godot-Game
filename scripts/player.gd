@@ -22,9 +22,11 @@ var EXP: int = 0
 var EXPMAX: int
 var INVULNERABILITY: float = 0
 var MAXINVULNERABILITY: float = 4
-var ABILITY: String
-var ABILITYDURATION: float
-var ABILITYCOOLDOWN: float
+var ABILITY: String # ability
+var ABILITYPOWER: float # ability power
+var ABILITYDURATION: float # the duration that gets set to Abilities.abilityTimer
+var ABILITYCOOLDOWN: float # the current cooldown for abilities
+var ABILITYMAXCOOLDOWN: float # the cooldown that gets set to ABILITYCOOLDOWN
 @onready var Death = preload("res://scenes/vfx/player_death.tscn")
 @onready var GameOver = preload("res://scenes/game_over.tscn")
 @onready var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
@@ -51,7 +53,9 @@ var UPGRADE = {
 	bulletUpgrades = 0,
 	piercing = 0,
 	explosiveness = 0, # for bullets
-	destructiveness = 0, # for detonation ability
+	abilityPower = 0,
+	abilityDuration = 0,
+	abilityCooldown = 0,
 }
 
 func _ready() -> void:
@@ -86,6 +90,7 @@ func getPlayerInput():
 func _process(delta):
 	level()
 	setBaseStats()
+	setAbilityStats()
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
 	MAXFIRERATE = clamp(BASEFIRERATE + UPGRADE.firerate, 1, 16)
 	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
@@ -111,6 +116,10 @@ func _process(delta):
 		shoot(BULLETSPREAD, BULLETVARIANCE)
 	elif FIRERATE > 0 and HEALTH >= 0:
 		FIRERATE -= 10 * delta
+	if Input.is_action_pressed("ability") and ABILITYCOOLDOWN <= 0:
+		activateAbility()
+	elif ABILITYCOOLDOWN > 0 and Abilities.abilityTimer <= 0 and HEALTH >= 0:
+		ABILITYCOOLDOWN -= 1 * delta
 	if HEALTH <= 0:
 		# This is so that certain things are done once
 		if visible == true:
@@ -176,6 +185,23 @@ func shoot(spread, variance):
 		BULLET.upgrades = UPGRADE.bulletUpgrades
 		BULLET.MOVEDIR = (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance))
 		get_parent().add_child(BULLET)
+
+func activateAbility():
+	if ABILITY == "flashtime":
+		Abilities.flashtime(ABILITYPOWER, ABILITYDURATION)
+	if ABILITY == "detonation":
+		Abilities.detonation(ABILITYPOWER, global_position)
+	ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
+
+func setAbilityStats():
+	if ABILITY == "flashtime":
+		ABILITYPOWER = 1 + UPGRADE.abilityPower
+		ABILITYDURATION = 10 + UPGRADE.abilityDuration
+		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
+	if ABILITY == "detonation":
+		ABILITYPOWER = 1 + UPGRADE.abilityPower
+		ABILITYDURATION = 0
+		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
 
 func _physics_process(delta):
 	var input = getPlayerInput()

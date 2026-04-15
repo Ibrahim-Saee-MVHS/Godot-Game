@@ -50,7 +50,7 @@ func upgradePlayer():
 		"quick_fingers":
 			get_parent().get_node("Player").UPGRADE.firerate -= 2
 		"bullet_enhancer":
-			get_parent().get_node("Player").UPGRADE.damage += 1
+			get_parent().get_node("Player").UPGRADE.damage += 2
 		"reinforced_chamber":
 			get_parent().get_node("Player").UPGRADE.bulletSpeed += 6
 			get_parent().get_node("Player").UPGRADE.firerate += 4
@@ -74,4 +74,8 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.explosiveness = 0
 		"sulfuric_ammo":
 			get_parent().get_node("Player").UPGRADE.explosiveness += 0.25
+		"cailber_increase":
+			get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
+		"flashtime":
+			get_parent().get_node("Player").ABILITY = "flashtime"
 	endUpgrade()

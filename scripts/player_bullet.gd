@@ -22,11 +22,12 @@ var upgrades: int
 func _ready():
 	if TYPE == "normal":
 		KNOCKBACK = 4000
+		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 	if TYPE == "flame":
 		$CPUParticles2D.emitting = true
 		despawnTimer = 5 + (2 * upgrades)
 		KNOCKBACK = 0
-		DAMAGE += DAMAGE + (0.1 * upgrades)
+		DAMAGE += 0.01 + (0.05 * upgrades)
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
 	if TYPE == "plasma":
 		KNOCKBACK = 0
@@ -34,13 +35,19 @@ func _ready():
 		match upgrades:
 			0:
 				$CollisionShape2D.shape.radius = 18
-				$CPUParticles2D.amount = 18
+				$CPUParticles2D.amount = 48
+				$CPUParticles2D.initial_velocity_min = 16
+				$CPUParticles2D.initial_velocity_max = 64
 			1:
 				$CollisionShape2D.shape.radius = 26
-				$CPUParticles2D.amount = 26
+				$CPUParticles2D.amount = 64
+				$CPUParticles2D.initial_velocity_min = 32
+				$CPUParticles2D.initial_velocity_max = 80
 			2:
 				$CollisionShape2D.shape.radius = 48
-				$CPUParticles2D.amount = 48
+				$CPUParticles2D.amount = 96
+				$CPUParticles2D.initial_velocity_min = 48
+				$CPUParticles2D.initial_velocity_max = 96
 
 func _process(delta):
 	if TYPE == "flame":

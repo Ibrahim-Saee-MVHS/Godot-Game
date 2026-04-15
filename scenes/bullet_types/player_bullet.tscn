@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4r630iypuj3n" path="res://assets/sprites/player_bullet.png" id="2_qlkh7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
-radius = 11.045361
+radius = 5.0
 
 [node name="PlayerBullet" type="Area2D" unique_id=1432198597]
 collision_layer = 4

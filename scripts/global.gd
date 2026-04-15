@@ -72,13 +72,21 @@ var enemyTypes: Array[String] = [
 	"bomber",
 	"grenadier",
 ]
+var enemyWeights: Array[float] = [
+	4,
+	3.75,
+	3.25,
+	2,
+	1,
+	1,
+]
 
 var enemyColor = {
 	"player": Color("00cdffff"),
 	"normal": Color("ff004cff"),
 	"repeater": Color("ffd73eff"),
-	"spreader": Color("ff693fff"),
+	"spreader": Color("ff833fff"),
 	"juggernaut": Color("2643ffff"),
-	"bomber": Color("5eff92ff"),
-	"grenadier": Color("a500ffff"),
+	"bomber": Color("94ff5eff"),
+	"grenadier": Color("df44ffff"),
 }

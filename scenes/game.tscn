@@ -23,10 +23,10 @@ shader_parameter/outer_radius = 1.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
 normal = Vector2(0, 1)
-distance = -160.0
+distance = -180.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
-distance = -160.0
+distance = -180.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u5sy4"]
 normal = Vector2(1, 0)
@@ -86,6 +86,15 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.14712, 0.1264, 0.16, 1)
+
+[node name="Flashtime" type="ColorRect" parent="Camera2D/BackgroundFX/Control" unique_id=820284716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.7294118, 0.7647059, 0.09803922)
 
 [node name="HUD" parent="." unique_id=1917983879 instance=ExtResource("3_lnu2h")]
 

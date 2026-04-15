@@ -28,9 +28,11 @@ func randomizeUpgrades():
 		UPGRADES[1] = randomizeUpgrade()
 	while UPGRADES[2] == UPGRADES[1] or UPGRADES[2] == UPGRADES[0]:
 		UPGRADES[2] = randomizeUpgrade()
+	print(validUpgrades)
 
 func randomizeUpgrade():
-	var totalUpgrades: Array = validUpgrades
+	# the duplicate() part is to make sure both arrays are unique and wont modify the important one
+	var totalUpgrades = validUpgrades.duplicate(true)
 	var totalWeights: PackedFloat32Array
 	var result: String
 	var player = get_tree().current_scene.get_node("Player")
@@ -44,6 +46,8 @@ func randomizeUpgrade():
 		totalUpgrades.erase("spread_shot")
 	if player.bulletType != "normal" or player.UPGRADE.explosiveness >= 2:
 		totalUpgrades.erase("sulfuric_ammo")
+	if player.bulletType != "normal" or player.UPGRADE.bulletUpgrades >= 4:
+		totalUpgrades.erase("cailber_increase")
 	
 	for i in range(totalUpgrades.size()):
 		totalWeights.append(upgradeInfo.get(totalUpgrades[i]).get("weight"))

@@ -5,7 +5,7 @@
 [ext_resource type="Gradient" uid="uid://vgleqkp4r0bf" path="res://assets/particles/normal_fire.tres" id="3_qr30t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
-radius = 11.045361
+radius = 12.0
 
 [sub_resource type="Curve" id="Curve_elrkp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20491797), 0.0, 0.0, 0, 0]

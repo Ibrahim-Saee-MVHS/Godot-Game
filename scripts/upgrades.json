@@ -3,7 +3,7 @@
 		"sprite": "res://assets/sprites/upgrade_icons/hearty.png",
 		"name": "Hearty",
 		"description": "Gives +5 HEALTH and heals the player",
-		"weight": 1,
+		"weight": 1.0,
 	},
 	"spread_shot": {
 		"sprite": "res://assets/sprites/upgrade_icons/spread_shot.png",
@@ -21,12 +21,12 @@
 		"sprite": "res://assets/sprites/upgrade_icons/quick_fingers.png",
 		"name": "Quick Fingers",
 		"description": "-2 FIRERATE",
-		"weight": 1,
+		"weight": 1.0,
 	},
 	"bullet_enhancer": {
 		"sprite": "res://assets/sprites/upgrade_icons/bullet_enhancer.png",
 		"name": "Bullet Enhancer",
-		"description": "+1 DAMAGE",
+		"description": "+2 DAMAGE",
 		"weight": 0.75,
 	},
 	"reinforced_chamber": {
@@ -39,13 +39,13 @@
 		"sprite": "res://assets/sprites/upgrade_icons/flamethrower.png",
 		"name": "Flamerthrower",
 		"description": "Changes BULLET TYPE to Flames. Continuous stream with low damage, Stack for stronger Flame and reach",
-		"weight": 0.25,
+		"weight": 0.5,
 	},
 	"plasma_rounds": {
 		"sprite": "res://assets/sprites/upgrade_icons/plasma_rounds.png",
 		"name": "Plasma Rounds",
 		"description": "Changes BULLET TYPE to Plasma. Pierces enemies and has slight AOE, Stack for greater area",
-		"weight": 0.25,
+		"weight": 0.5,
 	},
 	"normalcy": {
 		"sprite": "res://assets/sprites/upgrade_icons/normalcy.png",
@@ -58,5 +58,17 @@
 		"name": "Sulfuric Ammo",
 		"description": "+0.25 EXPLOSIVENESS, Only works with Normal BULLET TYPE",
 		"weight": 0.5,
+	},
+	"cailber_increase": {
+		"sprite": "res://assets/sprites/upgrade_icons/cailber_increase.png",
+		"name": "Cailber Increase",
+		"description": "Makes your bullet bigger, Only works with Normal BULLET TYPE",
+		"weight": 0.75,
+	},
+	"flashtime": {
+		"sprite": "res://assets/sprites/upgrade_icons/flashtime.png",
+		"name": "Flashtime",
+		"description": "Slows the world down, Stack for slower world view",
+		"weight": 90.25,
 	},
 }

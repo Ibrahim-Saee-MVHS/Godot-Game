@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://crohtqn46h7r6"]
+
+[node name="Flashtime" type="CanvasModulate" unique_id=548222396]
+color = Color(0, 0.7294118, 0.7647059, 0.09803922)
