@@ -23,7 +23,7 @@ func _ready():
 	if TYPE == "normal":
 		KNOCKBACK = 4000
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
-		explosiveness = explosiveness + (0.25 * upgrades)
+		explosiveness = explosiveness * (1 + (0.25 * upgrades))
 	if TYPE == "flame":
 		$CPUParticles2D.emitting = true
 		despawnTimer = 5 + (2 * upgrades)
