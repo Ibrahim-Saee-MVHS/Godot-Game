@@ -7,34 +7,41 @@ static var UPGRADES = [
 	null,
 ]
 @export var ID = 0
-var validUpgrades = Global.validUpgrades
+var validUpgrades = Global.validUpgrades.duplicate(true)
 var upgradeInfo = Global.upgradeInfo
+var player: CharacterBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	randomizeUpgrades()
+	if ID > 1:
+		validUpgrades.erase(UPGRADES[0])
+	if ID == 3:
+		validUpgrades.erase(UPGRADES[1])
+	player = get_tree().current_scene.get_node("Player")
+	UPGRADES[ID - 1] = randomizeUpgrade()
+	setUpgradeCards()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprite")
+	pass
+
+func setUpgradeCards():
+	if upgradeInfo.get(UPGRADES[ID - 1]).has("sprite"):
+		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprite")
+	elif UPGRADES[ID - 1] == "flamethrower":
+		var upgradeVar = player.UPGRADE.bulletUpgrades + 1 if player.bulletType == "flame" else 0
+		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[upgradeVar]
+	else:
+		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[0]
 	$Button/Title.text = upgradeInfo.get(UPGRADES[ID - 1]).get("name")
 	$Button/Description.text = upgradeInfo.get(UPGRADES[ID - 1]).get("description")
-
-func randomizeUpgrades():
-	UPGRADES[0] = randomizeUpgrade()
-	UPGRADES[1] = randomizeUpgrade()
-	UPGRADES[2] = randomizeUpgrade()
-	while UPGRADES[1] == UPGRADES[0]:
-		UPGRADES[1] = randomizeUpgrade()
-	while UPGRADES[2] == UPGRADES[1] or UPGRADES[2] == UPGRADES[0]:
-		UPGRADES[2] = randomizeUpgrade()
 
 func randomizeUpgrade():
 	# the duplicate() part is to make sure both arrays are unique and wont modify the important one
 	var totalUpgrades = validUpgrades.duplicate(true)
 	var totalWeights: PackedFloat32Array
 	var result: String
-	var player = get_tree().current_scene.get_node("Player")
+	player = get_tree().current_scene.get_node("Player")
 	if player.bulletType == "normal":
 		totalUpgrades.erase("normalcy")
 	if player.bulletType == "flame" and player.UPGRADE.bulletUpgrades >= 3:
@@ -60,5 +67,8 @@ func randomizeUpgrade():
 		totalWeights.append(upgradeInfo.get(totalUpgrades[i]).get("weight"))
 	var rng = RandomNumberGenerator.new()
 	
+	print(validUpgrades)
 	result = totalUpgrades[rng.rand_weighted(totalWeights)]
+	print(result)
+	validUpgrades.erase(result)
 	return result

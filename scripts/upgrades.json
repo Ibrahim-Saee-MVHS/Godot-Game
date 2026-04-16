@@ -36,10 +36,16 @@
 		"weight": 0.5,
 	},
 	"flamethrower": {
-		"sprite": "res://assets/sprites/upgrade_icons/flamethrower.png",
-		"name": "Flamerthrower",
+		"sprites": [
+			"res://assets/sprites/upgrade_icons/flamethrower.png",
+			"res://assets/sprites/upgrade_icons/flamethrower_1.png",
+			"res://assets/sprites/upgrade_icons/flamethrower_2.png",
+			"res://assets/sprites/upgrade_icons/flamethrower_3.png",
+		],
+		"upgradeVar": "bulletUpgrades",
+		"name": "Flamethrower",
 		"description": "Changes BULLET TYPE to Flames. DAMAGE can't be increased by other upgrades, Stack for stronger Flame and reach",
-		"weight": 0.5,
+		"weight": 90.5,
 	},
 	"plasma_rounds": {
 		"sprite": "res://assets/sprites/upgrade_icons/plasma_rounds.png",

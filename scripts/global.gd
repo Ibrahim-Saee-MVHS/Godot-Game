@@ -43,8 +43,11 @@ func loadJSONUpgrades():
 	validUpgrades = upgradesJson.keys()
 	upgradeInfo = upgradesJson
 	for i in range(upgradeInfo.size()):
-		upgradeInfo.get(validUpgrades[i]).set("sprite", load(upgradeInfo.get(validUpgrades[i]).get("sprite")))
-	
+		if upgradeInfo.get(validUpgrades[i]).has("sprite"):
+			upgradeInfo.get(validUpgrades[i]).set("sprite", load(upgradeInfo.get(validUpgrades[i]).get("sprite")))
+		else:
+			for k in range(upgradeInfo.get(validUpgrades[i]).get("sprites").size()):
+				upgradeInfo.get(validUpgrades[i]).get("sprites").set(k, load(upgradeInfo.get(validUpgrades[i]).get("sprites")[k]))
 
 @onready var DAMAGEINDICATOR = preload("res://scenes/vfx/damage_indicator.tscn")
 @onready var SFX = {
