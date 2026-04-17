@@ -99,6 +99,7 @@ func _process(delta):
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
 	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
 	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, 6, 48)
+	ABILITYCOOLDOWN = clamp(ABILITYCOOLDOWN, 0, ABILITYMAXCOOLDOWN)
 	
 	if Input.is_action_just_pressed("quick_upgrade") and OS.has_feature("editor"):
 		EXP += EXPMAX
@@ -120,8 +121,11 @@ func _process(delta):
 		FIRERATE -= 10 * delta
 	if Input.is_action_pressed("ability") and ABILITYCOOLDOWN <= 0:
 		activateAbility(delta)
-	elif ABILITYCOOLDOWN > 0 and Abilities.abilityTimer <= 0 and HEALTH >= 0:
-		ABILITYCOOLDOWN -= 1 * delta
+	elif ABILITYCOOLDOWN > 0:
+		if Abilities.abilityTimer > 0:
+			ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
+		elif Abilities.abilityTimer <= 0 and HEALTH >= 0:
+			ABILITYCOOLDOWN -= 1 * delta
 	if HEALTH <= 0:
 		# This is so that certain things are done once
 		if visible == true:
@@ -134,6 +138,8 @@ func _process(delta):
 			visible = false
 			$CollisionShape2D.queue_free()
 			$Area2D.queue_free()
+		ABILITYPOWER = 0
+		ABILITYCOOLDOWN = 1000
 		FIRERATE = 1000
 		SPEED = 0
 
@@ -190,11 +196,11 @@ func shoot(spread, variance):
 
 func activateAbility(delta):
 	if ABILITY == "detonation":
-		Abilities.detonation(ABILITYPOWER, global_position)
+		Abilities.detonation(global_position)
 	if ABILITY == "flashtime":
-		Abilities.flashtime(ABILITYPOWER, ABILITYDURATION)
+		Abilities.flashtime()
 	if ABILITY == "dash":
-		Abilities.dash(ABILITYPOWER, ABILITYDURATION, get_global_mouse_position(), global_position, delta)
+		Abilities.dash(get_global_mouse_position(), global_position, delta)
 	ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func setAbilityStats():

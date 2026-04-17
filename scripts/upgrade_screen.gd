@@ -82,6 +82,7 @@ func upgradePlayer():
 		"flashtime":
 			if get_parent().get_node("Player").ABILITY != "flashtime":
 				get_parent().get_node("Player").ABILITY = "flashtime"
+				Abilities.abilityTimer = 0
 				get_parent().get_node("Player").ABILITYCOOLDOWN = 0
 				get_parent().get_node("Player").UPGRADE.abilityPower = 0
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
@@ -92,6 +93,7 @@ func upgradePlayer():
 		"detonation":
 			if get_parent().get_node("Player").ABILITY != "detonation":
 				get_parent().get_node("Player").ABILITY = "detonation"
+				Abilities.abilityTimer = 0
 				get_parent().get_node("Player").ABILITYCOOLDOWN = 0
 				get_parent().get_node("Player").UPGRADE.abilityPower = 0
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
@@ -105,6 +107,7 @@ func upgradePlayer():
 		"dash":
 			if get_parent().get_node("Player").ABILITY != "dash":
 				get_parent().get_node("Player").ABILITY = "dash"
+				Abilities.abilityTimer = 0
 				get_parent().get_node("Player").ABILITYCOOLDOWN = 0
 				get_parent().get_node("Player").UPGRADE.abilityPower = 0
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
