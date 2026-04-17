@@ -1,9 +1,10 @@
 extends Control
 
 var color = 0
+var buildType = "-demo"
 
 func _process(_delta: float) -> void:
-	pass
+	$Version.text = str("v" + ProjectSettings.get_setting("application/config/version") + buildType)
 
 func _startGame():
 	$AnimationPlayer.play("fade_in_game")
