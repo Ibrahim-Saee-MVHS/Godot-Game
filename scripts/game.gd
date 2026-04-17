@@ -93,3 +93,7 @@ func screenShake(delta):
 	$Camera2D.offset.y = Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta
 	if Global.SCREENSHAKEPOWER > 0.0:
 		Global.SCREENSHAKEPOWER -= 1 * delta
+
+
+func _on_audio_stream_player_finished():
+	$AudioStreamPlayer.play()
