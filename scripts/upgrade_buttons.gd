@@ -67,8 +67,6 @@ func randomizeUpgrade():
 		totalWeights.append(upgradeInfo.get(totalUpgrades[i]).get("weight"))
 	var rng = RandomNumberGenerator.new()
 	
-	print(validUpgrades)
 	result = totalUpgrades[rng.rand_weighted(totalWeights)]
-	print(result)
 	validUpgrades.erase(result)
 	return result
