@@ -93,7 +93,7 @@ func _process(delta):
 	setBaseStats()
 	setAbilityStats()
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
-	MAXFIRERATE = clamp(BASEFIRERATE + UPGRADE.firerate, 1, 16)
+	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate if bulletType != "flame" else UPGRADE.firerate / 5), 1, 16)
 	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
 	SPEED = BASESPEED + (UPGRADE.speed * 200)
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
