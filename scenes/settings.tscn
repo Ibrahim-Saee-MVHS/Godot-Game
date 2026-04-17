@@ -45,7 +45,7 @@ ticks_on_borders = true
 ticks_position = 3
 
 [node name="Back" type="Button" parent="." unique_id=447174479]
-layout_mode = 1
+layout_mode = 0
 offset_left = 24.0
 offset_top = 28.0
 offset_right = 177.0

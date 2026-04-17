@@ -16,14 +16,15 @@ func _ready() -> void:
 	abilityTimer = 0
 
 func _process(delta: float) -> void:
-	abilityPower = get_tree().current_scene.get_node("Player").ABILITYPOWER
-	abilityDuration = get_tree().current_scene.get_node("Player").ABILITYDURATION
-	if abilityTimer > 0:
-		abilityTimer -= 1 * delta / Engine.time_scale
-		if get_tree().current_scene.get_node("Player").ABILITY == "flashtime":
-			Engine.time_scale = clamp(1 - (0.25 * abilityPower), 0.125, 1)
-	else:
-		Engine.time_scale = 1
+	if get_tree().current_scene == Node2D and get_tree().current_scene.name == "Game":
+		abilityPower = get_tree().current_scene.get_node("Player").ABILITYPOWER
+		abilityDuration = get_tree().current_scene.get_node("Player").ABILITYDURATION
+		if abilityTimer > 0:
+			abilityTimer -= 1 * delta / Engine.time_scale
+			if get_tree().current_scene.get_node("Player").ABILITY == "flashtime":
+				Engine.time_scale = clamp(1 - (0.25 * abilityPower), 0.125, 1)
+		else:
+			Engine.time_scale = 1
 
 func flashtime():
 	abilityTimer = abilityDuration
