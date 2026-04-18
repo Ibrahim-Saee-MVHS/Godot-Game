@@ -4,7 +4,6 @@ var SCREENSHAKEAMOUNT: float = 0.0
 var SCREENSHAKEPOWER: float = 0.0
 var VIGNETTECOLOR: Vector3 = Vector3(0, 0, 0)
 var VIGNETTEINTENSITY: float = 0.25
-var save_directory = "user://UpgradeShooter/"
 
 var upgradesJson: Dictionary
 var validUpgrades: Array
@@ -13,29 +12,11 @@ var upgradeInfo: Dictionary
 func _ready() -> void:
 	loadJSONUpgrades()
 
-func _process(_delta: float) -> void:
-	var settings = ConfigFile.new()
-	settings.load(str(Global.save_directory) + "settings.cfg")
-	
-
 func spawnDamageIndicator(globalPos, damage):
 	var damageIndicator = DAMAGEINDICATOR.instantiate()
 	damageIndicator.global_position = globalPos + Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	damageIndicator.DAMAGE = damage
 	get_parent().add_child(damageIndicator)
-
-func checkSaveDir():
-	if not DirAccess.dir_exists_absolute(save_directory):
-		DirAccess.make_dir_recursive_absolute(save_directory)
-		
-func checkSettingsConfig():
-	var defaultSettings = ConfigFile.new()
-	var check = defaultSettings.load(str(save_directory) + "settings.cfg")
-	if check != OK:
-		defaultSettings.set_value("video", "render_scale", 1)
-		defaultSettings.set_value("audio", "music_volume", 100)
-		defaultSettings.set_value("audio", "sound_volume", 100)
-		defaultSettings.save("user://settings.cfg")
 
 func loadJSONUpgrades():
 	var file = FileAccess.open("res://scripts/upgrades.json", FileAccess.READ)

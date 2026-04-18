@@ -29,17 +29,21 @@ shape = SubResource("RectangleShape2D_g2els")
 [node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=683988036]
 stream = ExtResource("3_qhqgy")
 max_polyphony = 4
+bus = &"Sound"
 
 [node name="Health" type="AudioStreamPlayer2D" parent="." unique_id=1444475764]
 stream = ExtResource("4_dqkch")
 max_polyphony = 4
+bus = &"Sound"
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="." unique_id=1527463622]
 stream = ExtResource("5_qlg0r")
 max_polyphony = 48
+bus = &"Sound"
 
 [node name="FlameThrow" type="AudioStreamPlayer2D" parent="." unique_id=611977514]
 stream = ExtResource("6_tuyoq")
 max_polyphony = 48
+bus = &"Sound"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

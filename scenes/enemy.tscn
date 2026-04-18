@@ -49,16 +49,19 @@ texture_progress = ExtResource("4_c4w8v")
 [node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1309863838]
 stream = ExtResource("5_xwavj")
 max_polyphony = 64
+bus = &"Sound"
 area_mask = 4
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="." unique_id=1028169257]
 stream = ExtResource("5_c4w8v")
 max_polyphony = 64
+bus = &"Sound"
 area_mask = 4
 
 [node name="Death" type="AudioStreamPlayer2D" parent="." unique_id=520829343]
 stream = ExtResource("7_md484")
 max_polyphony = 64
+bus = &"Sound"
 area_mask = 4
 
 [connection signal="area_entered" from="Area2D" to="." method="_gotDamaged"]

@@ -27,4 +27,5 @@ script = ExtResource("2_tyiyh")
 stream = ExtResource("3_a1de7")
 volume_db = 2.0
 max_polyphony = 64
+bus = &"Sound"
 area_mask = 2

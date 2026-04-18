@@ -71,6 +71,7 @@ color_ramp = SubResource("Gradient_hbmxj")
 [node name="Sound" type="AudioStreamPlayer2D" parent="." unique_id=1877479282]
 stream = ExtResource("4_3el85")
 max_polyphony = 64
+bus = &"Sound"
 area_mask = 4
 
 [connection signal="finished" from="Fire" to="." method="_on_fire_finished"]

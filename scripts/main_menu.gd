@@ -3,6 +3,9 @@ extends Control
 var color = 0
 var buildType = "-demo"
 
+func _ready():
+	SettingsGlobal.setVolume()
+
 func _process(_delta: float) -> void:
 	$Version.text = str("v" + ProjectSettings.get_setting("application/config/version") + buildType)
 

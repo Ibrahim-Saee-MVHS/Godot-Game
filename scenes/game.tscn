@@ -114,10 +114,12 @@ material = SubResource("ShaderMaterial_u5sy4")
 process_mode = 3
 stream = ExtResource("6_p57ef")
 autoplay = true
+bus = &"Music"
 
 [node name="Flashtime" type="AudioStreamPlayer" parent="." unique_id=1589800643]
 process_mode = 3
 stream = ExtResource("7_u5sy4")
+bus = &"Music"
 
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]
 [connection signal="finished" from="Flashtime" to="." method="_on_flashtime_finished"]

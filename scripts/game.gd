@@ -16,6 +16,7 @@ var shake: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SettingsGlobal.setVolume()
 	ENEMYSPAWNTIMER = randf_range(1, ENEMYMINSPAWNTIMER)
 	HEALTHSPAWNTIMER = randf_range(HEALTHMINSPAWNTIMER, HEALTHMAXSPAWNTIMER)
 
