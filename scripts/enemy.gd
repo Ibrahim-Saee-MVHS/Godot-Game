@@ -212,3 +212,11 @@ func _gotDamaged(area):
 			HEALTH -= area.DAMAGE
 			HITSTUN = 4
 			knockback = Vector2(area.SIZE * 500, 0).rotated((area.global_position - global_position).angle())
+		# dash
+		if area is Dash:
+			$Hit.pitch_scale = randf_range(0.9, 1.1)
+			$Hit.playing = true
+			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
+			shaderMaterial.shader = Global.shaders.flash
+			HEALTH -= area.DAMAGE
+			HITSTUN = 0.5

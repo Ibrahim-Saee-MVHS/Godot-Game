@@ -60,7 +60,7 @@ func randomizeUpgrade():
 		totalUpgrades.erase("detonation")
 	if player.ABILITYMAXCOOLDOWN <= 6 or player.ABILITY == "none":
 		totalUpgrades.erase("cooldown_reduction")
-	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 0.75:
+	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
 		totalUpgrades.erase("dash")
 	
 	for i in range(totalUpgrades.size()):

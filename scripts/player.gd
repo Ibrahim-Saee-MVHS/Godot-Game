@@ -31,6 +31,7 @@ var ABILITYMAXCOOLDOWN: float # the cooldown that gets set to ABILITYCOOLDOWN
 @onready var GameOver = preload("res://scenes/game_over.tscn")
 @onready var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
 @onready var ExplosionNode = preload("res://scenes/explosion.tscn")
+@onready var DashNode = preload("res://scenes/dash.tscn")
 var shaderMaterial = ShaderMaterial.new()
 var knockbackDir: float
 var knockbackPower: float
@@ -114,7 +115,7 @@ func _process(delta):
 		INVULNERABILITY -= 10 * delta
 		if INVULNERABILITY < MAXINVULNERABILITY - 1:
 			shaderMaterial.shader = Global.shaders.tint
-		
+	
 	if Input.is_action_pressed("shoot") and FIRERATE <= 0:
 		shoot(BULLETSPREAD, BULLETVARIANCE)
 	elif FIRERATE > 0 and HEALTH >= 0:
@@ -126,6 +127,8 @@ func _process(delta):
 			ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 		elif Abilities.abilityTimer <= 0 and HEALTH >= 0:
 			ABILITYCOOLDOWN -= 1 * delta
+			if ABILITY == "dash":
+				$CollisionShape2D.disabled = false
 	if HEALTH <= 0:
 		# This is so that certain things are done once
 		if visible == true:
@@ -200,6 +203,11 @@ func activateAbility(delta):
 	if ABILITY == "flashtime":
 		Abilities.flashtime()
 	if ABILITY == "dash":
+		var DASH = DashNode.instantiate()
+		DASH.DAMAGE = (5 + UPGRADE.abilityPower) * 2
+		DASH.rotation = (get_global_mouse_position() - global_position).angle() + PI
+		add_child(DASH)
+		$CollisionShape2D.disabled = true
 		Abilities.dash(get_global_mouse_position(), global_position, delta)
 	ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
@@ -213,8 +221,8 @@ func setAbilityStats():
 		ABILITYDURATION = 10 + UPGRADE.abilityDuration
 		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
 	if ABILITY == "dash":
-		ABILITYPOWER = (4 + UPGRADE.abilityPower) * 10
-		ABILITYDURATION = 0.1 + UPGRADE.abilityDuration
+		ABILITYPOWER = (5 + UPGRADE.abilityPower) * 5
+		ABILITYDURATION = 0.2 + UPGRADE.abilityDuration
 		ABILITYMAXCOOLDOWN = 8 + UPGRADE.abilityCooldown
 
 func _physics_process(delta):

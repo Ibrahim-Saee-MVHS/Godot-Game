@@ -113,6 +113,6 @@ func upgradePlayer():
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
 				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
 			else:
-				get_parent().get_node("Player").UPGRADE.abilityPower += 0.25
-				get_parent().get_node("Player").UPGRADE.abilityDuration += 0.1
+				get_parent().get_node("Player").UPGRADE.abilityPower += 1
+				get_parent().get_node("Player").UPGRADE.abilityDuration += 0.025
 	endUpgrade()
