@@ -32,7 +32,7 @@ func updateStats():
 func flashtime():
 	updateStats()
 	abilityTimer = abilityDuration
-	Engine.time_scale = clamp(1 - (0.25 * abilityPower), 0.125, 1)
+	Engine.time_scale = clamp(1 - (0.25 * abilityPower), 0.5, 1)
 	var FLASHTIME = FlashtimeFX.instantiate()
 	get_tree().current_scene.get_node("Camera2D/BackgroundFX/Control").add_child(FLASHTIME)
 

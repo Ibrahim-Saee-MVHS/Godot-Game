@@ -93,9 +93,9 @@ func _process(delta):
 	setBaseStats()
 	setAbilityStats()
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
-	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate if bulletType != "flame" else UPGRADE.firerate / 5), 1, 16)
+	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate if bulletType != "flame" else UPGRADE.firerate / 5), 1 if bulletType != "plasma" else 5, 16)
 	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
-	SPEED = BASESPEED + (UPGRADE.speed * 200)
+	SPEED = BASESPEED + (UPGRADE.speed * 200) + (1000 * ABILITYPOWER if ABILITY == "flashtime" and Abilities.abilityTimer > 0 else 0.0)
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
 	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
 	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, 6, 48)
@@ -210,7 +210,7 @@ func setAbilityStats():
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
 	if ABILITY == "flashtime":
 		ABILITYPOWER = 1 + UPGRADE.abilityPower
-		ABILITYDURATION = 8 + UPGRADE.abilityDuration
+		ABILITYDURATION = 10 + UPGRADE.abilityDuration
 		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
 	if ABILITY == "dash":
 		ABILITYPOWER = (4 + UPGRADE.abilityPower) * 10
