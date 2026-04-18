@@ -56,7 +56,7 @@ func randomizeUpgrade():
 		totalUpgrades.erase("cailber_increase")
 	if player.ABILITY == "flashtime" and player.ABILITYPOWER >= 3:
 		totalUpgrades.erase("flashtime")
-	if player.ABILITY == "detonation" and player.ABILITYPOWER >= 2:
+	if player.ABILITY == "detonation" and player.ABILITYPOWER >= 3:
 		totalUpgrades.erase("detonation")
 	if player.ABILITYMAXCOOLDOWN <= 6 or player.ABILITY == "none":
 		totalUpgrades.erase("cooldown_reduction")

@@ -74,13 +74,13 @@
 	"flashtime": {
 		"sprite": "res://assets/sprites/upgrade_icons/flashtime.png",
 		"name": "Flashtime",
-		"description": "Slows the world down, Stack for slower world view and +2 ABILITY DURATION",
+		"description": "Slows the world down, Stack for slower world view and +3 FLASHTIME DURATION",
 		"weight": 0.25,
 	},
 	"detonation": {
 		"sprite": "res://assets/sprites/upgrade_icons/detonation.png",
 		"name": "Detonation",
-		"description": "You can explode but -50 HEALTH, Stack for +0.5 DETONATION POWER and -4 ABILITY COOLDOWN (Faster)",
+		"description": "You can explode but -50 HEALTH, Stack for +0.5 DETONATION POWER and -4 DETONATION COOLDOWN (Faster)",
 		"weight": 0.25,
 	},
 	"cooldown_reduction": {

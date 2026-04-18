@@ -1,3 +1,4 @@
+class_name GameScene
 extends Node2D
 
 @onready var EnemySpawnParticles = preload("res://scenes/vfx/spawning_particles.tscn")
@@ -30,6 +31,14 @@ func _process(delta: float) -> void:
 			newSpawnParticles.TYPE = randomType()
 			newSpawnParticles.statMultiplier = 1.0 + (DIFFICULTY / 2)
 			add_child(newSpawnParticles)
+	
+	if Abilities.abilityTimer > 0 and get_node("Player").ABILITY == "flashtime":
+		$Music.stream_paused = true
+		if $Flashtime.playing == false:
+			$Flashtime.play()
+	else:
+		$Flashtime.stop()
+		$Music.stream_paused = false
 	
 	screenShake(delta)
 	vignetteUpdate(delta)
@@ -94,6 +103,9 @@ func screenShake(delta):
 	if Global.SCREENSHAKEPOWER > 0.0:
 		Global.SCREENSHAKEPOWER -= 1 * delta
 
+func _on_music_finished():
+	$Music.play()
 
-func _on_audio_stream_player_finished():
-	$AudioStreamPlayer.play()
+func _on_flashtime_finished():
+	if Abilities.abilityTimer > 0 and get_node("Player").ABILITY == "flashtime":
+		$Flashtime.play()

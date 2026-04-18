@@ -16,9 +16,8 @@ func _ready() -> void:
 	abilityTimer = 0
 
 func _process(delta: float) -> void:
-	if get_tree().current_scene == Node2D and get_tree().current_scene.name == "Game":
-		abilityPower = get_tree().current_scene.get_node("Player").ABILITYPOWER
-		abilityDuration = get_tree().current_scene.get_node("Player").ABILITYDURATION
+	if get_tree().current_scene is GameScene:
+		updateStats()
 		if abilityTimer > 0:
 			abilityTimer -= 1 * delta / Engine.time_scale
 			if get_tree().current_scene.get_node("Player").ABILITY == "flashtime":
@@ -26,13 +25,19 @@ func _process(delta: float) -> void:
 		else:
 			Engine.time_scale = 1
 
+func updateStats():
+	abilityPower = get_tree().current_scene.get_node("Player").ABILITYPOWER
+	abilityDuration = get_tree().current_scene.get_node("Player").ABILITYDURATION
+
 func flashtime():
+	updateStats()
 	abilityTimer = abilityDuration
 	Engine.time_scale = clamp(1 - (0.25 * abilityPower), 0.125, 1)
 	var FLASHTIME = FlashtimeFX.instantiate()
 	get_tree().current_scene.get_node("Camera2D/BackgroundFX/Control").add_child(FLASHTIME)
 
 func detonation(position):
+	updateStats()
 	var EXPLOSION = ExplosionNode.instantiate()
 	EXPLOSION.global_position = position
 	EXPLOSION.SIZE = abilityPower
@@ -40,6 +45,7 @@ func detonation(position):
 	get_tree().current_scene.add_child(EXPLOSION)
 
 func dash(mouse_position, position, delta):
+	updateStats()
 	abilityTimer = abilityDuration
 	var temp = abilityDuration
 	get_tree().current_scene.get_node("Player").shaderMaterial.shader = Global.shaders.tint

@@ -210,7 +210,7 @@ func setAbilityStats():
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
 	if ABILITY == "flashtime":
 		ABILITYPOWER = 1 + UPGRADE.abilityPower
-		ABILITYDURATION = 10 + UPGRADE.abilityDuration
+		ABILITYDURATION = 8 + UPGRADE.abilityDuration
 		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
 	if ABILITY == "dash":
 		ABILITYPOWER = (4 + UPGRADE.abilityPower) * 10

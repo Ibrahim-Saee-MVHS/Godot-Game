@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3b75reufoy48" path="res://scenes/hud.tscn" id="3_lnu2h"]
 [ext_resource type="Shader" uid="uid://bh26vo877j38w" path="res://assets/shaders/glowing.gdshader" id="4_p57ef"]
 [ext_resource type="AudioStream" uid="uid://dx8wgnt2auj7k" path="res://assets/music/mainMusic.wav" id="6_p57ef"]
+[ext_resource type="AudioStream" uid="uid://cmup6re6wbgqx" path="res://assets/music/flashtime.wav" id="7_u5sy4"]
 
 [sub_resource type="Environment" id="Environment_lnu2h"]
 background_mode = 3
@@ -109,9 +110,14 @@ shape = SubResource("WorldBoundaryShape2D_gee14")
 [node name="Player" parent="." unique_id=1337371867 groups=["player"] instance=ExtResource("1_uwrxv")]
 material = SubResource("ShaderMaterial_u5sy4")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1654557294]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1654557294]
 process_mode = 3
 stream = ExtResource("6_p57ef")
 autoplay = true
 
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[node name="Flashtime" type="AudioStreamPlayer" parent="." unique_id=1589800643]
+process_mode = 3
+stream = ExtResource("7_u5sy4")
+
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
+[connection signal="finished" from="Flashtime" to="." method="_on_flashtime_finished"]

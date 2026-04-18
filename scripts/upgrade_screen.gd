@@ -88,8 +88,8 @@ func upgradePlayer():
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
 				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
 			else:
-				get_parent().get_node("Player").UPGRADE.abilityPower += 1
-				get_parent().get_node("Player").UPGRADE.abilityDuration += 2
+				get_parent().get_node("Player").UPGRADE.abilityPower += 0.5
+				get_parent().get_node("Player").UPGRADE.abilityDuration += 3
 		"detonation":
 			if get_parent().get_node("Player").ABILITY != "detonation":
 				get_parent().get_node("Player").ABILITY = "detonation"
