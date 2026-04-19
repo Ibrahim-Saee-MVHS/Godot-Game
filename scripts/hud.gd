@@ -26,7 +26,7 @@ func _process(_delta):
 			$Control/Ability/Frame/Bar.value = player.ABILITYCOOLDOWN
 		else:
 			$Control/Ability/Frame/Bar.max_value = player.ABILITYDURATION
-			$Control/Ability/Frame/Bar.value = Abilities.abilityTimer
+			$Control/Ability/Frame/Bar.value = player.ABILITYDURATION - Abilities.abilityTimer
 	else:
 		$Control/Ability.visible = false
 		
