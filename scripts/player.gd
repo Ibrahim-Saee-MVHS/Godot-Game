@@ -204,7 +204,7 @@ func activateAbility(delta):
 		Abilities.flashtime()
 	if ABILITY == "dash":
 		var DASH = DashNode.instantiate()
-		DASH.DAMAGE = (5 + UPGRADE.abilityPower) * 2
+		DASH.DAMAGE = (4 + UPGRADE.abilityPower + (UPGRADE.damage / 10)) * 2
 		DASH.rotation = (get_global_mouse_position() - global_position).angle() + PI
 		add_child(DASH)
 		$CollisionShape2D.disabled = true

@@ -2,7 +2,7 @@
 	"hearty": {
 		"sprite": "res://assets/sprites/upgrade_icons/hearty.png",
 		"name": "Hearty",
-		"description": "Gives +5 HEALTH and heals the player",
+		"description": "Gives +5 HEALTH & heals the player by 35 HP",
 		"weight": 1.0,
 	},
 	"spread_shot": {
@@ -44,7 +44,7 @@
 		],
 		"upgradeVar": "bulletUpgrades",
 		"name": "Flamethrower",
-		"description": "Changes BULLET TYPE to Flames. DAMAGE can't be increased by other upgrades, Stack for stronger Flame and reach",
+		"description": "Changes BULLET TYPE to Flames. DAMAGE is only slightly modified by upgrades, Stack for stronger Flame and reach",
 		"weight": 0.5,
 	},
 	"plasma_rounds": {
@@ -56,7 +56,7 @@
 	"normalcy": {
 		"sprite": "res://assets/sprites/upgrade_icons/normalcy.png",
 		"name": "Normalcy",
-		"description": "Reverts BULLET TYPE to standard non-explosive bullets and normal size",
+		"description": "Reverts BULLET TYPE to standard non-explosive bullets & normal size",
 		"weight": 1,
 	},
 	"sulfuric_ammo": {
@@ -74,13 +74,13 @@
 	"flashtime": {
 		"sprite": "res://assets/sprites/upgrade_icons/flashtime.png",
 		"name": "Flashtime",
-		"description": "Slows the world down, Stack for +0.5 FLASHTIME POWER and +3 FLASHTIME DURATION",
+		"description": "Slows the world down, Stack for +0.5 FLASHTIME POWER & +3 FLASHTIME DURATION",
 		"weight": 0.25,
 	},
 	"detonation": {
 		"sprite": "res://assets/sprites/upgrade_icons/detonation.png",
 		"name": "Detonation",
-		"description": "You can explode but -50 HEALTH, Stack for +0.5 DETONATION POWER and -4 DETONATION COOLDOWN (Faster)",
+		"description": "You can explode but -50 HEALTH, Stack for +0.5 DETONATION POWER & -4 DETONATION COOLDOWN (Faster)",
 		"weight": 0.25,
 	},
 	"cooldown_reduction": {
@@ -92,7 +92,7 @@
 	"dash": {
 		"sprite": "res://assets/sprites/upgrade_icons/dash.png",
 		"name": "Dash",
-		"description": "You can dash and damage any enemies along your path. Stack for faster and longer dash",
-		"weight": 90.25,
+		"description": "You can dash and damage any enemies in your path. DAMAGE modifiers affect Dash, Stack for faster & stonger dash",
+		"weight": 0.25,
 	},
 }

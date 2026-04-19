@@ -45,7 +45,10 @@ func upgradePlayer():
 		"hearty":
 			get_parent().get_node("Player").UPGRADE.health += 5
 			get_parent().get_node("Player").MAXHEALTH = get_parent().get_node("Player").MAXHEALTH + 5
-			get_parent().get_node("Player").HEALTH = get_parent().get_node("Player").MAXHEALTH
+			if get_parent().get_node("Player").HEALTH + 35 <= get_parent().get_node("Player").MAXHEALTH:
+				get_parent().get_node("Player").HEALTH += 35
+			else:
+				get_parent().get_node("Player").HEALTH = get_parent().get_node("Player").MAXHEALTH
 		"spread_shot":
 			get_parent().get_node("Player").UPGRADE.bulletAmount += 2
 		"speed_up":
