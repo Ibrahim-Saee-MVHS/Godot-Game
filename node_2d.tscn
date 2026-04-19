@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cewd4trdvh3cx"]
+
+[ext_resource type="Texture2D" uid="uid://e2c6fv8yaojb" path="res://assets/sprites/player.png" id="1_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://4r630iypuj3n" path="res://assets/sprites/player_bullet.png" id="2_kdubu"]
+[ext_resource type="Texture2D" uid="uid://bpcljtlmsgsbr" path="res://assets/sprites/enemies/enemy.png" id="3_d21ai"]
+[ext_resource type="Texture2D" uid="uid://cg0tq7lkibe5e" path="res://assets/sprites/enemies/bullet_outline.png" id="4_rj586"]
+[ext_resource type="Texture2D" uid="uid://bq1r4uyqgo65v" path="res://assets/sprites/enemies/bullet_core.png" id="5_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://dmjpwof5b0fst" path="res://assets/sprites/icon.png" id="6_kdubu"]
+
+[sub_resource type="Environment" id="Environment_d21ai"]
+background_mode = 3
+background_energy_multiplier = 0.0
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 1.0
+adjustment_saturation = 0.0
+
+[node name="Node2D" type="Node2D" unique_id=1145678139]
+
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=286575086]
+process_mode = 3
+zoom = Vector2(2, 2)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Camera2D2" unique_id=1558048569]
+environment = SubResource("Environment_d21ai")
+
+[node name="BackgroundFX" type="CanvasLayer" parent="Camera2D2" unique_id=2080977510]
+layer = -1
+
+[node name="Control" type="Control" parent="Camera2D2/BackgroundFX" unique_id=183781939]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Camera2D2/BackgroundFX/Control" unique_id=1227290990]
+z_index = -101
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.14712, 0.1264, 0.16, 1)
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1925456390]
+position = Vector2(9, -76)
+texture = ExtResource("1_q6r6c")
+
+[node name="PlayerBullet" type="Sprite2D" parent="." unique_id=140420567]
+position = Vector2(82, -74)
+texture = ExtResource("2_kdubu")
+
+[node name="PlayerBullet2" type="Sprite2D" parent="." unique_id=243636483]
+position = Vector2(106, -93)
+texture = ExtResource("2_kdubu")
+
+[node name="PlayerBullet3" type="Sprite2D" parent="." unique_id=1110183765]
+position = Vector2(31, -84)
+texture = ExtResource("2_kdubu")
+
+[node name="Enemy" type="Sprite2D" parent="." unique_id=658047133]
+modulate = Color(1, 0, 0.29803923, 1)
+position = Vector2(99, -113)
+texture = ExtResource("3_d21ai")
+
+[node name="BulletOutline" type="Sprite2D" parent="." unique_id=965521490]
+self_modulate = Color(1, 0, 0.29803923, 1)
+position = Vector2(57, -94)
+texture = ExtResource("4_rj586")
+metadata/_edit_group_ = true
+
+[node name="BulletCore" type="Sprite2D" parent="BulletOutline" unique_id=2127682348]
+texture = ExtResource("5_4d7sh")
+
+[node name="BulletOutline2" type="Sprite2D" parent="." unique_id=603587375]
+self_modulate = Color(1, 0, 0.29803923, 1)
+position = Vector2(45, -47)
+texture = ExtResource("4_rj586")
+metadata/_edit_group_ = true
+
+[node name="BulletCore" type="Sprite2D" parent="BulletOutline2" unique_id=1617859180]
+texture = ExtResource("5_4d7sh")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1586694945]
+position = Vector2(93, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_kdubu")
