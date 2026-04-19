@@ -24,6 +24,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	screenSize = get_viewport_rect().size / 4
 	ENEMYSPAWNTIMER -= 1 * delta
+	HEALTHSPAWNTIMER -= 1 * delta
 	
 	if Input.is_action_just_pressed("force_spawn_enemy") and OS.has_feature("editor"):
 		for i in randi_range(1, ENEMYSPAWNAMOUNT):
@@ -52,6 +53,7 @@ func spawnHealth():
 		HEALTHSPAWNTIMER = randf_range(HEALTHMINSPAWNTIMER, HEALTHMAXSPAWNTIMER)
 		var newSpawnParticles = HealthSpawnParticles.instantiate()
 		newSpawnParticles.global_position = generateSpawnPosition(0)
+		newSpawnParticles.player_max_health = get_node("Player").MAXHEALTH
 		add_child(newSpawnParticles)
 		HEALTHMAXSPAWNTIMER = clamp(HEALTHMAXSPAWNTIMER - 0.05, 16, 64)
 

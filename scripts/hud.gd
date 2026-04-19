@@ -18,11 +18,15 @@ func _process(_delta):
 	else:
 		$Control/Stats.visible = false
 	if player.ABILITY != "none":
+		$Control/Ability.visible = true
 		$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)
 		$Control/Ability/Frame/Text.text = Global.upgradeInfo.get(player.ABILITY).get("name")
-		$Control/Ability/Frame/Bar.max_value = player.ABILITYMAXCOOLDOWN
-		$Control/Ability/Frame/Bar.value = player.ABILITYCOOLDOWN
-		$Control/Ability.visible = true
+		if Abilities.abilityTimer <= 0:
+			$Control/Ability/Frame/Bar.max_value = player.ABILITYMAXCOOLDOWN
+			$Control/Ability/Frame/Bar.value = player.ABILITYCOOLDOWN
+		else:
+			$Control/Ability/Frame/Bar.max_value = player.ABILITYDURATION
+			$Control/Ability/Frame/Bar.value = Abilities.abilityTimer
 	else:
 		$Control/Ability.visible = false
 		

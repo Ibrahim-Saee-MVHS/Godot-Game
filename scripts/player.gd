@@ -278,5 +278,5 @@ func _on_area_2d_area_entered(area):
 		$Health.playing = true
 		Global.VIGNETTEINTENSITY = 0.25
 		Global.VIGNETTECOLOR = Vector3(0, 1, 0.75)
-		HEALTH += 15
+		HEALTH += area.healingAmount
 		area.queue_free()
