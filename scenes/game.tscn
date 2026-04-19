@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kyd4tt246f38" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://bcbao6nwki8jw" path="res://scenes/pause.tscn" id="2_gee14"]
 [ext_resource type="Shader" uid="uid://c7vh3m6r5r7v1" path="res://assets/shaders/vignette.gdshader" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://3b75reufoy48" path="res://scenes/hud.tscn" id="3_lnu2h"]
 [ext_resource type="Shader" uid="uid://bh26vo877j38w" path="res://assets/shaders/glowing.gdshader" id="4_p57ef"]
@@ -44,6 +45,8 @@ shader_parameter/intensity = 4.0
 
 [node name="Game" type="Node2D" unique_id=2139425347]
 script = ExtResource("1_lnu2h")
+
+[node name="Pause" parent="." unique_id=259523335 instance=ExtResource("2_gee14")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1110885900]
 process_mode = 3

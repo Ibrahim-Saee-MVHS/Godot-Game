@@ -15,16 +15,16 @@ script = ExtResource("1_6wm04")
 layout_mode = 0
 offset_left = 24.0
 offset_top = 28.0
-offset_right = 177.0
-offset_bottom = 81.0
+offset_right = 184.0
+offset_bottom = 92.0
 text = "< Back"
 
 [node name="Save" type="Button" parent="." unique_id=468343675]
 layout_mode = 0
 offset_left = 201.0
 offset_top = 28.0
-offset_right = 354.0
-offset_bottom = 81.0
+offset_right = 361.0
+offset_bottom = 92.0
 text = "Save"
 
 [node name="RenderScale" type="Label" parent="." unique_id=343584271]

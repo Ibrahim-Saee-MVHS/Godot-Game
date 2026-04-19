@@ -12,6 +12,9 @@ var upgradeInfo: Dictionary
 func _ready() -> void:
 	loadJSONUpgrades()
 
+func _process(_delta):
+	pass
+
 func spawnDamageIndicator(globalPos, damage):
 	var damageIndicator = DAMAGEINDICATOR.instantiate()
 	damageIndicator.global_position = globalPos + Vector2(randf_range(-10, 10), randf_range(-10, 10))

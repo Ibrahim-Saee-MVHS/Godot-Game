@@ -148,13 +148,11 @@ process_mode = 3
 script = ExtResource("1_qtyd3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030319857]
-process_mode = 3
 libraries/ = SubResource("AnimationLibrary_ald31")
 autoplay = &"upgradesUp"
 speed_scale = 2.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=903501453]
-process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -163,7 +161,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.25)
 
 [node name="Control" type="Control" parent="." unique_id=708455145]
-process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
