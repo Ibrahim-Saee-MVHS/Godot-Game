@@ -93,6 +93,6 @@
 		"sprite": "res://assets/sprites/upgrade_icons/dash.png",
 		"name": "Dash",
 		"description": "You can dash and damage any enemies along your path. Stack for faster and longer dash",
-		"weight": 0.25,
+		"weight": 90.25,
 	},
 }

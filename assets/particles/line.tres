@@ -7,4 +7,4 @@ metadata/_snap_enabled = true
 
 [resource]
 gradient = SubResource("Gradient_410it")
-width = 16
+width = 32
