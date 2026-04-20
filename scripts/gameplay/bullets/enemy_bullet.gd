@@ -10,6 +10,7 @@ var DAMAGE: float
 var MOVEDIR: float
 var KNOCKBACK: float
 var despawnTimer = 60
+var upgrades: int
 
 var explosiveness: float
 var spawn_position: Vector2
@@ -19,6 +20,9 @@ var canMove: bool = true
 func _ready():
 	spawn_position = global_position
 	$Outline.self_modulate = Global.enemyColor.get(COLOR)
+	if TYPE == "normal":
+		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
+		explosiveness = explosiveness + (0.25 * upgrades)
 	if TYPE == "bomb":
 		despawnTimer = 10
 		explosiveness = clamp(explosiveness, 0.5, explosiveness)

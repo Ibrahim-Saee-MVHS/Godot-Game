@@ -27,6 +27,7 @@ var bulletType: String
 @onready var ExplosionNode = preload("res://scenes/explosion.tscn")
 var shaderMaterial = ShaderMaterial.new()
 var knockback: Vector2
+var UPGRADES: int
 
 func _ready():
 	setStats()
@@ -45,6 +46,7 @@ func setStats():
 		BULLETSPEED = 0
 		DAMAGE = -1
 		EXP = 0
+		UPGRADES = 0
 		bulletType = "none"
 		explosiveness = 0
 		shootPitch = 1.0
@@ -57,6 +59,7 @@ func setStats():
 		BULLETSPEED = 200
 		DAMAGE = 1 * multiplier
 		EXP = 4 * 1 + multiplier / 4
+		UPGRADES = 0
 		bulletType = "normal"
 		explosiveness = 0
 		shootPitch = 1.0
@@ -68,6 +71,7 @@ func setStats():
 		BULLETSPEED = 250
 		DAMAGE = 1 * multiplier
 		EXP = 6 * 1 + multiplier / 4
+		UPGRADES = 0
 		bulletType = "normal"
 		explosiveness = 0
 		shootPitch = 1.25
@@ -77,7 +81,8 @@ func setStats():
 		MAXFIRERATE = 20
 		BULLETAMOUNT = 3
 		BULLETSPEED = 200
-		DAMAGE = 6
+		DAMAGE = 6 * multiplier / 2
+		UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 6)
 		EXP = 8 * 1 + multiplier / 3
 		bulletType = "normal"
 		explosiveness = 0
@@ -90,6 +95,7 @@ func setStats():
 		BULLETSPEED = 300
 		DAMAGE = 4 * multiplier / 4
 		EXP = 12 * 1 + multiplier / 2
+		UPGRADES = 0
 		bulletType = "bomb"
 		explosiveness = 0
 		shootPitch = 1.0
@@ -101,6 +107,7 @@ func setStats():
 		BULLETSPEED = 200
 		DAMAGE = 2 * multiplier
 		EXP = 6 * 1 + multiplier / 4
+		UPGRADES = 0
 		bulletType = "normal"
 		explosiveness = 0
 		shootPitch = 1.0
@@ -112,6 +119,7 @@ func setStats():
 		BULLETSPEED = 200
 		DAMAGE = 6 * multiplier
 		EXP = 8 * 1 + multiplier / 3
+		UPGRADES = 0
 		bulletType = "bomb"
 		explosiveness = clamp(0.5 * multiplier / 4, 0.5, 1)
 		shootPitch = 0.5
