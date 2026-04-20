@@ -2,13 +2,13 @@
 	"hearty": {
 		"sprite": "res://assets/sprites/upgrade_icons/hearty.png",
 		"name": "Hearty",
-		"description": "Gives +5 HEALTH & heals the player by 35 HP",
+		"description": "Gives +10 HEALTH & heals the player by 35 HP but -2 SPEED",
 		"weight": 1.0,
 	},
 	"spread_shot": {
 		"sprite": "res://assets/sprites/upgrade_icons/spread_shot.png",
 		"name": "Spread Shot",
-		"description": "Gives +2 BULLETS",
+		"description": "Gives +2 BULLETS but +2 FIRERATE (Slower)",
 		"weight": 0.5,
 	},
 	"speed_up": {
@@ -20,13 +20,13 @@
 	"quick_fingers": {
 		"sprite": "res://assets/sprites/upgrade_icons/quick_fingers.png",
 		"name": "Quick Fingers",
-		"description": "-3 FIRERATE (Faster)",
+		"description": "-4 FIRERATE (Faster)",
 		"weight": 1.0,
 	},
 	"bullet_enhancer": {
 		"sprite": "res://assets/sprites/upgrade_icons/bullet_enhancer.png",
 		"name": "Bullet Enhancer",
-		"description": "+2 DAMAGE",
+		"description": "+2 DAMAGE but +2 FIRERATE",
 		"weight": 0.75,
 	},
 	"reinforced_chamber": {
@@ -63,13 +63,13 @@
 	"sulfuric_ammo": {
 		"sprite": "res://assets/sprites/upgrade_icons/sulfuric_ammo.png",
 		"name": "Sulfuric Ammo",
-		"description": "+0.25 EXPLOSIVENESS, Only works with Normal BULLET TYPE",
+		"description": "+0.25 EXPLOSIVENESS but -5 HEALTH, Only works with Normal BULLET TYPE",
 		"weight": 0.5,
 	},
 	"cailber_increase": {
 		"sprite": "res://assets/sprites/upgrade_icons/cailber_increase.png",
 		"name": "Cailber Increase",
-		"description": "Makes your bullet bigger but +1 MIN FIRERATE and -2 BULLET SPEED (Slower) and, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
+		"description": "Makes your bullet bigger but +1 MIN-FIRERATE (Slower) and -2 BULLET SPEED, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
 		"weight": 0.75,
 	},
 	"flashtime": {

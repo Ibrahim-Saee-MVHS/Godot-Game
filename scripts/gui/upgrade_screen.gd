@@ -44,6 +44,7 @@ func upgradePlayer():
 	match selectedUpgrade:
 		"hearty":
 			get_parent().get_node("Player").UPGRADE.health += 5
+			get_parent().get_node("Player").UPGRADE.speed -= 2
 			get_parent().get_node("Player").MAXHEALTH = get_parent().get_node("Player").MAXHEALTH + 5
 			if get_parent().get_node("Player").HEALTH + 35 <= get_parent().get_node("Player").MAXHEALTH:
 				get_parent().get_node("Player").HEALTH += 35
@@ -51,12 +52,14 @@ func upgradePlayer():
 				get_parent().get_node("Player").HEALTH = get_parent().get_node("Player").MAXHEALTH
 		"spread_shot":
 			get_parent().get_node("Player").UPGRADE.bulletAmount += 2
+			get_parent().get_node("Player").UPGRADE.firerate += 2
 		"speed_up":
 			get_parent().get_node("Player").UPGRADE.speed += 4
 		"quick_fingers":
-			get_parent().get_node("Player").UPGRADE.firerate -= 3
+			get_parent().get_node("Player").UPGRADE.firerate -= 4
 		"bullet_enhancer":
 			get_parent().get_node("Player").UPGRADE.damage += 2
+			get_parent().get_node("Player").UPGRADE.firerate += 2
 		"reinforced_chamber":
 			get_parent().get_node("Player").UPGRADE.bulletSpeed += 6
 			get_parent().get_node("Player").UPGRADE.firerate += 2.5
@@ -80,6 +83,7 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.explosiveness = 0
 		"sulfuric_ammo":
 			get_parent().get_node("Player").UPGRADE.explosiveness += 0.25
+			get_parent().get_node("Player").UPGRADE.health -= 5
 		"cailber_increase":
 			get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 			get_parent().get_node("Player").UPGRADE.bulletSpeed -= 2
