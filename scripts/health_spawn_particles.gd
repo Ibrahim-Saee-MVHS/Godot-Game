@@ -15,6 +15,8 @@ func _ready() -> void:
 			healingAmount = 35
 		var max_health when max_health < 200:
 			healingAmount = 45
+		var max_health when max_health > 200:
+			healingAmount = 50
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
