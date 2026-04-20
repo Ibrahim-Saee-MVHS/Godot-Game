@@ -10,7 +10,7 @@ var DAMAGE: float
 var MOVEDIR: float
 var KNOCKBACK: float
 var despawnTimer = 60
-var piercing: float
+
 var explosiveness: float
 var destination_position: Vector2
 

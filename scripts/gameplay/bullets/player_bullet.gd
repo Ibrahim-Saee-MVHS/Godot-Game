@@ -16,7 +16,7 @@ var DAMAGE: float
 var MOVEDIR: float
 var KNOCKBACK: float
 var despawnTimer = 60
-var piercing: float
+var ricochet: float
 var explosiveness: float
 var upgrades: int
 

@@ -53,7 +53,7 @@ var UPGRADE = {
 	bulletAmount = 0,
 	bulletVariance = 0,
 	bulletUpgrades = 0,
-	piercing = 0,
+	ricochet = 0,
 	explosiveness = 0, # for bullets
 	abilityPower = 0,
 	abilityDuration = 0,
@@ -190,14 +190,13 @@ func shoot(spread, variance):
 	for i in range(BULLETAMOUNT):
 		var BULLET = currentBullet.instantiate()
 		var dirOffset = startDir + (dirSteps * i) if BULLETAMOUNT > 1 else 0
-		BULLET.global_position = global_position
-		BULLET.TYPE = bulletType
-		BULLET.SPEED = BULLETSPEED
-		BULLET.DAMAGE = DAMAGE
-		BULLET.piercing = UPGRADE.piercing
-		BULLET.explosiveness = UPGRADE.explosiveness
-		BULLET.upgrades = UPGRADE.bulletUpgrades
-		BULLET.MOVEDIR = (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance))
+		BULLET.set("global_position", global_position)
+		BULLET.set("SPEED", BULLETSPEED)
+		BULLET.set("DAMAGE", DAMAGE)
+		BULLET.set("ricochet", UPGRADE.ricochet)
+		BULLET.set("explosiveness", UPGRADE.explosiveness)
+		BULLET.set("upgrades", UPGRADE.bulletUpgrades)
+		BULLET.set("MOVEDIR", (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance)))
 		get_parent().add_child(BULLET)
 
 func activateAbility(delta):

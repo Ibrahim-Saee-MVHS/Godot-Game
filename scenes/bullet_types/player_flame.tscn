@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwo3r0gbvhjo7"]
 
-[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/player_bullet.gd" id="1_ogojx"]
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_qr30t"]
 [ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/particles/flame.png" id="2_ogojx"]
 [ext_resource type="Gradient" uid="uid://vgleqkp4r0bf" path="res://assets/particles/normal_fire.tres" id="3_qr30t"]
 
@@ -14,7 +14,7 @@ point_count = 2
 [node name="PlayerFlame" type="Area2D" unique_id=1432198597]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_ogojx")
+script = ExtResource("1_qr30t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
 shape = SubResource("CircleShape2D_qx7rs")

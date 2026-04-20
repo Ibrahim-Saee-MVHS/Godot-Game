@@ -146,14 +146,14 @@ func shoot(delta, spread):
 		for i in range(BULLETAMOUNT):
 			var BULLET = currentBullet.instantiate()
 			var dirOffset = startDir + (dirSteps * i) if BULLETAMOUNT > 1 else 0
-			BULLET.global_position = global_position
-			BULLET.COLOR = TYPE
-			BULLET.TYPE = bulletType
-			BULLET.SPEED = BULLETSPEED
-			BULLET.DAMAGE = DAMAGE
-			BULLET.MOVEDIR = MOVEDIR + dirOffset
-			BULLET.explosiveness = explosiveness
-			BULLET.destination_position = player_position
+			BULLET.set("global_position", global_position)
+			BULLET.set("COLOR", TYPE)
+			BULLET.set("TYPE", bulletType)
+			BULLET.set("SPEED", BULLETSPEED)
+			BULLET.set("DAMAGE", DAMAGE)
+			BULLET.set("MOVEDIR", MOVEDIR + dirOffset)
+			BULLET.set("explosiveness", explosiveness)
+			BULLET.set("destination_position", player_position)
 			get_parent().add_child(BULLET)
 	else:
 		FIRERATE -= 10 * delta

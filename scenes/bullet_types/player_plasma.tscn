@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5v1xl0www8gf"]
 
-[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/player_bullet.gd" id="1_66uen"]
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_3202q"]
 [ext_resource type="Texture2D" uid="uid://cgdsuf6n53h41" path="res://assets/sprites/player_plasma.png" id="2_66uen"]
 [ext_resource type="Texture2D" uid="uid://53wh6tjot6qi" path="res://assets/particles/plasma_electricity.png" id="3_3202q"]
 
@@ -17,7 +17,7 @@ point_count = 3
 [node name="PlayerPlasma" type="Area2D" unique_id=1432198597]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_66uen")
+script = ExtResource("1_3202q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2082530001]
 z_index = 1
