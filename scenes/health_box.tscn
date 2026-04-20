@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbfef8ks2x5ft"]
 
-[ext_resource type="Script" uid="uid://dw1i8068oyg2j" path="res://scripts/health_box.gd" id="1_12c87"]
+[ext_resource type="Script" uid="uid://dw1i8068oyg2j" path="res://scripts/gameplay/health_box.gd" id="1_12c87"]
 [ext_resource type="Shader" uid="uid://dxyg7pm35iv4u" path="res://assets/shaders/unglowing.gdshader" id="1_fhgpo"]
 [ext_resource type="Texture2D" uid="uid://byvfb5wt48pvd" path="res://assets/sprites/health.png" id="1_hpwdt"]
 [ext_resource type="Texture2D" uid="uid://cp4p8x6ktp0q4" path="res://assets/particles/gradient_ring.tres" id="2_12c87"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://beb1gna6kggdo"]
 
-[ext_resource type="Script" uid="uid://ojg76d03nu82" path="res://scripts/game_over_screen.gd" id="1_wqhvx"]
+[ext_resource type="Script" uid="uid://ojg76d03nu82" path="res://scripts/gui/game_over_screen.gd" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_xeevv"]
 
 [sub_resource type="Animation" id="Animation_xeevv"]

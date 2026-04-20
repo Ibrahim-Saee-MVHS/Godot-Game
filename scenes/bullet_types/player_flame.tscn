@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwo3r0gbvhjo7"]
 
-[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/player_bullet.gd" id="1_ogojx"]
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/player_bullet.gd" id="1_ogojx"]
 [ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/particles/flame.png" id="2_ogojx"]
 [ext_resource type="Gradient" uid="uid://vgleqkp4r0bf" path="res://assets/particles/normal_fire.tres" id="3_qr30t"]
 

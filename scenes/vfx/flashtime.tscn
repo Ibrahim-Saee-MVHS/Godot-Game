@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crohtqn46h7r6"]
 
-[ext_resource type="Script" uid="uid://bsmm50d0xoo5i" path="res://scripts/flashtime.gd" id="1_8eb1m"]
+[ext_resource type="Script" uid="uid://bsmm50d0xoo5i" path="res://scripts/gameplay/flashtime.gd" id="1_8eb1m"]
 
 [sub_resource type="Animation" id="Animation_131yf"]
 length = 0.001

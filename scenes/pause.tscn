@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bcbao6nwki8jw"]
 
-[ext_resource type="Script" uid="uid://6aaiddirn3ka" path="res://scripts/pause.gd" id="1_f1d2v"]
+[ext_resource type="Script" uid="uid://6aaiddirn3ka" path="res://scripts/gui/pause.gd" id="1_f1d2v"]
 
 [sub_resource type="Animation" id="Animation_xeevv"]
 length = 0.001

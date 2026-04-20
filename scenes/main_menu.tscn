@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbk6dfldu3sbl"]
 
-[ext_resource type="Script" uid="uid://bakmn77nvgsms" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://bakmn77nvgsms" path="res://scripts/gui/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Shader" uid="uid://4rnau7rf7hl4" path="res://assets/shaders/glint.gdshader" id="3_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://dp8r53bj83q21" path="res://assets/sprites/glint.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://c12m3fw8jbh3f" path="res://assets/sprites/electric_glint.png" id="4_wu84c"]

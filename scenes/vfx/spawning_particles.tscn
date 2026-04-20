@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhbu586x7vfx2"]
 
 [ext_resource type="Texture2D" uid="uid://dw63bg6h06tme" path="res://assets/particles/spawn.png" id="1_gho1i"]
-[ext_resource type="Script" uid="uid://b7n7v5sr5awv6" path="res://scripts/enemy_spawning.gd" id="2_tyiyh"]
+[ext_resource type="Script" uid="uid://b7n7v5sr5awv6" path="res://scripts/gameplay/enemy_spawning.gd" id="2_tyiyh"]
 [ext_resource type="AudioStream" uid="uid://brxwkdl68g4lp" path="res://assets/sounds/spawn.wav" id="3_a1de7"]
 
 [sub_resource type="Curve" id="Curve_c61y8"]

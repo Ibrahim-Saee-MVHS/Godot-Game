@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://05xvjdcwl8v6"]
 
 [ext_resource type="Texture2D" uid="uid://dl6hextvcruo7" path="res://assets/particles/death.png" id="1_j5v76"]
-[ext_resource type="Script" uid="uid://cdpjrkxfmldoj" path="res://scripts/death_particles.gd" id="2_u27mo"]
+[ext_resource type="Script" uid="uid://cdpjrkxfmldoj" path="res://scripts/gameplay/death_particles.gd" id="2_u27mo"]
 [ext_resource type="AudioStream" uid="uid://bfspawusvdcbl" path="res://assets/sounds/enemyDeath.wav" id="3_wgkg3"]
 
 [sub_resource type="Curve" id="Curve_r62r7"]

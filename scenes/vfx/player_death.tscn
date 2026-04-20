@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dl6hextvcruo7" path="res://assets/particles/death.png" id="1_yik17"]
 [ext_resource type="Texture2D" uid="uid://cdctyjii77qsn" path="res://assets/sprites/line.png" id="3_ax8ow"]
-[ext_resource type="Script" uid="uid://dancn2ehbmn2m" path="res://scripts/player_death_particles.gd" id="4_nmitn"]
+[ext_resource type="Script" uid="uid://dancn2ehbmn2m" path="res://scripts/gameplay/player_death_particles.gd" id="4_nmitn"]
 [ext_resource type="AudioStream" uid="uid://dhxk4rfqojjfc" path="res://assets/sounds/playerDeath.wav" id="4_u6swk"]
 
 [sub_resource type="Curve" id="Curve_r62r7"]

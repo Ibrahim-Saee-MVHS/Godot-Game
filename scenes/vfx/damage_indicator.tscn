@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpc4ver6obett"]
 
 [ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_b44tu"]
-[ext_resource type="Script" uid="uid://dxbbjmke2dn1p" path="res://scripts/damage_indicator.gd" id="2_87rnl"]
+[ext_resource type="Script" uid="uid://dxbbjmke2dn1p" path="res://scripts/gui/damage_indicator.gd" id="2_87rnl"]
 
 [sub_resource type="Animation" id="Animation_pdomm"]
 length = 0.001

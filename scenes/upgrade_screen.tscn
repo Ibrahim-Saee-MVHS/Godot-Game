@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cfkksd5jl58bw"]
 
-[ext_resource type="Script" uid="uid://oyw2o0peb3lb" path="res://scripts/upgrade_screen.gd" id="1_qtyd3"]
+[ext_resource type="Script" uid="uid://oyw2o0peb3lb" path="res://scripts/gui/upgrade_screen.gd" id="1_qtyd3"]
 [ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="2_1ogmj"]
 [ext_resource type="Texture2D" uid="uid://d7ewgm01468y" path="res://assets/sprites/upgrade_icons/hearty.png" id="2_5x7eg"]
-[ext_resource type="Script" uid="uid://drpvsahwlsj14" path="res://scripts/upgrade_buttons.gd" id="2_ald31"]
+[ext_resource type="Script" uid="uid://drpvsahwlsj14" path="res://scripts/gui/upgrade_buttons.gd" id="2_qtyd3"]
 
 [sub_resource type="Animation" id="Animation_1ogmj"]
 length = 0.001
@@ -201,7 +201,7 @@ offset_bottom = 224.50012
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 48
-script = ExtResource("2_ald31")
+script = ExtResource("2_qtyd3")
 ID = 1
 
 [node name="Button" type="Button" parent="Control/Control/HBoxContainer/Upgrade1" unique_id=1564255251]
@@ -271,7 +271,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
-script = ExtResource("2_ald31")
+script = ExtResource("2_qtyd3")
 ID = 2
 
 [node name="Button" type="Button" parent="Control/Control/HBoxContainer/Upgrade2" unique_id=207434334]
@@ -339,7 +339,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 48
-script = ExtResource("2_ald31")
+script = ExtResource("2_qtyd3")
 ID = 3
 
 [node name="Button" type="Button" parent="Control/Control/HBoxContainer/Upgrade3" unique_id=2079363493]

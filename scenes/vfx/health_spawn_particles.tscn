@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://85o4ycoxlnbg"]
 
 [ext_resource type="Texture2D" uid="uid://cp4p8x6ktp0q4" path="res://assets/particles/gradient_ring.tres" id="1_1mlas"]
-[ext_resource type="Script" uid="uid://q5tfirb0twwt" path="res://scripts/health_spawn_particles.gd" id="1_7mfui"]
+[ext_resource type="Script" uid="uid://q5tfirb0twwt" path="res://scripts/gameplay/health_spawn_particles.gd" id="1_7mfui"]
 
 [sub_resource type="Curve" id="Curve_ebdvi"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
