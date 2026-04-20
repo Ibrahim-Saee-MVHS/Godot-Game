@@ -70,6 +70,7 @@ var enemyWeights: Array[float] = [
 
 var enemyColor = {
 	"player": Color("00cdffff"),
+	"dummy": Color("aaaaaaff"),
 	"normal": Color("ff004cff"),
 	"repeater": Color("ffd73eff"),
 	"spreader": Color("ff833fff"),

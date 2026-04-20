@@ -155,7 +155,7 @@ func setBaseStats():
 		BASEDAMAGE = 4.0
 		BASEBULLETSPEED = 250
 		BASEBULLETAMOUNT = 1
-		MAXBULLETAMOUNT = 9 - (2 * UPGRADE.bulletUpgrades)
+		MAXBULLETAMOUNT = 9 - (2 * UPGRADE.bulletUpgrades) if UPGRADE.ricochet <= 0 else 1
 		MINFIRERATE = 1 + (1.5 * UPGRADE.bulletUpgrades)
 	if bulletType == "flame":
 		BULLETSPREAD = deg_to_rad(45 * BULLETAMOUNT)

@@ -16,6 +16,11 @@ func _process(_delta: float) -> void:
 	if Engine.time_scale < 1.0:
 		$AnimationPlayer.speed_scale = 2.0 / Engine.time_scale
 	
+	if get_parent().get_node("HUD").debug_mode == true and $AnimationPlayer.speed_scale < 4.0:
+		$AnimationPlayer.speed_scale = 4.0
+	elif get_parent().get_node("HUD").debug_mode == false and $AnimationPlayer.speed_scale > 2.0:
+		$AnimationPlayer.speed_scale = 2.0
+	
 	$Control/Control/HBoxContainer/Upgrade1/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade2/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade3/Button.disabled = buttonsDisabled
@@ -62,7 +67,7 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.firerate += 2
 		"reinforced_chamber":
 			get_parent().get_node("Player").UPGRADE.bulletSpeed += 6
-			get_parent().get_node("Player").UPGRADE.firerate += 2.5
+			get_parent().get_node("Player").UPGRADE.firerate += 3
 		"flamethrower":
 			if get_parent().get_node("Player").bulletType != "flame":
 				get_parent().get_node("Player").bulletType = "flame"
@@ -123,4 +128,6 @@ func upgradePlayer():
 			else:
 				get_parent().get_node("Player").UPGRADE.abilityPower += 1
 				get_parent().get_node("Player").UPGRADE.abilityDuration += 0.025
+		"ricochet":
+			get_parent().get_node("Player").UPGRADE.ricochet += 1
 	endUpgrade()

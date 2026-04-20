@@ -62,7 +62,7 @@ func removeUpgrades(totalUpgrades):
 	if player.bulletType == "plasma" and player.UPGRADE.bulletUpgrades >= 2:
 		totalUpgrades.erase("plasma_rounds")
 		
-	if player.BULLETAMOUNT + 1 > player.MAXBULLETAMOUNT:
+	if player.BULLETAMOUNT + 1 > player.MAXBULLETAMOUNT or player.UPGRADE.ricochet > 0:
 		totalUpgrades.erase("spread_shot")
 		
 	if (player.bulletType != "normal" or player.UPGRADE.explosiveness >= 2) and player.MAXHEALTH >= 10:
@@ -85,4 +85,8 @@ func removeUpgrades(totalUpgrades):
 		
 	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
 		totalUpgrades.erase("dash")
+		
+	if player.UPGRADE.ricochet >= 6:
+		totalUpgrades.erase("ricochet")
+	
 	return totalUpgrades

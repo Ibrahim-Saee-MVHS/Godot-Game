@@ -37,6 +37,18 @@ func _ready():
 
 func setStats():
 	$Sprite2D.self_modulate = Global.enemyColor.get(TYPE)
+	if TYPE == "dummy":
+		SPEED = 0
+		MAXHEALTH = 20
+		MAXFIRERATE = INF
+		BULLETAMOUNT = 0
+		BULLETSPEED = 0
+		DAMAGE = -1
+		EXP = 0
+		bulletType = "none"
+		explosiveness = 0
+		shootPitch = 1.0
+	
 	if TYPE == "normal":
 		SPEED = 4000
 		MAXHEALTH = 26 * multiplier
@@ -183,6 +195,17 @@ func explode(power, isPlayer, explosion_position):
 	EXPLOSION.playerExplosion = isPlayer
 	get_parent().call_deferred("add_child", EXPLOSION)
 
+func ricochet(bullet: PlayerBullet):
+	var nearest_node
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	
+	enemies.erase(self)
+	if enemies.size() <= 1:
+		return bullet.MOVEDIR
+	else:
+		nearest_node = enemies[randi_range(0, enemies.size() - 1)]
+		return (bullet.global_position - nearest_node.global_position).angle() + PI
+
 func _gotDamaged(area):
 	if HITSTUN <= 0:
 		if area is PlayerBullet:
@@ -202,7 +225,12 @@ func _gotDamaged(area):
 				else:
 					HITSTUN = 1
 					knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
-					area.queue_free()
+					if area.ricochet > 0:
+						area.SPEED += 50
+						area.MOVEDIR = ricochet(area)
+						area.ricochet -= 1
+					else:
+						area.queue_free()
 			# explosive bullets
 			else:
 				$Hit.pitch_scale = randf_range(0.9, 1.1)
@@ -211,7 +239,12 @@ func _gotDamaged(area):
 				HEALTH -= area.DAMAGE
 				explode(area.explosiveness, true, area.global_position)
 				knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
-				area.queue_free()
+				if area.ricochet > 0:
+					area.SPEED += 50
+					area.MOVEDIR = ricochet(area)
+					area.ricochet -= 1
+				else:
+					area.queue_free()
 		# explosions
 		if area is Explosion and area.playerExplosion == true:
 			$Hit.pitch_scale = randf_range(0.9, 1.1)

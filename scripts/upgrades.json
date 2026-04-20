@@ -9,7 +9,7 @@
 		"sprite": "res://assets/sprites/upgrade_icons/spread_shot.png",
 		"name": "Spread Shot",
 		"description": "Gives +2 BULLETS but +2 FIRERATE (Slower)",
-		"weight": 0.5,
+		"weight": 0.75,
 	},
 	"speed_up": {
 		"sprite": "res://assets/sprites/upgrade_icons/speed_up.png",
@@ -27,13 +27,13 @@
 		"sprite": "res://assets/sprites/upgrade_icons/bullet_enhancer.png",
 		"name": "Bullet Enhancer",
 		"description": "+2 DAMAGE but +2 FIRERATE",
-		"weight": 0.75,
+		"weight": 1.0,
 	},
 	"reinforced_chamber": {
 		"sprite": "res://assets/sprites/upgrade_icons/reinforced_chamber.png",
 		"name": "Reinforced Chamber",
-		"description": "+6 BULLET SPEED but +2.5 FIRERATE (Slower)",
-		"weight": 0.5,
+		"description": "+6 BULLET SPEED but +3 FIRERATE (Slower)",
+		"weight": 0.75,
 	},
 	"flamethrower": {
 		"sprites": [
@@ -69,7 +69,7 @@
 	"cailber_increase": {
 		"sprite": "res://assets/sprites/upgrade_icons/cailber_increase.png",
 		"name": "Cailber Increase",
-		"description": "Makes your bullet bigger but +1 MIN-FIRERATE (Slower) and -2 BULLET SPEED, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
+		"description": "Makes your bullet bigger but +1 MIN-FIRERATE (Slower) and -2 BULLET SPEED, and -2 BULLET AMOUNT for every upgrade, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
 		"weight": 0.75,
 	},
 	"flashtime": {
@@ -95,5 +95,11 @@
 		"name": "Dash",
 		"description": "You can dash and damage any enemies in your path. DAMAGE modifiers affect Dash, Stack for faster & stonger dash",
 		"weight": 0.25,
+	},
+	"ricochet": {
+		"sprite": "res://assets/sprites/upgrade_icons/ricochet.png",
+		"name": "Ricochet",
+		"description": "Your bullets can ricochet from enemy to enemy and gets faster each time but you can only have 1 BULLET AMOUNT, Only works with Normal BULLET TYPE",
+		"weight": 0.75,
 	},
 }
