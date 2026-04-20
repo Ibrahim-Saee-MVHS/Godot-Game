@@ -27,7 +27,6 @@ SettingsGlobal="*uid://c1uj82itea47f"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
 
 [editor]
 
