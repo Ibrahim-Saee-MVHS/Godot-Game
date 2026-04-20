@@ -4,6 +4,7 @@ extends Area2D
 var EXPLOSION = preload("res://scenes/explosion.tscn")
 var fireColors = [
 	preload("res://assets/particles/normal_fire.tres"),
+	preload("res://assets/particles/yellow_fire.tres"),
 	preload("res://assets/particles/green_fire.tres"),
 	preload("res://assets/particles/blue_fire.tres"),
 	preload("res://assets/particles/purple_fire.tres"),

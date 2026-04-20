@@ -41,6 +41,7 @@
 			"res://assets/sprites/upgrade_icons/flamethrower_1.png",
 			"res://assets/sprites/upgrade_icons/flamethrower_2.png",
 			"res://assets/sprites/upgrade_icons/flamethrower_3.png",
+			"res://assets/sprites/upgrade_icons/flamethrower_4.png",
 		],
 		"upgradeVar": "bulletUpgrades",
 		"name": "Flamethrower",
@@ -69,7 +70,7 @@
 		"sprite": "res://assets/sprites/upgrade_icons/cailber_increase.png",
 		"name": "Cailber Increase",
 		"description": "Makes your bullet bigger but +1 MIN FIRERATE and -2 BULLET SPEED (Slower) and, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
-		"weight": 90.75,
+		"weight": 0.75,
 	},
 	"flashtime": {
 		"sprite": "res://assets/sprites/upgrade_icons/flashtime.png",

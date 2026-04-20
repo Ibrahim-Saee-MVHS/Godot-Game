@@ -56,7 +56,7 @@ func removeUpgrades(totalUpgrades):
 	if player.bulletType == "normal":
 		totalUpgrades.erase("normalcy")
 		
-	if player.bulletType == "flame" and player.UPGRADE.bulletUpgrades >= 3:
+	if player.bulletType == "flame" and player.UPGRADE.bulletUpgrades >= 4:
 		totalUpgrades.erase("flamethrower")
 		
 	if player.bulletType == "plasma" and player.UPGRADE.bulletUpgrades >= 2:
@@ -85,3 +85,4 @@ func removeUpgrades(totalUpgrades):
 		
 	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
 		totalUpgrades.erase("dash")
+	return totalUpgrades
