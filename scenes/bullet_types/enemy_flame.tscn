@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c6gq06qpcpmv1"]
+
+[ext_resource type="Script" uid="uid://mxlh621vivac" path="res://scripts/gameplay/bullets/enemy_bullet.gd" id="1_5ai0e"]
+[ext_resource type="Texture2D" uid="uid://dybyv7ynb37hv" path="res://assets/particles/flame.png" id="2_y4puj"]
+[ext_resource type="Gradient" uid="uid://vgleqkp4r0bf" path="res://assets/particles/normal_fire.tres" id="3_qp4dp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
+radius = 12.0
+
+[sub_resource type="Curve" id="Curve_elrkp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20491797), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="EnemyFlame" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_5ai0e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CircleShape2D_qx7rs")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1732719251]
+emitting = false
+amount = 64
+texture = ExtResource("2_y4puj")
+one_shot = true
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_elrkp")
+color_ramp = ExtResource("3_qp4dp")

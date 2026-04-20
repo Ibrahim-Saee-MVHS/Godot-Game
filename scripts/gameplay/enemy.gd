@@ -21,6 +21,7 @@ var explosiveness: float
 var bulletType: String
 @onready var Projectiles = {
 	"normal": preload("res://scenes/bullet_types/enemy_bullet.tscn"),
+	"flame": preload("res://scenes/bullet_types/enemy_flame.tscn"),
 	"bomb": preload("res://scenes/bullet_types/enemy_bomb.tscn"),
 }
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
@@ -123,6 +124,18 @@ func setStats():
 		bulletType = "bomb"
 		explosiveness = clamp(0.5 * multiplier / 4, 0.5, 1)
 		shootPitch = 0.5
+	if TYPE == "arsonist":
+		SPEED = 3500
+		MAXHEALTH = 32 * multiplier
+		MAXFIRERATE = 1
+		BULLETAMOUNT = 1
+		BULLETSPEED = 200
+		DAMAGE = 0.01 * multiplier / 10
+		UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 3)
+		EXP = 10 * 1 + multiplier / 3
+		bulletType = "flame"
+		explosiveness = 0
+		shootPitch = 1.0
 
 func _process(delta):
 	$Sprite2D.material = shaderMaterial
@@ -130,6 +143,8 @@ func _process(delta):
 	if TYPE == "grenadier":
 		target_position = (player_position + get_parent().get_node("Player").velocity / 1.25)
 		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 1.25) - global_position).angle()
+	elif TYPE == "arsonist":
+		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 2) - global_position).angle()
 	else:
 		MOVEDIR = (player_position - global_position).angle()
 	
@@ -137,6 +152,7 @@ func _process(delta):
 	
 	if HITSTUN <= 0:
 		shaderMaterial.shader = null
+	
 	if TYPE != "bomber":
 		shoot(delta, deg_to_rad(6.25 * BULLETAMOUNT))
 	else:
@@ -164,10 +180,17 @@ func shoot(delta, spread):
 	var startDir = -spread / 2
 	var dirSteps = spread / (BULLETAMOUNT - 1)
 	if FIRERATE <= 0:
-		$Shoot.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
-		$Shoot.playing = true
-		FIRERATE = MAXFIRERATE
+		if TYPE == "arsonist":
+			FIRERATE = MAXFIRERATE + randf_range(0, 6.0) * round(randf_range(0, 1))
+		else:
+			FIRERATE = MAXFIRERATE
 		var currentBullet = Projectiles.get(bulletType)
+		if bulletType == "flame":
+			$FlameThrow.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
+			$FlameThrow.playing = true
+		else:
+			$Shoot.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
+			$Shoot.playing = true
 		for i in range(BULLETAMOUNT):
 			var BULLET = currentBullet.instantiate()
 			var dirOffset = startDir + (dirSteps * i) if BULLETAMOUNT > 1 else 0
@@ -185,8 +208,15 @@ func shoot(delta, spread):
 
 func _physics_process(delta):
 	var initialVelocity = Vector2(SPEED, 0).rotated(MOVEDIR) * delta
+	var enemy_group = get_tree().get_nodes_in_group("enemies")
+	enemy_group.erase(self)
 	if knockback == Vector2(0, 0):
 		velocity = initialVelocity
+		for node in enemy_group:
+			if global_position.distance_to(node.global_position) < 16:
+				var newDir = (global_position - node.global_position).angle()
+				velocity = -Vector2(SPEED, 0).rotated(newDir) * delta
+				move_and_slide()
 		if global_position.distance_to(player_position) > 64:
 			move_and_slide()
 		elif global_position.distance_to(player_position) < 32:

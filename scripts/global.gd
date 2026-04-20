@@ -58,6 +58,7 @@ var enemyTypes: Array[String] = [
 	"juggernaut",
 	"bomber",
 	"grenadier",
+	"arsonist",
 ]
 var enemyWeights: Array[float] = [
 	4,
@@ -65,6 +66,7 @@ var enemyWeights: Array[float] = [
 	3.25,
 	2,
 	1,
+	1.5,
 	1,
 ]
 
@@ -77,4 +79,5 @@ var enemyColor = {
 	"juggernaut": Color("2643ffff"),
 	"bomber": Color("94ff5eff"),
 	"grenadier": Color("df44ffff"),
+	"arsonist": Color("ff8463ff"),
 }
