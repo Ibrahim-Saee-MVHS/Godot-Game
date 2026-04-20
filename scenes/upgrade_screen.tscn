@@ -4,8 +4,6 @@
 [ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="2_1ogmj"]
 [ext_resource type="Texture2D" uid="uid://d7ewgm01468y" path="res://assets/sprites/upgrade_icons/hearty.png" id="2_5x7eg"]
 [ext_resource type="Script" uid="uid://drpvsahwlsj14" path="res://scripts/upgrade_buttons.gd" id="2_ald31"]
-[ext_resource type="Texture2D" uid="uid://dfejj035emagk" path="res://assets/sprites/upgrade_icons/spread_shot.png" id="4_1ogmj"]
-[ext_resource type="Texture2D" uid="uid://y4kqfcajq5ed" path="res://assets/sprites/upgrade_icons/speed_up.png" id="5_ald31"]
 
 [sub_resource type="Animation" id="Animation_1ogmj"]
 length = 0.001
@@ -197,9 +195,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -232.0
+offset_top = -224.50012
 offset_right = 329.0
-offset_bottom = 217.00024
+offset_bottom = 224.50012
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 48
@@ -212,25 +210,27 @@ theme = ExtResource("2_1ogmj")
 
 [node name="Icon" type="TextureRect" parent="Control/Control/HBoxContainer/Upgrade1/Button" unique_id=1214828573]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.17266187
-anchor_top = 0.10666667
-anchor_right = 0.8633093
-anchor_bottom = 0.53333336
-offset_right = 1.5258789e-05
-offset_bottom = -1.5258789e-05
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -189.5
+offset_right = 63.0
+offset_bottom = -61.5
 grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_5x7eg")
 stretch_mode = 5
-metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade1/Button" unique_id=171170278]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06405694
-anchor_top = 0.5711111
+anchor_top = 0.36302894
 anchor_right = 0.93594307
-anchor_bottom = 0.7777778
+anchor_bottom = 0.5696957
 grow_horizontal = 2
 grow_vertical = 0
 text = "Hearty"
@@ -242,9 +242,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Description" type="Label" parent="Control/Control/HBoxContainer/Upgrade1/Button" unique_id=1243406143]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.7777778
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.06405694
+anchor_top = 0.5701559
+anchor_right = 0.93594307
+anchor_bottom = 0.95100224
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 18
@@ -253,7 +254,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Upgrade2" type="MarginContainer" parent="Control/Control/HBoxContainer" unique_id=1405706600]
+[node name="Upgrade2" type="MarginContainer" parent="Control/Control/HBoxContainer" unique_id=2048485334]
 process_priority = 1
 layout_mode = 1
 anchors_preset = 8
@@ -262,9 +263,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -164.5
-offset_top = -232.0
+offset_top = -224.50012
 offset_right = 164.5
-offset_bottom = 217.00024
+offset_bottom = 224.50012
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -273,63 +274,67 @@ theme_override_constants/margin_right = 24
 script = ExtResource("2_ald31")
 ID = 2
 
-[node name="Button" type="Button" parent="Control/Control/HBoxContainer/Upgrade2" unique_id=835679690]
+[node name="Button" type="Button" parent="Control/Control/HBoxContainer/Upgrade2" unique_id=207434334]
 layout_mode = 2
 theme = ExtResource("2_1ogmj")
 
-[node name="Icon" type="TextureRect" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=716567793]
+[node name="Icon" type="TextureRect" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=844004026]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.17266187
-anchor_top = 0.10666667
-anchor_right = 0.8633093
-anchor_bottom = 0.53333336
-offset_right = 1.5258789e-05
-offset_bottom = -1.5258789e-05
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -189.5
+offset_right = 63.0
+offset_bottom = -61.5
 grow_horizontal = 2
-texture = ExtResource("4_1ogmj")
+grow_vertical = 2
+texture = ExtResource("2_5x7eg")
 stretch_mode = 5
-metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=1701668393]
+[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=1631038754]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06405694
-anchor_top = 0.5711111
+anchor_top = 0.36302894
 anchor_right = 0.93594307
-anchor_bottom = 0.7777778
+anchor_bottom = 0.5696957
 grow_horizontal = 2
 grow_vertical = 0
-text = "Spread Shot"
+text = "Hearty"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Description" type="Label" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=1541872346]
+[node name="Description" type="Label" parent="Control/Control/HBoxContainer/Upgrade2/Button" unique_id=2112567004]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.7777778
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.06405694
+anchor_top = 0.5701559
+anchor_right = 0.93594307
+anchor_bottom = 0.95100224
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 18
-text = "+2 BULLETS"
+text = "+5 HEALTH"
 horizontal_alignment = 1
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Upgrade3" type="MarginContainer" parent="Control/Control/HBoxContainer" unique_id=648230405]
+[node name="Upgrade3" type="MarginContainer" parent="Control/Control/HBoxContainer" unique_id=2047507673]
+process_priority = 2
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -330.00043
-offset_top = -232.0
-offset_bottom = 216.99927
+offset_left = -329.0
+offset_top = -224.50012
+offset_bottom = 224.50012
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -337,51 +342,52 @@ theme_override_constants/margin_left = 48
 script = ExtResource("2_ald31")
 ID = 3
 
-[node name="Button" type="Button" parent="Control/Control/HBoxContainer/Upgrade3" unique_id=1826419373]
+[node name="Button" type="Button" parent="Control/Control/HBoxContainer/Upgrade3" unique_id=2079363493]
 layout_mode = 2
 theme = ExtResource("2_1ogmj")
 
-[node name="Icon" type="TextureRect" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=1974509961]
+[node name="Icon" type="TextureRect" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=1876682776]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.17266187
-anchor_top = 0.10666667
-anchor_right = 0.8633093
-anchor_bottom = 0.53333336
-offset_right = 1.5258789e-05
-offset_bottom = -1.5258789e-05
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -189.5
+offset_right = 63.0
+offset_bottom = -61.5
 grow_horizontal = 2
-texture = ExtResource("5_ald31")
+grow_vertical = 2
+texture = ExtResource("2_5x7eg")
 stretch_mode = 5
-metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=1388117986]
+[node name="Title" type="Label" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=1222372615]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06405694
-anchor_top = 0.5711111
+anchor_top = 0.36302894
 anchor_right = 0.93594307
-anchor_bottom = 0.7777778
-offset_left = -3.0517578e-05
-offset_right = -3.0517578e-05
+anchor_bottom = 0.5696957
 grow_horizontal = 2
 grow_vertical = 0
-text = "Speed Up"
+text = "Hearty"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Description" type="Label" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=1889224728]
+[node name="Description" type="Label" parent="Control/Control/HBoxContainer/Upgrade3/Button" unique_id=1344290877]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.7777778
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.06405694
+anchor_top = 0.5701559
+anchor_right = 0.93594307
+anchor_bottom = 0.95100224
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 18
-text = "+2 SPEED"
+text = "+5 HEALTH"
 horizontal_alignment = 1
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
