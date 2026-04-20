@@ -73,6 +73,7 @@ func upgradePlayer():
 				get_parent().get_node("Player").bulletType = "flame"
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
 				get_parent().get_node("Player").UPGRADE.explosiveness = 0
+				get_parent().get_node("Player").UPGRADE.ricochet = 0
 			else:
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 		"plasma_rounds":
@@ -80,12 +81,14 @@ func upgradePlayer():
 				get_parent().get_node("Player").bulletType = "plasma"
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
 				get_parent().get_node("Player").UPGRADE.explosiveness = 0
+				get_parent().get_node("Player").UPGRADE.ricochet = 0
 			else:
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 		"normalcy":
 			get_parent().get_node("Player").bulletType = "normal"
 			get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
 			get_parent().get_node("Player").UPGRADE.explosiveness = 0
+			get_parent().get_node("Player").UPGRADE.ricochet = 0
 		"sulfuric_ammo":
 			get_parent().get_node("Player").UPGRADE.explosiveness += 0.25
 			get_parent().get_node("Player").UPGRADE.health -= 5
