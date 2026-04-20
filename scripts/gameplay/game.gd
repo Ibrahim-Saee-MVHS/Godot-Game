@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("force_spawn_enemy") and OS.has_feature("editor"):
 		var newSpawnParticles = EnemySpawnParticles.instantiate()
 		newSpawnParticles.global_position = generateSpawnPosition(0)
-		newSpawnParticles.TYPE = randomType()
+		newSpawnParticles.TYPE =randomType()
 		newSpawnParticles.statMultiplier = 1.0 + (DIFFICULTY / 2)
 		add_child(newSpawnParticles)
 	

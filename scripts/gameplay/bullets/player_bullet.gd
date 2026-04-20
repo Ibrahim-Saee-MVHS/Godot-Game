@@ -26,10 +26,10 @@ func _ready():
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 		explosiveness = explosiveness * (1 + (0.25 * upgrades))
 	if TYPE == "flame":
-		$CPUParticles2D.emitting = true
-		despawnTimer = 5 + (2 * upgrades)
 		KNOCKBACK = 0
+		despawnTimer = 5 + (2 * upgrades)
 		DAMAGE = (DAMAGE / 100) + 0.01 + (0.01 * upgrades)
+		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
 	if TYPE == "plasma":
 		KNOCKBACK = 0

@@ -15,6 +15,7 @@ var HITSTUN: float
 var BULLETSPEED: float
 var shootPitch: float = 1.0
 var player_position: Vector2
+var target_position: Vector2
 var multiplier: float = 1.0
 var explosiveness: float
 var bulletType: String
@@ -94,7 +95,7 @@ func setStats():
 	if TYPE == "grenadier":
 		SPEED = 6000
 		MAXHEALTH = 32 * multiplier
-		MAXFIRERATE = 18
+		MAXFIRERATE = 16
 		BULLETAMOUNT = clamp(floor(1 * multiplier), 1, 3)
 		BULLETSPEED = 200
 		DAMAGE = 6 * multiplier
@@ -106,7 +107,11 @@ func setStats():
 func _process(delta):
 	$Sprite2D.material = shaderMaterial
 	player_position = get_parent().get_node("Player").global_position
-	MOVEDIR = (player_position - global_position).angle()
+	if TYPE == "grenadier":
+		target_position = (player_position + get_parent().get_node("Player").velocity / 1.25)
+		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 1.25) - global_position).angle()
+	else:
+		MOVEDIR = (player_position - global_position).angle()
 	
 	$HealthBar.value = HEALTH
 	
@@ -153,7 +158,7 @@ func shoot(delta, spread):
 			BULLET.set("DAMAGE", DAMAGE)
 			BULLET.set("MOVEDIR", MOVEDIR + dirOffset)
 			BULLET.set("explosiveness", explosiveness)
-			BULLET.set("destination_position", player_position)
+			BULLET.set("destination_position", target_position)
 			get_parent().add_child(BULLET)
 	else:
 		FIRERATE -= 10 * delta
