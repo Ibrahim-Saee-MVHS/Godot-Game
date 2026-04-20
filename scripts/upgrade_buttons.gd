@@ -41,27 +41,7 @@ func randomizeUpgrade():
 	var totalUpgrades = validUpgrades.duplicate(true)
 	var totalWeights: PackedFloat32Array
 	var result: String
-	player = get_tree().current_scene.get_node("Player")
-	if player.bulletType == "normal":
-		totalUpgrades.erase("normalcy")
-	if player.bulletType == "flame" and player.UPGRADE.bulletUpgrades >= 3:
-		totalUpgrades.erase("flamethrower")
-	if player.bulletType == "plasma" and player.UPGRADE.bulletUpgrades >= 2:
-		totalUpgrades.erase("plasma_rounds")
-	if player.BULLETAMOUNT + 2 >= player.MAXBULLETAMOUNT:
-		totalUpgrades.erase("spread_shot")
-	if player.bulletType != "normal" or player.UPGRADE.explosiveness >= 2:
-		totalUpgrades.erase("sulfuric_ammo")
-	if player.bulletType != "normal" or player.UPGRADE.bulletUpgrades >= 4:
-		totalUpgrades.erase("cailber_increase")
-	if player.ABILITY == "flashtime" and player.ABILITYPOWER >= 3:
-		totalUpgrades.erase("flashtime")
-	if (player.ABILITY == "detonation" and player.ABILITYPOWER >= 3) or (player.ABILITY != "detonation" and player.MAXHEALTH < 40):
-		totalUpgrades.erase("detonation")
-	if player.ABILITYMAXCOOLDOWN <= 6 or player.ABILITY == "none":
-		totalUpgrades.erase("cooldown_reduction")
-	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
-		totalUpgrades.erase("dash")
+	totalUpgrades = removeUpgrades(totalUpgrades)
 	
 	for i in range(totalUpgrades.size()):
 		totalWeights.append(upgradeInfo.get(totalUpgrades[i]).get("weight"))
@@ -70,3 +50,38 @@ func randomizeUpgrade():
 	result = totalUpgrades[rng.rand_weighted(totalWeights)]
 	validUpgrades.erase(result)
 	return result
+
+func removeUpgrades(totalUpgrades):
+	player = get_tree().current_scene.get_node("Player")
+	if player.bulletType == "normal":
+		totalUpgrades.erase("normalcy")
+		
+	if player.bulletType == "flame" and player.UPGRADE.bulletUpgrades >= 3:
+		totalUpgrades.erase("flamethrower")
+		
+	if player.bulletType == "plasma" and player.UPGRADE.bulletUpgrades >= 2:
+		totalUpgrades.erase("plasma_rounds")
+		
+	if player.BULLETAMOUNT + 1 >= player.MAXBULLETAMOUNT:
+		totalUpgrades.erase("spread_shot")
+		
+	if player.bulletType != "normal" or player.UPGRADE.explosiveness >= 2:
+		totalUpgrades.erase("sulfuric_ammo")
+		
+	if player.FIRERATE - 1 < player.MINFIRERATE:
+		totalUpgrades.erase("quick_fingers")
+		
+	if player.bulletType != "normal" or player.UPGRADE.bulletUpgrades >= 4:
+		totalUpgrades.erase("cailber_increase")
+		
+	if player.ABILITY == "flashtime" and player.ABILITYPOWER >= 3:
+		totalUpgrades.erase("flashtime")
+		
+	if (player.ABILITY == "detonation" and player.ABILITYPOWER >= 3) or (player.ABILITY != "detonation" and player.MAXHEALTH < 40):
+		totalUpgrades.erase("detonation")
+		
+	if player.ABILITYMAXCOOLDOWN <= 6 or player.ABILITY == "none":
+		totalUpgrades.erase("cooldown_reduction")
+		
+	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
+		totalUpgrades.erase("dash")

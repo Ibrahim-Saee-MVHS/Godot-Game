@@ -82,6 +82,7 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.explosiveness += 0.25
 		"cailber_increase":
 			get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
+			get_parent().get_node("Player").UPGRADE.bulletSpeed -= 2
 		"flashtime":
 			if get_parent().get_node("Player").ABILITY != "flashtime":
 				get_parent().get_node("Player").ABILITY = "flashtime"

@@ -16,6 +16,7 @@ var BULLETSPREAD: float
 var SPEED: float
 var HEALTH: int
 var MAXFIRERATE: float
+var MINFIRERATE: float
 var FIRERATE: float = 0
 var LEVEL: int = 1
 var EXP: int = 0
@@ -62,6 +63,7 @@ var UPGRADE = {
 func _ready() -> void:
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500)
 	MAXFIRERATE = clamp(BASEFIRERATE, 2, 16)
+	MINFIRERATE = 1
 	DAMAGE = clamp(BASEDAMAGE, 4, 32)
 	BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 	BULLETSPEED = BASEBULLETSPEED
@@ -92,7 +94,7 @@ func _process(delta):
 	setBaseStats()
 	setAbilityStats()
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
-	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate if bulletType != "flame" else UPGRADE.firerate / 5), 1 if bulletType != "plasma" else 5, 16)
+	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate if bulletType != "flame" else UPGRADE.firerate / 5), MINFIRERATE, 16)
 	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
 	SPEED = BASESPEED + (UPGRADE.speed * 200) + (1000 * ABILITYPOWER if ABILITY == "flashtime" and Abilities.abilityTimer > 0 else 0.0)
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
@@ -153,7 +155,8 @@ func setBaseStats():
 		BASEDAMAGE = 4.0
 		BASEBULLETSPEED = 250
 		BASEBULLETAMOUNT = 1
-		MAXBULLETAMOUNT = 9
+		MAXBULLETAMOUNT = 9 - (2 * UPGRADE.bulletUpgrades)
+		MINFIRERATE = 1 + (1.5 * UPGRADE.bulletUpgrades)
 	if bulletType == "flame":
 		BULLETSPREAD = deg_to_rad(45 * BULLETAMOUNT)
 		BULLETVARIANCE = 5
@@ -162,6 +165,7 @@ func setBaseStats():
 		BASEBULLETSPEED = 125
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 1
+		MINFIRERATE = 1
 	if bulletType == "plasma":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 		BULLETVARIANCE = 0
@@ -170,6 +174,7 @@ func setBaseStats():
 		BASEBULLETSPEED = 75
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 3
+		MINFIRERATE = 4
 
 func shoot(spread, variance):
 	var startDir = -spread / 2

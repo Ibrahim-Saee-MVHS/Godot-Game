@@ -200,6 +200,10 @@ func _gotDamaged(area):
 					area.queue_free()
 			# explosive bullets
 			else:
+				$Hit.pitch_scale = randf_range(0.9, 1.1)
+				$Hit.playing = true
+				Global.spawnDamageIndicator(global_position, -area.DAMAGE)
+				HEALTH -= area.DAMAGE
 				explode(area.explosiveness, true, area.global_position)
 				knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
 				area.queue_free()

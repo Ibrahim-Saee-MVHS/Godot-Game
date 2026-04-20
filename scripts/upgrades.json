@@ -68,8 +68,8 @@
 	"cailber_increase": {
 		"sprite": "res://assets/sprites/upgrade_icons/cailber_increase.png",
 		"name": "Cailber Increase",
-		"description": "Makes your bullet bigger, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
-		"weight": 0.75,
+		"description": "Makes your bullet bigger but +1 MIN FIRERATE and -2 BULLET SPEED (Slower) and, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
+		"weight": 90.75,
 	},
 	"flashtime": {
 		"sprite": "res://assets/sprites/upgrade_icons/flashtime.png",
