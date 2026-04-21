@@ -81,5 +81,5 @@ var enemyColor = {
 	"juggernaut": Color("2643ffff"),
 	"bomber": Color("94ff5eff"),
 	"grenadier": Color("df44ffff"),
-	"arsonist": Color("ff8463ff"),
+	"arsonist": Color("8e3222ff"),
 }

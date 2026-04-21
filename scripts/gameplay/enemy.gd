@@ -213,9 +213,9 @@ func _physics_process(delta):
 	if knockback == Vector2(0, 0):
 		velocity = initialVelocity
 		for node in enemy_group:
-			if global_position.distance_to(node.global_position) < 16 and TYPE != "bomber":
+			if global_position.distance_to(node.global_position) < 32 and TYPE != "bomber":
 				var newDir = (global_position - node.global_position).angle()
-				velocity = -Vector2(SPEED, 0).rotated(newDir) * delta
+				velocity = Vector2(SPEED, 0).rotated(newDir) * delta
 				move_and_slide()
 		if global_position.distance_to(player_position) > 64 or TYPE == "bomber":
 			move_and_slide()
