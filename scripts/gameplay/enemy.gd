@@ -156,7 +156,7 @@ func _process(delta):
 	if TYPE != "bomber":
 		shoot(delta, deg_to_rad(6.25 * BULLETAMOUNT))
 	else:
-		if global_position.distance_to(player_position) <= 16:
+		if global_position.distance_to(player_position) <= 32:
 			explode(DAMAGE, false, global_position)
 			queue_free()
 	if HEALTH <= 0:

@@ -51,6 +51,7 @@ const shaders = {
 	"vignette": preload("res://assets/shaders/vignette.gdshader"),
 }
 
+# only includes enemy types that spawn
 var enemyTypes: Array[String] = [
 	"normal",
 	"repeater",
@@ -60,14 +61,15 @@ var enemyTypes: Array[String] = [
 	"grenadier",
 	"arsonist",
 ]
+
 var enemyWeights: Array[float] = [
-	4,
-	3.75,
-	3.25,
-	2,
-	1,
-	1.5,
-	1,
+	4, # normal
+	3.75, # repeater
+	3.25, # spreader
+	2, # juggernaut
+	1, # bomber
+	1.5, # grenadier
+	1, # arsonist
 ]
 
 var enemyColor = {
