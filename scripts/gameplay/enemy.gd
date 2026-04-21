@@ -94,7 +94,7 @@ func setStats():
 		MAXFIRERATE = 0
 		BULLETAMOUNT = 16
 		BULLETSPEED = 300
-		DAMAGE = 4 * multiplier / 4
+		DAMAGE = 4 * multiplier / 2
 		EXP = 12 * 1 + multiplier / 2
 		UPGRADES = 0
 		bulletType = "bomb"
@@ -229,7 +229,7 @@ func _physics_process(delta):
 func explode(power, isPlayer, explosion_position):
 	var EXPLOSION = ExplosionNode.instantiate()
 	EXPLOSION.global_position = explosion_position
-	EXPLOSION.SIZE = power
+	EXPLOSION.EXPLOSIONPOWER = power
 	EXPLOSION.playerExplosion = isPlayer
 	get_parent().call_deferred("add_child", EXPLOSION)
 

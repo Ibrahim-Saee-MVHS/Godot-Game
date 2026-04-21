@@ -1,7 +1,7 @@
 class_name Explosion
 extends Area2D
 
-var SIZE: float
+var EXPLOSIONPOWER: float
 var DAMAGE: float
 var playerExplosion: bool
 var timer: float = 4
@@ -12,14 +12,13 @@ func _ready():
 	$Wave.emitting = true
 
 func initializeExplosion():
-	SIZE = clampf(SIZE, 0, 8)
-	$CollisionShape2D.shape.radius = 64 * SIZE
-	DAMAGE = maxf(6 * SIZE, 1)
-	$Fire.initial_velocity_min = 64 * SIZE
-	$Fire.initial_velocity_max = 256 * SIZE
-	$Fire.amount = 48 * SIZE
-	$Wave.scale_amount_min = 1 * SIZE
-	$Wave.scale_amount_max = 1 * SIZE
+	DAMAGE = maxf(6 * EXPLOSIONPOWER, 1)
+	$CollisionShape2D.shape.radius = 64 * clampf(EXPLOSIONPOWER, 0, 8)
+	$Fire.initial_velocity_min = 64 * clampf(EXPLOSIONPOWER, 0, 8)
+	$Fire.initial_velocity_max = 256 * clampf(EXPLOSIONPOWER, 0, 8)
+	$Fire.amount = 48 * clampf(EXPLOSIONPOWER, 0, 8)
+	$Wave.scale_amount_min = 1 * clampf(EXPLOSIONPOWER, 0, 8)
+	$Wave.scale_amount_max = 1 * clampf(EXPLOSIONPOWER, 0, 8)
 	$Sound.pitch_scale = randf_range(0.9, 1.1)
 	$Sound.playing = true
 

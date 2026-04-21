@@ -244,7 +244,7 @@ func _physics_process(delta):
 func explode(power, isPlayer, explosion_position):
 	var EXPLOSION = ExplosionNode.instantiate()
 	EXPLOSION.global_position = explosion_position
-	EXPLOSION.SIZE = power
+	EXPLOSION.EXPLOSIONPOWER = power
 	EXPLOSION.playerExplosion = isPlayer
 	get_parent().add_child(EXPLOSION)
 
