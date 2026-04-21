@@ -26,12 +26,15 @@ func _process(delta: float) -> void:
 	ENEMYSPAWNTIMER -= 1 * delta
 	HEALTHSPAWNTIMER -= 1 * delta
 	
-	if Input.is_action_just_pressed("force_spawn_enemy") and OS.has_feature("editor"):
-		var newSpawnParticles = EnemySpawnParticles.instantiate()
-		newSpawnParticles.global_position = generateSpawnPosition(0)
-		newSpawnParticles.TYPE = randomType()
-		newSpawnParticles.statMultiplier = 1.0 + (DIFFICULTY / 2)
-		add_child(newSpawnParticles)
+	if OS.has_feature("editor"):
+		if Input.is_action_just_pressed("force_spawn_enemy"):
+			var newSpawnParticles = EnemySpawnParticles.instantiate()
+			newSpawnParticles.global_position = generateSpawnPosition(0)
+			newSpawnParticles.TYPE = randomType()
+			newSpawnParticles.statMultiplier = 1.0 + (DIFFICULTY / 2)
+			add_child(newSpawnParticles)
+		if Input.is_action_just_pressed("add_difficulty"):
+			DIFFICULTY += 0.1
 	
 	if Abilities.abilityTimer > 0 and get_node("Player").ABILITY == "flashtime":
 		$Music.stream_paused = true

@@ -248,15 +248,15 @@ func explode(power, isPlayer, explosion_position):
 	EXPLOSION.playerExplosion = isPlayer
 	get_parent().add_child(EXPLOSION)
 
-func dealDamage(damage):
+func dealDamage(damage, inv):
 	$Hit.pitch_scale = randf_range(0.9, 1.1)
 	$Hit.playing = true
-	Global.SCREENSHAKEAMOUNT = 100 * 1 + (damage/2)
-	Global.SCREENSHAKEPOWER = 0.5 + (damage/10)
+	Global.SCREENSHAKEAMOUNT = 100 * 1 + (damage / round(float(MAXHEALTH) / 25) )
+	Global.SCREENSHAKEPOWER = 0.5 + (damage / round(float(MAXHEALTH) / 5) )
 	Global.VIGNETTEINTENSITY = 0.5
 	Global.VIGNETTECOLOR = Vector3(1, 0, 0)
 	shaderMaterial.shader = Global.shaders.flash
-	INVULNERABILITY = MAXINVULNERABILITY
+	INVULNERABILITY = inv
 	HEALTH -= damage
 	Global.spawnDamageIndicator(global_position, -damage)
 
@@ -264,8 +264,14 @@ func _on_area_2d_area_entered(area):
 	if INVULNERABILITY <= 0:
 		# bullets
 		if area is EnemyBullet:
-			if area.explosiveness <= 0:
-				dealDamage(area.DAMAGE)
+			# flame
+			if area.TYPE == "flame":
+				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 1.5)
+				area.get_node("CPUParticles2D").set_deferred("emitting", false)
+				area.get_node("CollisionShape2D").set_deferred("disabled", true)
+			# normal
+			elif area.explosiveness <= 0:
+				dealDamage(area.DAMAGE, MAXINVULNERABILITY)
 				area.queue_free()
 			# explosive bullets
 			elif area.TYPE != "bomb":
@@ -273,7 +279,7 @@ func _on_area_2d_area_entered(area):
 				area.queue_free()
 		# explosions
 		if area is Explosion and area.playerExplosion == false:
-			dealDamage(area.DAMAGE)
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
 			knockbackPower = 6
 			knockbackDir = (area.global_position - global_position).angle()
 	if area is HealthBox:

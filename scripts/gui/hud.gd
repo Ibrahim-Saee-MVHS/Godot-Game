@@ -34,6 +34,7 @@ func _process(_delta):
 		debug_mode = !debug_mode
 	
 func generateStats():
+	var DIFFICULTY = str("Difficulty: ", get_parent().DIFFICULTY, "\n")
 	var VELOCITY = str("Velocity: ", snapped(player.velocity.length(), 0.01), "\n")
 	var DAMAGE = str("Damage: ", player.DAMAGE, "\n")
 	var SPEED = str("Speed: ", player.SPEED, "\n")
@@ -45,4 +46,4 @@ func generateStats():
 	var ABILITYPOWER = str("Ability: ", player.ABILITYPOWER, "\n")
 	var ABILITYCOOLDOWN = str("Ability Cooldown: ", snapped(player.ABILITYCOOLDOWN, 0.1), "/", player.ABILITYMAXCOOLDOWN, "\n")
 	var ABILITYDURATION = str("Ability Duration: ", snapped(Abilities.abilityTimer, 0.1), "/", player.ABILITYDURATION, "\n")
-	return str(VELOCITY + DAMAGE + SPEED + FIRERATE + BULLETSPEED + BULLETAMOUNT + INVULNERABILITY + ABILITY + ABILITYPOWER + ABILITYCOOLDOWN + ABILITYDURATION)
+	return str(DIFFICULTY + VELOCITY + DAMAGE + SPEED + FIRERATE + BULLETSPEED + BULLETAMOUNT + INVULNERABILITY + ABILITY + ABILITYPOWER + ABILITYCOOLDOWN + ABILITYDURATION)
