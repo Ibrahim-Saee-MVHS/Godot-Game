@@ -280,7 +280,7 @@ func _on_area_2d_area_entered(area):
 		# explosions
 		if area is Explosion and area.playerExplosion == false:
 			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
-			knockbackPower = 6
+			knockbackPower = clampf(area.EXPLOSIONPOWER, 2, 16)
 			knockbackDir = (area.global_position - global_position).angle()
 	if area is HealthBox:
 		$Health.pitch_scale = randf_range(0.9, 1.1)

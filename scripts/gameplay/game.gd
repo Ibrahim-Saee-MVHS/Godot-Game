@@ -26,7 +26,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	screenSize = get_viewport_rect().size / 4
-	ENEMYSPAWNTIMER -= 1 * delta
+	ENEMYSPAWNTIMER += 1 * delta
 	HEALTHSPAWNTIMER -= 1 * delta
 	
 	if OS.has_feature("editor"):

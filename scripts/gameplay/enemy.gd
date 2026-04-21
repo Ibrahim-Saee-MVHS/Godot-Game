@@ -130,8 +130,8 @@ func setStats():
 		MAXFIRERATE = 1
 		BULLETAMOUNT = 1
 		BULLETSPEED = 200
-		DAMAGE = 0.01 * multiplier / 10
-		UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 3)
+		DAMAGE = 0 + (1 * multiplier / 2)
+		UPGRADES = clamp(round(0 + (0.25 * multiplier * multiplier)), 0, 4)
 		EXP = 10 * 1 + multiplier / 3
 		bulletType = "flame"
 		explosiveness = 0
@@ -292,7 +292,7 @@ func _gotDamaged(area):
 			shaderMaterial.shader = Global.shaders.flash
 			HEALTH -= area.DAMAGE
 			HITSTUN = 4
-			knockback = Vector2(area.SIZE * 500, 0).rotated((area.global_position - global_position).angle())
+			knockback = Vector2(area.EXPLOSIONPOWER * 500, 0).rotated((area.global_position - global_position).angle())
 		# dash
 		if area is Dash:
 			$Hit.pitch_scale = randf_range(0.9, 1.1)
