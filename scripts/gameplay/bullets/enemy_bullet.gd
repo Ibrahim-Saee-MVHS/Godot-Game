@@ -63,7 +63,7 @@ func _process(delta):
 		if TYPE == "bomb":
 			var BombExplosion = EXPLOSION.instantiate()
 			BombExplosion.global_position = global_position
-			BombExplosion.SIZE = explosiveness
+			BombExplosion.EXPLOSIONPOWER = explosiveness
 			BombExplosion.playerExplosion = false
 			get_parent().add_child(BombExplosion)
 		queue_free()

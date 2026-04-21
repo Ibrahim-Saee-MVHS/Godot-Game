@@ -33,6 +33,16 @@ func loadJSONUpgrades():
 			for k in range(upgradeInfo.get(validUpgrades[i]).get("sprites").size()):
 				upgradeInfo.get(validUpgrades[i]).get("sprites").set(k, load(upgradeInfo.get(validUpgrades[i]).get("sprites")[k]))
 
+func setGameModifiers():
+	enemySpawn.types = enemyTypes.duplicate()
+	enemySpawn.weights = enemyWeights.duplicate()
+	if GAMEMODIFIERS.get("trinity_of_doom", false) == true:
+		enemySpawn.types = ["bomber", "grenadier", "arsonist"]
+		enemySpawn.weights = [0.5, 1, 0.75]
+	if GAMEMODIFIERS.get("hard_mode", false) == true:
+		get_tree().current_scene.DIFFICULTY = 1
+		get_tree().current_scene.DIFFICULTYINCREMENT = 0.25
+
 @onready var DAMAGEINDICATOR = preload("res://scenes/vfx/damage_indicator.tscn")
 @onready var SFX = {
 	select = preload("res://assets/sounds/blipSelect.wav"),
@@ -49,6 +59,11 @@ const shaders = {
 	"flash": preload("res://assets/shaders/flash.gdshader"),
 	"tint": preload("res://assets/shaders/tint.gdshader"),
 	"vignette": preload("res://assets/shaders/vignette.gdshader"),
+}
+
+var GAMEMODIFIERS = {
+	"trinity_of_doom": false,
+	"hard_mode": false,
 }
 
 # only includes enemy types that spawn
@@ -71,6 +86,11 @@ var enemyWeights: Array[float] = [
 	1.5, # grenadier
 	1, # arsonist
 ]
+
+var enemySpawn: Dictionary = {
+	"types": [],
+	"weights": [],
+}
 
 var enemyColor = {
 	"player": Color("00cdffff"),

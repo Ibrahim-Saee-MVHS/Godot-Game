@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbk6dfldu3sbl"]
 
 [ext_resource type="Script" uid="uid://bakmn77nvgsms" path="res://scripts/gui/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://bv1l63ortkow5" path="res://assets/sprites/ui/game_modifiers.png" id="2_8ln24"]
 [ext_resource type="Shader" uid="uid://4rnau7rf7hl4" path="res://assets/shaders/glint.gdshader" id="3_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://dp8r53bj83q21" path="res://assets/sprites/glint.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://c12m3fw8jbh3f" path="res://assets/sprites/electric_glint.png" id="4_wu84c"]
@@ -92,6 +93,24 @@ offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play"
+
+[node name="GameModifiers" type="Button" parent="PlayGame" unique_id=1471407518]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -32.0
+offset_right = -154.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/icon_max_width = 48
+icon = ExtResource("2_8ln24")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Exit" type="Button" parent="." unique_id=1163726982]
 layout_mode = 1
@@ -196,5 +215,6 @@ vertical_alignment = 2
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="PlayGame" to="." method="_startGame"]
+[connection signal="pressed" from="PlayGame/GameModifiers" to="." method="_game_modifiers"]
 [connection signal="pressed" from="Exit" to="." method="_exit"]
 [connection signal="pressed" from="Settings" to="." method="_settings"]

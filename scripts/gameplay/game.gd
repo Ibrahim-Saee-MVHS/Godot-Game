@@ -9,6 +9,8 @@ extends Node2D
 @export var ENEMYMINSPAWNTIMER: int = 8
 @export var HEALTHMAXSPAWNTIMER: int = 48
 @export var HEALTHMINSPAWNTIMER: int = 16
+@export var EXPMULTIPLIER: float = 1.0
+@export var DIFFICULTYINCREMENT: float = 0.1
 var ENEMYSPAWNTIMER: float
 var HEALTHSPAWNTIMER: float
 var screenSize
@@ -16,6 +18,7 @@ var shake: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.setGameModifiers()
 	SettingsGlobal.setVolume()
 	ENEMYSPAWNTIMER = randf_range(1, ENEMYMINSPAWNTIMER)
 	HEALTHSPAWNTIMER = randf_range(HEALTHMINSPAWNTIMER, HEALTHMAXSPAWNTIMER)
@@ -51,12 +54,13 @@ func _process(delta: float) -> void:
 		spawnHealth()
 
 func spawnHealth():
-	if HEALTHSPAWNTIMER <= 0 and get_node("Player").HEALTH < get_node("Player").MAXHEALTH:
+	if HEALTHSPAWNTIMER <= 0:
 		HEALTHSPAWNTIMER = randf_range(HEALTHMINSPAWNTIMER, HEALTHMAXSPAWNTIMER)
-		var newSpawnParticles = HealthSpawnParticles.instantiate()
-		newSpawnParticles.global_position = generateSpawnPosition(0)
-		newSpawnParticles.player_max_health = get_node("Player").MAXHEALTH
-		add_child(newSpawnParticles)
+		if get_node("Player").HEALTH < get_node("Player").MAXHEALTH:
+			var newSpawnParticles = HealthSpawnParticles.instantiate()
+			newSpawnParticles.global_position = generateSpawnPosition(0)
+			newSpawnParticles.player_max_health = get_node("Player").MAXHEALTH
+			add_child(newSpawnParticles)
 		HEALTHMAXSPAWNTIMER = clamp(HEALTHMAXSPAWNTIMER - 0.05, 16, 64)
 
 func spawnEnemies():
@@ -68,7 +72,7 @@ func spawnEnemies():
 			newSpawnParticles.TYPE = randomType()
 			newSpawnParticles.statMultiplier = 1.0 + (DIFFICULTY / 2)
 			add_child(newSpawnParticles)
-		DIFFICULTY += 0.1
+		DIFFICULTY += DIFFICULTYINCREMENT
 		
 		ENEMYSPAWNAMOUNT = clamp(1 + floori(DIFFICULTY), 1, 6)
 		ENEMYMAXSPAWNTIMER = clamp(ENEMYMAXSPAWNTIMER - floori(DIFFICULTY / 2), 16, 64)
@@ -94,7 +98,7 @@ func randomType():
 	## start from 0 and end at 1 lower than the amount of types
 	#var rng: float = randf_range(0, 0.5 + clamp(DIFFICULTY / 3, 0, 6))
 	#rng = clamp(rng, 0, Global.enemyTypes.size() - 1)
-	return Global.enemyTypes[RandomNumberGenerator.new().rand_weighted(Global.enemyWeights)]
+	return Global.enemySpawn.types[RandomNumberGenerator.new().rand_weighted(Global.enemySpawn.weights)]
 
 func generateSpawnPosition(padding):
 	var spawnVector: Vector2
