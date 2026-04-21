@@ -235,14 +235,14 @@ func explode(power, isPlayer, explosion_position):
 
 func ricochet(bullet: PlayerBullet):
 	var nearest_node
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var enemies = get_tree().get_nodes_in_group("enemies").duplicate()
 	
 	enemies.erase(self)
-	if enemies.size() <= 1:
+	if enemies.size() < 1:
 		return bullet.MOVEDIR
 	else:
 		nearest_node = enemies[randi_range(0, enemies.size() - 1)]
-		return (bullet.global_position - nearest_node.global_position).angle() + PI
+		return (bullet.global_position - (nearest_node.global_position + nearest_node.velocity)).angle() + PI
 
 func _gotDamaged(area):
 	if HITSTUN <= 0:
