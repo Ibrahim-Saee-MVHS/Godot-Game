@@ -200,6 +200,7 @@ func shoot(delta, spread):
 			BULLET.set("SPEED", BULLETSPEED)
 			BULLET.set("DAMAGE", DAMAGE)
 			BULLET.set("MOVEDIR", MOVEDIR + dirOffset)
+			BULLET.set("upgrades", UPGRADES)
 			BULLET.set("explosiveness", explosiveness)
 			BULLET.set("destination_position", target_position)
 			get_parent().add_child(BULLET)
