@@ -144,7 +144,7 @@ func _process(delta):
 		target_position = (player_position + get_parent().get_node("Player").velocity / 1.25)
 		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 1.25) - global_position).angle()
 	elif TYPE == "arsonist":
-		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 2) - global_position).angle()
+		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 4) - global_position).angle()
 	else:
 		MOVEDIR = (player_position - global_position).angle()
 	
@@ -156,7 +156,7 @@ func _process(delta):
 	if TYPE != "bomber":
 		shoot(delta, deg_to_rad(6.25 * BULLETAMOUNT))
 	else:
-		if global_position.distance_to(player_position) <= 64:
+		if global_position.distance_to(player_position) <= 16:
 			explode(DAMAGE, false, global_position)
 			queue_free()
 	if HEALTH <= 0:
@@ -213,11 +213,11 @@ func _physics_process(delta):
 	if knockback == Vector2(0, 0):
 		velocity = initialVelocity
 		for node in enemy_group:
-			if global_position.distance_to(node.global_position) < 16:
+			if global_position.distance_to(node.global_position) < 16 and TYPE != "bomber":
 				var newDir = (global_position - node.global_position).angle()
 				velocity = -Vector2(SPEED, 0).rotated(newDir) * delta
 				move_and_slide()
-		if global_position.distance_to(player_position) > 64:
+		if global_position.distance_to(player_position) > 64 or TYPE == "bomber":
 			move_and_slide()
 		elif global_position.distance_to(player_position) < 32:
 			velocity = -initialVelocity
