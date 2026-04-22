@@ -57,7 +57,7 @@
 	"normalcy": {
 		"sprite": "res://assets/sprites/upgrade_icons/normalcy.png",
 		"name": "Normalcy",
-		"description": "Reverts BULLET TYPE to standard non-explosive bullets & normal size",
+		"description": "Reverts BULLET TYPE to Normal & Bullets become normal size, non-explosive, non-ricocheting, and non-homing, Retains other modifiers",
 		"weight": 1,
 	},
 	"sulfuric_ammo": {
