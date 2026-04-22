@@ -209,14 +209,14 @@ func shoot(delta, spread):
 
 func _physics_process(delta):
 	var initialVelocity = Vector2(SPEED, 0).rotated(MOVEDIR) * delta
-	var enemy_group = get_tree().get_nodes_in_group("enemies")
+	var enemy_group = get_tree().get_nodes_in_group("enemies").duplicate()
 	enemy_group.erase(self)
 	if knockback == Vector2(0, 0):
 		velocity = initialVelocity
 		for node in enemy_group:
 			if global_position.distance_to(node.global_position) < 32 and TYPE != "bomber":
 				var newDir = (global_position - node.global_position).angle()
-				velocity = Vector2(SPEED, 0).rotated(newDir) * delta
+				velocity = Vector2(SPEED, 0).rotated(lerp_angle(MOVEDIR, newDir, 0.5)) * delta
 				move_and_slide()
 		if global_position.distance_to(player_position) > 64 or TYPE == "bomber":
 			move_and_slide()
