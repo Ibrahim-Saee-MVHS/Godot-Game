@@ -86,7 +86,7 @@ func removeUpgrades(totalUpgrades):
 	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
 		totalUpgrades.erase("dash")
 		
-	if player.UPGRADE.ricochet >= 6:
+	if player.bulletType != "normal" or player.UPGRADE.ricochet >= 6:
 		totalUpgrades.erase("ricochet")
 	
 	return totalUpgrades
