@@ -246,7 +246,7 @@ func explode(power, isPlayer, explosion_position):
 	EXPLOSION.global_position = explosion_position
 	EXPLOSION.EXPLOSIONPOWER = power
 	EXPLOSION.playerExplosion = isPlayer
-	get_parent().add_child(EXPLOSION)
+	get_parent().call_deferred("add_child", EXPLOSION)
 
 func dealDamage(damage, inv):
 	$Hit.pitch_scale = randf_range(0.9, 1.1)
