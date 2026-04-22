@@ -17,10 +17,15 @@ var MOVEDIR: float
 var KNOCKBACK: float
 var despawnTimer = 60
 var ricochet: float
+var homing: float
 var explosiveness: float
 var upgrades: int
+var target: Enemy = null
 
 func _ready():
+	if homing > 0:
+		findNewTarget()
+	
 	if TYPE == "normal":
 		KNOCKBACK = 4000
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
@@ -52,6 +57,8 @@ func _ready():
 				$CPUParticles2D.initial_velocity_max = 96
 
 func _process(delta):
+	if homing > 0:
+		homeOnEnemy()
 	if TYPE == "flame":
 		SPEED -= 1 * delta
 		SPEED = max(SPEED, 0)
@@ -64,3 +71,21 @@ func _process(delta):
 	position += Vector2(SPEED, 0).rotated(MOVEDIR) * delta
 	if despawnTimer <= 0:
 		queue_free()
+
+func homeOnEnemy():
+	if target != null:
+		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.05 * homing)
+	else:
+		findNewTarget()
+
+func findNewTarget():
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	if enemies.size() > 0:
+		var min_distance = INF
+		var nearest_enemy = null
+		for enemy in enemies:
+			var distance = global_position.distance_squared_to(enemy.global_position)
+			if distance < min_distance:
+				min_distance = distance
+				nearest_enemy = enemy
+		target = nearest_enemy

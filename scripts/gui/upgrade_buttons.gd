@@ -82,11 +82,14 @@ func removeUpgrades(totalUpgrades):
 		
 	if player.ABILITYMAXCOOLDOWN <= 6 or player.ABILITY == "none":
 		totalUpgrades.erase("cooldown_reduction")
-		
+	
 	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
 		totalUpgrades.erase("dash")
-		
+	
 	if player.bulletType != "normal" or player.UPGRADE.ricochet >= 6:
 		totalUpgrades.erase("ricochet")
+	
+	if player.bulletType != "normal" or player.UPGRADE.homing >= 6:
+		totalUpgrades.erase("homing_rounds")
 	
 	return totalUpgrades

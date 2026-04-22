@@ -49,12 +49,15 @@ var UPGRADE = {
 	firerate = 0,
 	damage = 0,
 	speed = 0,
+	# for bullets
 	bulletSpeed = 0,
 	bulletAmount = 0,
 	bulletVariance = 0,
 	bulletUpgrades = 0,
 	ricochet = 0,
-	explosiveness = 0, # for bullets
+	homing = 0,
+	explosiveness = 0,
+	# for abilities
 	abilityPower = 0,
 	abilityDuration = 0,
 	abilityCooldown = 0,
@@ -155,7 +158,7 @@ func setBaseStats():
 		BASEDAMAGE = 4.0
 		BASEBULLETSPEED = 250
 		BASEBULLETAMOUNT = 1
-		MAXBULLETAMOUNT = 9 - (2 * UPGRADE.bulletUpgrades) if UPGRADE.ricochet <= 0 else 1
+		MAXBULLETAMOUNT = 9 - (2 * UPGRADE.bulletUpgrades) if UPGRADE.ricochet + UPGRADE.homing <= 0 else 1
 		MINFIRERATE = 1 + (1.5 * UPGRADE.bulletUpgrades)
 	if bulletType == "flame":
 		BULLETSPREAD = deg_to_rad(45 * BULLETAMOUNT)
@@ -197,6 +200,7 @@ func shoot(spread, variance):
 		BULLET.set("ricochet", UPGRADE.ricochet)
 		BULLET.set("explosiveness", UPGRADE.explosiveness)
 		BULLET.set("upgrades", UPGRADE.bulletUpgrades)
+		BULLET.set("homing", UPGRADE.homing)
 		BULLET.set("MOVEDIR", (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance)))
 		get_parent().add_child(BULLET)
 

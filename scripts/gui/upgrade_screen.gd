@@ -76,6 +76,7 @@ func upgradePlayer():
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
 				get_parent().get_node("Player").UPGRADE.explosiveness = 0
 				get_parent().get_node("Player").UPGRADE.ricochet = 0
+				get_parent().get_node("Player").UPGRADE.homing = 0
 			else:
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 		"plasma_rounds":
@@ -84,6 +85,7 @@ func upgradePlayer():
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
 				get_parent().get_node("Player").UPGRADE.explosiveness = 0
 				get_parent().get_node("Player").UPGRADE.ricochet = 0
+				get_parent().get_node("Player").UPGRADE.homing = 0
 			else:
 				get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 		"normalcy":
@@ -91,6 +93,7 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
 			get_parent().get_node("Player").UPGRADE.explosiveness = 0
 			get_parent().get_node("Player").UPGRADE.ricochet = 0
+			get_parent().get_node("Player").UPGRADE.homing = 0
 		"sulfuric_ammo":
 			get_parent().get_node("Player").UPGRADE.explosiveness += 0.25
 			get_parent().get_node("Player").UPGRADE.health -= 5
@@ -135,4 +138,8 @@ func upgradePlayer():
 				get_parent().get_node("Player").UPGRADE.abilityDuration += 0.025
 		"ricochet":
 			get_parent().get_node("Player").UPGRADE.ricochet += 1
+			get_parent().get_node("Player").UPGRADE.homing = 0
+		"homing_rounds":
+			get_parent().get_node("Player").UPGRADE.homing += 1
+			get_parent().get_node("Player").UPGRADE.ricochet = 0
 	endUpgrade()
