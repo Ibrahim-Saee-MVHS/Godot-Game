@@ -38,7 +38,7 @@ func _ready():
 	FIRERATE = MAXFIRERATE
 
 func setStats():
-	$Sprite2D.self_modulate = Global.enemyColor.get(TYPE)
+	$Sprite2D.self_modulate = Global.enemySpawn.color.get(TYPE)
 	if TYPE == "dummy":
 		SPEED = 0
 		MAXHEALTH = 20
@@ -136,6 +136,28 @@ func setStats():
 		bulletType = "flame"
 		explosiveness = 0
 		shootPitch = 1.0
+	if Global.GAMEMODIFIERS.get("juggernauts_reign_supreme", false) == true:
+		if TYPE == "juggernaut":
+			SPEED = 4000
+			MAXHEALTH = 80 * multiplier
+			MAXFIRERATE = 18
+			BULLETAMOUNT = 3
+			BULLETSPEED = 400
+			DAMAGE = 8 * multiplier / 2
+			EXP = 10 * 1 + multiplier / 3
+			explosiveness = 0.5
+			shootPitch = 0.25
+		else:
+			$TypeIndicator.self_modulate = Global.enemyColor.get(TYPE)
+			$TypeIndicator.visible = true
+			if TYPE != "bomber":
+				DAMAGE = max(DAMAGE, 6)
+				MAXHEALTH = 40 * multiplier
+			else:
+				DAMAGE = 5 * multiplier / 2
+				MAXHEALTH = 28 * multiplier
+			if bulletType == "normal": UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 6)
+			shootPitch = 0.5
 
 func _process(delta):
 	$Sprite2D.material = shaderMaterial

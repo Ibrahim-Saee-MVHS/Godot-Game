@@ -36,6 +36,7 @@ func loadJSONUpgrades():
 func setGameModifiers():
 	enemySpawn.types = enemyTypes.duplicate()
 	enemySpawn.weights = enemyWeights.duplicate()
+	enemySpawn.color = enemyColor.duplicate()
 	if GAMEMODIFIERS.get("trinity_of_doom", false) == true:
 		enemySpawn.types = ["bomber", "grenadier", "arsonist"]
 		enemySpawn.weights = [0.5, 1, 0.75]
@@ -44,6 +45,10 @@ func setGameModifiers():
 		get_tree().current_scene.DIFFICULTY = 1
 		get_tree().current_scene.DIFFICULTYINCREMENT = 0.25
 		get_tree().current_scene.add_child(UpgradeScreen.instantiate())
+	if GAMEMODIFIERS.get("juggernauts_reign_supreme", false) == true:
+		enemySpawn.weights[3] = 0.75
+		for i in range(enemySpawn.color.size()):
+			enemySpawn.color.set(enemySpawn.color.keys()[i], enemyColor.get("juggernaut"))
 
 @onready var DAMAGEINDICATOR = preload("res://scenes/vfx/damage_indicator.tscn")
 @onready var SFX = {
@@ -66,6 +71,7 @@ const shaders = {
 var GAMEMODIFIERS = {
 	"trinity_of_doom": false,
 	"hard_mode": false,
+	"juggernauts_reign_supreme": false,
 }
 
 # only includes enemy types that spawn
@@ -92,6 +98,7 @@ var enemyWeights: Array[float] = [
 var enemySpawn: Dictionary = {
 	"types": [],
 	"weights": [],
+	"color": {},
 }
 
 var enemyColor = {

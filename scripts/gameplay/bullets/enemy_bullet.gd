@@ -27,7 +27,7 @@ var canMove: bool = true
 func _ready():
 	spawn_position = global_position
 	if TYPE == "normal":
-		$Outline.self_modulate = Global.enemyColor.get(COLOR)
+		$Outline.self_modulate = Global.enemySpawn.color.get(COLOR)
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 		explosiveness = explosiveness + (0.25 * upgrades)
 	if TYPE == "flame":
@@ -37,7 +37,7 @@ func _ready():
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
 	if TYPE == "bomb":
-		$Outline.self_modulate = Global.enemyColor.get(COLOR)
+		$Outline.self_modulate = Global.enemySpawn.color.get(COLOR)
 		despawnTimer = 10
 		explosiveness = clamp(explosiveness, 0.5, explosiveness)
 

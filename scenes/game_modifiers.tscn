@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbaivyda7koox" path="res://assets/sprites/game_modifiers/trinity_of_doom.png" id="3_8j6g1"]
 [ext_resource type="Texture2D" uid="uid://dtr27xmp7ip2q" path="res://assets/sprites/ui/box_off.png" id="3_wqywv"]
 [ext_resource type="Texture2D" uid="uid://crlmguc8p8eyy" path="res://assets/sprites/game_modifiers/hard_mode.png" id="5_0kxv0"]
+[ext_resource type="Texture2D" uid="uid://qlwstai0akvi" path="res://assets/sprites/game_modifiers/juggernauts_reign_supreme.png" id="7_8efsx"]
 
 [sub_resource type="Gradient" id="Gradient_0kxv0"]
 colors = PackedColorArray(0.2509804, 0.3137255, 0.38431373, 0.19607843, 0.43137255, 0.49803922, 0.5254902, 0.19607843)
@@ -63,10 +64,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -288.0
-offset_top = -128.0
-offset_right = -96.0
-offset_bottom = 128.0
+offset_left = -320.0
+offset_top = -127.5
+offset_right = -128.0
+offset_bottom = 128.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -79,6 +80,8 @@ icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
 script = ExtResource("3_0kxv0")
+ID = "trinity_of_doom"
+metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/TrinityOfDoom" unique_id=1818395966]
 layout_mode = 1
@@ -117,9 +120,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 96.0
+offset_left = -96.0
 offset_top = -127.5
-offset_right = 288.0
+offset_right = 96.0
 offset_bottom = 128.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -133,6 +136,8 @@ icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
 script = ExtResource("3_0kxv0")
+ID = "hard_mode"
+metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/HardMode" unique_id=1203250028]
 layout_mode = 1
@@ -161,6 +166,62 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 16
 text = "Hard Mode"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="JuggernautsReignSupreme" type="Button" parent="Control" unique_id=38024177]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -127.5
+offset_right = 320.0
+offset_bottom = 128.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("2_0kxv0")
+theme_override_constants/icon_max_width = 32
+toggle_mode = true
+icon = ExtResource("3_wqywv")
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+script = ExtResource("3_0kxv0")
+ID = "juggernauts_reign_supreme"
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/JuggernautsReignSupreme" unique_id=802537334]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 144.0
+grow_horizontal = 2
+texture = ExtResource("7_8efsx")
+
+[node name="Label" type="Label" parent="Control/JuggernautsReignSupreme" unique_id=221165013]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -96.0
+offset_right = 80.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Juggernauts Reign Supreme"
 horizontal_alignment = 1
 autowrap_mode = 3
 

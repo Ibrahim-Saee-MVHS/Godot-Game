@@ -8,8 +8,7 @@ var playedSound = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	color = Global.enemyColor.get(TYPE)
-
+	color = Global.enemySpawn.color.get(TYPE)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
