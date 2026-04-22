@@ -288,4 +288,5 @@ func _on_area_2d_area_entered(area):
 		Global.VIGNETTEINTENSITY = 0.25
 		Global.VIGNETTECOLOR = Vector3(0, 1, 0.75)
 		HEALTH += area.healingAmount
+		Global.spawnDamageIndicator(global_position, area.healingAmount)
 		area.queue_free()
