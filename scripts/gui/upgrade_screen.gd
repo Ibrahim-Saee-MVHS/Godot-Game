@@ -7,6 +7,8 @@ var selectedUpgrade: String
 func _ready() -> void:
 	buttonsDisabled = true
 	get_tree().paused = true
+	if get_parent().get_node("Player").LEVEL == 1:
+		$ColorRect/Title.text = "Free Upgrade\nYou'll need it."
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

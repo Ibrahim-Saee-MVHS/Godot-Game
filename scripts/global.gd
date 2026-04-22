@@ -40,8 +40,10 @@ func setGameModifiers():
 		enemySpawn.types = ["bomber", "grenadier", "arsonist"]
 		enemySpawn.weights = [0.5, 1, 0.75]
 	if GAMEMODIFIERS.get("hard_mode", false) == true:
+		var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
 		get_tree().current_scene.DIFFICULTY = 1
 		get_tree().current_scene.DIFFICULTYINCREMENT = 0.25
+		get_tree().current_scene.add_child(UpgradeScreen.instantiate())
 
 @onready var DAMAGEINDICATOR = preload("res://scenes/vfx/damage_indicator.tscn")
 @onready var SFX = {

@@ -144,6 +144,7 @@ _data = {
 [node name="UpgradeScreen" type="CanvasLayer" unique_id=1468165750]
 process_mode = 3
 script = ExtResource("1_qtyd3")
+buttonsDisabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030319857]
 libraries/ = SubResource("AnimationLibrary_ald31")
@@ -156,7 +157,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.25)
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Title" type="Label" parent="ColorRect" unique_id=2008380777]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -291.0
+offset_top = 25.0
+offset_right = 291.0
+offset_bottom = 114.0
+grow_horizontal = 2
+text = "Select Your Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Control" type="Control" parent="." unique_id=708455145]
 layout_mode = 3

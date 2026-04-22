@@ -139,8 +139,8 @@ func _process(delta):
 			DEATHPARTICLE.emitting = true
 			get_parent().add_child(DEATHPARTICLE)
 			visible = false
-			$CollisionShape2D.queue_free()
-			$Area2D.queue_free()
+			$CollisionShape2D.disabled = true
+			$Area2D/CollisionShape2D.disabled = true
 		ABILITYPOWER = 0
 		ABILITYCOOLDOWN = 1000
 		FIRERATE = 1000
