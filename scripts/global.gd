@@ -46,7 +46,11 @@ func setGameModifiers():
 		get_tree().current_scene.DIFFICULTYINCREMENT = 0.25
 		get_tree().current_scene.add_child(UpgradeScreen.instantiate())
 	if GAMEMODIFIERS.get("juggernauts_reign_supreme", false) == true:
-		enemySpawn.weights[3] = 0.75
+		var arrayPos = 3 # Juggernaut array position
+		if enemySpawn.types.has("juggernaut") == false:
+			arrayPos = enemySpawn.types.size()
+			enemySpawn.types[arrayPos] = "juggernaut"
+		enemySpawn.weights[arrayPos] = 0.75
 		for i in range(enemySpawn.color.size()):
 			enemySpawn.color.set(enemySpawn.color.keys()[i], enemyColor.get("juggernaut"))
 

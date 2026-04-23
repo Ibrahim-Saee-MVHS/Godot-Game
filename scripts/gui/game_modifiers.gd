@@ -4,7 +4,7 @@ var ERROR: String = "ERROR: Description Not Found"
 var DESCRIPTIONS = {
 	"trinity_of_doom": "The most destructive enemies have come together to create an unstoppable force, perhaps you have become the hero this world needs.\nALT NAME: Hell Trinity\n(Bombers, Grenadiers, and Arsonists only.)",
 	"hard_mode": "They became so powerful they got higher quality shading in this icon.\n(DIFFICULTY starts at 1 rather than 0, and increments by 0.25 rather than 0.1.)",
-	"juggernauts_reign_supreme": "Looks like all of the enemies went to the gym.\n(All enemies have the same HEALTH(except for Bombers) and color of Juggernauts and have a minimium DAMAGE of 6, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above their Health Bar.",
+	"juggernauts_reign_supreme": "Looks like all of the enemies went to the gym.\n(All enemies have the same HEALTH(except for Bombers) and color of Juggernauts and have a minimium DAMAGE of 6, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above their Health Bar.)\nWhen paired wtih Trinity of Doom, the Juggernaut will spawn with the trinity.",
 }
 
 func _ready():
