@@ -97,7 +97,8 @@ func upgradePlayer():
 			get_parent().get_node("Player").UPGRADE.homing = 0
 		"sulfuric_ammo":
 			get_parent().get_node("Player").UPGRADE.explosiveness += 0.25
-			get_parent().get_node("Player").UPGRADE.health -= 5
+			if get_parent().get_node("Player").MAXHEALTH - 5 > 0:
+				get_parent().get_node("Player").UPGRADE.health -= 5
 		"cailber_increase":
 			get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 			get_parent().get_node("Player").UPGRADE.bulletSpeed -= 2
@@ -120,7 +121,8 @@ func upgradePlayer():
 				get_parent().get_node("Player").UPGRADE.abilityPower = 0
 				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
 				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
-				get_parent().get_node("Player").UPGRADE.health -= 50
+				if get_parent().get_node("Player").MAXHEALTH - 50 > 0:
+					get_parent().get_node("Player").UPGRADE.health -= 50
 			else:
 				get_parent().get_node("Player").UPGRADE.abilityPower += 0.5
 				get_parent().get_node("Player").UPGRADE.abilityCooldown -= 4

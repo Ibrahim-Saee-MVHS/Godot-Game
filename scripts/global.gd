@@ -74,6 +74,7 @@ var GAMEMODIFIERS = {
 	"trinity_of_doom": false,
 	"hard_mode": false,
 	"juggernauts_reign_supreme": false,
+	"no_hit": false,
 }
 
 # only includes enemy types that spawn
@@ -103,6 +104,7 @@ var enemySpawn: Dictionary = {
 	"color": {},
 }
 
+var playerColor = Color("00cdffff")
 var enemyColor = {
 	"dummy": Color("aaaaaaff"),
 	"normal": Color("ff004cff"),

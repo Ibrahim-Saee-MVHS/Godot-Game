@@ -65,7 +65,10 @@ var UPGRADE = {
 
 func _ready() -> void:
 	$Sprite2D.self_modulate = Global.playerColor
-	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500)
+	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
+		MAXHEALTH = 1
+	else:
+		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500)
 	MAXFIRERATE = clamp(BASEFIRERATE, 2, 16)
 	MINFIRERATE = 1
 	DAMAGE = clamp(BASEDAMAGE, 4, 32)
@@ -80,13 +83,21 @@ func _ready() -> void:
 	ABILITY = "none"
 
 func level():
-	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
+	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
+		MAXHEALTH = 1
+	else:
+		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
 	if EXP >= EXPMAX:
 		LEVEL += 1
 		EXP = 0
 		EXPMAX += 4
-		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
-		HEALTH = clamp(HEALTH + 5, 0, MAXHEALTH)
+		if Global.GAMEMODIFIERS.get("no_hit", false) == true:
+			UPGRADE.speed += 0.25
+			UPGRADE.damage += 0.25
+			UPGRADE.firerate -= 0.25
+		else:
+			MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
+			HEALTH = clamp(HEALTH + 5, 0, MAXHEALTH)
 		if HEALTH > 0:
 			get_parent().add_child(UpgradeScreen.instantiate())
 
@@ -151,7 +162,10 @@ func _process(delta):
 		SPEED = 0
 
 func setBaseStats():
-	BASESPEED = 8000
+	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
+		BASESPEED = 9000
+	else:
+		BASESPEED = 8000
 	if bulletType == "normal":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 		BULLETVARIANCE = 0

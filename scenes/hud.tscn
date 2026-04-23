@@ -72,6 +72,7 @@ offset_bottom = 154.0
 grow_horizontal = 0
 
 [node name="Frame" type="TextureRect" parent="Control/Ability" unique_id=2088682094]
+self_modulate = Color(1, 1, 1, 0.5019608)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -87,6 +88,7 @@ grow_vertical = 2
 texture = ExtResource("2_uo2fv")
 
 [node name="Icon" type="TextureRect" parent="Control/Ability/Frame" unique_id=778424374]
+self_modulate = Color(1, 1, 1, 0.5019608)
 z_index = -1
 layout_mode = 1
 anchors_preset = -1

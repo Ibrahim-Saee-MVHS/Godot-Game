@@ -158,6 +158,10 @@ func setStats():
 				MAXHEALTH = 28 * multiplier
 			if bulletType == "normal": UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 6)
 			shootPitch = 0.5
+	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
+		SPEED /= 2
+		FIRERATE *= 2
+		BULLETSPEED /= 2
 
 func _process(delta):
 	$Sprite2D.material = shaderMaterial

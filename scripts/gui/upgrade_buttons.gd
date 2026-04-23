@@ -53,6 +53,9 @@ func randomizeUpgrade():
 
 func removeUpgrades(totalUpgrades):
 	player = get_tree().current_scene.get_node("Player")
+	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
+		totalUpgrades.erase("hearty")
+	
 	if player.bulletType == "normal":
 		totalUpgrades.erase("normalcy")
 		
