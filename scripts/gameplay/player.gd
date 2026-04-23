@@ -64,6 +64,7 @@ var UPGRADE = {
 }
 
 func _ready() -> void:
+	$Sprite2D.self_modulate = Global.playerColor
 	MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5), 50, 500)
 	MAXFIRERATE = clamp(BASEFIRERATE, 2, 16)
 	MINFIRERATE = 1

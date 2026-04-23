@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://brueyvvidgghe" path="res://assets/sprites/ui/slider_knob_grabbed.png" id="2_27h7j"]
 [ext_resource type="Texture2D" uid="uid://du3xo6hlhh7lc" path="res://assets/sprites/ui/slider_knob_hover.png" id="3_s2nva"]
 [ext_resource type="Texture2D" uid="uid://b8t2avyyjxju4" path="res://assets/sprites/ui/tick.png" id="4_0t5d3"]
+[ext_resource type="Texture2D" uid="uid://cihx4dlnft2vk" path="res://assets/sprites/ui/dropdown.png" id="5_27h7j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8gvj"]
 bg_color = Color(0.2421875, 0.09365845, 0.14587569, 1)
@@ -47,4 +48,5 @@ HSlider/icons/tick = ExtResource("4_0t5d3")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_27h7j")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_s2nva")
 HSlider/styles/slider = SubResource("StyleBoxFlat_uhhto")
+OptionButton/icons/arrow = ExtResource("5_27h7j")
 VSlider/styles/slider = SubResource("StyleBoxFlat_uhhto")

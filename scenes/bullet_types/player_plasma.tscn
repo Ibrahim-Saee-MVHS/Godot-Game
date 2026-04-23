@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://5v1xl0www8gf"]
 
 [ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_3202q"]
-[ext_resource type="Texture2D" uid="uid://cgdsuf6n53h41" path="res://assets/sprites/player_plasma.png" id="2_66uen"]
 [ext_resource type="Texture2D" uid="uid://53wh6tjot6qi" path="res://assets/particles/plasma_electricity.png" id="3_3202q"]
+[ext_resource type="Texture2D" uid="uid://7b37n5f6wt" path="res://assets/sprites/projectiles/plasma_outline.png" id="3_ry35n"]
+[ext_resource type="Texture2D" uid="uid://dy0juo6hm0c1b" path="res://assets/sprites/projectiles/plasma_core.png" id="4_homgt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
 radius = 18.0
@@ -18,10 +19,6 @@ point_count = 3
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_3202q")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2082530001]
-z_index = 1
-texture = ExtResource("2_66uen")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
 shape = SubResource("CircleShape2D_qx7rs")
@@ -42,3 +39,10 @@ orbit_velocity_min = -1.0
 orbit_velocity_max = 1.0
 scale_amount_curve = SubResource("Curve_ry35n")
 color = Color(0, 0.7999997, 1, 1)
+
+[node name="Outline" type="Sprite2D" parent="." unique_id=1508376659]
+self_modulate = Color(0, 0.8039216, 1, 1)
+texture = ExtResource("3_ry35n")
+
+[node name="Core" type="Sprite2D" parent="." unique_id=2084031013]
+texture = ExtResource("4_homgt")

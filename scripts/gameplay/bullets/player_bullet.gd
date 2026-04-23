@@ -26,6 +26,7 @@ func _ready():
 	if homing > 0:
 		findNewTarget()
 	if TYPE == "normal":
+		$Outline.self_modulate = Global.playerColor
 		KNOCKBACK = 4000
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 		explosiveness = explosiveness * (1 + (0.25 * upgrades))
@@ -36,6 +37,7 @@ func _ready():
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
 	if TYPE == "plasma":
+		$Outline.self_modulate = Global.playerColor
 		KNOCKBACK = 0
 		despawnTimer = 120
 		match upgrades:

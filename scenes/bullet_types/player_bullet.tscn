@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cv0mmgbv2thuh"]
 
 [ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_exe6r"]
-[ext_resource type="Texture2D" uid="uid://4r630iypuj3n" path="res://assets/sprites/player_bullet.png" id="2_qlkh7"]
+[ext_resource type="Texture2D" uid="uid://do0q7bucej8kt" path="res://assets/sprites/projectiles/bullet_outline.png" id="2_qlkh7"]
+[ext_resource type="Texture2D" uid="uid://dlquhwi5anq0" path="res://assets/sprites/projectiles/bullet_core.png" id="3_rf202"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
 radius = 5.0
@@ -11,8 +12,12 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_exe6r")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2082530001]
+[node name="Outline" type="Sprite2D" parent="." unique_id=517558892]
+self_modulate = Color(0, 0.8039216, 1, 1)
 texture = ExtResource("2_qlkh7")
+
+[node name="Core" type="Sprite2D" parent="." unique_id=718132180]
+texture = ExtResource("3_rf202")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
 shape = SubResource("CircleShape2D_qx7rs")

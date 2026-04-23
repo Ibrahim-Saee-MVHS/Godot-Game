@@ -76,6 +76,9 @@ var GAMEMODIFIERS = {
 	"juggernauts_reign_supreme": false,
 }
 
+var playerColor = Color("00cdffff")
+var playerSprite = "default"
+
 # only includes enemy types that spawn
 var enemyTypes: Array[String] = [
 	"normal",
@@ -104,6 +107,27 @@ var enemySpawn: Dictionary = {
 }
 
 var enemyColor = {
+	"dummy": Color("aaaaaaff"),
+	"normal": Color("ff004cff"),
+	"repeater": Color("ffd73eff"),
+	"spreader": Color("ff833fff"),
+	"juggernaut": Color("2643ffff"),
+	"bomber": Color("94ff5eff"),
+	"grenadier": Color("df44ffff"),
+	"arsonist": Color("8e3222ff"),
+}
+var enemySprites = {
+	"dummy": "default",
+	"normal": "default",
+	"repeater": "default",
+	"spreader": "default",
+	"juggernaut": "default",
+	"bomber": "default",
+	"grenadier": "default",
+	"arsonist": "default",
+}
+
+var defaultColors = {
 	"player": Color("00cdffff"),
 	"dummy": Color("aaaaaaff"),
 	"normal": Color("ff004cff"),
@@ -113,4 +137,11 @@ var enemyColor = {
 	"bomber": Color("94ff5eff"),
 	"grenadier": Color("df44ffff"),
 	"arsonist": Color("8e3222ff"),
+}
+
+var characterSprites = {
+	"default": load("res://assets/sprites/characters/default.png"),
+	"circle": load("res://assets/sprites/characters/circle.png"),
+	"triangle": load("res://assets/sprites/characters/triangle.png"),
+	"icon": load("res://assets/sprites/characters/icon.png"),
 }

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bfy5ybhykcvhi"]
 
 [ext_resource type="Script" uid="uid://mxlh621vivac" path="res://scripts/gameplay/bullets/enemy_bullet.gd" id="1_lcw51"]
-[ext_resource type="Texture2D" uid="uid://cg0tq7lkibe5e" path="res://assets/sprites/enemies/bullet_outline.png" id="2_u7h2q"]
-[ext_resource type="Texture2D" uid="uid://bq1r4uyqgo65v" path="res://assets/sprites/enemies/bullet_core.png" id="3_36tju"]
+[ext_resource type="Texture2D" uid="uid://do0q7bucej8kt" path="res://assets/sprites/projectiles/bullet_outline.png" id="2_lcw51"]
+[ext_resource type="Texture2D" uid="uid://dlquhwi5anq0" path="res://assets/sprites/projectiles/bullet_core.png" id="3_u7h2q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
 radius = 5.0
@@ -12,10 +12,10 @@ collision_layer = 4
 script = ExtResource("1_lcw51")
 
 [node name="Outline" type="Sprite2D" parent="." unique_id=1461318362]
-texture = ExtResource("2_u7h2q")
+texture = ExtResource("2_lcw51")
 
 [node name="Core" type="Sprite2D" parent="." unique_id=2082530001]
-texture = ExtResource("3_36tju")
+texture = ExtResource("3_u7h2q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
 shape = SubResource("CircleShape2D_qx7rs")
