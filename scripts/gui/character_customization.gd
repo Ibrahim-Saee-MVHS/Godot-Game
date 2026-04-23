@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 	setUICharacterTexture()
 
 func setUICharacterTexture():
-	$Control/TextureRect.texture = characterSprites.get(selectedCharacterSprite)
+	pass

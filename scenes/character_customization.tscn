@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dqlgpfi3lga7a"]
 
 [ext_resource type="Script" uid="uid://djuxaeo1gyxuv" path="res://scripts/gui/character_customization.gd" id="1_byudq"]
-[ext_resource type="Texture2D" uid="uid://c4tig0cqpjhd1" path="res://assets/sprites/characters/icon.png" id="1_f5pgc"]
-[ext_resource type="Script" uid="uid://dpshtiom5k3y2" path="res://scripts/gui/character_sprite_selection_button.gd" id="3_7xnfy"]
+[ext_resource type="Texture2D" uid="uid://bhgbitkf6r5rx" path="res://assets/sprites/characters/icon.png" id="1_f5pgc"]
+[ext_resource type="Texture2D" uid="uid://i0emjs55qfoa" path="res://assets/sprites/characters/default.png" id="3_f5pgc"]
+[ext_resource type="Texture2D" uid="uid://oix2ridna6lp" path="res://assets/sprites/characters/circle.png" id="4_8ygxg"]
+[ext_resource type="Texture2D" uid="uid://sfscpxnqcx47" path="res://assets/sprites/characters/triangle.png" id="5_4ymi4"]
 
 [node name="CharacterCustomization" type="Control" unique_id=1625004602]
 layout_mode = 3
@@ -29,124 +31,133 @@ offset_right = 361.0
 offset_bottom = 92.0
 text = "Save"
 
-[node name="ItemList" type="ItemList" parent="." unique_id=975517948]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 48.0
-offset_top = -138.0
-offset_right = 249.0
-offset_bottom = 138.0
-grow_vertical = 2
-allow_search = false
-item_count = 8
-item_0/text = "Player"
-item_1/text = "Normal"
-item_2/text = "Repeater"
-item_3/text = "Spreader"
-item_4/text = "Juggernaut"
-item_5/text = "Bomber"
-item_6/text = "Grenadier"
-item_7/text = "Arsonist"
-
-[node name="Control" type="Control" parent="." unique_id=1951890283]
-layout_mode = 1
-anchor_left = 0.51484376
-anchor_top = 0.03888889
-anchor_right = 0.9789063
-anchor_bottom = 0.95416665
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="Control" unique_id=2108625060]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -128.0
-offset_bottom = 128.0
-grow_horizontal = 0
-icon = ExtResource("1_f5pgc")
-icon_alignment = 1
-color = Color(0.66796875, 0.4983673, 0.4983673, 1)
-edit_alpha = false
-edit_intensity = false
-
-[node name="Label" type="Label" parent="Control/ColorPickerButton" unique_id=1942606398]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -434.0
-offset_top = -14.5
-offset_right = -22.0
-offset_bottom = 14.5
-grow_vertical = 2
-text = "Click to change color:"
-
-[node name="Button" type="Button" parent="Control/ColorPickerButton" unique_id=1392148794]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -171.0
-offset_top = 33.0
-offset_right = 64.0
-offset_bottom = 87.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Reset Color"
-
-[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1080431764]
+[node name="Customization" type="Control" parent="." unique_id=1228056668]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -64.0
-offset_bottom = 64.0
+offset_left = -885.0
+offset_top = -323.0
+offset_right = -30.0
+offset_bottom = 323.0
 grow_horizontal = 0
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Customization" unique_id=1905048087]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 55.0
+offset_right = 64.5
+offset_bottom = 183.0
+grow_horizontal = 2
 texture = ExtResource("1_f5pgc")
-expand_mode = 3
 
-[node name="MenuButton" type="OptionButton" parent="Control/TextureRect" unique_id=359089293]
+[node name="CharacterSprites" type="Control" parent="Customization" unique_id=1842769345]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -438.5
+offset_top = -427.0
+offset_right = 438.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Default" type="Button" parent="Customization/CharacterSprites" unique_id=466326561]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -430.5
+offset_top = 8.0
+offset_right = -302.5
+offset_bottom = 136.0
+grow_horizontal = 2
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("3_f5pgc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Circle" type="Button" parent="Customization/CharacterSprites" unique_id=1105812993]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.5
+offset_top = 8.0
+offset_right = -142.5
+offset_bottom = 136.0
+grow_horizontal = 2
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("4_8ygxg")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Triangle" type="Button" parent="Customization/CharacterSprites" unique_id=959257503]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.5
+offset_top = 8.0
+offset_right = 17.5
+offset_bottom = 136.0
+grow_horizontal = 2
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("5_4ymi4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Icon" type="Button" parent="Customization/CharacterSprites" unique_id=1179361614]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 49.5
+offset_top = 8.0
+offset_right = 177.5
+offset_bottom = 136.0
+grow_horizontal = 2
+theme_override_constants/icon_max_width = 128
+icon = ExtResource("1_f5pgc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=970528842]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -207.0
-offset_top = 2.5
-offset_right = -5.0
-offset_bottom = 57.5
+offset_top = -16.0
+offset_right = 224.0
+offset_bottom = 16.0
 grow_vertical = 2
-alignment = 2
 selected = 0
-item_count = 4
-popup/item_0/text = "Default"
+item_count = 9
+popup/item_0/text = "Player"
 popup/item_0/id = 0
-popup/item_1/text = "Circle"
-popup/item_1/id = 1
-popup/item_2/text = "Triangle"
-popup/item_2/id = 2
-popup/item_3/text = "Icon"
+popup/item_1/text = "Enemies:"
+popup/item_1/id = 2
+popup/item_1/disabled = true
+popup/item_1/separator = true
+popup/item_2/text = "Normal"
+popup/item_2/id = 1
+popup/item_3/text = "Repeater"
 popup/item_3/id = 3
-script = ExtResource("3_7xnfy")
-
-[node name="Label" type="Label" parent="Control/TextureRect" unique_id=1735929434]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -434.0
-offset_top = -52.5
-offset_right = -2.0
-offset_bottom = -23.5
-grow_vertical = 2
-text = "Select Character Sprite"
+popup/item_4/text = "Spreader"
+popup/item_4/id = 4
+popup/item_5/text = "Juggernaut"
+popup/item_5/id = 5
+popup/item_6/text = "Bomber"
+popup/item_6/id = 6
+popup/item_7/text = "Grenadier"
+popup/item_7/id = 7
+popup/item_8/text = "Arsonist"
+popup/item_8/id = 8

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhgbitkf6r5rx"
-path="res://.godot/imported/icon.png-aa53785a11c2031f38820af5af6cc8fb.ctex"
+uid="uid://dg0mf3cmpt81h"
+path="res://.godot/imported/icon_juggernaut.png-ce7a37e6f41e87ede10dddd8c773b355.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/icon.png"
-dest_files=["res://.godot/imported/icon.png-aa53785a11c2031f38820af5af6cc8fb.ctex"]
+source_file="res://assets/sprites/characters/icon_juggernaut.png"
+dest_files=["res://.godot/imported/icon_juggernaut.png-ce7a37e6f41e87ede10dddd8c773b355.ctex"]
 
 [params]
 
