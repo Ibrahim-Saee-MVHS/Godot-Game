@@ -40,7 +40,7 @@ func detonation(position):
 	updateStats()
 	var EXPLOSION = ExplosionNode.instantiate()
 	EXPLOSION.global_position = position
-	EXPLOSION.SIZE = abilityPower
+	EXPLOSION.EXPLOSIONPOWER = abilityPower
 	EXPLOSION.playerExplosion = true
 	get_tree().current_scene.add_child(EXPLOSION)
 

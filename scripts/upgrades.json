@@ -8,7 +8,7 @@
 	"spread_shot": {
 		"sprite": "res://assets/sprites/upgrade_icons/spread_shot.png",
 		"name": "Spread Shot",
-		"description": "Gives +2 BULLETS but +2 FIRERATE (Slower)",
+		"description": "Gives +2 BULLETS but -2 DAMAGE",
 		"weight": 0.75,
 	},
 	"speed_up": {
@@ -26,14 +26,14 @@
 	"bullet_enhancer": {
 		"sprite": "res://assets/sprites/upgrade_icons/bullet_enhancer.png",
 		"name": "Bullet Enhancer",
-		"description": "+2 DAMAGE but +2 FIRERATE",
-		"weight": 1.0,
+		"description": "+4 DAMAGE but +2 FIRERATE",
+		"weight": 0.75,
 	},
 	"reinforced_chamber": {
 		"sprite": "res://assets/sprites/upgrade_icons/reinforced_chamber.png",
 		"name": "Reinforced Chamber",
-		"description": "+6 BULLET SPEED but +3 FIRERATE (Slower)",
-		"weight": 0.75,
+		"description": "+6 BULLET SPEED, +1 DAMAGE, and -3 FIRERATE (Faster)",
+		"weight": 0.55,
 	},
 	"flamethrower": {
 		"sprites": [
@@ -69,7 +69,7 @@
 	"cailber_increase": {
 		"sprite": "res://assets/sprites/upgrade_icons/cailber_increase.png",
 		"name": "Cailber Increase",
-		"description": "Makes your bullet bigger but +1 MIN-FIRERATE (Slower) and -2 BULLET SPEED, and -2 BULLET AMOUNT for every upgrade, Affects EXPLOSIVENESS, Only works with Normal BULLET TYPE",
+		"description": "Makes your bullet bigger but +1 MIN-FIRERATE (Slower) and -2 BULLET SPEED, and -2 BULLET AMOUNT for every upgrade, Enhances EXPLOSIVENESS, Only works with Normal BULLET TYPE",
 		"weight": 0.75,
 	},
 	"flashtime": {

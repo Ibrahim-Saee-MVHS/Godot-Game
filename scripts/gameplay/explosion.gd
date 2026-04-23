@@ -13,12 +13,12 @@ func _ready():
 
 func initializeExplosion():
 	DAMAGE = maxf(6 * EXPLOSIONPOWER, 1)
-	$CollisionShape2D.shape.radius = 64 * clampf(EXPLOSIONPOWER, 0, 8)
-	$Fire.initial_velocity_min = 64 * clampf(EXPLOSIONPOWER, 0, 8)
-	$Fire.initial_velocity_max = 256 * clampf(EXPLOSIONPOWER, 0, 8)
-	$Fire.amount = 48 * clampf(EXPLOSIONPOWER, 0, 8)
-	$Wave.scale_amount_min = 1 * clampf(EXPLOSIONPOWER, 0, 8)
-	$Wave.scale_amount_max = 1 * clampf(EXPLOSIONPOWER, 0, 8)
+	$CollisionShape2D.shape.radius = 64 * clampf(EXPLOSIONPOWER, 0.125, 8)
+	$Fire.initial_velocity_min = 64 * clampf(EXPLOSIONPOWER, 0.125, 8)
+	$Fire.initial_velocity_max = 256 * clampf(EXPLOSIONPOWER, 0.125, 8)
+	$Fire.amount = 48 * clampf(EXPLOSIONPOWER, 0.125, 8)
+	$Wave.scale_amount_min = 1 * clampf(EXPLOSIONPOWER, 0.125, 8)
+	$Wave.scale_amount_max = 1 * clampf(EXPLOSIONPOWER, 0.125, 8)
 	$Sound.pitch_scale = randf_range(0.9, 1.1)
 	$Sound.playing = true
 

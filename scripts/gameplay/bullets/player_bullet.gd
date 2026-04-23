@@ -25,7 +25,6 @@ var target: Enemy = null
 func _ready():
 	if homing > 0:
 		findNewTarget()
-	
 	if TYPE == "normal":
 		KNOCKBACK = 4000
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
@@ -58,7 +57,8 @@ func _ready():
 
 func _process(delta):
 	if homing > 0:
-		homeOnEnemy()
+		homeOnEnemy(homing)
+		despawnTimer += 5 * homing
 	if TYPE == "flame":
 		SPEED -= 1 * delta
 		SPEED = max(SPEED, 0)
@@ -69,12 +69,21 @@ func _process(delta):
 		despawnTimer -= 10 * delta
 		
 	position += Vector2(SPEED, 0).rotated(MOVEDIR) * delta
+	if ricochet > 0:
+		var screenSize = (get_viewport_rect().size / 4) - Vector2(8, 8)
+		if (position.x > screenSize.x or position.x < -screenSize.x) or (position.y > screenSize.y or position.y < -screenSize.y):
+			findNewTarget()
+			if target != null:
+				homeOnEnemy(20) # instant rotation
+			else:
+				MOVEDIR += deg_to_rad(45)
+		
 	if despawnTimer <= 0:
 		queue_free()
 
-func homeOnEnemy():
+func homeOnEnemy(homing_amount):
 	if target != null:
-		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.05 * homing)
+		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.05 * homing_amount)
 	else:
 		findNewTarget()
 
