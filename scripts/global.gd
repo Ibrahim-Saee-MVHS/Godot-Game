@@ -48,7 +48,7 @@ func setGameModifiers():
 	if GAMEMODIFIERS.get("juggernauts_reign_supreme", false) == true:
 		if enemySpawn.types.has("juggernaut") == false:
 			enemySpawn.types.insert(3, "juggernaut")
-		enemySpawn.weights[enemySpawn.types.find("juggernaut")] = 0.75
+		enemySpawn.weights.insert(enemySpawn.types.find("juggernaut"), 0.75)
 		for i in range(enemySpawn.color.size()):
 			enemySpawn.color.set(enemySpawn.color.keys()[i], enemyColor.get("juggernaut"))
 
