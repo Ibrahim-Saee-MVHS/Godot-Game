@@ -51,7 +51,7 @@ func upgradePlayer():
 	match selectedUpgrade:
 		"hearty":
 			get_parent().get_node("Player").UPGRADE.health += 5
-			get_parent().get_node("Player").UPGRADE.speed -= 2
+			get_parent().get_node("Player").UPGRADE.speed -= 1
 			get_parent().get_node("Player").MAXHEALTH = get_parent().get_node("Player").MAXHEALTH + 5
 			if get_parent().get_node("Player").HEALTH + 35 <= get_parent().get_node("Player").MAXHEALTH:
 				get_parent().get_node("Player").HEALTH += 35

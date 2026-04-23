@@ -113,13 +113,13 @@ func setStats():
 		explosiveness = 0
 		shootPitch = 1.0
 	if TYPE == "grenadier":
-		SPEED = 6000
+		SPEED = 5000
 		MAXHEALTH = 32 * multiplier
 		MAXFIRERATE = 16
 		BULLETAMOUNT = clamp(floor(1 * multiplier), 1, 3)
 		BULLETSPEED = 200
-		DAMAGE = 6 * multiplier
-		EXP = 8 * 1 + multiplier / 3
+		DAMAGE = 4 * multiplier
+		EXP = 10 * 1 + multiplier / 2
 		UPGRADES = 0
 		bulletType = "bomb"
 		explosiveness = clamp(0.5 * multiplier / 4, 0.5, 1)
@@ -132,7 +132,7 @@ func setStats():
 		BULLETSPEED = 200
 		DAMAGE = 0 + (1 * multiplier / 2)
 		UPGRADES = clamp(round(0 + (0.25 * multiplier * multiplier)), 0, 4)
-		EXP = 10 * 1 + multiplier / 3
+		EXP = 8 * 1 + multiplier / 3
 		bulletType = "flame"
 		explosiveness = 0
 		shootPitch = 1.0
@@ -144,7 +144,7 @@ func setStats():
 			BULLETAMOUNT = 3
 			BULLETSPEED = 400
 			DAMAGE = 8 * multiplier / 2
-			EXP = 10 * 1 + multiplier / 3
+			EXP = 10 * 1 + multiplier / 2
 			explosiveness = 0.5
 			shootPitch = 0.25
 		else:
@@ -163,8 +163,8 @@ func _process(delta):
 	$Sprite2D.material = shaderMaterial
 	player_position = get_parent().get_node("Player").global_position
 	if TYPE == "grenadier":
-		target_position = (player_position + get_parent().get_node("Player").velocity / 1.25)
-		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 1.25) - global_position).angle()
+		target_position = (player_position + get_parent().get_node("Player").velocity / 2.5)
+		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 2.5) - global_position).angle()
 	elif TYPE == "arsonist":
 		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 4) - global_position).angle()
 	else:

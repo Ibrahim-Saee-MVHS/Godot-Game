@@ -2,7 +2,7 @@
 	"hearty": {
 		"sprite": "res://assets/sprites/upgrade_icons/hearty.png",
 		"name": "Hearty",
-		"description": "Gives +10 HEALTH & heals the player by 35 HP but -2 SPEED",
+		"description": "Gives +10 HEALTH & heals the player by 35 HP but -1 SPEED",
 		"weight": 1.0,
 	},
 	"spread_shot": {
