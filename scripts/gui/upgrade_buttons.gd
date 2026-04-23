@@ -95,4 +95,7 @@ func removeUpgrades(totalUpgrades):
 	if player.bulletType != "normal" or player.UPGRADE.homing >= 6:
 		totalUpgrades.erase("homing_rounds")
 	
+	if player.ABILITY == "shield" and player.ABILITYPOWER >= 6:
+		totalUpgrades.erase("shield")
+	
 	return totalUpgrades

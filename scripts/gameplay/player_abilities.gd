@@ -10,6 +10,7 @@ var ICONS = {
 	"flashtime" = preload("res://assets/sprites/ability_icons/flashtime.png"),
 	"detonation" = preload("res://assets/sprites/ability_icons/detonation.png"),
 	"dash" = preload("res://assets/sprites/ability_icons/dash.png"),
+	"shield" = preload("res://assets/sprites/ability_icons/shield.png"),
 }
 
 func _ready() -> void:
@@ -49,5 +50,6 @@ func dash(mouse_position, position, delta):
 	abilityTimer = abilityDuration
 	var temp = abilityDuration
 	get_tree().current_scene.get_node("Player").shaderMaterial.shader = Global.shaders.tint
+	get_tree().current_scene.get_node("Player").currentInvulnerabilityTime = 8 * (1 + temp)
 	get_tree().current_scene.get_node("Player").INVULNERABILITY = 8 * (1 + temp)
 	get_tree().current_scene.get_node("Player").velocity = Vector2(abilityPower * 1000, 0).rotated((mouse_position - position).angle()) * delta

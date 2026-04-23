@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cb7rb36byy1iy"]
+
+[ext_resource type="Script" uid="uid://bvm5v1cdsb5tk" path="res://scripts/gameplay/shield.gd" id="1_ohv3a"]
+[ext_resource type="Texture2D" uid="uid://dt3apk2fux2b7" path="res://assets/particles/shield.tres" id="1_vtru8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ohv3a"]
+radius = 15.0
+
+[sub_resource type="Curve" id="Curve_e3gf5"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, -0.49950236, 0, 0, Vector2(0.74637675, 0.9105059), -3.7699428, -3.7699428, 0, 0, Vector2(1, 0), -3.5899937, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_gsp1a"]
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[node name="Shield" type="Area2D" unique_id=1203222446]
+collision_mask = 4
+script = ExtResource("1_ohv3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=830820820]
+shape = SubResource("CircleShape2D_ohv3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=769666648]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vtru8")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D" unique_id=1442773898]
+amount = 2
+texture = ExtResource("1_vtru8")
+lifetime = 2.0
+local_coords = true
+spread = 0.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_e3gf5")
+color_ramp = SubResource("Gradient_gsp1a")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

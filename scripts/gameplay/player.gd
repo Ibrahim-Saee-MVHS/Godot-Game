@@ -23,6 +23,7 @@ var EXP: int = 0
 var EXPMAX: int
 var INVULNERABILITY: float = 0
 var MAXINVULNERABILITY: float = 4
+var currentInvulnerabilityTime: float
 var ABILITY: String # ability
 var ABILITYPOWER: float # ability power
 var ABILITYDURATION: float # the duration that gets set to Abilities.abilityTimer
@@ -33,6 +34,7 @@ var ABILITYMAXCOOLDOWN: float # the cooldown that gets set to ABILITYCOOLDOWN
 @onready var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
 @onready var ExplosionNode = preload("res://scenes/explosion.tscn")
 @onready var DashNode = preload("res://scenes/dash.tscn")
+@onready var ShieldNode = preload("res://scenes/shield.tscn")
 var shaderMaterial = ShaderMaterial.new()
 var knockbackDir: float
 var knockbackPower: float
@@ -122,13 +124,16 @@ func _process(delta):
 	
 	$Sprite2D.material = shaderMaterial
 	if INVULNERABILITY <= 0:
+		currentInvulnerabilityTime = 0
 		shaderMaterial.shader = null
 		knockbackPower = 0
 		knockbackDir = 0
 		knockback = Vector2(0, 0)
 	else:
 		INVULNERABILITY -= 10 * delta
-		if INVULNERABILITY < MAXINVULNERABILITY - 1:
+		if INVULNERABILITY >= currentInvulnerabilityTime - 1:
+			shaderMaterial.shader = Global.shaders.flash
+		elif INVULNERABILITY < currentInvulnerabilityTime - 1:
 			shaderMaterial.shader = Global.shaders.tint
 	
 	if Input.is_action_pressed("shoot") and FIRERATE <= 0:
@@ -231,6 +236,10 @@ func activateAbility(delta):
 		add_child(DASH)
 		$CollisionShape2D.disabled = true
 		Abilities.dash(get_global_mouse_position(), global_position, delta)
+	if ABILITY == "shield":
+		var SHIELD = ShieldNode.instantiate()
+		add_child(SHIELD)
+		$Area2D/CollisionShape2D.disabled = true
 	ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func setAbilityStats():
@@ -246,6 +255,10 @@ func setAbilityStats():
 		ABILITYPOWER = (5 + UPGRADE.abilityPower) * 5
 		ABILITYDURATION = 0.2 + UPGRADE.abilityDuration
 		ABILITYMAXCOOLDOWN = 8 + UPGRADE.abilityCooldown
+	if ABILITY == "shield":
+		ABILITYPOWER = 2 + UPGRADE.abilityPower
+		ABILITYDURATION = 0
+		ABILITYMAXCOOLDOWN = 28 + UPGRADE.abilityCooldown
 
 func _physics_process(delta):
 	var input = getPlayerInput()
@@ -275,6 +288,7 @@ func dealDamage(damage, inv):
 	Global.VIGNETTEINTENSITY = 0.5
 	Global.VIGNETTECOLOR = Vector3(1, 0, 0)
 	shaderMaterial.shader = Global.shaders.flash
+	currentInvulnerabilityTime = inv
 	INVULNERABILITY = inv
 	HEALTH -= damage
 	Global.spawnDamageIndicator(global_position, -damage)

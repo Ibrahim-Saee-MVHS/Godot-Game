@@ -87,7 +87,7 @@
 	"cooldown_reduction": {
 		"sprite": "res://assets/sprites/upgrade_icons/cooldown_reduction.png",
 		"name": "Cooldown Reduction",
-		"description": "-5 ABILITY COOLDOWN (Faster)",
+		"description": "-5 ABILITY COOLDOWN (Faster), Changing Abilities will reset Cooldown Reduction",
 		"weight": 0.4,
 	},
 	"dash": {
@@ -107,5 +107,11 @@
 		"name": "Homing Rounds",
 		"description": "Your bullets can home in on the nearest enemy but you can only have 1 BULLET AMOUNT, Only works with Normal BULLET TYPE. Incompatible with Ricochet. Stack for faster turning",
 		"weight": 0.5,
+	},
+	"shield": {
+		"sprite": "res://assets/sprites/upgrade_icons/shield.png",
+		"name": "Shield",
+		"description": "You can summon a shield that will block any damage twice, Stack for +1 BLOCK & -2 SHIELD COOLDOWN (Faster)",
+		"weight": 0.25,
 	},
 }

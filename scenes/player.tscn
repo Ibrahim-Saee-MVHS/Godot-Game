@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dnftuadbjlkcw" path="res://assets/sounds/health.wav" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://b03t7a2c5fmlo" path="res://assets/sounds/shoot.wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://dqdc7jsroqtks" path="res://assets/sounds/flameThrow.wav" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://d1s6g5bnf01mj" path="res://assets/sounds/block.wav" id="8_smehm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(16, 16)
@@ -20,9 +21,11 @@ self_modulate = Color(0, 0.8039216, 1, 1)
 texture = ExtResource("2_fjrip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=214923270]
+visible = false
 shape = ExtResource("3_smehm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1210484962]
+visible = false
 collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=340697507]
@@ -46,6 +49,11 @@ bus = &"Sound"
 [node name="FlameThrow" type="AudioStreamPlayer2D" parent="." unique_id=611977514]
 stream = ExtResource("6_tuyoq")
 max_polyphony = 48
+bus = &"Sound"
+
+[node name="Block" type="AudioStreamPlayer2D" parent="." unique_id=4301081]
+stream = ExtResource("8_smehm")
+max_polyphony = 4
 bus = &"Sound"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

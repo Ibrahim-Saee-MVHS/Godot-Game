@@ -145,4 +145,15 @@ func upgradePlayer():
 		"homing_rounds":
 			get_parent().get_node("Player").UPGRADE.homing += 1
 			get_parent().get_node("Player").UPGRADE.ricochet = 0
+		"shield":
+			if get_parent().get_node("Player").ABILITY != "shield":
+				get_parent().get_node("Player").ABILITY = "shield"
+				Abilities.abilityTimer = 0
+				get_parent().get_node("Player").ABILITYCOOLDOWN = 0
+				get_parent().get_node("Player").UPGRADE.abilityPower = 0
+				get_parent().get_node("Player").UPGRADE.abilityDuration = 0
+				get_parent().get_node("Player").UPGRADE.abilityCooldown = 0
+			else:
+				get_parent().get_node("Player").UPGRADE.abilityPower += 1
+				get_parent().get_node("Player").UPGRADE.abilityCooldown -= 2
 	endUpgrade()
