@@ -11,12 +11,11 @@ radius = 8.0
 collision_layer = 4
 script = ExtResource("1_2gnhg")
 
-[node name="Outline" type="Sprite2D" parent="." unique_id=1461318362]
-z_index = 1
-texture = ExtResource("2_2gnhg")
-
 [node name="Core" type="Sprite2D" parent="." unique_id=2082530001]
 texture = ExtResource("3_bos8u")
+
+[node name="Outline" type="Sprite2D" parent="." unique_id=1461318362]
+texture = ExtResource("2_2gnhg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
 shape = SubResource("CircleShape2D_qx7rs")
