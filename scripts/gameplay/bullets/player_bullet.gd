@@ -28,6 +28,7 @@ func _ready():
 	if TYPE == "normal":
 		$Outline.self_modulate = Global.playerColor
 		KNOCKBACK = 4000
+		despawnTimer = 60
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 		explosiveness = explosiveness * (1 + (0.25 * upgrades))
 	if TYPE == "flame":
@@ -81,6 +82,12 @@ func _process(delta):
 				MOVEDIR += deg_to_rad(45)
 		
 	if despawnTimer <= 0:
+		despawnBullet(delta)
+
+func despawnBullet(delta):
+	$CollisionShape2D.disabled = true
+	modulate.a -= 10 * delta
+	if modulate.a <= 0:
 		queue_free()
 
 func homeOnEnemy(homing_amount):

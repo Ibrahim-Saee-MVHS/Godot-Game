@@ -66,4 +66,12 @@ func _process(delta):
 			BombExplosion.EXPLOSIONPOWER = explosiveness
 			BombExplosion.playerExplosion = false
 			get_parent().add_child(BombExplosion)
+			queue_free()
+		else:
+			despawnBullet(delta)
+
+func despawnBullet(delta):
+	$CollisionShape2D.disabled = true
+	modulate.a -= 10 * delta
+	if modulate.a <= 0:
 		queue_free()
