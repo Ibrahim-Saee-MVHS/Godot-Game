@@ -11,6 +11,14 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	settings.load(save_directory + "settings.cfg")
+	if Input.is_action_just_pressed("fullscreen"):
+		if settings.get_value("video", "fullscreen", false) == true:
+			settings.set_value("video", "fullscreen", false)
+			setFullscreen(false)
+		else:
+			settings.set_value("video", "fullscreen", true)
+			setFullscreen(true)
+		settings.save(save_directory + "settings.cfg")
 
 func checkSaveDir():
 	if not DirAccess.dir_exists_absolute(save_directory):
