@@ -76,10 +76,12 @@ func _process(delta):
 		var screenSize = (get_viewport_rect().size / 4) - Vector2(8, 8)
 		if (position.x > screenSize.x or position.x < -screenSize.x) or (position.y > screenSize.y or position.y < -screenSize.y):
 			findNewTarget()
+			ricochet -= 1
 			if target != null:
 				homeOnEnemy(20) # instant rotation
 			else:
-				MOVEDIR += deg_to_rad(45)
+				# either rotates 135 degress left or right
+				MOVEDIR += deg_to_rad([-135, 135].pick_random())
 		
 	if despawnTimer <= 0:
 		despawnBullet(delta)
