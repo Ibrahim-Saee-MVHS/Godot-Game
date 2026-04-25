@@ -292,7 +292,7 @@ func _gotDamaged(area):
 				if area.TYPE == "flame":
 					area.get_node("CPUParticles2D").set_deferred("emitting", false)
 					area.get_node("CollisionShape2D").set_deferred("disabled", true)
-					HITSTUN = 1.5
+					HITSTUN = 1
 				elif area.TYPE == "plasma":
 					HITSTUN = 2
 				else:
