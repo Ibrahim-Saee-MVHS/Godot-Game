@@ -5,7 +5,7 @@ var buildType = "-demo"
 
 func _ready():
 	get_tree().paused = false
-	SettingsGlobal.setVolume()
+	SettingsGlobal.setAllSettings()
 
 func _process(_delta: float) -> void:
 	$Version.text = str("v" + ProjectSettings.get_setting("application/config/version") + buildType)
