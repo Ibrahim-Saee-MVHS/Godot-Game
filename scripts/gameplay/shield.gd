@@ -1,6 +1,7 @@
 class_name PlayerShield
 extends Area2D
 
+@onready var BLOCKINDICATOR = preload("res://scenes/vfx/block_indicator.tscn")
 var BLOCKS: int = 2
 
 func _ready():
@@ -20,6 +21,9 @@ func protect():
 	get_parent().get_node('Block').playing = true
 	get_parent().currentInvulnerabilityTime = 12
 	get_parent().INVULNERABILITY = 12
+	var blockIndicator = BLOCKINDICATOR.instantiate()
+	blockIndicator.global_position = global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+	get_tree().current_scene.add_child(blockIndicator)
 	BLOCKS -= 1
 
 func _on_area_entered(area):

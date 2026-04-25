@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cpc4ver6obett"]
+[gd_scene format=3 uid="uid://xpwi053pqfs5"]
 
-[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_b44tu"]
-[ext_resource type="Script" uid="uid://dxbbjmke2dn1p" path="res://scripts/gui/damage_indicator.gd" id="2_87rnl"]
+[ext_resource type="FontFile" uid="uid://dm7col5e5mkj4" path="res://assets/vcr_osd_mono.ttf" id="1_0qr85"]
+[ext_resource type="Script" uid="uid://dxbbjmke2dn1p" path="res://scripts/gui/damage_indicator.gd" id="2_4gbhr"]
 
 [sub_resource type="Animation" id="Animation_pdomm"]
 length = 0.001
@@ -40,18 +40,20 @@ _data = {
 &"fade": SubResource("Animation_g2vom")
 }
 
-[node name="DamageIndicator" type="Label" unique_id=1652367835]
-offset_right = 18.0
+[node name="BlockIndicator" type="Label" unique_id=1652367835]
+offset_left = -14.0
+offset_right = 15.0
 offset_bottom = 9.0
 pivot_offset = Vector2(26, 9)
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_b44tu")
+theme_override_colors/font_color = Color(0, 1, 0.84705883, 1)
+theme_override_fonts/font = ExtResource("1_0qr85")
 theme_override_font_sizes/font_size = 10
-text = "-45"
+text = "BLOCK"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("2_87rnl")
+script = ExtResource("2_4gbhr")
+TYPE = "block"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1096670113]
 libraries/ = SubResource("AnimationLibrary_7s5y6")
