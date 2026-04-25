@@ -88,7 +88,7 @@ func _process(delta):
 
 func despawnBullet(delta):
 	$CollisionShape2D.disabled = true
-	modulate.a -= 10 * delta
+	modulate.a -= 5 * delta
 	if modulate.a <= 0:
 		queue_free()
 
