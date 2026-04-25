@@ -61,7 +61,6 @@ func _ready():
 func _process(delta):
 	if homing > 0:
 		homeOnEnemy(homing)
-		despawnTimer += 5 * homing
 	if TYPE == "flame":
 		SPEED -= 1 * delta
 		SPEED = max(SPEED, 0)
