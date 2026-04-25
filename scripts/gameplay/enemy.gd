@@ -12,6 +12,7 @@ var HEALTH: int
 var MOVEDIR: float
 var BULLETAMOUNT: int = 1
 var HITSTUN: float
+var currentHitstunTime: float
 var BULLETSPEED: float
 var shootPitch: float = 1.0
 var player_position: Vector2
@@ -177,6 +178,7 @@ func _process(delta):
 	$HealthBar.value = HEALTH
 	
 	if HITSTUN <= 0:
+		currentHitstunTime = 0
 		shaderMaterial.shader = null
 	
 	if TYPE != "bomber":
@@ -200,7 +202,13 @@ func _process(delta):
 	if HITSTUN <= 0:
 		knockback = Vector2(0, 0)
 	else:
+		if currentHitstunTime == 0:
+			currentHitstunTime = HITSTUN
 		HITSTUN -= 10 * delta
+		if HITSTUN >= currentHitstunTime - 1:
+			shaderMaterial.shader = Global.shaders.flash
+		elif HITSTUN < currentHitstunTime - 1:
+			shaderMaterial.shader = Global.shaders.tint
 
 func shoot(delta, spread):
 	var startDir = -spread / 2
