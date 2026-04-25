@@ -18,8 +18,8 @@ func protect():
 	get_parent().get_node('Hit').playing = true
 	get_parent().get_node('Block').pitch_scale = randf_range(0.9, 1.1)
 	get_parent().get_node('Block').playing = true
-	get_parent().currentInvulnerabilityTime = get_parent().MAXINVULNERABILITY
-	get_parent().INVULNERABILITY = get_parent().MAXINVULNERABILITY
+	get_parent().currentInvulnerabilityTime = 12
+	get_parent().INVULNERABILITY = 12
 	BLOCKS -= 1
 
 func _on_area_entered(area):
