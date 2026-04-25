@@ -24,7 +24,7 @@ func protect():
 
 func _on_area_entered(area):
 	if get_parent().INVULNERABILITY <= 0:
-		if area is EnemyBullet:
+		if area is EnemyBullet and area.TYPE != "bomb":
 			if area.TYPE == "flame":
 				area.get_node("CPUParticles2D").set_deferred("emitting", false)
 				area.get_node("CollisionShape2D").set_deferred("disabled", true)
