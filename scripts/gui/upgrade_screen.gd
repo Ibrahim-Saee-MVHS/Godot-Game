@@ -156,4 +156,13 @@ func upgradePlayer():
 			else:
 				get_parent().get_node("Player").UPGRADE.abilityPower += 1
 				get_parent().get_node("Player").UPGRADE.abilityCooldown -= 2
+		"boomerang":
+			if get_parent().get_node("Player").bulletType != "boomerang":
+				get_parent().get_node("Player").bulletType = "boomerang"
+				get_parent().get_node("Player").UPGRADE.bulletUpgrades = 0
+				get_parent().get_node("Player").UPGRADE.explosiveness = 0
+				get_parent().get_node("Player").UPGRADE.ricochet = 0
+				get_parent().get_node("Player").UPGRADE.homing = 0
+			else:
+				get_parent().get_node("Player").UPGRADE.bulletUpgrades += 1
 	endUpgrade()
