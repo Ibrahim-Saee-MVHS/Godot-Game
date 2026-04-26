@@ -79,7 +79,7 @@ func _ready() -> void:
 	BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 	BULLETSPEED = BASEBULLETSPEED
 	BULLETAMOUNT = BASEBULLETAMOUNT
-	bulletType = "boomerang"
+	bulletType = "normal"
 	MAXBULLETAMOUNT = 9
 	SPEED = BASESPEED
 	HEALTH = MAXHEALTH

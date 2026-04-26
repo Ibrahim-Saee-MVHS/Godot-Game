@@ -117,7 +117,7 @@
 	"boomerang": {
 		"sprite": "res://assets/sprites/upgrade_icons/boomerang.png",
 		"name": "Boomerang",
-		"description": "Changes BULLET TYPE to Boomerang, Short range spinning projectiles that return back to you, Stack for greater range and +1 BOOMERANG",
-		"weight": 0.5,
+		"description": "Changes BULLET TYPE to Boomerang, Short range, spinning projectiles that return back to you, Stack for greater range and +1 BOOMERANG",
+		"weight": 90.5,
 	},
 }

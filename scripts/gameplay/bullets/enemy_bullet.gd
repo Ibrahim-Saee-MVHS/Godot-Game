@@ -19,6 +19,7 @@ var KNOCKBACK: float
 var despawnTimer = 60
 var upgrades: int
 
+var shooter: CollisionObject2D = null
 var explosiveness: float
 var spawn_position: Vector2
 var destination_position: Vector2
@@ -27,7 +28,6 @@ var canMove: bool = true
 func _ready():
 	spawn_position = global_position
 	if TYPE == "normal":
-		$Outline.self_modulate = Global.enemySpawn.color.get(COLOR)
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 		explosiveness = explosiveness + (0.25 * upgrades)
 	if TYPE == "flame":
@@ -36,10 +36,14 @@ func _ready():
 		DAMAGE = (DAMAGE / 100) + 0.01 + (0.01 * upgrades)
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
-	if TYPE == "bomb":
+	else:
 		$Outline.self_modulate = Global.enemySpawn.color.get(COLOR)
+	if TYPE == "bomb":
 		despawnTimer = 10
 		explosiveness = clamp(explosiveness, 0.5, explosiveness)
+	if TYPE == "boomerang":
+		KNOCKBACK = 2000
+		despawnTimer = 5 + (2 * upgrades)
 
 func _process(delta):
 	if TYPE == "bomb" and canMove == true:
@@ -48,6 +52,10 @@ func _process(delta):
 			canMove = false
 	elif TYPE == "bomb":
 		SPEED -= SPEED * delta
+	
+	if TYPE == "boomerang":
+		rotation_degrees += SPEED / 10
+		SPEED = clamp(SPEED + 2.5, 125, 500)
 	
 	if TYPE == "flame":
 		SPEED -= 1 * delta
@@ -67,11 +75,26 @@ func _process(delta):
 			BombExplosion.playerExplosion = false
 			get_parent().add_child(BombExplosion)
 			queue_free()
+		elif TYPE == "boomerang":
+			returnToSender()
 		else:
-			despawnBullet(delta)
+			despawnBullet()
 
-func despawnBullet(delta):
+func returnToSender():
+	if shooter != null:
+		MOVEDIR = lerp_angle(MOVEDIR, (shooter.global_position - global_position).angle(), max(abs(despawnTimer / 25), 0.1))
+	else:
+		despawnBullet()
+
+func despawnBullet():
 	$CollisionShape2D.disabled = true
-	modulate.a -= 10 * delta
+	modulate.a -= 10 * get_process_delta_time()
 	if modulate.a <= 0:
 		queue_free()
+
+func _on_body_entered(body: Node2D) -> void:
+	if TYPE == "boomerang" and despawnTimer <= 0 :
+		if body == shooter:
+			if body.FIRERATE > body.MAXFIRERATE:
+				body.FIRERATE = body.MAXFIRERATE
+			queue_free()

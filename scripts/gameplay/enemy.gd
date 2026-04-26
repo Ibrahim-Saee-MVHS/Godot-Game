@@ -20,10 +20,12 @@ var target_position: Vector2
 var multiplier: float = 1.0
 var explosiveness: float
 var bulletType: String
+var boomerangsThrown: int
 @onready var Projectiles = {
 	"normal": preload("res://scenes/bullet_types/enemy_bullet.tscn"),
 	"flame": preload("res://scenes/bullet_types/enemy_flame.tscn"),
 	"bomb": preload("res://scenes/bullet_types/enemy_bomb.tscn"),
+	"boomerang": preload("res://scenes/bullet_types/enemy_boomerang.tscn"),
 }
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
 @onready var ExplosionNode = preload("res://scenes/explosion.tscn")
@@ -137,6 +139,19 @@ func setStats():
 		bulletType = "flame"
 		explosiveness = 0
 		shootPitch = 1.0
+	if TYPE == "boomeranger":
+		SPEED = 4000
+		MAXHEALTH = 20 * multiplier
+		MAXFIRERATE = 6
+		BULLETAMOUNT = 1
+		BULLETSPEED = 250
+		DAMAGE = 4 * multiplier
+		EXP = 4 * 1 + multiplier / 4
+		UPGRADES = clamp(round(0.3 * multiplier), 0, 3)
+		bulletType = "boomerang"
+		explosiveness = 0
+		shootPitch = 1.0
+	
 	if Global.GAMEMODIFIERS.get("juggernauts_reign_supreme", false) == true:
 		if TYPE == "juggernaut":
 			SPEED = 4000
@@ -218,6 +233,11 @@ func shoot(delta, spread):
 			FIRERATE = MAXFIRERATE + randf_range(0, 6.0) * round(randf_range(0, 1))
 		else:
 			FIRERATE = MAXFIRERATE
+		if bulletType == "boomerang":
+			boomerangsThrown += 1
+			if boomerangsThrown == 3 + (1 * UPGRADES):
+				FIRERATE = max(FIRERATE * 2, 8)
+				boomerangsThrown = 0
 		var currentBullet = Projectiles.get(bulletType)
 		if bulletType == "flame":
 			$FlameThrow.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
@@ -228,6 +248,7 @@ func shoot(delta, spread):
 		for i in range(BULLETAMOUNT):
 			var BULLET = currentBullet.instantiate()
 			var dirOffset = startDir + (dirSteps * i) if BULLETAMOUNT > 1 else 0
+			BULLET.set("shooter", self)
 			BULLET.set("global_position", global_position)
 			BULLET.set("COLOR", TYPE)
 			BULLET.set("TYPE", bulletType)

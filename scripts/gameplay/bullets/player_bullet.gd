@@ -61,7 +61,7 @@ func _ready():
 				$CPUParticles2D.initial_velocity_max = 96
 	if TYPE == "boomerang":
 		KNOCKBACK = 8000
-		despawnTimer = 5 + (5 * upgrades)
+		despawnTimer = 5 + (2 * upgrades)
 
 func _process(delta):
 	if homing > 0:
@@ -94,11 +94,11 @@ func _process(delta):
 		if TYPE == "boomerang":
 			returnToPlayer()
 		else:
-			despawnBullet(delta)
+			despawnBullet()
 
-func despawnBullet(delta):
+func despawnBullet():
 	$CollisionShape2D.disabled = true
-	modulate.a -= 5 * delta
+	modulate.a -= 5 * get_process_delta_time()
 	if modulate.a <= 0:
 		queue_free()
 
@@ -123,10 +123,14 @@ func findNewTarget():
 func returnToPlayer():
 	if target != get_parent().get_node("Player"):
 		target = get_parent().get_node("Player")
-	MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.1)
+	elif target.HEALTH > 0:
+		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), max(abs(despawnTimer / 25), 0.1))
+	else:
+		despawnBullet()
 
 func _on_body_entered(body: Node2D) -> void:
 	if TYPE == "boomerang" and despawnTimer <= 0 :
 		if body is Player:
-			body.FIRERATE = body.MAXFIRERATE
+			if body.FIRERATE > body.MAXFIRERATE:
+				body.FIRERATE = body.MAXFIRERATE
 			queue_free()
