@@ -21,11 +21,9 @@ self_modulate = Color(0, 0.8039216, 1, 1)
 texture = ExtResource("2_fjrip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=214923270]
-visible = false
 shape = ExtResource("3_smehm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1210484962]
-visible = false
 collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=340697507]

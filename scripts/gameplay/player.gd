@@ -29,22 +29,24 @@ var ABILITYPOWER: float # ability power
 var ABILITYDURATION: float # the duration that gets set to Abilities.abilityTimer
 var ABILITYCOOLDOWN: float # the current cooldown for abilities
 var ABILITYMAXCOOLDOWN: float # the cooldown that gets set to ABILITYCOOLDOWN
-@onready var Death = preload("res://scenes/vfx/player_death.tscn")
-@onready var GameOver = preload("res://scenes/game_over.tscn")
-@onready var UpgradeScreen = preload("res://scenes/upgrade_screen.tscn")
-@onready var ExplosionNode = preload("res://scenes/explosion.tscn")
-@onready var DashNode = preload("res://scenes/dash.tscn")
-@onready var ShieldNode = preload("res://scenes/shield.tscn")
+@onready var Death = load("res://scenes/vfx/player_death.tscn")
+@onready var GameOver = load("res://scenes/game_over.tscn")
+@onready var UpgradeScreen = load("res://scenes/upgrade_screen.tscn")
+@onready var ExplosionNode = load("res://scenes/explosion.tscn")
+@onready var DashNode = load("res://scenes/dash.tscn")
+@onready var ShieldNode = load("res://scenes/shield.tscn")
 var shaderMaterial = ShaderMaterial.new()
 var knockbackDir: float
 var knockbackPower: float
 var knockback: Vector2
+var boomerangsThrown: int = 0
 
 var bulletType = "normal"
 var Projectiles = {
 	"normal": preload("res://scenes/bullet_types/player_bullet.tscn"),
-	"flame": preload("res://scenes/bullet_types/player_flame.tscn"),
-	"plasma": preload("res://scenes/bullet_types/player_plasma.tscn"),
+	"flame": load("res://scenes/bullet_types/player_flame.tscn"),
+	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
+	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
 var UPGRADE = {
 	health = 0,
@@ -77,7 +79,7 @@ func _ready() -> void:
 	BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 	BULLETSPEED = BASEBULLETSPEED
 	BULLETAMOUNT = BASEBULLETAMOUNT
-	bulletType = "normal"
+	bulletType = "boomerang"
 	MAXBULLETAMOUNT = 9
 	SPEED = BASESPEED
 	HEALTH = MAXHEALTH
@@ -198,6 +200,15 @@ func setBaseStats():
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 3
 		MINFIRERATE = 4
+	if bulletType == "boomerang":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 4.0
+		BASEDAMAGE = 5.0
+		BASEBULLETSPEED = 250
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 4 if UPGRADE.ricochet + UPGRADE.homing <= 0 else 1
+		MINFIRERATE = 1
 
 func shoot(spread, variance):
 	var startDir = -spread / 2
@@ -210,6 +221,11 @@ func shoot(spread, variance):
 		$Shoot.pitch_scale = randf_range(0.8, 1.2)
 		$Shoot.playing = true
 	FIRERATE = MAXFIRERATE
+	if bulletType == "boomerang":
+		boomerangsThrown += 1
+		if boomerangsThrown == 3 + (1 * UPGRADE.bulletUpgrades):
+			FIRERATE = max(FIRERATE * 2, 8)
+			boomerangsThrown = 0
 	for i in range(BULLETAMOUNT):
 		var BULLET = currentBullet.instantiate()
 		var dirOffset = startDir + (dirSteps * i) if BULLETAMOUNT > 1 else 0

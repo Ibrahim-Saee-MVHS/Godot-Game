@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ccg2gsgxi4mqa"]
+
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_pwk3o"]
+[ext_resource type="Texture2D" uid="uid://0ma5m515jkti" path="res://assets/sprites/projectiles/boomerang_outline.png" id="2_pwk3o"]
+[ext_resource type="Texture2D" uid="uid://dcd8wh4u74s0d" path="res://assets/sprites/projectiles/boomerang_core.png" id="3_b54y3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3fwqd"]
+radius = 7.0
+
+[node name="PlayerBoomerang" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_pwk3o")
+
+[node name="Outline" type="Sprite2D" parent="." unique_id=517558892]
+self_modulate = Color(0, 0.8039216, 1, 1)
+position = Vector2(3, 0)
+texture = ExtResource("2_pwk3o")
+
+[node name="Core" type="Sprite2D" parent="." unique_id=718132180]
+position = Vector2(3, 0)
+texture = ExtResource("3_b54y3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CircleShape2D_3fwqd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

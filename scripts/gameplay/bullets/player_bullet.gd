@@ -20,13 +20,12 @@ var ricochet: float
 var homing: float
 var explosiveness: float
 var upgrades: int
-var target: Enemy = null
+var target: CollisionObject2D = null
 
 func _ready():
 	if homing > 0:
 		findNewTarget()
 	if TYPE == "normal":
-		$Outline.self_modulate = Global.playerColor
 		KNOCKBACK = 4000
 		despawnTimer = 60
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
@@ -34,13 +33,16 @@ func _ready():
 	if TYPE == "flame":
 		KNOCKBACK = 0
 		despawnTimer = 5 + (2 * upgrades)
+		homing = 0
 		DAMAGE = (DAMAGE / 100) + 0.01 + (0.01 * upgrades)
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
-	if TYPE == "plasma":
+	else:
 		$Outline.self_modulate = Global.playerColor
+	if TYPE == "plasma":
 		KNOCKBACK = 0
 		despawnTimer = 120
+		homing = 0
 		match upgrades:
 			0:
 				$CollisionShape2D.shape.radius = 18
@@ -57,10 +59,16 @@ func _ready():
 				$CPUParticles2D.amount = 96
 				$CPUParticles2D.initial_velocity_min = 48
 				$CPUParticles2D.initial_velocity_max = 96
+	if TYPE == "boomerang":
+		KNOCKBACK = 8000
+		despawnTimer = 5 + (5 * upgrades)
 
 func _process(delta):
 	if homing > 0:
 		homeOnEnemy(homing)
+	if TYPE == "boomerang":
+		rotation_degrees += SPEED / 10
+		SPEED = clamp(SPEED + 2.5, 125, 500)
 	if TYPE == "flame":
 		SPEED -= 1 * delta
 		SPEED = max(SPEED, 0)
@@ -83,7 +91,10 @@ func _process(delta):
 				MOVEDIR += deg_to_rad([-135, 135].pick_random())
 		
 	if despawnTimer <= 0:
-		despawnBullet(delta)
+		if TYPE == "boomerang":
+			returnToPlayer()
+		else:
+			despawnBullet(delta)
 
 func despawnBullet(delta):
 	$CollisionShape2D.disabled = true
@@ -108,3 +119,14 @@ func findNewTarget():
 				min_distance = distance
 				nearest_enemy = enemy
 		target = nearest_enemy
+
+func returnToPlayer():
+	if target != get_parent().get_node("Player"):
+		target = get_parent().get_node("Player")
+	MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.1)
+
+func _on_body_entered(body: Node2D) -> void:
+	if TYPE == "boomerang" and despawnTimer <= 0 :
+		if body is Player:
+			body.FIRERATE = body.MAXFIRERATE
+			queue_free()

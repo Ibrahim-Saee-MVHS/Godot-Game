@@ -18,6 +18,10 @@ var shake: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.SCREENSHAKEAMOUNT = 0
+	Global.SCREENSHAKEPOWER = 0
+	Global.VIGNETTECOLOR = Vector3(0, 0, 0)
+	Global.VIGNETTEINTENSITY = 0.25
 	Global.setGameModifiers()
 	SettingsGlobal.setAllSettings()
 	ENEMYSPAWNTIMER = randf_range(1, ENEMYMINSPAWNTIMER)
