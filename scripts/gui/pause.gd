@@ -33,6 +33,8 @@ func _on_continue_pressed():
 	pause()
 
 func _on_menu_pressed():
+	$Control/Continue.disabled = true
+	$Control/Menu.disabled = true
 	$Control/AnimationPlayer.play("fade_out")
 
 func _on_animation_player_animation_finished(_anim_name):
