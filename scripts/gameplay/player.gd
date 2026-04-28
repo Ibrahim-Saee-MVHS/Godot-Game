@@ -93,7 +93,6 @@ func level():
 		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
 	if EXP >= EXPMAX:
 		LEVEL += 1
-		EXP = 0
 		EXPMAX += 4
 		if Global.GAMEMODIFIERS.get("no_hit", false) == true:
 			UPGRADE.speed += 0.25

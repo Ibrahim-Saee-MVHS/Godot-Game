@@ -26,6 +26,7 @@ func _process(_delta: float) -> void:
 	$Control/Control/HBoxContainer/Upgrade1/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade2/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade3/Button.disabled = buttonsDisabled
+	$Control/Control/Skip.disabled = buttonsDisabled
 
 func _upgrade1Selected() -> void:
 	selectedUpgrade = $Control/Control/HBoxContainer/Upgrade1.UPGRADES[0]
@@ -39,6 +40,10 @@ func _upgrade3Selected() -> void:
 	selectedUpgrade = $Control/Control/HBoxContainer/Upgrade3.UPGRADES[2]
 	upgradePlayer()
 
+func _on_skip_pressed() -> void:
+	get_parent().get_node("Player").EXP /= 2
+	endUpgrade()
+
 func endUpgrade():
 	$AnimationPlayer.play("upgradesDown")
 
@@ -48,6 +53,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		queue_free()
 
 func upgradePlayer():
+	get_parent().get_node("Player").EXP = 0
 	match selectedUpgrade:
 		"hearty":
 			get_parent().get_node("Player").UPGRADE.health += 5
