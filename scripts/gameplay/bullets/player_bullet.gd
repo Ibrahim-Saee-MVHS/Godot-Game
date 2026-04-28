@@ -34,7 +34,7 @@ func _ready():
 		KNOCKBACK = 0
 		despawnTimer = 5 + (2 * upgrades)
 		homing = 0
-		DAMAGE = (DAMAGE / 100) + 0.01 + (0.01 * upgrades)
+		DAMAGE = (DAMAGE / 20) + 0.1 + (0.25 * upgrades)
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
 	else:
