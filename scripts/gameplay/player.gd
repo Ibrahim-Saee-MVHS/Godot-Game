@@ -254,7 +254,6 @@ func activateAbility(delta):
 	if ABILITY == "shield":
 		var SHIELD = ShieldNode.instantiate()
 		add_child(SHIELD)
-		$Area2D/CollisionShape2D.disabled = true
 	ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func setAbilityStats():
@@ -309,7 +308,7 @@ func dealDamage(damage, inv):
 	Global.spawnDamageIndicator(global_position, -damage)
 
 func _on_area_2d_area_entered(area):
-	if INVULNERABILITY <= 0:
+	if INVULNERABILITY <= 0 and not has_node("Shield"):
 		# bullets
 		if area is EnemyBullet:
 			# flame
@@ -330,7 +329,7 @@ func _on_area_2d_area_entered(area):
 			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
 			knockbackPower = clampf(area.EXPLOSIONPOWER, 2, 16)
 			knockbackDir = (area.global_position - global_position).angle()
-	if area is HealthBox:
+	if area is HealthBox and HEALTH < MAXHEALTH:
 		$Health.pitch_scale = randf_range(0.9, 1.1)
 		$Health.playing = true
 		Global.VIGNETTEINTENSITY = 0.25

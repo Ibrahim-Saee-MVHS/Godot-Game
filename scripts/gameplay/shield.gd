@@ -11,7 +11,7 @@ func _ready():
 func _process(_delta):
 	get_parent().ABILITYCOOLDOWN = get_parent().ABILITYMAXCOOLDOWN
 	if BLOCKS <= 0:
-		get_parent().get_node("Area2D/CollisionShape2D").disabled = false
+		#get_parent().get_node("Area2D/CollisionShape2D").disabled = false
 		queue_free()
 
 func protect():
