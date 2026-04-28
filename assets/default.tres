@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cihx4dlnft2vk" path="res://assets/sprites/ui/dropdown.png" id="5_27h7j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8gvj"]
-bg_color = Color(0.2421875, 0.09365845, 0.14587569, 1)
+bg_color = Color(0.24, 0.168, 0.19319998, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrysy"]
 bg_color = Color(0.29803923, 0.27058825, 0.29411766, 0.5019608)
