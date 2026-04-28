@@ -1,0 +1,22 @@
+{
+	"flame_max": {
+		"name": "Arsonist's Best Friend",
+		"description": "Max out the Flamethrower upgrade.",
+	},
+	"plasma_max": {
+		"name": "Advanced Technology",
+		"description": "Max out the Plasma Rounds upgrade.",
+	},
+	"normal_max": {
+		"name": "If It Ain't Broke",
+		"description": "Max out the Caliber Increase upgrade.",
+	},
+	"boomerang_max": {
+		"name": "What goes around, comes around",
+		"description": "Max out the Boomerang upgrade.",
+	},
+	"elemental": {
+		"name": "Master of Elements",
+		"description": "Master every elemental upgrade.",
+	},
+}

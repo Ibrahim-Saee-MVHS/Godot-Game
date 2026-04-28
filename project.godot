@@ -21,6 +21,7 @@ config/icon="uid://dmjpwof5b0fst"
 Global="*uid://cdrhjugrj6tpf"
 Abilities="*uid://mrgbcens6em5"
 SettingsGlobal="*uid://c1uj82itea47f"
+Achievements="*uid://bwdffakhcrd0g"
 
 [display]
 
