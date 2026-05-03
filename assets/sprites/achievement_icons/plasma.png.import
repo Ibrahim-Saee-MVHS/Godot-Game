@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt0ecjcxuod2h"
-path="res://.godot/imported/plasma_max.png-d90cc3da54caea6f0b46e46a60d819c0.ctex"
+uid="uid://dw3nomsl1y20w"
+path="res://.godot/imported/plasma.png-b13980a97f0e3e96220f93365e7e5bbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/achievement_icons/plasma_max.png"
-dest_files=["res://.godot/imported/plasma_max.png-d90cc3da54caea6f0b46e46a60d819c0.ctex"]
+source_file="res://assets/sprites/achievement_icons/plasma.png"
+dest_files=["res://.godot/imported/plasma.png-b13980a97f0e3e96220f93365e7e5bbb.ctex"]
 
 [params]
 

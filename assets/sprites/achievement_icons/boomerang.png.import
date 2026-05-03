@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://he0ftix8fi0s"
-path="res://.godot/imported/boomerang_max.png-32691ad4ad081da81dcd1ac137899b8d.ctex"
+uid="uid://4ppkyvrft7f6"
+path="res://.godot/imported/boomerang.png-bf068cf87d70cba035aface653303c6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/achievement_icons/boomerang_max.png"
-dest_files=["res://.godot/imported/boomerang_max.png-32691ad4ad081da81dcd1ac137899b8d.ctex"]
+source_file="res://assets/sprites/achievement_icons/boomerang.png"
+dest_files=["res://.godot/imported/boomerang.png-bf068cf87d70cba035aface653303c6b.ctex"]
 
 [params]
 
