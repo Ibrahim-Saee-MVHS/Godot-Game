@@ -1,8 +1,9 @@
 extends Control
 
+var reset = false
 
 func _reset() -> void:
-	pass # Replace with function body.
+	reset = true
 
 func _cancel() -> void:
-	pass # Replace with function body.
+	queue_free()

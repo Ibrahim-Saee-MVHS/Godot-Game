@@ -43,6 +43,9 @@ offset_right = -48.0
 offset_bottom = -51.0
 grow_horizontal = 2
 grow_vertical = 2
+scroll_horizontal_custom_step = 1.0
+scroll_vertical_custom_step = 1.0
+horizontal_scroll_mode = 3
 scroll_hint_mode = 3
 
 [node name="BoxContainer" type="GridContainer" parent="ScrollContainer" unique_id=1461859667]

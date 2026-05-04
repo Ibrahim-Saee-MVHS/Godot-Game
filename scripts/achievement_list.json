@@ -22,6 +22,10 @@
 	},
 	"super_speed": {
 		"name": "At The Speed of Bullets",
-		"description": "Max out the Flashtime Upgrade and increase SPEED by 64",
+		"description": "Max out the Flashtime Upgrade and increase SPEED by 64.",
+	},
+	"dash_smash": {
+		"name": "Dashing Smashing",
+		"description": "Max out the Dash Upgrade and reduce it's COOLDOWN to the lowest it can go.",
 	},
 }

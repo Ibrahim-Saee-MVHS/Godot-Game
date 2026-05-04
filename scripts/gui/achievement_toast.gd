@@ -10,6 +10,10 @@ func _process(delta: float) -> void:
 	if timer >= 4:
 		$AnimationPlayer.play("popdown")
 
+func done():
+	pass
+
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "popdown":
+		done()
 		queue_free()
