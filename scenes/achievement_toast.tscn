@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://clt4dwjuh1y07"]
 
 [ext_resource type="Script" uid="uid://df44u2x3ww7yx" path="res://scripts/gui/achievement_toast.gd" id="1_2gwah"]
-[ext_resource type="Texture2D" uid="uid://dx0wte8tq6xsy" path="res://assets/sprites/ui/ability_frame.png" id="1_ebb37"]
+[ext_resource type="Texture2D" uid="uid://bkyqsfonbu57h" path="res://assets/sprites/ui/achievement_frame.png" id="2_2gwah"]
 [ext_resource type="Texture2D" uid="uid://4ppkyvrft7f6" path="res://assets/sprites/achievement_icons/boomerang.png" id="2_ebb37"]
+[ext_resource type="Texture2D" uid="uid://c7dj0xbbxyu7m" path="res://assets/achievement_toast.tres" id="2_u6yyc"]
 
 [sub_resource type="Animation" id="Animation_u6yyc"]
 length = 0.001
@@ -90,12 +91,6 @@ _data = {
 &"popup": SubResource("Animation_2gwah")
 }
 
-[sub_resource type="Gradient" id="Gradient_kfk6y"]
-colors = PackedColorArray(0.075, 0.18, 0.3, 0.627451, 0.06299999, 0.45, 0.38549995, 0.5019608)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_chy33"]
-gradient = SubResource("Gradient_kfk6y")
-
 [node name="AchievementToast" type="CanvasLayer" unique_id=901909062]
 script = ExtResource("1_2gwah")
 
@@ -120,35 +115,33 @@ offset_top = -212.0
 offset_right = 431.0
 offset_bottom = -90.00018
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_chy33")
+texture = ExtResource("2_u6yyc")
 
 [node name="Frame" type="TextureRect" parent="Control/Toast" unique_id=2115734238]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 21.0
-offset_top = -44.0
-offset_right = 109.0
-offset_bottom = 44.0
+offset_left = 9.0
+offset_top = -51.99991
+offset_right = 113.0
+offset_bottom = 52.00009
 grow_vertical = 2
-texture = ExtResource("1_ebb37")
+texture = ExtResource("2_2gwah")
 
 [node name="Icon" type="TextureRect" parent="Control/Toast/Frame" unique_id=93764406]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ebb37")
-expand_mode = 3
+expand_mode = 1
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="Control/Toast" unique_id=509168193]

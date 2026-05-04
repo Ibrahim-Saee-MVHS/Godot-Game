@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b4ul0laitacft"]
+
+[ext_resource type="Script" uid="uid://cgpr6t2qvp7u4" path="res://scripts/gui/confirmation.gd" id="1_00xrg"]
+[ext_resource type="Theme" uid="uid://bej02ygti5nxu" path="res://assets/default.tres" id="1_lwgcv"]
+
+[sub_resource type="Gradient" id="Gradient_00xrg"]
+colors = PackedColorArray(0.34, 0.1394, 0.2229833, 0.5019608, 0.170145, 0.1273, 0.19, 0.5019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tdwb5"]
+gradient = SubResource("Gradient_00xrg")
+fill_to = Vector2(0, 1)
+
+[node name="Confirmation" type="Control" unique_id=300253544]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_00xrg")
+
+[node name="Popup" type="TextureRect" parent="." unique_id=1176357346]
+custom_minimum_size = Vector2(436, 262)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -125.0
+offset_right = 218.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lwgcv")
+texture = SubResource("GradientTexture2D_tdwb5")
+
+[node name="Title" type="Label" parent="Popup" unique_id=136992150]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 21.0
+offset_right = 113.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "CONFIRM"
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="Popup" unique_id=1960449681]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -195.0
+offset_top = 76.0
+offset_right = 196.0
+offset_bottom = 169.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Are you sure you want to reset?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Reset" type="Button" parent="Popup/Info" unique_id=13964706]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.5
+offset_top = 7.0
+offset_right = -47.5
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Reset"
+
+[node name="Cancel" type="Button" parent="Popup/Info" unique_id=1394399373]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 46.5
+offset_top = 7.0
+offset_right = 179.5
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Cancel"
+
+[connection signal="pressed" from="Popup/Info/Reset" to="." method="_reset"]
+[connection signal="pressed" from="Popup/Info/Cancel" to="." method="_cancel"]

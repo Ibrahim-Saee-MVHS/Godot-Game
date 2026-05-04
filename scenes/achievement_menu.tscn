@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://di6jewetngyib"]
+
+[ext_resource type="Script" uid="uid://di42c7gjgooa" path="res://scripts/gui/achievement_menu.gd" id="1_qc0qr"]
+
+[node name="AchievementMenu" type="Control" unique_id=1828160420]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qc0qr")
+
+[node name="Back" type="Button" parent="." unique_id=465925436]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 184.0
+offset_bottom = 92.0
+text = "< Back"
+
+[node name="Reset" type="Button" parent="." unique_id=1056667397]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -189.0
+offset_top = 28.0
+offset_right = -29.0
+offset_bottom = 92.0
+grow_horizontal = 0
+text = "Reset"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=990901930]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 130.0
+offset_right = -48.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_hint_mode = 3
+
+[node name="BoxContainer" type="GridContainer" parent="ScrollContainer" unique_id=1461859667]
+custom_minimum_size = Vector2(1184, 539)
+layout_mode = 2
+columns = 2
+
+[connection signal="pressed" from="Back" to="." method="_back"]
+[connection signal="pressed" from="Reset" to="." method="_reset"]

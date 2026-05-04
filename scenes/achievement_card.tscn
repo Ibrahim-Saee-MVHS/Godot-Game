@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://d0yqxhndp8hrl"]
+
+[ext_resource type="Texture2D" uid="uid://bc03byd23qsya" path="res://assets/achievement_card.tres" id="1_18xag"]
+[ext_resource type="Texture2D" uid="uid://bkyqsfonbu57h" path="res://assets/sprites/ui/achievement_frame.png" id="2_0eilo"]
+[ext_resource type="Texture2D" uid="uid://bgbudohgbfr45" path="res://assets/sprites/achievement_icons/super_speed.png" id="3_gd1nt"]
+[ext_resource type="Texture2D" uid="uid://dwb2qh6m5bvq5" path="res://assets/sprites/ui/achievement_bar.png" id="4_gd1nt"]
+[ext_resource type="Texture2D" uid="uid://bkgorv7k4omo4" path="res://assets/sprites/ui/achievement_bar_fill.png" id="5_8ajd3"]
+
+[node name="AchievementCard" type="Control" unique_id=1237968538]
+custom_minimum_size = Vector2(510, 169)
+layout_mode = 3
+offset_right = 510.0
+offset_bottom = 169.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Card" type="TextureRect" parent="." unique_id=409230723]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_18xag")
+
+[node name="Frame" type="TextureRect" parent="Card" unique_id=1064707382]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -63.5
+offset_right = 148.0
+offset_bottom = 64.5
+grow_vertical = 2
+texture = ExtResource("2_0eilo")
+
+[node name="Icon" type="TextureRect" parent="Card/Frame" unique_id=1990616615]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gd1nt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Name" type="Label" parent="Card" unique_id=1277983676]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 158.0
+offset_top = -63.5
+offset_right = 502.0
+offset_bottom = -34.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "At The Speed of Bullets"
+
+[node name="Description" type="Label" parent="Card" unique_id=1214191754]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 158.0
+offset_top = -34.5
+offset_right = 502.0
+offset_bottom = 64.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.63830566, 0.984375, 0.984375, 1)
+theme_override_font_sizes/font_size = 16
+text = "Max out the Flashtime Upgrade and increase SPEED by 64"
+autowrap_mode = 3
+
+[node name="Progress" type="TextureProgressBar" parent="Card" unique_id=939191139]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 9.0
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("4_gd1nt")
+texture_progress = ExtResource("5_8ajd3")
+metadata/_edit_use_anchors_ = true
