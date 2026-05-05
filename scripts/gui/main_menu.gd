@@ -1,7 +1,7 @@
 extends Control
 
 var color = 0
-var buildType = "-rc-1"
+var buildType = "-rc-2"
 
 func _ready():
 	get_tree().paused = false
