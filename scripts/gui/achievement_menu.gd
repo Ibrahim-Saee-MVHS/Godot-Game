@@ -9,7 +9,7 @@ var buttonsDisabled = false
 func _ready() -> void:
 	addAchievementCards()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$Back.disabled = buttonsDisabled
 	$Reset.disabled = buttonsDisabled
 	if has_node("Confirmation"):

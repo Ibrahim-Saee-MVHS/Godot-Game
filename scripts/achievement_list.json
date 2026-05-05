@@ -5,7 +5,7 @@
 	},
 	"plasma": {
 		"name": "Advanced Technology",
-		"description": "Max out the Plasma Rounds upgrade.",
+		"description": "Max out the Plasma Rounds upgrade.\n[color=#aaffff11](Plasma is not an element.)[/color]",
 	},
 	"normal": {
 		"name": "High Caliber",
@@ -19,6 +19,18 @@
 		"name": "Master of Elements",
 		"description": "Master every elemental upgrade.",
 		"impossible": true,
+	},
+	"level_10": {
+		"name": "It Only Gets Harder From Here",
+		"description": "Reach Level 10.",
+	},
+	"level_25": {
+		"name": "Endurable",
+		"description": "Reach Level 25.",
+	},
+	"level_50": {
+		"name": "Invincble!",
+		"description": "Reach Level 50.",
 	},
 	"super_speed": {
 		"name": "At The Speed of Bullets",

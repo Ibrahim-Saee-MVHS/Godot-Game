@@ -8,9 +8,9 @@ func _process(_delta):
 	$Card/Frame/Icon.texture = load("res://assets/sprites/achievement_icons/" + str(ID) + ".png")
 	$Card/Name.text = str(AchievementList.get(ID).name)
 	if AchievementList.get(ID).has("impossible") and AchievementList.get(ID).get("impossible") == true:
-		$Card/Description.text = "This achievement is currently impossible, probably due to lack of content"
+		$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FF001A]This achievement is currently impossible, probably due to lack of content.[/color]")
 	else:
-		$Card/Description.text = str(AchievementList.get(ID).description)
+		$Card/Description.parse_bbcode(str(AchievementList.get(ID).description))
 	
 	if Achievements.isAchievementUnlocked(ID) == true:
 		$Card/Frame/Lock.visible = false

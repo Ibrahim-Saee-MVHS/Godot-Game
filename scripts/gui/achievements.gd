@@ -12,7 +12,7 @@ var initialAchievements = {
 	"flame": false,
 	"boomerang": false,
 	"elemental": {
-		"locked": true,
+		"unlocked": false,
 		"thunder": false,
 		"frost": false,
 		"flame": false,
@@ -25,6 +25,21 @@ var initialAchievements = {
 	},
 	"super_speed": false,
 	"dash_smash": false,
+	"level_10": {
+		"unlocked": false,
+		"max_progress": 10,
+		"progress": 0,
+	},
+	"level_25": {
+		"unlocked": false,
+		"max_progress": 25,
+		"progress": 0,
+	},
+	"level_50": {
+		"unlocked": false,
+		"max_progress": 50,
+		"progress": 0,
+	},
 }
 
 func _ready() -> void:
@@ -44,11 +59,14 @@ func loadAchievements():
 	if not FileAccess.file_exists("user://achievements.save"):
 		ACHIEVEMENTS = initialAchievements
 		saveAchievements()
-	var file = FileAccess.open("user://achievements.save", FileAccess.READ_WRITE)
+	var file = FileAccess.open("user://achievements.save", FileAccess.READ)
 	var json = JSON.parse_string(file.get_as_text())
-	if initialAchievements.keys().size() > json.keys().size():
-		for i in range(initialAchievements.keys().size()):
-			json.get_or_add(initialAchievements.keys()[i], false)
+	json.sort()
+	var init = initialAchievements.duplicate(true)
+	init.sort()
+	if init != json:
+		for i in range(init.keys().size()):
+			json.get_or_add(init.keys()[i], false)
 		file.store_line(JSON.stringify(json))
 	ACHIEVEMENTS = json
 
@@ -76,27 +94,26 @@ func isAchievementUnlocked(achievementID: String):
 	if ACHIEVEMENTS.get(achievementID) is bool:
 		return ACHIEVEMENTS.get(achievementID)
 	else:
-		if ACHIEVEMENTS.get(achievementID).values()[1] is bool:
-			return (not false in ACHIEVEMENTS.get(achievementID).values())
-		elif ACHIEVEMENTS.get(achievementID).values()[1] is int:
-			return ACHIEVEMENTS.get(achievementID).get("progress") >= ACHIEVEMENTS.get(achievementID).get("max_progress")
+		return ACHIEVEMENTS.get(achievementID).get("unlocked")
 
-func getAchievementProgress(achievementID: String, getMaxProgress: bool):
+func getAchievementProgress(achievementID: String, getMaxProgress: bool = false):
 	if ACHIEVEMENTS.get(achievementID) is not bool:
-		if ACHIEVEMENTS.get(achievementID).values()[0] is bool:
+		if ACHIEVEMENTS.get(achievementID).values()[1] is bool:
 			if getMaxProgress == false:
 				var counter = 0
 				for i in range(ACHIEVEMENTS.get(achievementID).size() - 1):
+					if ACHIEVEMENTS.get(achievementID).keys()[i] == "unlocked": continue
 					if ACHIEVEMENTS.get(achievementID).get(ACHIEVEMENTS.get(achievementID).keys()[i]) == true:
 						counter += 1
-				return counter - 1 # to account for the Locked variable
+				return counter
 			else:
-				return ACHIEVEMENTS.get(achievementID).size() - 1 # to account for the Locked variable
-		elif ACHIEVEMENTS.get(achievementID).values()[0] is int: 
+				return ACHIEVEMENTS.get(achievementID).size()
+		#
+		elif ACHIEVEMENTS.get(achievementID).has("max_progress"): 
 			if getMaxProgress == false:
-				return ACHIEVEMENTS.get(achievementID).get("max_progress")
-			else:
 				return ACHIEVEMENTS.get(achievementID).get("progress")
+			else:
+				return ACHIEVEMENTS.get(achievementID).get("max_progress")
 	else:
 		return 0
 
@@ -126,8 +143,8 @@ func achievementUnlocking():
 		if PlayerNode.bulletType == "flame" and PlayerNode.UPGRADE.bulletUpgrades >= 4:
 			ACHIEVEMENTS.get("elemental").set("flame", true)
 			saveAchievements()
-		if ACHIEVEMENTS.get("elemental").get("locked") == false:
-			ACHIEVEMENTS.get("elemental").set("locked", true)
+		if getAchievementProgress("elemental", false) >= getAchievementProgress("elemental", true):
+			ACHIEVEMENTS.get("elemental").set("unlocked", true)
 			unlockAchievement("elemental")
 	
 	if isAchievementUnlocked("super_speed") == false:
@@ -139,3 +156,22 @@ func achievementUnlocking():
 		if (PlayerNode.ABILITY == "dash" and PlayerNode.UPGRADE.abilityPower >= 3) and PlayerNode.ABILITYMAXCOOLDOWN <= 6:
 			ACHIEVEMENTS.set("dash_smash", true)
 			unlockAchievement("dash_smash")
+			
+	if ACHIEVEMENTS.get("level_10").get("progress", 0) < PlayerNode.LEVEL: ACHIEVEMENTS.get("level_10").set("progress", clamp(PlayerNode.LEVEL, 0, 10))
+	if isAchievementUnlocked("level_10") == false:
+		if getAchievementProgress("level_10", false) >= getAchievementProgress("level_10", true):
+			ACHIEVEMENTS.get("level_10").set("unlocked", true)
+			unlockAchievement("level_10")
+	
+	if ACHIEVEMENTS.get("level_25").get("progress", 0) < PlayerNode.LEVEL: ACHIEVEMENTS.get("level_25").set("progress", clamp(PlayerNode.LEVEL, 0, 25))
+	if isAchievementUnlocked("level_25") == false:
+		if getAchievementProgress("level_25", false) >= getAchievementProgress("level_25", true):
+			ACHIEVEMENTS.get("level_25").set("unlocked", true)
+			unlockAchievement("level_25")
+	
+	if ACHIEVEMENTS.get("level_50").get("progress", 0) < PlayerNode.LEVEL: ACHIEVEMENTS.get("level_50").set("progress", clamp(PlayerNode.LEVEL, 0, 50))
+	if isAchievementUnlocked("level_50") == false:
+		if getAchievementProgress("level_50", false) >= getAchievementProgress("level_50", true):
+			ACHIEVEMENTS.get("level_50").set("unlocked", true)
+			unlockAchievement("level_50")
+		
