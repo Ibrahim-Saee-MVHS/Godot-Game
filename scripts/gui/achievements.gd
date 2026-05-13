@@ -68,6 +68,7 @@ func loadAchievements():
 		for i in range(init.keys().size()):
 			json.get_or_add(init.keys()[i], false)
 		file.store_line(JSON.stringify(json))
+		json = JSON.parse_string(file.get_as_text())
 	ACHIEVEMENTS = json
 
 func saveAchievements():
