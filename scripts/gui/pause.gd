@@ -1,24 +1,27 @@
 extends CanvasLayer
 
+var canPause = true
+
 func _ready():
 	visible = false
 
 func pause():
-	if visible == true:
-		visible = false
-		get_parent().get_node("Music").process_mode = Node.PROCESS_MODE_ALWAYS
-		get_parent().get_node("Flashtime").process_mode = Node.PROCESS_MODE_ALWAYS
-		if get_parent().has_node("UpgradeScreen"):
-			get_parent().get_node("UpgradeScreen").process_mode = Node.PROCESS_MODE_ALWAYS
-		else:
-			get_tree().paused = false
-	elif visible == false:
-		visible = true
-		get_tree().paused = true
-		get_parent().get_node("Music").process_mode = Node.PROCESS_MODE_DISABLED
-		get_parent().get_node("Flashtime").process_mode = Node.PROCESS_MODE_DISABLED
-		if get_parent().has_node("UpgradeScreen"):
-			get_parent().get_node("UpgradeScreen").process_mode = Node.PROCESS_MODE_DISABLED
+	if canPause == true:
+		if visible == true:
+			visible = false
+			get_parent().get_node("Music").process_mode = Node.PROCESS_MODE_ALWAYS
+			get_parent().get_node("Flashtime").process_mode = Node.PROCESS_MODE_ALWAYS
+			if get_parent().has_node("UpgradeScreen"):
+				get_parent().get_node("UpgradeScreen").process_mode = Node.PROCESS_MODE_ALWAYS
+			else:
+				get_tree().paused = false
+		elif visible == false:
+			visible = true
+			get_tree().paused = true
+			get_parent().get_node("Music").process_mode = Node.PROCESS_MODE_DISABLED
+			get_parent().get_node("Flashtime").process_mode = Node.PROCESS_MODE_DISABLED
+			if get_parent().has_node("UpgradeScreen"):
+				get_parent().get_node("UpgradeScreen").process_mode = Node.PROCESS_MODE_DISABLED
 	
 
 func _process(_delta):
@@ -33,6 +36,7 @@ func _on_continue_pressed():
 	pause()
 
 func _on_menu_pressed():
+	canPause = false
 	$Control/Continue.disabled = true
 	$Control/Menu.disabled = true
 	$Control/AnimationPlayer.play("fade_out")
