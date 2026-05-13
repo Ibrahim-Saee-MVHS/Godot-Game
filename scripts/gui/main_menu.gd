@@ -3,6 +3,7 @@ extends Control
 var color = 0
 var buildType = " Release"
 var InstructionBoardNode = preload("res://scenes/instructions_board.tscn")
+var CreditsNode = preload("res://scenes/credits.tscn")
 var buttonsDisabled = false
 
 func _ready():
@@ -27,6 +28,10 @@ func _instructions() -> void:
 
 func _exit() -> void:
 	get_tree().quit()
+
+func _credits():
+	add_child(CreditsNode.instantiate())
+	buttonsDisabled = true
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "fade_in_game":

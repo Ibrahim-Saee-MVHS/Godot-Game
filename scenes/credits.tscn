@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://68jkr08le6hl"]
+
+[ext_resource type="Script" uid="uid://b0eiybgw3cnf7" path="res://scripts/gui/credits.gd" id="1_0bpdh"]
+
+[node name="Credits" type="Control" unique_id=1204997132]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bpdh")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1677003327]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.29411766)
+
+[node name="Panel" type="Panel" parent="." unique_id=1566964102]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -221.0
+offset_right = 425.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Roles" type="Label" parent="Panel" unique_id=1066731655]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.127
+anchor_right = 0.46600002
+anchor_bottom = 1.0
+offset_top = -0.13400269
+offset_right = -0.1000061
+grow_horizontal = 2
+grow_vertical = 2
+text = "Programming, Art, Music, Sound"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Roles2" type="Label" parent="Panel" unique_id=1694785856]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.527
+anchor_top = 0.127
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.049987793
+offset_top = -0.13400269
+grow_horizontal = 2
+grow_vertical = 2
+text = "Finn10Plays"
+autowrap_mode = 3
+
+[node name="Exit" type="Button" parent="Panel" unique_id=1963730081]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "X"
+
+[connection signal="pressed" from="Panel/Exit" to="." method="_on_exit_pressed"]

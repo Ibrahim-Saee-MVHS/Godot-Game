@@ -41,6 +41,7 @@ enemies=""
 
 [gui]
 
+fonts/dynamic_fonts/use_oversampling=false
 theme/custom="uid://bej02ygti5nxu"
 theme/custom_font="uid://dm7col5e5mkj4"
 
