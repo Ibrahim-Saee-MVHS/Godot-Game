@@ -27,7 +27,7 @@
 		"sprite": "res://assets/sprites/upgrade_icons/bullet_enhancer.png",
 		"name": "Bullet Enhancer",
 		"description": "+4 DAMAGE but +2 FIRERATE",
-		"weight": 0.75,
+		"weight": 1.0,
 	},
 	"reinforced_chamber": {
 		"sprite": "res://assets/sprites/upgrade_icons/reinforced_chamber.png",
