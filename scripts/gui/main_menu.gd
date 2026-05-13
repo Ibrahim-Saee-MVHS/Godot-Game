@@ -1,7 +1,7 @@
 extends Control
 
 var color = 0
-var buildType = "-rc-2"
+var buildType = " Release"
 var InstructionBoardNode = preload("res://scenes/instructions_board.tscn")
 var buttonsDisabled = false
 
