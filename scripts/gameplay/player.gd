@@ -314,8 +314,8 @@ func _on_area_2d_area_entered(area):
 			# flame
 			if area.TYPE == "flame":
 				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
-				area.get_node("CPUParticles2D").set_deferred("emitting", false)
-				area.get_node("CollisionShape2D").set_deferred("disabled", true)
+				# area.get_node("CPUParticles2D").set_deferred("emitting", false)
+				# area.get_node("CollisionShape2D").set_deferred("disabled", true)
 			# normal
 			elif area.explosiveness <= 0:
 				dealDamage(area.DAMAGE, MAXINVULNERABILITY)

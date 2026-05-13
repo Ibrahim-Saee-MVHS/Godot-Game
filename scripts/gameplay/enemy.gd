@@ -311,8 +311,8 @@ func _gotDamaged(area):
 				shaderMaterial.shader = Global.shaders.flash
 				HEALTH -= area.DAMAGE
 				if area.TYPE == "flame":
-					area.get_node("CPUParticles2D").set_deferred("emitting", false)
-					area.get_node("CollisionShape2D").set_deferred("disabled", true)
+					# area.get_node("CPUParticles2D").set_deferred("emitting", false)
+					# area.get_node("CollisionShape2D").set_deferred("disabled", true)
 					HITSTUN = 0.5
 				elif area.TYPE == "plasma":
 					HITSTUN = 2
