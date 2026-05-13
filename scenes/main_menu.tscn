@@ -80,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="PlayGame" type="Button" parent="." unique_id=1442578348]
+[node name="PlayGame" type="Button" parent="." unique_id=1442578348 groups=["mainMenuButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,7 +95,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Play"
 
-[node name="GameModifiers" type="Button" parent="PlayGame" unique_id=1471407518]
+[node name="GameModifiers" type="Button" parent="PlayGame" unique_id=1471407518 groups=["mainMenuButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,7 +114,7 @@ alignment = 2
 icon_alignment = 1
 expand_icon = true
 
-[node name="Achievements" type="Button" parent="PlayGame" unique_id=1845396345]
+[node name="Achievements" type="Button" parent="PlayGame" unique_id=1845396345 groups=["mainMenuButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -133,7 +133,7 @@ alignment = 2
 icon_alignment = 1
 expand_icon = true
 
-[node name="Instructions" type="Button" parent="." unique_id=2126332987]
+[node name="Instructions" type="Button" parent="." unique_id=2126332987 groups=["mainMenuButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -148,7 +148,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "How to Play"
 
-[node name="Settings" type="Button" parent="." unique_id=246424040]
+[node name="Settings" type="Button" parent="." unique_id=246424040 groups=["mainMenuButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -163,7 +163,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Settings"
 
-[node name="Exit" type="Button" parent="." unique_id=1163726982]
+[node name="Exit" type="Button" parent="." unique_id=1163726982 groups=["mainMenuButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
