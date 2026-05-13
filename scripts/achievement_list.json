@@ -25,12 +25,23 @@
 		"description": "Reach Level 10.",
 	},
 	"level_25": {
-		"name": "Endurable",
+		"name": "High Endurance",
 		"description": "Reach Level 25.",
 	},
 	"level_50": {
-		"name": "Invincble!",
+		"name": "Unbeatable",
 		"description": "Reach Level 50.",
+		"warn": true,
+	},
+	"level_75": {
+		"name": "Invincible!",
+		"description": "Reach Level 75.",
+		"warn": true,
+	},
+	"level_100": {
+		"name": "Ultimate.",
+		"description": "The Pinacle.\nReach Level 100.",
+		"warn": true,
 	},
 	"super_speed": {
 		"name": "At The Speed of Bullets",

@@ -40,6 +40,16 @@ var initialAchievements = {
 		"max_progress": 50,
 		"progress": 0,
 	},
+	"level_75": {
+		"unlocked": false,
+		"max_progress": 75,
+		"progress": 0,
+	},
+	"level_100": {
+		"unlocked": false,
+		"max_progress": 100,
+		"progress": 0,
+	},
 }
 
 func _ready() -> void:
@@ -59,14 +69,19 @@ func loadAchievements():
 	if not FileAccess.file_exists("user://achievements.save"):
 		ACHIEVEMENTS = initialAchievements
 		saveAchievements()
-	var file = FileAccess.open("user://achievements.save", FileAccess.READ)
+	var file = FileAccess.open("user://achievements.save", FileAccess.READ_WRITE)
 	var json = JSON.parse_string(file.get_as_text())
 	json.sort()
 	var init = initialAchievements.duplicate(true)
 	init.sort()
 	if init != json:
 		for i in range(init.keys().size()):
-			json.get_or_add(init.keys()[i], false)
+			if init.get(init.keys()[i]) is bool:
+				json.get_or_add(init.keys()[i], false)
+			else:
+				json.get_or_add(init.keys()[i], init.get(init.keys()[i]))
+				if json.get(init.keys()[i]).get("unlocked") == null:
+					json.set(init.keys()[i], init.get(init.keys()[i]))
 		file.store_line(JSON.stringify(json))
 		json = JSON.parse_string(file.get_as_text())
 	ACHIEVEMENTS = json
@@ -175,4 +190,16 @@ func achievementUnlocking():
 		if getAchievementProgress("level_50", false) >= getAchievementProgress("level_50", true):
 			ACHIEVEMENTS.get("level_50").set("unlocked", true)
 			unlockAchievement("level_50")
+	
+	if ACHIEVEMENTS.get("level_75").get("progress", 0) < PlayerNode.LEVEL: ACHIEVEMENTS.get("level_75").set("progress", clamp(PlayerNode.LEVEL, 0, 75))
+	if isAchievementUnlocked("level_75") == false:
+		if getAchievementProgress("level_75", false) >= getAchievementProgress("level_75", true):
+			ACHIEVEMENTS.get("level_75").set("unlocked", true)
+			unlockAchievement("level_75")
+	
+	if ACHIEVEMENTS.get("level_100").get("progress", 0) < PlayerNode.LEVEL: ACHIEVEMENTS.get("level_100").set("progress", clamp(PlayerNode.LEVEL, 0, 100))
+	if isAchievementUnlocked("level_100") == false:
+		if getAchievementProgress("level_100", false) >= getAchievementProgress("level_100", true):
+			ACHIEVEMENTS.get("level_100").set("unlocked", true)
+			unlockAchievement("level_100")
 		
