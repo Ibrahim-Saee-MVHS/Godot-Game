@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://cu2dthyu35gv3"]
+
+[ext_resource type="Texture2D" uid="uid://c8qtyt3f4ux4m" path="res://assets/sprites/ui/wasd.png" id="1_2v8nb"]
+[ext_resource type="Script" uid="uid://ch5b8rqmfm8jl" path="res://scripts/gui/instructions_board.gd" id="1_t46oc"]
+[ext_resource type="Texture2D" uid="uid://b2kttn3l15k43" path="res://assets/sprites/ui/mouse.png" id="2_t46oc"]
+
+[node name="InstructionBoard" type="Control" unique_id=1364031321]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t46oc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=31486792]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Panel" type="Panel" parent="." unique_id=1757643615]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -221.0
+offset_right = 425.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Exit" type="Button" parent="Panel" unique_id=42835611]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "X"
+
+[node name="Title" type="Label" parent="Panel" unique_id=503474118]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Instructions"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="WASD" type="TextureRect" parent="Panel" unique_id=662925240]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -132.0
+offset_right = -72.66669
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2v8nb")
+stretch_mode = 5
+
+[node name="Move" type="Label" parent="Panel/WASD" unique_id=1183032411]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.66666
+offset_right = 76.33334
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Move"
+horizontal_alignment = 1
+
+[node name="Mouse" type="TextureRect" parent="Panel" unique_id=575493945]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 94.0
+offset_top = -132.0
+offset_right = 216.66675
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t46oc")
+stretch_mode = 5
+
+[node name="Shoot" type="Label" parent="Panel/Mouse" unique_id=962935958]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -55.333313
+offset_right = 38.666687
+offset_bottom = 29.0
+grow_vertical = 0
+text = "Shoot"
+horizontal_alignment = 2
+
+[node name="Ability" type="Label" parent="Panel/Mouse" unique_id=90042871]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_right = 91.0
+offset_bottom = 29.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ability"
+
+[node name="Tips" type="Label" parent="Panel" unique_id=739195535]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.58900005
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.3380127
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Your goal is to survive for as long as you can, kill enemies to gain EXP and level up.
+
+Every level you can select one out of three upgrades, if none of the upgrades are good for you, you can skip and keep half your EXP."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Panel/Exit" to="." method="_exit"]

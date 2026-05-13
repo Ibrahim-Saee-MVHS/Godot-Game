@@ -2,6 +2,7 @@ extends Control
 
 var color = 0
 var buildType = "-rc-2"
+var InstructionBoardNode = preload("res://scenes/instructions_board.tscn")
 
 func _ready():
 	get_tree().paused = false
@@ -15,6 +16,9 @@ func _startGame():
 
 func _settings() -> void:
 	get_tree().change_scene_to_file("res://scenes/settings.tscn")
+
+func _instructions() -> void:
+	add_child(InstructionBoardNode.instantiate())
 
 func _exit() -> void:
 	get_tree().quit()
