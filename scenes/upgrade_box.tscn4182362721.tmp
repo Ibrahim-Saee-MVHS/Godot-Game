@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bv7yqcgmg6esv"]
+
+[ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="1_boqgo"]
+[ext_resource type="Texture2D" uid="uid://qeenp82t4f1f" path="res://assets/sprites/upgrade_icons/homing_rounds.png" id="2_8678i"]
+[ext_resource type="Script" uid="uid://bx6bjdohwiyae" path="res://scripts/gui/upgrade_box.gd" id="2_tfxrb"]
+
+[node name="UpgradeBox" type="Control" unique_id=1263505442]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_boqgo")
+script = ExtResource("2_tfxrb")
+
+[node name="Button" type="Button" parent="." unique_id=801592821]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 196.0
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Icon" type="TextureRect" parent="Button" unique_id=41315179]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_top = 17.0
+offset_right = 51.0
+offset_bottom = 119.0
+grow_horizontal = 2
+texture = ExtResource("2_8678i")
+
+[node name="Title" type="Label" parent="Button" unique_id=1397989183]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -77.0
+offset_right = 64.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Homing Rounds"
+horizontal_alignment = 1
+autowrap_mode = 2

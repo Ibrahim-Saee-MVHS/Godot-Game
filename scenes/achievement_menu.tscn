@@ -46,7 +46,7 @@ grow_vertical = 2
 scroll_horizontal_custom_step = 1.0
 scroll_vertical_custom_step = 1.0
 horizontal_scroll_mode = 3
-scroll_hint_mode = 3
+scroll_hint_mode = 1
 
 [node name="BoxContainer" type="GridContainer" parent="ScrollContainer" unique_id=1461859667]
 custom_minimum_size = Vector2(1184, 539)

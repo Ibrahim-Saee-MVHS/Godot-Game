@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://05ekl8yckve0"]
+
+[ext_resource type="Script" uid="uid://c5734la4x46w5" path="res://scripts/gui/upgrade_selector.gd" id="1_6dtbo"]
+[ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="1_rsdqu"]
+
+[node name="UpgradeSelector" type="CanvasLayer" unique_id=143015753]
+process_mode = 3
+script = ExtResource("1_6dtbo")
+
+[node name="Control" type="Control" parent="." unique_id=327613632]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control" unique_id=932180927]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.071875
+anchor_top = 0.09861111
+anchor_right = 0.928125
+anchor_bottom = 0.6402778
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+scroll_hint_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="Control/ScrollContainer" unique_id=1198191960]
+clip_contents = true
+custom_minimum_size = Vector2(1096, 876.8)
+layout_mode = 2
+columns = 6
+
+[node name="DescriptionBox" type="Panel" parent="Control" unique_id=719000364]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -192.0
+offset_right = 885.0
+offset_bottom = -80.0
+grow_vertical = 0
+
+[node name="Description" type="Label" parent="Control/DescriptionBox" unique_id=837949207]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Choose any one upgrade in this list!
+Select an upgrade to read it's description."
+autowrap_mode = 2
+
+[node name="Confirm" type="Button" parent="Control" unique_id=1901654022]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -184.0
+offset_right = -89.0
+offset_bottom = -102.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_rsdqu")
+disabled = true
+text = "Confirm"

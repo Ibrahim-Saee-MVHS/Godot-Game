@@ -120,4 +120,11 @@
 		"description": "Changes BULLET TYPE to Boomerang, Short range, spinning projectiles that return back to you, Stack for greater range and +1 BOOMERANG",
 		"weight": 0.5,
 	},
+	"card_picker": {
+		"sprite": "res://assets/sprites/upgrade_icons/card_picker.png",
+		"name": "Pick a Card!",
+		"description": "Any card! Well, almost anyway.\nYou can select almost any upgrade you want, but -10 HEALTH.",
+		"weight": 0.1,
+		"rarity": "rare",
+	},
 }
