@@ -48,11 +48,14 @@ func endUpgrade():
 	$AnimationPlayer.play("upgradesDown")
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "upgradesDown":
+	if anim_name == "upgradesDown" or anim_name == "upgradeSelectorOut":
 		get_tree().paused = false
 		queue_free()
 
 func upgradePlayer():
 	get_parent().get_node("Player").EXP = 0
 	Upgrader.upgrade(selectedUpgrade)
-	endUpgrade()
+	if selectedUpgrade == "card_picker":
+		$AnimationPlayer.play("upgradeSelectorIn")
+	else:
+		endUpgrade()

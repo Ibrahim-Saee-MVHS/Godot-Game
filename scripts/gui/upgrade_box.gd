@@ -6,9 +6,7 @@ var upgradeInfo = Global.upgradeInfo
 var player
 
 func _ready() -> void:
-	player = load("res://scenes/player.tscn").instantiate() #get_tree().current_scene.get_node("Player")
-
-func _process(_delta: float) -> void:
+	player = get_tree().current_scene.get_node("Player")
 	if UPGRADE != "":
 		if upgradeInfo.get(UPGRADE).has("sprite"):
 			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprite")
@@ -18,3 +16,8 @@ func _process(_delta: float) -> void:
 		else:
 			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprites")[0]
 		$Button/Title.text = upgradeInfo.get(UPGRADE).get("name")
+	else:
+		queue_free()
+
+func _process(_delta: float) -> void:
+	pass

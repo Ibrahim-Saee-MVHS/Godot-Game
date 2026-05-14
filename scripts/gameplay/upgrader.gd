@@ -120,3 +120,8 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.homing = 0
 				else:
 					playerNode.UPGRADE.bulletUpgrades += 1
+			"card_picker":
+				playerNode.UPGRADE.health -= 10
+				playerNode.MAXHEALTH = playerNode.MAXHEALTH - 10
+				if playerNode.HEALTH > playerNode.MAXHEALTH:
+					playerNode.HEALTH = playerNode.MAXHEALTH

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 var UpgradeCardNode = preload("res://scenes/upgrade_box.tscn")
 var UpgradeBoxButtonGroup = preload("res://scenes/upgrade_box_button_group.tres")
@@ -16,13 +16,16 @@ func _process(_delta: float) -> void:
 func _upgradeSelected(button: BaseButton):
 	$Control/Confirm.disabled = false
 	selectedButton = button.get_parent()
+	var upgradeInfo = Global.upgradeInfo
+	$Control/DescriptionBox/Description.parse_bbcode(str("[b]", upgradeInfo.get(selectedButton.UPGRADE).get("name"), "[/b]\n", upgradeInfo.get(selectedButton.UPGRADE).get("description")))
 
 func _confirm() -> void:
 	$Control/Confirm.disabled = true
 	Upgrader.upgrade(selectedButton.UPGRADE)
+	get_parent().get_node("AnimationPlayer").play("upgradeSelectorOut")
 
 func addAchievementCards():
-	var validUpgrades = Global.validUpgrades.duplicate(true)
+	var validUpgrades = get_parent().get_node("Control/Control/HBoxContainer/Upgrade3").removeUpgrades(Global.validUpgrades.duplicate(true))
 	var upgradeInfo = Global.upgradeInfo
 	for key in validUpgrades:
 		if upgradeInfo.get(key).has("rarity") and upgradeInfo.get(key).get("rarity") != "common":
