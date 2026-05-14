@@ -4,9 +4,22 @@
 [ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="2_1ogmj"]
 [ext_resource type="Texture2D" uid="uid://d7ewgm01468y" path="res://assets/sprites/upgrade_icons/hearty.png" id="2_5x7eg"]
 [ext_resource type="Script" uid="uid://drpvsahwlsj14" path="res://scripts/gui/upgrade_buttons.gd" id="2_qtyd3"]
+[ext_resource type="PackedScene" uid="uid://05ekl8yckve0" path="res://scenes/upgrade_selector.tscn" id="5_5x7eg"]
 
 [sub_resource type="Animation" id="Animation_1ogmj"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpgradeSelector:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1280, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_5x7eg"]
 resource_name = "default"
@@ -445,6 +458,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_1ogmj")
 text = "Skip (Half current EXP)"
+
+[node name="UpgradeSelector" parent="." unique_id=143015753 instance=ExtResource("5_5x7eg")]
+offset_left = 1280.0
+offset_right = 1280.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="pressed" from="Control/Control/HBoxContainer/Upgrade1/Button" to="." method="_upgrade1Selected"]
