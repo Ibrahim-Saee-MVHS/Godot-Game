@@ -1,15 +1,26 @@
 extends CanvasLayer
 
 var UpgradeCardNode = preload("res://scenes/upgrade_box.tscn")
+var UpgradeBoxButtonGroup = preload("res://scenes/upgrade_box_button_group.tres")
+var selectedButton: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	UpgradeBoxButtonGroup.pressed.connect(_upgradeSelected)
 	addAchievementCards()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-	
+
+func _upgradeSelected(button: BaseButton):
+	$Control/Confirm.disabled = false
+	selectedButton = button.get_parent()
+
+func _confirm() -> void:
+	$Control/Confirm.disabled = true
+	Upgrader.upgrade(selectedButton.UPGRADE)
+
 func addAchievementCards():
 	var validUpgrades = Global.validUpgrades.duplicate(true)
 	var upgradeInfo = Global.upgradeInfo
@@ -18,5 +29,6 @@ func addAchievementCards():
 			validUpgrades.erase(key)
 	for i in range(validUpgrades.size()):
 		var card = UpgradeCardNode.instantiate()
+		card.name = validUpgrades[i]
 		card.UPGRADE = validUpgrades[i]
 		$Control/ScrollContainer/GridContainer.add_child(card)

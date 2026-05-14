@@ -3,12 +3,18 @@
 [ext_resource type="Script" uid="uid://c5734la4x46w5" path="res://scripts/gui/upgrade_selector.gd" id="1_6dtbo"]
 [ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="1_rsdqu"]
 
-[node name="UpgradeSelector" type="CanvasLayer" unique_id=143015753]
+[node name="UpgradeSelector" type="Control" unique_id=880856071]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_6dtbo")
 
 [node name="Control" type="Control" parent="." unique_id=327613632]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -72,3 +78,5 @@ grow_vertical = 0
 theme = ExtResource("1_rsdqu")
 disabled = true
 text = "Confirm"
+
+[connection signal="pressed" from="Control/Confirm" to="." method="_confirm"]
