@@ -37,6 +37,7 @@ func generateStats():
 	var DIFFICULTY = str("Difficulty: ", get_parent().DIFFICULTY, "\n")
 	var VELOCITY = str("Velocity: ", snapped(player.velocity.length(), 0.01), "\n")
 	var DAMAGE = str("Damage: ", player.DAMAGE, "\n")
+	var DEFENSE = str("Defense: ", player.DEFENSE, "\n")
 	var SPEED = str("Speed: ", player.SPEED, "\n")
 	var FIRERATE = str("Firerate: ", snapped(player.FIRERATE, 0.1), "/", player.MAXFIRERATE, "\n")
 	var BULLETSPEED = str("Bullet Speed: ", player.BULLETSPEED, "\n")
@@ -46,4 +47,4 @@ func generateStats():
 	var ABILITYPOWER = str("Ability: ", player.ABILITYPOWER, "\n")
 	var ABILITYCOOLDOWN = str("Ability Cooldown: ", snapped(player.ABILITYCOOLDOWN, 0.1), "/", player.ABILITYMAXCOOLDOWN, "\n")
 	var ABILITYDURATION = str("Ability Duration: ", snapped(Abilities.abilityTimer, 0.1), "/", player.ABILITYDURATION, "\n")
-	return str(DIFFICULTY + VELOCITY + DAMAGE + SPEED + FIRERATE + BULLETSPEED + BULLETAMOUNT + INVULNERABILITY + ABILITY + ABILITYPOWER + ABILITYCOOLDOWN + ABILITYDURATION)
+	return str(DIFFICULTY + VELOCITY + DAMAGE + DEFENSE + SPEED + FIRERATE + BULLETSPEED + BULLETAMOUNT + INVULNERABILITY + ABILITY + ABILITYPOWER + ABILITYCOOLDOWN + ABILITYDURATION)

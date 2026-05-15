@@ -21,6 +21,7 @@ var FIRERATE: float = 0
 var LEVEL: int = 1
 var EXP: int = 0
 var EXPMAX: int
+var DEFENSE: float = 0
 var INVULNERABILITY: float = 0
 var MAXINVULNERABILITY: float = 4
 var currentInvulnerabilityTime: float
@@ -53,6 +54,7 @@ var UPGRADE = {
 	firerate = 0,
 	damage = 0,
 	speed = 0,
+	defense = 0,
 	# for bullets
 	bulletSpeed = 0,
 	bulletAmount = 0,
@@ -114,6 +116,7 @@ func _process(delta):
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
 	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate if bulletType != "flame" else UPGRADE.firerate / 5), MINFIRERATE, 16)
 	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
+	DEFENSE = clamp(UPGRADE.defense, 0, 256)
 	SPEED = BASESPEED + (UPGRADE.speed * 200) + (1000 * ABILITYPOWER if ABILITY == "flashtime" and Abilities.abilityTimer > 0 else 0.0)
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
 	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
@@ -304,7 +307,8 @@ func dealDamage(damage, inv):
 	shaderMaterial.shader = Global.shaders.flash
 	currentInvulnerabilityTime = inv
 	INVULNERABILITY = inv
-	HEALTH -= damage
+	damage = damage - (DEFENSE / 2) if damage - (DEFENSE / 2) >= 1 else 1
+	HEALTH -= round(damage)
 	Global.spawnDamageIndicator(global_position, -damage)
 
 func _on_area_2d_area_entered(area):
