@@ -5,9 +5,9 @@ func upgrade(selectedUpgrade):
 		var playerNode = get_tree().current_scene.get_node("Player")
 		match selectedUpgrade:
 			"hearty":
-				playerNode.UPGRADE.health += 5
+				playerNode.UPGRADE.health += 10
 				playerNode.UPGRADE.speed -= 1
-				playerNode.MAXHEALTH = playerNode.MAXHEALTH + 5
+				playerNode.MAXHEALTH = playerNode.MAXHEALTH + 10
 				if playerNode.HEALTH + 35 <= playerNode.MAXHEALTH:
 					playerNode.HEALTH += 35
 				else:

@@ -18,7 +18,7 @@ func _upgradeSelected(button: BaseButton):
 	selectedButton = button.get_parent()
 	var upgradeInfo = Global.upgradeInfo
 	if selectedButton.UPGRADE == "hearty":
-		$Control/DescriptionBox/Description.parse_bbcode(str("[b]", "Hearty", "[/b]\n", "-4 DAMAGE."))
+		$Control/DescriptionBox/Description.parse_bbcode(str("[b]", "Hearty", "[/b]\n", "Counters Card Picker's -10 HEALTH, Heals by +35 but -1 SPEED."))
 	elif selectedButton.UPGRADE == "card_picker":
 		$Control/DescriptionBox/Description.parse_bbcode(str("[b]", "Card Picker", "[/b]\n", "You're losing 20 HEALTH if you pick this card."))
 	else:
