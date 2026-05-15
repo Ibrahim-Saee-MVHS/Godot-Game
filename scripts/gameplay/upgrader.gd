@@ -26,6 +26,7 @@ func upgrade(selectedUpgrade):
 				playerNode.UPGRADE.bulletSpeed += 6
 				playerNode.UPGRADE.damage += 1
 				playerNode.UPGRADE.firerate -= 3
+				playerNode.UPGRADE.defense -= 5
 			"flamethrower":
 				if playerNode.bulletType != "flame":
 					playerNode.bulletType = "flame"

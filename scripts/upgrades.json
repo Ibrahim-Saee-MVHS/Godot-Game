@@ -32,7 +32,7 @@
 	"reinforced_chamber": {
 		"sprite": "res://assets/sprites/upgrade_icons/reinforced_chamber.png",
 		"name": "Reinforced Chamber",
-		"description": "+6 BULLET SPEED, +1 DAMAGE, and -3 FIRERATE (Faster)",
+		"description": "+6 BULLET SPEED, +1 DAMAGE, and -3 FIRERATE (Faster) but -5 DEFENSE",
 		"weight": 0.35,
 	},
 	"flamethrower": {
