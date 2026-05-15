@@ -125,3 +125,5 @@ func upgrade(selectedUpgrade):
 				playerNode.MAXHEALTH = playerNode.MAXHEALTH - 10
 				if playerNode.HEALTH > playerNode.MAXHEALTH:
 					playerNode.HEALTH = playerNode.MAXHEALTH
+			"defense_up":
+				playerNode.UPGRADE.defense += 4

@@ -124,7 +124,13 @@
 		"sprite": "res://assets/sprites/upgrade_icons/card_picker.png",
 		"name": "Pick a Card!",
 		"description": "Any card! Well, almost anyway.\nYou can select almost any upgrade you want, but -10 HEALTH.",
-		"weight": 90.15,
+		"weight": 0.15,
 		"rarity": "rare",
+	},
+	"defense_up": {
+		"sprite": "res://assets/sprites/upgrade_icons/defense_up.png",
+		"name": "Defense Up",
+		"description": "+4 DEFENSE",
+		"weight": 0.25,
 	},
 }
