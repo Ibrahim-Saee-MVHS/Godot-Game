@@ -11,6 +11,7 @@ gradient = SubResource("Gradient_00xrg")
 fill_to = Vector2(0, 1)
 
 [node name="Confirmation" type="Control" unique_id=300253544]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
