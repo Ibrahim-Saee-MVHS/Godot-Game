@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c12m3fw8jbh3f"
-path="res://.godot/imported/electric_glint.png-0e5a8fd0d65795a51c7604169a727c9d.ctex"
+uid="uid://dp8r53bj83q21"
+path="res://.godot/imported/glint.png-f677e01fe8132d31ccb6edd8e4e99f6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/electric_glint.png"
-dest_files=["res://.godot/imported/electric_glint.png-0e5a8fd0d65795a51c7604169a727c9d.ctex"]
+source_file="res://assets/sprites/glints/glint.png"
+dest_files=["res://.godot/imported/glint.png-f677e01fe8132d31ccb6edd8e4e99f6c.ctex"]
 
 [params]
 

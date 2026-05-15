@@ -10,6 +10,8 @@ static var UPGRADES = [
 var validUpgrades = Global.validUpgrades.duplicate(true)
 var upgradeInfo = Global.upgradeInfo
 var player: CharacterBody2D
+var rarity: String
+var shader: Shader = preload("res://assets/shaders/advanced_glint.gdshader")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +21,7 @@ func _ready() -> void:
 		validUpgrades.erase(UPGRADES[1])
 	player = get_tree().current_scene.get_node("Player")
 	UPGRADES[ID - 1] = randomizeUpgrade()
+	rarity = "common"
 	setUpgradeCards()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,6 +29,9 @@ func _process(_delta: float) -> void:
 	pass
 
 func setUpgradeCards():
+	if upgradeInfo.get(UPGRADES[ID - 1]).has("rarity"):
+		rarity = upgradeInfo.get(UPGRADES[ID - 1]).get("rarity")
+	
 	if upgradeInfo.get(UPGRADES[ID - 1]).has("sprite"):
 		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprite")
 	elif UPGRADES[ID - 1] == "flamethrower":
@@ -35,6 +41,7 @@ func setUpgradeCards():
 		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[0]
 	$Button/Title.text = upgradeInfo.get(UPGRADES[ID - 1]).get("name")
 	$Button/Description.text = upgradeInfo.get(UPGRADES[ID - 1]).get("description")
+	$Button.material.set_shader_parameter("glintColor", get_tree().current_scene.get_node("UpgradeScreen").UPGRADEGLINTS.get(rarity))
 
 func randomizeUpgrade():
 	# the duplicate() part is to make sure both arrays are unique and wont modify the important one
@@ -100,5 +107,7 @@ func removeUpgrades(totalUpgrades):
 		
 	if player.bulletType == "boomerang" and player.UPGRADE.bulletUpgrades >= 3:
 		totalUpgrades.erase("boomerang")
+	if player.MAXHEALTH <= 20:
+		totalUpgrades.erase("card_picker")
 	
 	return totalUpgrades

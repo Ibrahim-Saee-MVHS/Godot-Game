@@ -383,31 +383,31 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfdwi"]
+resource_local_to_scene = true
 shader = ExtResource("3_ald31")
 shader_parameter/direction = Vector2(1, 1)
 shader_parameter/speed = 1.0
 shader_parameter/Texture = ExtResource("4_pfdwi")
 shader_parameter/glintTexture = ExtResource("5_8myhc")
 shader_parameter/tiling = Vector2(1, 1.55)
-shader_parameter/glintColor = Color(1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_viwe2"]
+resource_local_to_scene = true
 shader = ExtResource("3_ald31")
 shader_parameter/direction = Vector2(0, 1.5)
 shader_parameter/speed = 1.0
 shader_parameter/Texture = ExtResource("4_pfdwi")
 shader_parameter/glintTexture = ExtResource("5_8myhc")
 shader_parameter/tiling = Vector2(1, 1.55)
-shader_parameter/glintColor = Color(1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8myhc"]
+resource_local_to_scene = true
 shader = ExtResource("3_ald31")
 shader_parameter/direction = Vector2(-1, 1)
 shader_parameter/speed = 1.0
 shader_parameter/Texture = ExtResource("4_pfdwi")
 shader_parameter/glintTexture = ExtResource("5_8myhc")
 shader_parameter/tiling = Vector2(1, 1.55)
-shader_parameter/glintColor = Color(1, 1, 1, 0)
 
 [node name="UpgradeScreen" type="CanvasLayer" unique_id=1468165750]
 process_mode = 3

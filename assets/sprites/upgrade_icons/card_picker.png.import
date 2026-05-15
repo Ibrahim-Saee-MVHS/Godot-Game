@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp8r53bj83q21"
-path="res://.godot/imported/glint.png-70147f732f4bfe473d529f1f4923464e.ctex"
+uid="uid://dj40wf3kvmt60"
+path="res://.godot/imported/card_picker.png-219d92ac087c3923c534c5ea783f482d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/glint.png"
-dest_files=["res://.godot/imported/glint.png-70147f732f4bfe473d529f1f4923464e.ctex"]
+source_file="res://assets/sprites/upgrade_icons/card_picker.png"
+dest_files=["res://.godot/imported/card_picker.png-219d92ac087c3923c534c5ea783f482d.ctex"]
 
 [params]
 

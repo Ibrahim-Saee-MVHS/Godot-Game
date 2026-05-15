@@ -4,10 +4,9 @@
 [ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="2_1ogmj"]
 [ext_resource type="Texture2D" uid="uid://d7ewgm01468y" path="res://assets/sprites/upgrade_icons/hearty.png" id="2_5x7eg"]
 [ext_resource type="Script" uid="uid://drpvsahwlsj14" path="res://scripts/gui/upgrade_buttons.gd" id="2_qtyd3"]
-[ext_resource type="Shader" uid="uid://cma1rnsry1dku" path="res://assets/shaders/upgrade_glint.gdshader" id="3_ald31"]
-[ext_resource type="Texture2D" uid="uid://bji7g2w7mfcmg" path="res://assets/sprites/glints/card_glint.png" id="4_pfdwi"]
+[ext_resource type="Shader" uid="uid://dxsug7od2tu72" path="res://assets/shaders/advanced_glint.gdshader" id="3_ald31"]
+[ext_resource type="Texture2D" uid="uid://dm5f1riufsj56" path="res://assets/sprites/glints/common_glint.png" id="4_ald31"]
 [ext_resource type="PackedScene" uid="uid://05ekl8yckve0" path="res://scenes/upgrade_selector.tscn" id="5_5x7eg"]
-[ext_resource type="Texture2D" uid="uid://cyi1q2ag665wb" path="res://assets/sprites/glints/noise_glint.png" id="5_8myhc"]
 
 [sub_resource type="Animation" id="Animation_1ogmj"]
 length = 0.001
@@ -383,31 +382,28 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfdwi"]
+resource_local_to_scene = true
 shader = ExtResource("3_ald31")
 shader_parameter/direction = Vector2(1, 1)
 shader_parameter/speed = 1.0
-shader_parameter/Texture = ExtResource("4_pfdwi")
-shader_parameter/glintTexture = ExtResource("5_8myhc")
+shader_parameter/Texture = ExtResource("4_ald31")
 shader_parameter/tiling = Vector2(1, 1.55)
-shader_parameter/glintColor = Color(1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_viwe2"]
+resource_local_to_scene = true
 shader = ExtResource("3_ald31")
 shader_parameter/direction = Vector2(0, 1.5)
 shader_parameter/speed = 1.0
-shader_parameter/Texture = ExtResource("4_pfdwi")
-shader_parameter/glintTexture = ExtResource("5_8myhc")
+shader_parameter/Texture = ExtResource("4_ald31")
 shader_parameter/tiling = Vector2(1, 1.55)
-shader_parameter/glintColor = Color(1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8myhc"]
+resource_local_to_scene = true
 shader = ExtResource("3_ald31")
 shader_parameter/direction = Vector2(-1, 1)
 shader_parameter/speed = 1.0
-shader_parameter/Texture = ExtResource("4_pfdwi")
-shader_parameter/glintTexture = ExtResource("5_8myhc")
+shader_parameter/Texture = ExtResource("4_ald31")
 shader_parameter/tiling = Vector2(1, 1.55)
-shader_parameter/glintColor = Color(1, 1, 1, 0)
 
 [node name="UpgradeScreen" type="CanvasLayer" unique_id=1468165750]
 process_mode = 3
@@ -479,7 +475,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -232.0
 offset_right = 329.0
-offset_bottom = 217.00275
+offset_bottom = 217.00262
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 48
@@ -548,7 +544,7 @@ anchor_bottom = 0.5
 offset_left = -164.5
 offset_top = -232.0
 offset_right = 164.5
-offset_bottom = 217.0036
+offset_bottom = 217.00366
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -618,7 +614,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -329.0
 offset_top = -232.0
-offset_bottom = 217.00012
+offset_bottom = 217.00006
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3

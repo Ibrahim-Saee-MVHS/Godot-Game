@@ -3,11 +3,16 @@ extends Control
 var UPGRADE: String = ""
 var validUpgrades = Global.validUpgrades.duplicate(true)
 var upgradeInfo = Global.upgradeInfo
-var player
+var player: CharacterBody2D
+var rarity: String
 
 func _ready() -> void:
 	player = get_tree().current_scene.get_node("Player")
 	if UPGRADE != "":
+		if upgradeInfo.get(UPGRADE).has("rarity"):
+			rarity = upgradeInfo.get(UPGRADE).get("rarity")
+		else: rarity = "common"
+		
 		if upgradeInfo.get(UPGRADE).has("sprite"):
 			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprite")
 		elif UPGRADE == "flamethrower":
@@ -15,7 +20,12 @@ func _ready() -> void:
 			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprites")[upgradeVar]
 		else:
 			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprites")[0]
-		$Button/Title.text = upgradeInfo.get(UPGRADE).get("name")
+		if UPGRADE == "card_picker":
+			$Button/Title.text = "Pick NO Card!"
+		else:
+			$Button/Title.text = upgradeInfo.get(UPGRADE).get("name")
+		
+		$Button.material.set_shader_parameter("glintColor", get_tree().current_scene.get_node("UpgradeScreen").UPGRADEGLINTS.get(rarity))
 	else:
 		queue_free()
 

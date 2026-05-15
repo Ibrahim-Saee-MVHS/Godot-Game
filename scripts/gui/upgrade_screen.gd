@@ -3,6 +3,14 @@ extends CanvasLayer
 var selectedUpgrade: String
 @export var buttonsDisabled = true
 
+var UPGRADEGLINTS = {
+	"common": Color("#FFFFFF00"),
+	"uncommon": Color("#55FF55"),
+	"rare": Color("#C422FF"),
+	"epic": Color("#00CDFF"),
+	"legendary": Color("#FFCD22"),
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	buttonsDisabled = true

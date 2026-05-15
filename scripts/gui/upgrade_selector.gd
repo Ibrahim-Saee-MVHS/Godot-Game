@@ -17,7 +17,12 @@ func _upgradeSelected(button: BaseButton):
 	$Control/Confirm.disabled = false
 	selectedButton = button.get_parent()
 	var upgradeInfo = Global.upgradeInfo
-	$Control/DescriptionBox/Description.parse_bbcode(str("[b]", upgradeInfo.get(selectedButton.UPGRADE).get("name"), "[/b]\n", upgradeInfo.get(selectedButton.UPGRADE).get("description")))
+	if selectedButton.UPGRADE == "hearty":
+		$Control/DescriptionBox/Description.parse_bbcode(str("[b]", "Hearty", "[/b]\n", "-4 DAMAGE."))
+	elif selectedButton.UPGRADE == "card_picker":
+		$Control/DescriptionBox/Description.parse_bbcode(str("[b]", "Card Picker", "[/b]\n", "You're losing 20 HEALTH if you pick this card."))
+	else:
+		$Control/DescriptionBox/Description.parse_bbcode(str("[b]", upgradeInfo.get(selectedButton.UPGRADE).get("name"), "[/b]\n", upgradeInfo.get(selectedButton.UPGRADE).get("description")))
 
 func _confirm() -> void:
 	$Control/Confirm.disabled = true
@@ -29,7 +34,8 @@ func addAchievementCards():
 	var upgradeInfo = Global.upgradeInfo
 	for key in validUpgrades:
 		if upgradeInfo.get(key).has("rarity") and upgradeInfo.get(key).get("rarity") != "common":
-			validUpgrades.erase(key)
+			#validUpgrades.erase(key)
+			pass
 	for i in range(validUpgrades.size()):
 		var card = UpgradeCardNode.instantiate()
 		card.name = validUpgrades[i]
