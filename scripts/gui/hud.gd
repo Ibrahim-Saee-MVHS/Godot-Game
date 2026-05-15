@@ -44,7 +44,7 @@ func generateStats():
 	var BULLETAMOUNT = str("Bullets: ", player.BULLETAMOUNT, "\n")
 	var INVULNERABILITY = str("Invulerability: ", snapped(player.INVULNERABILITY, 0.1), "/", player.MAXINVULNERABILITY, "\n")
 	var ABILITY = str("Ability: ", player.ABILITY, "\n")
-	var ABILITYPOWER = str("Ability: ", player.ABILITYPOWER, "\n")
+	var ABILITYPOWER = str("Ability Power: ", player.ABILITYPOWER, "\n")
 	var ABILITYCOOLDOWN = str("Ability Cooldown: ", snapped(player.ABILITYCOOLDOWN, 0.1), "/", player.ABILITYMAXCOOLDOWN, "\n")
 	var ABILITYDURATION = str("Ability Duration: ", snapped(Abilities.abilityTimer, 0.1), "/", player.ABILITYDURATION, "\n")
 	return str(DIFFICULTY + VELOCITY + DAMAGE + DEFENSE + SPEED + FIRERATE + BULLETSPEED + BULLETAMOUNT + INVULNERABILITY + ABILITY + ABILITYPOWER + ABILITYCOOLDOWN + ABILITYDURATION)

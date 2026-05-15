@@ -45,18 +45,22 @@
 	},
 	"super_speed": {
 		"name": "At The Speed of Bullets",
-		"description": "Max out the Flashtime Upgrade and increase SPEED up to 64.",
+		"description": "Max out the Flashtime Abilty and increase SPEED up to 64.",
 	},
 	"dash_smash": {
 		"name": "Dashing Smashing",
-		"description": "Max out the Dash Upgrade and reduce it's COOLDOWN to the lowest it can go.",
+		"description": "Max out the Dash Abilty and reduce it's COOLDOWN to the lowest it can go.",
 	},
 	"explosion_max": {
 		"name": "Sulfur Dealer",
-		"description": "Max out Detonation, Sulfuric Ammo, and Caliber Increase for Maximium Explosiveness.",
+		"description": "Max out the Detonation Abilty, Sulfuric Ammo, and Caliber Increase for Maximium Explosiveness.",
 	},
 	"ping_pong": {
 		"name": "Ping Pong",
 		"description": "[color=#7DC8B9]\"This isn't even fair anymore.\"\n[/color]Max out Ricochet and increase BULLET SPEED to 16.",
+	},
+	"tanky": {
+		"name": "Tanky",
+		"description": "Max out the Shield Abilty and increase DEFENSE up to 32.",
 	},
 }

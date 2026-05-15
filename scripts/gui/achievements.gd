@@ -27,6 +27,7 @@ var initialAchievements = {
 	"dash_smash": false,
 	"explosion_max": false,
 	"ping_pong": false,
+	"tanky": false,
 	"level_10": {
 		"unlocked": false,
 		"max_progress": 10,
@@ -184,6 +185,11 @@ func achievementUnlocking():
 		if PlayerNode.UPGRADE.ricochet >= 6 and PlayerNode.UPGRADE.bulletSpeed >= 16:
 			ACHIEVEMENTS.set("ping_pong", true)
 			unlockAchievement("ping_pong")
+	
+	if isAchievementUnlocked("tanky") == false:
+		if (PlayerNode.ABILITY == "shield" and PlayerNode.UPGRADE.abilityPower >= 6) and PlayerNode.DEFENSE >= 32:
+			ACHIEVEMENTS.set("tanky", true)
+			unlockAchievement("tanky")
 	
 	if ACHIEVEMENTS.get("level_10").get("progress", 0) < PlayerNode.LEVEL: ACHIEVEMENTS.get("level_10").set("progress", clamp(PlayerNode.LEVEL, 0, 10))
 	if isAchievementUnlocked("level_10") == false:
