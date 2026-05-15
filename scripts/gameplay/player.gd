@@ -93,7 +93,7 @@ func level():
 		MAXHEALTH = 1
 	else:
 		MAXHEALTH = clamp(50 + ( (LEVEL - 1) * 5) + UPGRADE.health, 1, 500)
-	if EXP >= EXPMAX:
+	if EXP >= EXPMAX and HEALTH > 0:
 		LEVEL += 1
 		EXPMAX += 4
 		if Global.GAMEMODIFIERS.get("no_hit", false) == true:
