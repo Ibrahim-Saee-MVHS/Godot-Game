@@ -10,7 +10,7 @@ func _process(_delta):
 	if AchievementList.get(ID).has("impossible") and AchievementList.get(ID).get("impossible") == true:
 		$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FF001A]This achievement is currently impossible, probably due to lack of content.[/color]")
 	elif AchievementList.get(ID).has("warn") and AchievementList.get(ID).get("warn") == true:
-		$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FFFF55]This achievment hasn't been tested or obtained yet, there is a chance it is impossible.[/color]")
+		$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FFEE88]This achievment hasn't been tested or obtained yet, there is a chance it is impossible.[/color]")
 	else:
 		$Card/Description.parse_bbcode(str(AchievementList.get(ID).description))
 	
