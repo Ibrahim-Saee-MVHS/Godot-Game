@@ -1,8 +1,11 @@
 extends Control
 
 var ERROR: String = "ERROR: Description Not Found"
+var NAMES = {
+	
+}
 var DESCRIPTIONS = {
-	"trinity_of_doom": "The most destructive enemies have come together to create an unstoppable force, perhaps you have become the hero this world needs.\nALT NAME: Hell Trinity\n(Bombers, Grenadiers, and Arsonists only.)",
+	"trinity_of_doom": "",
 	"hard_mode": "Looks like you're in for a hard time.\n(DIFFICULTY starts at 1 rather than 0, and increments by 0.25 rather than 0.1.)",
 	"juggernauts_reign_supreme": "The Juggernauts now rule the world!.\n(All enemies have the same HEALTH(except for Bombers) and color of Juggernauts and have a minimium DAMAGE of 6, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above their Health Bar.)\nWhen paired wtih Trinity of Doom, the Juggernaut will spawn with the trinity.",
 	"no_hit": "They say what doesn't kill you, only makes you stronger.\n(You are locked with a MAX HEALTH of 1. Enemy SPEED, BULLET SPEED is halfed and FIRERATE is doubled (Slower) and Player SPEED is doubled. Additionally every level up your DAMAGE and SPEED increases and FIRERATE decreases (Faster).)\nAny Upgrade that decreases MAX HEALTH won't affect it.",
