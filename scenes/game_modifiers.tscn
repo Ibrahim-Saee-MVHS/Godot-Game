@@ -2,14 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dqvrlogcnjgs0" path="res://scripts/gui/game_modifiers.gd" id="1_k5h4c"]
 
-[sub_resource type="Gradient" id="Gradient_0kxv0"]
-colors = PackedColorArray(0.2509804, 0.3137255, 0.38431373, 0.19607843, 0.43137255, 0.49803922, 0.5254902, 0.19607843)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqywv"]
-gradient = SubResource("Gradient_0kxv0")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
 [node name="GameModifiers" type="Control" unique_id=840579598]
 layout_mode = 3
 anchors_preset = 15
@@ -47,45 +39,51 @@ anchors_preset = -1
 anchor_left = 0.05703125
 anchor_top = 0.18333334
 anchor_right = 0.9429687
-anchor_bottom = 0.7097222
+anchor_bottom = 0.61944443
 grow_horizontal = 2
 grow_vertical = 2
 scroll_hint_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer" unique_id=1197481541]
-custom_minimum_size = Vector2(1134, 379)
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer" unique_id=1734814532]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/CenterContainer" unique_id=1197481541]
+custom_minimum_size = Vector2(1134, 314)
 layout_mode = 2
 columns = 7
 
-[node name="DescriptionBox" type="TextureRect" parent="." unique_id=1995863240]
+[node name="DescriptionBox" type="Panel" parent="." unique_id=1522295475]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -567.0
-offset_top = -192.0
-offset_right = 567.0
-offset_bottom = -40.0
+offset_left = -555.0
+offset_top = -216.0
+offset_right = 555.0
+offset_bottom = -78.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_wqywv")
 
-[node name="Description" type="Label" parent="DescriptionBox" unique_id=987760628]
+[node name="Description" type="RichTextLabel" parent="DescriptionBox" unique_id=374293262]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 11.0
-offset_right = -12.0
-offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+scroll_active = false
 autowrap_mode = 2
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Back" to="." method="_back"]

@@ -8,9 +8,11 @@ var VIGNETTEINTENSITY: float = 0.25
 var upgradesJson: Dictionary
 var validUpgrades: Array
 var upgradeInfo: Dictionary
+var gameModifierInfo: Dictionary
 
 func _ready() -> void:
 	loadJSONUpgrades()
+	loadJSONGameModifiers()
 
 func _process(_delta):
 	pass
@@ -32,6 +34,11 @@ func loadJSONUpgrades():
 		else:
 			for k in range(upgradeInfo.get(validUpgrades[i]).get("sprites").size()):
 				upgradeInfo.get(validUpgrades[i]).get("sprites").set(k, load(upgradeInfo.get(validUpgrades[i]).get("sprites")[k]))
+				
+func loadJSONGameModifiers():
+	var file = FileAccess.open("res://scripts/game_modifiers.json", FileAccess.READ)
+	var json = JSON.parse_string(file.get_as_text())
+	gameModifierInfo = json
 
 func setGameModifiers():
 	enemySpawn.types = enemyTypes.duplicate()

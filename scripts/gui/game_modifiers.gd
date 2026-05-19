@@ -1,34 +1,34 @@
 extends Control
 
 var ERROR: String = "ERROR: Description Not Found"
-var NAMES = {
-	
-}
-var DESCRIPTIONS = {
-	"trinity_of_doom": "",
-	"hard_mode": "Looks like you're in for a hard time.\n(DIFFICULTY starts at 1 rather than 0, and increments by 0.25 rather than 0.1.)",
-	"juggernauts_reign_supreme": "The Juggernauts now rule the world!.\n(All enemies have the same HEALTH(except for Bombers) and color of Juggernauts and have a minimium DAMAGE of 6, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above their Health Bar.)\nWhen paired wtih Trinity of Doom, the Juggernaut will spawn with the trinity.",
-	"no_hit": "They say what doesn't kill you, only makes you stronger.\n(You are locked with a MAX HEALTH of 1. Enemy SPEED, BULLET SPEED is halfed and FIRERATE is doubled (Slower) and Player SPEED is doubled. Additionally every level up your DAMAGE and SPEED increases and FIRERATE decreases (Faster).)\nAny Upgrade that decreases MAX HEALTH won't affect it.",
-}
+var GameModifierButtonNode = preload("res://scenes/game_modifier_button.tscn")
+
 
 func _ready():
-	$Control/TrinityOfDoom.button_pressed = Global.GAMEMODIFIERS.get("trinity_of_doom")
-	$Control/HardMode.button_pressed = Global.GAMEMODIFIERS.get("hard_mode")
-	$Control/JuggernautsReignSupreme.button_pressed = Global.GAMEMODIFIERS.get("juggernauts_reign_supreme")
-	$Control/NoHit.button_pressed = Global.GAMEMODIFIERS.get("no_hit")
+	for i in range(Global.gameModifierInfo.size()):
+		var button = GameModifierButtonNode.instantiate()
+		button.ID = Global.gameModifierInfo.keys()[i]
+		button.get_node("Button").pressed.connect(_modifierSelected.bind(button.get_node("Button")))
+		$ScrollContainer/CenterContainer/GridContainer.add_child(button)
 
 func _process(_delta):
-	Global.GAMEMODIFIERS.set("trinity_of_doom", $Control/TrinityOfDoom.button_pressed)
-	Global.GAMEMODIFIERS.set("hard_mode", $Control/HardMode.button_pressed)
-	Global.GAMEMODIFIERS.set("juggernauts_reign_supreme", $Control/JuggernautsReignSupreme.button_pressed)
-	Global.GAMEMODIFIERS.set("no_hit", $Control/NoHit.button_pressed)
 	setDescriptionText()
-	
+	lockModifiers()
+
+func _modifierSelected(button: BaseButton):
+	if Global.GAMEMODIFIERS.has(button.get_parent().ID):
+		Global.GAMEMODIFIERS.set(button.get_parent().ID, button.button_pressed)
+
+func lockModifiers():
+	for button in $ScrollContainer/CenterContainer/GridContainer.get_children(false):
+		if button.ID == "tbd":
+			button.button_disabled = true
+
 func setDescriptionText():
 	$DescriptionBox/Description.text = ""
-	for button in get_node("Control").get_children():
-		if button is GameModifierButton and button.HOVERING:
-			$DescriptionBox/Description.text = DESCRIPTIONS.get(button.ID, ERROR)
+	for button in $ScrollContainer/CenterContainer/GridContainer.get_children(false):
+		if button.HOVERING:
+			$DescriptionBox/Description.parse_bbcode(str(Global.gameModifierInfo.get(button.ID).get("description", ERROR)))
 
 func _back():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
