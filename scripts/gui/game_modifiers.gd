@@ -5,10 +5,15 @@ var GameModifierButtonNode = preload("res://scenes/game_modifier_button.tscn")
 
 
 func _ready():
-	for i in range(Global.gameModifierInfo.size()):
+	for i in range(Global.GAMEMODIFIERS.size()):
 		var button = GameModifierButtonNode.instantiate()
-		button.ID = Global.gameModifierInfo.keys()[i]
+		button.ID = Global.GAMEMODIFIERS.keys()[i]
+		button.get_node("Button").button_pressed = Global.GAMEMODIFIERS.values()[i]
 		button.get_node("Button").pressed.connect(_modifierSelected.bind(button.get_node("Button")))
+		$ScrollContainer/CenterContainer/GridContainer.add_child(button)
+	if true:
+		var button = GameModifierButtonNode.instantiate()
+		button.ID = "tbd"
 		$ScrollContainer/CenterContainer/GridContainer.add_child(button)
 
 func _process(_delta):
