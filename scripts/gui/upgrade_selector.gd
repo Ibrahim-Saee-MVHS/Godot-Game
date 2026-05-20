@@ -7,7 +7,7 @@ var selectedButton: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	UpgradeBoxButtonGroup.pressed.connect(_upgradeSelected)
-	addAchievementCards()
+	addUpgradeBoxes()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -24,12 +24,20 @@ func _upgradeSelected(button: BaseButton):
 	else:
 		$Control/DescriptionBox/Description.parse_bbcode(str("[b]", upgradeInfo.get(selectedButton.UPGRADE).get("name"), "[/b]\n", upgradeInfo.get(selectedButton.UPGRADE).get("description")))
 
+func _on_line_edit_text_changed(new_text: String) -> void:
+	var search = new_text.to_lower()
+	for upgrade in $Control/ScrollContainer/GridContainer.get_children():
+		if search == "" or search in upgrade.get_node("Button/Title").text.to_lower():
+			upgrade.visible = true
+		else:
+			upgrade.visible = false
+
 func _confirm() -> void:
 	$Control/Confirm.disabled = true
 	Upgrader.upgrade(selectedButton.UPGRADE)
 	get_parent().get_node("AnimationPlayer").play("upgradeSelectorOut")
 
-func addAchievementCards():
+func addUpgradeBoxes():
 	var validUpgrades = get_parent().get_node("Control/Control/HBoxContainer/Upgrade3").removeUpgrades(Global.validUpgrades.duplicate(true))
 	var upgradeInfo = Global.upgradeInfo
 	for key in validUpgrades:

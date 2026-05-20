@@ -21,6 +21,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="LineEdit" type="LineEdit" parent="Control" unique_id=1328911482]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 64.0
+offset_right = 1192.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Search an Upgrade"
+alignment = 2
+max_length = 24
+context_menu_enabled = false
+emoji_menu_enabled = false
+clear_button_enabled = true
+select_all_on_focus = true
+caret_blink = true
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Control" unique_id=932180927]
 layout_mode = 1
 anchors_preset = 15
@@ -82,4 +98,5 @@ theme = ExtResource("1_rsdqu")
 disabled = true
 text = "Confirm"
 
+[connection signal="text_changed" from="Control/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="Control/Confirm" to="." method="_confirm"]
