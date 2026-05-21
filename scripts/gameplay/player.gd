@@ -310,8 +310,8 @@ func explode(power, isPlayer, explosion_position):
 func dealDamage(damage, inv):
 	$Hit.pitch_scale = randf_range(0.9, 1.1)
 	$Hit.playing = true
-	Global.SCREENSHAKEAMOUNT = 100 * 1 + (damage / round(float(MAXHEALTH) / 25) )
-	Global.SCREENSHAKEPOWER = 0.5 + (damage / round(float(MAXHEALTH) / 5) )
+	Global.SCREENSHAKEAMOUNT = 100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) )
+	Global.SCREENSHAKEPOWER = 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) )
 	Global.VIGNETTEINTENSITY = 0.5
 	Global.VIGNETTECOLOR = Vector3(1, 0, 0)
 	shaderMaterial.shader = Global.shaders.flash
