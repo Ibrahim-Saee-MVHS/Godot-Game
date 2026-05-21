@@ -26,7 +26,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if OS.has_feature("editor"):
+		if Input.is_action_just_pressed("pick_any_card"):
+			UPGRADES[ID - 1] = "card_picker"
+			setUpgradeCards()
 
 func setUpgradeCards():
 	if upgradeInfo.get(UPGRADES[ID - 1]).has("rarity"):
