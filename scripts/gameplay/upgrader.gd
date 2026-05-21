@@ -128,3 +128,12 @@ func upgrade(selectedUpgrade):
 					playerNode.HEALTH = playerNode.MAXHEALTH
 			"defense_up":
 				playerNode.UPGRADE.defense += 4
+			"pressure_washer":
+				if playerNode.bulletType != "water":
+					playerNode.bulletType = "water"
+					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.explosiveness = 0
+					playerNode.UPGRADE.ricochet = 0
+					playerNode.UPGRADE.homing = 0
+				else:
+					playerNode.UPGRADE.bulletUpgrades += 1

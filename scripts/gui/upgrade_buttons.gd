@@ -104,10 +104,14 @@ func removeUpgrades(totalUpgrades):
 	
 	if player.ABILITY == "shield" and player.UPGRADE.abilityPower >= 6:
 		totalUpgrades.erase("shield")
-		
+	
 	if player.bulletType == "boomerang" and player.UPGRADE.bulletUpgrades >= 3:
 		totalUpgrades.erase("boomerang")
+	
 	if player.MAXHEALTH <= 20:
 		totalUpgrades.erase("card_picker")
+	
+	if player.bulletType == "water" and player.UPGRADE.bulletUpgrades >= 4:
+		totalUpgrades.erase("pressure_washer")
 	
 	return totalUpgrades

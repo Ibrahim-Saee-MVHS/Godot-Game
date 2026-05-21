@@ -46,6 +46,7 @@ var bulletType = "normal"
 var Projectiles = {
 	"normal": preload("res://scenes/bullet_types/player_bullet.tscn"),
 	"flame": load("res://scenes/bullet_types/player_flame.tscn"),
+	"water": load("res://scenes/bullet_types/player_water.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
@@ -211,6 +212,15 @@ func setBaseStats():
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 4 if UPGRADE.ricochet + UPGRADE.homing <= 0 else 1
 		MINFIRERATE = 1
+	if bulletType == "water":
+		BULLETSPREAD = deg_to_rad(45)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 1.0
+		BASEDAMAGE = 0.025
+		BASEBULLETSPEED = 125
+		BASEBULLETAMOUNT = 8
+		MAXBULLETAMOUNT = 8
+		MINFIRERATE = 1
 
 func shoot(spread, variance):
 	var startDir = -spread / 2
@@ -318,8 +328,11 @@ func _on_area_2d_area_entered(area):
 			# flame
 			if area.TYPE == "flame":
 				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
-				# area.get_node("CPUParticles2D").set_deferred("emitting", false)
-				# area.get_node("CollisionShape2D").set_deferred("disabled", true)
+			# water
+			if area.TYPE == "water":
+				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
+				area.get_node("CPUParticles2D").set_deferred("emitting", false)
+				area.get_node("CollisionShape2D").set_deferred("disabled", true)
 			# normal
 			elif area.explosiveness <= 0:
 				dealDamage(area.DAMAGE, MAXINVULNERABILITY)

@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 	$Control/Control/HBoxContainer/Upgrade2/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade3/Button.disabled = buttonsDisabled
 	$Control/Control/Skip.disabled = buttonsDisabled
+	
 
 func _upgrade1Selected() -> void:
 	selectedUpgrade = $Control/Control/HBoxContainer/Upgrade1.UPGRADES[0]

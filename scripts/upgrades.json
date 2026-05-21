@@ -133,4 +133,10 @@
 		"description": "+4 DEFENSE",
 		"weight": 0.25,
 	},
+	"pressure_washer": {
+		"sprite": "res://assets/sprites/upgrade_icons/pressure_washer.png",
+		"name": "Pressure Washer",
+		"description": "Changes BULLET TYPE to Water. Sprays in a wide area and does very little knockback, DAMAGE is only slightly modified by upgrades, Stack for stronger and faster Water",
+		"weight": 0.5,
+	},
 }

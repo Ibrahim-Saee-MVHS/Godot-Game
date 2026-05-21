@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dep3miklfagd6"]
+
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_1a0ts"]
+[ext_resource type="Texture2D" uid="uid://dixx5jomerkmm" path="res://assets/particles/water.png" id="2_ijcdk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
+radius = 12.0
+
+[sub_resource type="Curve" id="Curve_elrkp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20491797), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1a0ts"]
+offsets = PackedFloat32Array(0, 0.2936508, 1)
+colors = PackedColorArray(0.65999997, 1, 0.9943333, 0.5019608, 0, 0.75, 1, 0.1882353, 0, 0.31633338, 0.73, 0.0627451)
+
+[node name="PlayerWater" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_1a0ts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CircleShape2D_qx7rs")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1732719251]
+emitting = false
+amount = 64
+texture = ExtResource("2_ijcdk")
+one_shot = true
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 16.0
+initial_velocity_max = 32.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_elrkp")
+color_ramp = SubResource("Gradient_1a0ts")
