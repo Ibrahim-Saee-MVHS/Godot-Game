@@ -1,4 +1,8 @@
 {
+	"normal": {
+		"name": "High Caliber",
+		"description": "Max out the Caliber Increase upgrade.",
+	},
 	"flame": {
 		"name": "Arsonist's Best Friend",
 		"description": "Max out the Flamethrower upgrade.",
@@ -7,13 +11,13 @@
 		"name": "Advanced Technology",
 		"description": "Max out the Plasma Rounds upgrade.\n[color=#aaffff11](Plasma is not an element.)[/color]",
 	},
-	"normal": {
-		"name": "High Caliber",
-		"description": "Max out the Caliber Increase upgrade.",
-	},
 	"boomerang": {
 		"name": "Always Comes Back!",
 		"description": "Max out the Boomerang upgrade.",
+	},
+	"water": {
+		"name": "High Pressure",
+		"description": "Max out the Pressure Washer upgrade.",
 	},
 	"elemental": {
 		"name": "Master of Elements",
