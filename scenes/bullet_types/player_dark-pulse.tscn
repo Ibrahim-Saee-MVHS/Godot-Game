@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ba50aaq4jiolo"]
+
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_uwtnd"]
+[ext_resource type="Texture2D" uid="uid://c36bhtb84x414" path="res://assets/sprites/projectiles/dark_pulse.png" id="2_u7n5l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uwtnd"]
+radius = 11.0
+height = 38.0
+
+[node name="PlayerDarkPulse" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_uwtnd")
+
+[node name="Pulse" type="Sprite2D" parent="." unique_id=517558892]
+texture = ExtResource("2_u7n5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CapsuleShape2D_uwtnd")

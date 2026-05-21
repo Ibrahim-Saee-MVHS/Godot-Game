@@ -137,3 +137,12 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.homing = 0
 				else:
 					playerNode.UPGRADE.bulletUpgrades += 1
+			"dark_pulse":
+				if playerNode.bulletType != "dark":
+					playerNode.bulletType = "dark"
+					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.explosiveness = 0
+					playerNode.UPGRADE.ricochet = 0
+					playerNode.UPGRADE.homing = 0
+				else:
+					playerNode.UPGRADE.bulletUpgrades += 1

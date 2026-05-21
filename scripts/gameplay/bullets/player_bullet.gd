@@ -21,8 +21,10 @@ var homing: float
 var explosiveness: float
 var upgrades: int
 var target: CollisionObject2D = null
+var start_time
 
 func _ready():
+	start_time = Time.get_ticks_msec()
 	if self.has_node("Outline"):
 		$Outline.self_modulate = Global.playerColor
 	if homing > 0:
@@ -37,6 +39,7 @@ func _ready():
 		KNOCKBACK = 0
 		despawnTimer = 5 + (2 * upgrades)
 		homing = 0
+		ricochet = 0
 		DAMAGE = (DAMAGE / 20) + 0.1 + (0.25 * upgrades)
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
@@ -45,9 +48,17 @@ func _ready():
 		KNOCKBACK = 1000 + (500 * upgrades)
 		despawnTimer = 5
 		homing = 0
+		ricochet = 0
 		SPEED = SPEED + (10 * upgrades)
 		DAMAGE = (DAMAGE / 20) + 0.25 + (0.15 * upgrades)
 		$CPUParticles2D.emitting = true
+	if TYPE == "dark":
+		global_position += Vector2(16, 0).rotated(MOVEDIR)
+		KNOCKBACK = 6000
+		despawnTimer = 70
+		ricochet = 0
+		SPEED = SPEED + (25 * upgrades)
+		rotation = MOVEDIR
 	if TYPE == "plasma":
 		KNOCKBACK = 0
 		despawnTimer = 120
@@ -78,6 +89,9 @@ func _process(delta):
 	if TYPE == "boomerang":
 		rotation_degrees += SPEED / 10
 		SPEED = clamp(SPEED + 2.5, 125, 500)
+	if TYPE == "dark":
+		rotation = MOVEDIR
+		scale = clamp(Vector2(1, 1) * (sin((Time.get_ticks_msec() - start_time) / 100.0) * 1.5), Vector2(1, 1) * 0.5, Vector2(1, 1) * 1.5)
 	if TYPE == "flame" or TYPE == "water":
 		SPEED -= 1 * delta
 		SPEED = max(SPEED, 0)

@@ -47,6 +47,7 @@ var Projectiles = {
 	"normal": preload("res://scenes/bullet_types/player_bullet.tscn"),
 	"flame": load("res://scenes/bullet_types/player_flame.tscn"),
 	"water": load("res://scenes/bullet_types/player_water.tscn"),
+	"dark": load("res://scenes/bullet_types/player_dark-pulse.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }

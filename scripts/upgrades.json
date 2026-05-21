@@ -139,4 +139,10 @@
 		"description": "Changes BULLET TYPE to Water. Sprays in a wide area and does very little knockback, DAMAGE is only slightly modified by upgrades, Stack for stronger and faster Water",
 		"weight": 0.5,
 	},
+	"dark_pulse": {
+		"sprite": "res://assets/sprites/upgrade_icons/dark_pulse.png",
+		"name": "Dark Pulse",
+		"description": "Changes BULLET TYPE to Dark. A powerful element, You can shoot a continous pulse that deals high damage and knockback. Can only be stacked once",
+		"weight": 0.25,
+	},
 }
