@@ -121,13 +121,13 @@ func getAchievementProgress(achievementID: String, getMaxProgress: bool = false)
 		if ACHIEVEMENTS.get(achievementID).values()[1] is bool:
 			if getMaxProgress == false:
 				var counter = 0
-				for i in range(ACHIEVEMENTS.get(achievementID).size() - 1):
+				for i in range(ACHIEVEMENTS.get(achievementID).size()):
 					if ACHIEVEMENTS.get(achievementID).keys()[i] == "unlocked": continue
 					if ACHIEVEMENTS.get(achievementID).get(ACHIEVEMENTS.get(achievementID).keys()[i]) == true:
 						counter += 1
 				return counter
 			else:
-				return ACHIEVEMENTS.get(achievementID).size()
+				return ACHIEVEMENTS.get(achievementID).size() - 1
 		#
 		elif ACHIEVEMENTS.get(achievementID).has("max_progress"): 
 			if getMaxProgress == false:
