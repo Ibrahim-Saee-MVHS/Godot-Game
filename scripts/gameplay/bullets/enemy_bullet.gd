@@ -36,6 +36,7 @@ func _ready():
 		DAMAGE = (DAMAGE / 100) + 0.01 + (0.01 * upgrades)
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
+		global_position += Vector2(16, 0).rotated(MOVEDIR)
 	else:
 		$Outline.self_modulate = Global.enemySpawn.color.get(COLOR)
 	if TYPE == "bomb":
