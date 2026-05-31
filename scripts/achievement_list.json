@@ -19,6 +19,14 @@
 		"name": "High Pressure",
 		"description": "Max out the Pressure Washer upgrade.\n\n\n\n[color=#ff0044]\"Why\"[/color]",
 	},
+	"dark": {
+		"name": "If there is no Dark.",
+		"description": "[color=#ffffff]There is no Light.[/color]\nMax out the Dark Pulse upgrade.",
+	},
+	"light": {
+		"name": "If there is no Light.",
+		"description": "[color=#ffffff]There is no Dark.[/color]\nMax out the Lightbolt upgrade.",
+	},
 	"elemental": {
 		"name": "Master of Elements",
 		"description": "Master every elemental upgrade.",

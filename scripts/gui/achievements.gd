@@ -12,6 +12,8 @@ var initialAchievements = {
 	"flame": false,
 	"boomerang": false,
 	"water": false,
+	"dark": false,
+	"light": false,
 	"elemental": {
 		"unlocked": false,
 		"thunder": false,
@@ -164,12 +166,28 @@ func achievementUnlocking():
 			ACHIEVEMENTS.set("water", true)
 			unlockAchievement("water")
 	
+	if isAchievementUnlocked("dark") == false:
+		if PlayerNode.bulletType == "dark" and PlayerNode.UPGRADE.bulletUpgrades >= 1:
+			ACHIEVEMENTS.set("dark", true)
+			unlockAchievement("dark")
+	
+	if isAchievementUnlocked("light") == false:
+		if PlayerNode.bulletType == "light" and PlayerNode.UPGRADE.bulletUpgrades >= 1:
+			ACHIEVEMENTS.set("light", true)
+			unlockAchievement("light")
+		
 	if isAchievementUnlocked("elemental") == false:
 		if PlayerNode.bulletType == "flame" and PlayerNode.UPGRADE.bulletUpgrades >= 4:
 			ACHIEVEMENTS.get("elemental").set("flame", true)
 			saveAchievements()
 		if PlayerNode.bulletType == "water" and PlayerNode.UPGRADE.bulletUpgrades >= 4:
 			ACHIEVEMENTS.get("elemental").set("water", true)
+			saveAchievements()
+		if PlayerNode.bulletType == "dark" and PlayerNode.UPGRADE.bulletUpgrades >= 1:
+			ACHIEVEMENTS.get("elemental").set("dark", true)
+			saveAchievements()
+		if PlayerNode.bulletType == "light" and PlayerNode.UPGRADE.bulletUpgrades >= 1:
+			ACHIEVEMENTS.get("elemental").set("light", true)
 			saveAchievements()
 		if getAchievementProgress("elemental", false) >= getAchievementProgress("elemental", true):
 			ACHIEVEMENTS.get("elemental").set("unlocked", true)

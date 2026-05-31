@@ -146,3 +146,12 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.homing = 0
 				else:
 					playerNode.UPGRADE.bulletUpgrades += 1
+			"lightbolt":
+				if playerNode.bulletType != "light":
+					playerNode.bulletType = "light"
+					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.explosiveness = 0
+					playerNode.UPGRADE.ricochet = 0
+					playerNode.UPGRADE.homing = 0
+				else:
+					playerNode.UPGRADE.bulletUpgrades += 1

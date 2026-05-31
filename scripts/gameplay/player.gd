@@ -48,6 +48,7 @@ var Projectiles = {
 	"flame": load("res://scenes/bullet_types/player_flame.tscn"),
 	"water": load("res://scenes/bullet_types/player_water.tscn"),
 	"dark": load("res://scenes/bullet_types/player_dark-pulse.tscn"),
+	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
@@ -199,7 +200,7 @@ func setBaseStats():
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
 		BULLETVARIANCE = 0
 		BASEFIRERATE = 10.0
-		BASEDAMAGE = 4.0
+		BASEDAMAGE = 5.0
 		BASEBULLETSPEED = 75
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 3
@@ -222,6 +223,24 @@ func setBaseStats():
 		BASEBULLETAMOUNT = 8
 		MAXBULLETAMOUNT = 8
 		MINFIRERATE = 1
+	if bulletType == "dark":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 4.0
+		BASEDAMAGE = 8.0
+		BASEBULLETSPEED = 250
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 1
+		MINFIRERATE = 1
+	if bulletType == "light":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 4.0
+		BASEDAMAGE = 8.0
+		BASEBULLETSPEED = 0 + (10 * UPGRADE.bulletUpgrades)
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 4
+		MINFIRERATE = 2
 
 func shoot(spread, variance):
 	var startDir = -spread / 2

@@ -145,4 +145,10 @@
 		"description": "Changes BULLET TYPE to Dark. A powerful element, You can shoot a continous pulse that deals high damage and knockback. Can only be stacked once",
 		"weight": 0.25,
 	},
+	"lightbolt": {
+		"sprite": "res://assets/sprites/upgrade_icons/lightbolt.png",
+		"name": "Lightbolt",
+		"description": "Changes BULLET TYPE to Light. A powerful element, You can fire a homing bullet that gets faster, but when turning becomes slower. Can only be stacked once",
+		"weight": 0.25,
+	},
 }

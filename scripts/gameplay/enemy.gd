@@ -316,6 +316,13 @@ func _gotDamaged(area):
 					area.get_node("CPUParticles2D").set_deferred("emitting", false)
 					area.get_node("CollisionShape2D").set_deferred("disabled", true)
 					HITSTUN = 0.75
+				elif area.TYPE == "dark":
+					HITSTUN = 1
+					knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
+				elif area.TYPE == "light":
+					area.get_node("CPUParticles2D").set_deferred("emitting", false)
+					HITSTUN = 2
+					knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
 				elif area.TYPE == "plasma":
 					HITSTUN = 2
 				else:

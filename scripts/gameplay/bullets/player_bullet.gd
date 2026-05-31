@@ -22,6 +22,7 @@ var explosiveness: float
 var upgrades: int
 var target: CollisionObject2D = null
 var start_time
+var specialVars = {}
 
 func _ready():
 	start_time = Time.get_ticks_msec()
@@ -59,6 +60,13 @@ func _ready():
 		ricochet = 0
 		SPEED = SPEED + (25 * upgrades)
 		rotation = MOVEDIR
+		specialVars.get_or_add("scaleDown", false)
+		specialVars.get_or_add("baseDamage", DAMAGE)
+	if TYPE == "light":
+		global_position += Vector2(16, 0).rotated(MOVEDIR)
+		despawnTimer = 60
+		ricochet = 0
+		specialVars.get_or_add("linePoints", 10)
 	if TYPE == "plasma":
 		KNOCKBACK = 0
 		despawnTimer = 120
@@ -84,14 +92,33 @@ func _ready():
 		despawnTimer = 5 + (2 * upgrades)
 
 func _process(delta):
-	if homing > 0:
+	if homing > 0 and TYPE != "light":
 		homeOnEnemy(homing)
 	if TYPE == "boomerang":
 		rotation_degrees += SPEED / 10
 		SPEED = clamp(SPEED + 2.5, 125, 500)
 	if TYPE == "dark":
 		rotation = MOVEDIR
-		scale = clamp(Vector2(1, 1) * (sin((Time.get_ticks_msec() - start_time) / 100.0) * 1.5), Vector2(1, 1) * 0.5, Vector2(1, 1) * 1.5)
+		if specialVars.get("scaleDown") == false:
+			scale += Vector2(1, 1) * (2 + (2 * upgrades)) * delta
+		else:
+			scale -= Vector2(1, 1) * (2 + (2 * upgrades)) * delta
+		if scale >= Vector2(1, 1) * (1.5 + (0.5 * upgrades)):
+			specialVars.set("scaleDown", true)
+		elif scale <= Vector2(1, 1) * 0.5:
+			specialVars.set("scaleDown", false)
+		DAMAGE = specialVars.get("baseDamage") * (scale.x)
+	if TYPE == "light":
+		var oldMoveDir = MOVEDIR
+		homeOnEnemy(1 + upgrades + (SPEED / 100))
+		if abs(angle_difference(MOVEDIR, oldMoveDir)) > 0.1:
+			SPEED -= 10 - (5 * upgrades) # slow down
+		else:
+			SPEED += 5 + (5 * upgrades) # go fast
+		SPEED = clamp(SPEED, 10, 400)
+		if $CPUParticles2D.emitting == false:
+			$Lightbolt.visible = false
+			$CollisionShape2D.disabled = true
 	if TYPE == "flame" or TYPE == "water":
 		SPEED -= 1 * delta
 		SPEED = max(SPEED, 0)
