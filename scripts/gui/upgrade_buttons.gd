@@ -117,10 +117,10 @@ func removeUpgrades(totalUpgrades):
 	if player.bulletType == "water" and player.UPGRADE.bulletUpgrades >= 4:
 		totalUpgrades.erase("pressure_washer")
 	
-	if player.bulletType == "dark" and player.UPGRADE.bulletUpgrades >= 1:
+	if (player.bulletType == "dark" and player.UPGRADE.bulletUpgrades >= 1) or player.bulletType == "light":
 		totalUpgrades.erase("dark_pulse")
 		
-	if player.bulletType == "light" and player.UPGRADE.bulletUpgrades >= 1:
+	if (player.bulletType == "light" and player.UPGRADE.bulletUpgrades >= 1) or player.bulletType == "dark":
 		totalUpgrades.erase("lightbolt")
 	
 	return totalUpgrades
