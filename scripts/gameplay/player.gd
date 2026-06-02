@@ -233,7 +233,7 @@ func setBaseStats():
 		MAXBULLETAMOUNT = 1
 		MINFIRERATE = 1
 	if bulletType == "light":
-		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETSPREAD = deg_to_rad(15 * BULLETAMOUNT)
 		BULLETVARIANCE = 0
 		BASEFIRERATE = 4.0
 		BASEDAMAGE = 8.0
