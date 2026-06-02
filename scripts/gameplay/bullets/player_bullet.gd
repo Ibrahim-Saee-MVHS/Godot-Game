@@ -64,7 +64,7 @@ func _ready():
 		specialVars.get_or_add("baseDamage", DAMAGE)
 	if TYPE == "light":
 		global_position += Vector2(16, 0).rotated(MOVEDIR)
-		despawnTimer = 64
+		despawnTimer = 25
 		ricochet = 0
 		specialVars.get_or_add("linePoints", 10)
 	if TYPE == "plasma":
@@ -110,7 +110,7 @@ func _process(delta):
 		DAMAGE = specialVars.get("baseDamage") * (scale.x)
 	if TYPE == "light":
 		var oldMoveDir = MOVEDIR
-		if despawnTimer <= 60:
+		if despawnTimer <= 20:
 			homeOnEnemy(5 + (upgrades * 5) + (SPEED / 100))
 		if abs(angle_difference(MOVEDIR, oldMoveDir)) > 0.1:
 			SPEED -= 10 - (5 * upgrades) # slow down
