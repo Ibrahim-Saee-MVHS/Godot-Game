@@ -3,38 +3,14 @@
 [ext_resource type="Theme" uid="uid://cfnpremejr0ll" path="res://assets/upgrades.tres" id="1_boqgo"]
 [ext_resource type="Texture2D" uid="uid://qeenp82t4f1f" path="res://assets/sprites/upgrade_icons/homing_rounds.png" id="2_8678i"]
 [ext_resource type="Script" uid="uid://bx6bjdohwiyae" path="res://scripts/gui/upgrade_box.gd" id="2_tfxrb"]
+[ext_resource type="Shader" uid="uid://cma1rnsry1dku" path="res://assets/shaders/upgrade_glint.gdshader" id="3_30xra"]
 [ext_resource type="ButtonGroup" uid="uid://cu72igsshvc16" path="res://scenes/upgrade_box_button_group.tres" id="3_tfxrb"]
 [ext_resource type="Texture2D" uid="uid://bji7g2w7mfcmg" path="res://assets/sprites/glints/card_glint.png" id="4_30xra"]
 [ext_resource type="Texture2D" uid="uid://cyi1q2ag665wb" path="res://assets/sprites/glints/noise_glint.png" id="5_qtscu"]
 
-[sub_resource type="Shader" id="Shader_h3uhb"]
-code = "shader_type canvas_item;
-
-uniform vec2 direction;
-uniform float speed;
-uniform sampler2D Texture: source_color, repeat_enable, filter_nearest;
-uniform sampler2D glintTexture: source_color, repeat_enable, filter_nearest;
-uniform vec2 tiling = vec2(1.0, 1.0);
-uniform vec4 glintColor: source_color = vec4(1.0, 1.0, 1.0, 0.0);
-varying vec4 modulate;
-
-void vertex() {
-	modulate = COLOR;
-}
-
-void fragment() {
-	vec2 move = direction * speed * TIME;
-	vec4 tex_color = texture(TEXTURE, UV);
-	vec4 GLINT = texture(Texture, fract((UV * tiling) + move)) * modulate;
-	vec4 glint_tex_color = texture(glintTexture, fract((UV * tiling) + move)) * glintColor;
-	vec4 card = tex_color + (glint_tex_color * glint_tex_color.a);
-	COLOR.rgb = mix(card.rgb, GLINT.rgb, GLINT.a);
-}
-"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtscu"]
 resource_local_to_scene = true
-shader = SubResource("Shader_h3uhb")
+shader = ExtResource("3_30xra")
 shader_parameter/direction = Vector2(1, 1)
 shader_parameter/speed = 1.0
 shader_parameter/Texture = ExtResource("4_30xra")

@@ -5,9 +5,10 @@ var selectedUpgrade: String
 
 var UPGRADEGLINTS = {
 	"common": Color("#FFFFFF00"),
-	"uncommon": Color("#55FF55"),
+	"uncommon": Color("FF0044"),
 	"rare": Color("#C422FF"),
 	"epic": Color("#00CDFF"),
+	"rgb": Color.from_hsv(0.0, 1.0, 1.0),
 	"legendary": Color("#FFCD22"),
 }
 
@@ -20,6 +21,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	UPGRADEGLINTS.set("rgb", Color.from_hsv(UPGRADEGLINTS.get("rgb").h + (4.0 / 360), 1.0, 1.0))
+	
 	if get_parent().get_node("Player").HEALTH <= 0:
 		get_tree().paused = false
 		queue_free()

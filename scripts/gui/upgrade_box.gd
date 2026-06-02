@@ -24,10 +24,8 @@ func _ready() -> void:
 			$Button/Title.text = "Pick NO Card!"
 		else:
 			$Button/Title.text = upgradeInfo.get(UPGRADE).get("name")
-		
-		$Button.material.set_shader_parameter("glintColor", get_tree().current_scene.get_node("UpgradeScreen").UPGRADEGLINTS.get(rarity))
 	else:
 		queue_free()
 
 func _process(_delta: float) -> void:
-	pass
+	$Button.material.set_shader_parameter("glintColor", get_tree().current_scene.get_node("UpgradeScreen").UPGRADEGLINTS.get(rarity))
