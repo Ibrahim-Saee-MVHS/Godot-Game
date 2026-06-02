@@ -13,7 +13,7 @@ point_count = 2
 
 [node name="PlayerFlame" type="Area2D" unique_id=1432198597]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_qr30t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]

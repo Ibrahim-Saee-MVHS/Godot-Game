@@ -110,7 +110,7 @@ func _process(delta):
 		DAMAGE = specialVars.get("baseDamage") * (scale.x)
 	if TYPE == "light":
 		var oldMoveDir = MOVEDIR
-		homeOnEnemy(1 + upgrades + (SPEED / 100))
+		homeOnEnemy(5 + (upgrades * 5) + (SPEED / 100))
 		if abs(angle_difference(MOVEDIR, oldMoveDir)) > 0.1:
 			SPEED -= 10 - (5 * upgrades) # slow down
 		else:
@@ -184,3 +184,7 @@ func _on_body_entered(body: Node2D) -> void:
 			if body.FIRERATE > body.MAXFIRERATE:
 				body.FIRERATE = body.MAXFIRERATE
 			queue_free()
+	if body is PlayerBullet or body is EnemyBullet:
+		if TYPE == "flame" and body.TYPE == "water":
+			$CPUParticles2D.emitting = false
+			$CollisionShape2D.disabled = true
