@@ -24,6 +24,8 @@ amount = 100
 texture = ExtResource("2_2j3wu")
 spread = 0.0
 gravity = Vector2(0, 0)
+angle_min = -45.0
+angle_max = 45.0
 scale_amount_curve = SubResource("Curve_7gwfr")
 color_ramp = SubResource("Gradient_lbadf")
 
