@@ -2,27 +2,12 @@
 
 [ext_resource type="Script" uid="uid://kyd4tt246f38" path="res://scripts/gameplay/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://du2g430hqsqag" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://m5dipgqiagb" path="res://scenes/base_camera.tscn" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://bcbao6nwki8jw" path="res://scenes/pause.tscn" id="2_gee14"]
-[ext_resource type="Shader" uid="uid://c7vh3m6r5r7v1" path="res://assets/shaders/vignette.gdshader" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://3b75reufoy48" path="res://scenes/hud.tscn" id="3_lnu2h"]
 [ext_resource type="Shader" uid="uid://bh26vo877j38w" path="res://assets/shaders/glowing.gdshader" id="4_p57ef"]
 [ext_resource type="AudioStream" uid="uid://dx8wgnt2auj7k" path="res://assets/music/mainMusic.wav" id="6_p57ef"]
 [ext_resource type="AudioStream" uid="uid://cmup6re6wbgqx" path="res://assets/music/flashtime.wav" id="7_u5sy4"]
-
-[sub_resource type="Environment" id="Environment_lnu2h"]
-background_mode = 3
-background_energy_multiplier = 0.0
-glow_enabled = true
-glow_intensity = 0.5
-glow_bloom = 1.0
-adjustment_saturation = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
-shader = ExtResource("2_lbhrr")
-shader_parameter/alpha = 0.25
-shader_parameter/color = Vector3(0, 0, 0)
-shader_parameter/inner_radius = 0.0
-shader_parameter/outer_radius = 1.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
 normal = Vector2(0, 1)
@@ -46,51 +31,11 @@ shader_parameter/intensity = 4.0
 [node name="Game" type="Node2D" unique_id=2139425347]
 script = ExtResource("1_lnu2h")
 
-[node name="Pause" parent="." unique_id=259523335 instance=ExtResource("2_gee14")]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1110885900]
-process_mode = 3
+[node name="BaseCamera" parent="." unique_id=1945318831 instance=ExtResource("2_0tnpc")]
+anchor_mode = 1
 zoom = Vector2(2, 2)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Camera2D" unique_id=1967100556]
-environment = SubResource("Environment_lnu2h")
-
-[node name="BackgroundFX" type="CanvasLayer" parent="Camera2D" unique_id=334990757]
-layer = -1
-
-[node name="Control" type="Control" parent="Camera2D/BackgroundFX" unique_id=974894522]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Vignette" type="ColorRect" parent="Camera2D/BackgroundFX/Control" unique_id=1945285196]
-z_index = 100
-z_as_relative = false
-material = SubResource("ShaderMaterial_lbhrr")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Background" type="ColorRect" parent="Camera2D/BackgroundFX/Control" unique_id=2136925182]
-z_index = -101
-z_as_relative = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0.14712, 0.1264, 0.16, 1)
+[node name="Pause" parent="." unique_id=259523335 instance=ExtResource("2_gee14")]
 
 [node name="HUD" parent="." unique_id=1917983879 instance=ExtResource("3_lnu2h")]
 

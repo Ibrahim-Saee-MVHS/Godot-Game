@@ -82,7 +82,7 @@ func spawnEnemies():
 		ENEMYMAXSPAWNTIMER = clamp(ENEMYMAXSPAWNTIMER - floori(DIFFICULTY / 2), 16, 64)
 
 func vignetteUpdate(delta):
-	var vignetteShader = $Camera2D/BackgroundFX/Control/Vignette.material
+	var vignetteShader = $BaseCamera/BackgroundFX/Control/Vignette.material
 	vignetteShader.set_shader_parameter("color", Global.VIGNETTECOLOR)
 	vignetteShader.set_shader_parameter("alpha", Global.VIGNETTEINTENSITY)
 	# slowly turn the vignette black again
@@ -111,8 +111,8 @@ func generateSpawnPosition(padding):
 	return spawnVector
 
 func screenShake(delta):
-	$Camera2D.offset.x = round(Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta)
-	$Camera2D.offset.y = round(Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta)
+	$BaseCamera.offset.x = round(Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta)
+	$BaseCamera.offset.y = round(Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta)
 	if Global.SCREENSHAKEPOWER > 0.0:
 		Global.SCREENSHAKEPOWER -= 1 * delta
 

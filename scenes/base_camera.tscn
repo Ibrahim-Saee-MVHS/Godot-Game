@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://m5dipgqiagb"]
+
+[ext_resource type="Shader" uid="uid://c7vh3m6r5r7v1" path="res://assets/shaders/vignette.gdshader" id="1_kb8sj"]
+
+[sub_resource type="Environment" id="Environment_lnu2h"]
+background_mode = 3
+background_energy_multiplier = 0.0
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 1.0
+glow_blend_mode = 0
+adjustment_saturation = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
+shader = ExtResource("1_kb8sj")
+shader_parameter/alpha = 0.25
+shader_parameter/color = Vector3(0, 0, 0)
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
+
+[node name="BaseCamera" type="Camera2D" unique_id=1945318831]
+process_mode = 3
+anchor_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1001989528]
+environment = SubResource("Environment_lnu2h")
+
+[node name="BackgroundFX" type="CanvasLayer" parent="." unique_id=705424753]
+layer = -2
+
+[node name="Control" type="Control" parent="BackgroundFX" unique_id=1287793594]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vignette" type="ColorRect" parent="BackgroundFX/Control" unique_id=465633756]
+z_index = 100
+z_as_relative = false
+material = SubResource("ShaderMaterial_lbhrr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="ColorRect" parent="BackgroundFX/Control" unique_id=415962257]
+z_index = -101
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.14712, 0.1264, 0.16, 1)

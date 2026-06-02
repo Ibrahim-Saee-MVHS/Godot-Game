@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c2kik1f8am411"]
 
 [ext_resource type="Script" uid="uid://dqvrlogcnjgs0" path="res://scripts/gui/game_modifiers.gd" id="1_k5h4c"]
+[ext_resource type="PackedScene" uid="uid://m5dipgqiagb" path="res://scenes/base_camera.tscn" id="2_4taqh"]
 
 [node name="GameModifiers" type="Control" unique_id=840579598]
 layout_mode = 3
@@ -10,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k5h4c")
+
+[node name="BaseCamera" parent="." unique_id=1945318831 instance=ExtResource("2_4taqh")]
 
 [node name="Title" type="Label" parent="." unique_id=613856391]
 layout_mode = 1

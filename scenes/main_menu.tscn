@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bakmn77nvgsms" path="res://scripts/gui/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bv1l63ortkow5" path="res://assets/sprites/ui/game_modifiers.png" id="2_8ln24"]
+[ext_resource type="PackedScene" uid="uid://m5dipgqiagb" path="res://scenes/base_camera.tscn" id="2_oa1go"]
 [ext_resource type="Shader" uid="uid://4rnau7rf7hl4" path="res://assets/shaders/glint.gdshader" id="3_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://dnbyw4tw3gat2" path="res://assets/sprites/ui/achievements.png" id="3_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://dp8r53bj83q21" path="res://assets/sprites/glints/glint.png" id="3_wu84c"]
@@ -68,6 +69,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l6cm7")
+
+[node name="BaseCamera" parent="." unique_id=1945318831 instance=ExtResource("2_oa1go")]
+anchor_mode = 0
+zoom = Vector2(1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=645406527]
 libraries/ = SubResource("AnimationLibrary_bqqt6")
