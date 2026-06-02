@@ -20,11 +20,11 @@
 		"description": "Max out the Pressure Washer upgrade.\n\n\n\n[color=#ff0044]\"Why\"[/color]",
 	},
 	"dark": {
-		"name": "If there is no Dark.",
+		"name": "Let there be Light.",
 		"description": "[color=#ffffff]There is no Light.[/color]\nMax out the Dark Pulse upgrade.",
 	},
 	"light": {
-		"name": "If there is no Light.",
+		"name": "Let there be Dark.",
 		"description": "[color=#ffffff]There is no Dark.[/color]\nMax out the Lightbolt upgrade.",
 	},
 	"elemental": {
