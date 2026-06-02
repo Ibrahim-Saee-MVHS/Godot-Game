@@ -43,7 +43,7 @@ func setAllSettings():
 func setFullscreen(fullscreen):
 	if fullscreen == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
+	elif DisplayServer.window_get_mode(DisplayServer.WINDOW_MODE_FULLSCREEN):
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
