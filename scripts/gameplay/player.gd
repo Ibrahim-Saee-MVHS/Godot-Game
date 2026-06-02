@@ -224,7 +224,7 @@ func setBaseStats():
 		MAXBULLETAMOUNT = 8
 		MINFIRERATE = 1
 	if bulletType == "dark":
-		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETSPREAD = deg_to_rad(25 * BULLETAMOUNT)
 		BULLETVARIANCE = 0
 		BASEFIRERATE = 4.0
 		BASEDAMAGE = 8.0
@@ -235,12 +235,12 @@ func setBaseStats():
 	if bulletType == "light":
 		BULLETSPREAD = deg_to_rad(15 * BULLETAMOUNT)
 		BULLETVARIANCE = 0
-		BASEFIRERATE = 4.0
+		BASEFIRERATE = 8.0
 		BASEDAMAGE = 8.0
 		BASEBULLETSPEED = 0 + (10 * UPGRADE.bulletUpgrades)
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 4
-		MINFIRERATE = 2
+		MINFIRERATE = 4
 
 func shoot(spread, variance):
 	var startDir = -spread / 2
