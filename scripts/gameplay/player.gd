@@ -273,21 +273,22 @@ func shoot(spread, variance):
 		get_parent().add_child(BULLET)
 
 func activateAbility(delta):
-	if ABILITY == "detonation":
-		Abilities.detonation(global_position)
-	if ABILITY == "flashtime":
-		Abilities.flashtime()
-	if ABILITY == "dash":
-		var DASH = DashNode.instantiate()
-		DASH.DAMAGE = (4 + UPGRADE.abilityPower + (UPGRADE.damage / 10)) * 2
-		DASH.rotation = (get_global_mouse_position() - global_position).angle() + PI
-		add_child(DASH)
-		$CollisionShape2D.disabled = true
-		Abilities.dash(get_global_mouse_position(), global_position, delta)
-	if ABILITY == "shield":
-		var SHIELD = ShieldNode.instantiate()
-		add_child(SHIELD)
-	ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
+	if ABILITY != "none":
+		if ABILITY == "detonation":
+			Abilities.detonation(global_position)
+		if ABILITY == "flashtime":
+			Abilities.flashtime()
+		if ABILITY == "dash":
+			var DASH = DashNode.instantiate()
+			DASH.DAMAGE = (4 + UPGRADE.abilityPower + (UPGRADE.damage / 10)) * 2
+			DASH.rotation = (get_global_mouse_position() - global_position).angle() + PI
+			add_child(DASH)
+			$CollisionShape2D.disabled = true
+			Abilities.dash(get_global_mouse_position(), global_position, delta)
+		if ABILITY == "shield":
+			var SHIELD = ShieldNode.instantiate()
+			add_child(SHIELD)
+		ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func setAbilityStats():
 	if ABILITY == "detonation":
