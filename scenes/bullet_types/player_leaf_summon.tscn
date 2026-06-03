@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://efwceh06jwk6"]
+
+[ext_resource type="Texture2D" uid="uid://eggas4gwmalk" path="res://assets/sprites/leaf_summon.png" id="1_hrf85"]
+[ext_resource type="Script" uid="uid://cc4b3hi8dk57s" path="res://scripts/gameplay/bullets/player_summon.gd" id="1_ht1kt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht1kt"]
+size = Vector2(22, 12)
+
+[node name="PlayerLeafSummon" type="Area2D" unique_id=2090501352 groups=["playerSummons"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ht1kt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=772829289]
+rotation = 0.7853982
+texture = ExtResource("1_hrf85")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=160784527]
+shape = SubResource("RectangleShape2D_ht1kt")

@@ -90,13 +90,26 @@ func _ready():
 	if TYPE == "boomerang":
 		KNOCKBACK = 8000
 		despawnTimer = 5 + (2 * upgrades)
+	if TYPE == "nature":
+		KNOCKBACK = 4000
+		despawnTimer = 60 + (5 * upgrades)
+		explosiveness = explosiveness * (1 + (0.25 * upgrades))
 
 func _process(delta):
-	if homing > 0 and TYPE != "light":
+	if homing > 0 and (TYPE != "light" or TYPE != "nature"):
 		homeOnEnemy(homing)
+		
 	if TYPE == "boomerang":
 		rotation_degrees += SPEED / 10
 		SPEED = clamp(SPEED + 2.5, 125, 500)
+		
+	if TYPE == "nature":
+		rotation = MOVEDIR
+		if get_tree().get_nodes_in_group("enemies").size() > 0:
+			homeOnEnemy(0.05 + (upgrades / 20))
+		else:
+			returnToPlayer(0.05)
+	
 	if TYPE == "dark":
 		rotation = MOVEDIR
 		if specialVars.get("scaleDown") == false:
@@ -108,6 +121,7 @@ func _process(delta):
 		elif scale <= Vector2(1, 1) * 0.5:
 			specialVars.set("scaleDown", false)
 		DAMAGE = specialVars.get("baseDamage") * (scale.x)
+		
 	if TYPE == "light":
 		var oldMoveDir = MOVEDIR
 		if despawnTimer <= 20:
@@ -120,6 +134,7 @@ func _process(delta):
 		if $CPUParticles2D.emitting == false:
 			$Lightbolt.visible = false
 			$CollisionShape2D.disabled = true
+	
 	if TYPE == "flame" or TYPE == "water":
 		SPEED -= 1 * delta
 		SPEED = max(SPEED, 0)
@@ -143,7 +158,7 @@ func _process(delta):
 		
 	if despawnTimer <= 0:
 		if TYPE == "boomerang":
-			returnToPlayer()
+			returnToPlayer(0.1)
 		else:
 			despawnBullet()
 
@@ -154,7 +169,7 @@ func despawnBullet():
 		queue_free()
 
 func homeOnEnemy(homing_amount):
-	if target != null:
+	if target != null and target != get_parent().get_node("Player"):
 		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.05 * homing_amount)
 	else:
 		findNewTarget()
@@ -171,11 +186,11 @@ func findNewTarget():
 				nearest_enemy = enemy
 		target = nearest_enemy
 
-func returnToPlayer():
+func returnToPlayer(homing_amount):
 	if target != get_parent().get_node("Player"):
 		target = get_parent().get_node("Player")
 	elif target.HEALTH > 0:
-		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), max(abs(despawnTimer / 25), 0.1))
+		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), max(abs(despawnTimer / 25), homing_amount))
 	else:
 		despawnBullet()
 

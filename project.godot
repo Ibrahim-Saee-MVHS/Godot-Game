@@ -39,6 +39,7 @@ version_control/autoload_on_startup=true
 
 player=""
 enemies=""
+playerSummons=""
 
 [gui]
 
@@ -125,6 +126,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_3="Bullets"
 2d_physics/layer_4="Walls"
 2d_physics/layer_5="Pickups"
+2d_physics/layer_6="Summons"
 
 [physics]
 

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cvlvf44nfu2ai"]
+
+[ext_resource type="Texture2D" uid="uid://dyrdtda6xdq0v" path="res://assets/sprites/projectiles/leaf.png" id="1_inj2o"]
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_o6l07"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht1kt"]
+size = Vector2(10, 6)
+
+[node name="PlayerLeaf" type="Area2D" unique_id=2090501352]
+collision_layer = 36
+collision_mask = 34
+script = ExtResource("1_o6l07")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=772829289]
+texture = ExtResource("1_inj2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=160784527]
+shape = SubResource("RectangleShape2D_ht1kt")

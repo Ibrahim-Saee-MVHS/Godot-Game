@@ -156,3 +156,12 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.homing = 0
 				else:
 					playerNode.UPGRADE.bulletUpgrades += 1
+			"leaf_summon":
+				if playerNode.bulletType != "nature":
+					playerNode.bulletType = "nature"
+					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.explosiveness = 0
+					playerNode.UPGRADE.ricochet = 0
+					playerNode.UPGRADE.homing = 0
+				else:
+					playerNode.UPGRADE.bulletUpgrades += 1

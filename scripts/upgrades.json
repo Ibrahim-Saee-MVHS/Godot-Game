@@ -158,4 +158,10 @@
 		"weight": 0.085,
 		"rarity": "epic",
 	},
+	"leaf_summon": {
+		"sprite": "res://assets/sprites/upgrade_icons/leaf_summon.png",
+		"name": "Pressure Washer",
+		"description": "Changes BULLET TYPE to Leaf. You can summon leaves that follow you around and attack the nearest enemy, but you can only have 2 of them. Stack for more leaves",
+		"weight": 0.5,
+	},
 }

@@ -47,6 +47,7 @@ var Projectiles = {
 	"normal": preload("res://scenes/bullet_types/player_bullet.tscn"),
 	"flame": load("res://scenes/bullet_types/player_flame.tscn"),
 	"water": load("res://scenes/bullet_types/player_water.tscn"),
+	"nature": load("res://scenes/bullet_types/player_leaf.tscn"),
 	"dark": load("res://scenes/bullet_types/player_dark-pulse.tscn"),
 	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
@@ -233,6 +234,15 @@ func setBaseStats():
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 4
 		MINFIRERATE = 4
+	if bulletType == "nature":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 5.0
+		BASEDAMAGE = 2.0
+		BASEBULLETSPEED = 250
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 6
+		MINFIRERATE = 1 + (0.75 * UPGRADE.bulletUpgrades)
 
 func setTotalStats():
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)

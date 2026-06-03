@@ -348,6 +348,14 @@ func _gotDamaged(area):
 					area.ricochet -= 1
 				else:
 					area.queue_free()
+		# player summons
+		if area is PlayerSummon:
+			$Hit.pitch_scale = randf_range(0.9, 1.1)
+			$Hit.playing = true
+			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
+			shaderMaterial.shader = Global.shaders.flash
+			HEALTH -= area.DAMAGE
+			HITSTUN = 0.5
 		# explosions
 		if area is Explosion and area.playerExplosion == true:
 			$Hit.pitch_scale = randf_range(0.9, 1.1)
