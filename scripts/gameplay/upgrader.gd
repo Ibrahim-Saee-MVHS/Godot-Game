@@ -122,10 +122,11 @@ func upgrade(selectedUpgrade):
 				else:
 					playerNode.UPGRADE.bulletUpgrades += 1
 			"card_picker":
-				playerNode.UPGRADE.health -= 10
-				playerNode.MAXHEALTH = playerNode.MAXHEALTH - 10
-				if playerNode.HEALTH > playerNode.MAXHEALTH:
-					playerNode.HEALTH = playerNode.MAXHEALTH
+				if playerNode.HEALTH - 10 >= 1:
+					playerNode.UPGRADE.health -= 10
+					playerNode.MAXHEALTH = playerNode.MAXHEALTH - 10
+					if playerNode.HEALTH > playerNode.MAXHEALTH:
+						playerNode.HEALTH = playerNode.MAXHEALTH
 			"defense_up":
 				playerNode.UPGRADE.defense += 4
 			"pressure_washer":
