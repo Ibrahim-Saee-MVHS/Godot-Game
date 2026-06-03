@@ -147,14 +147,14 @@
 	"dark_pulse": {
 		"sprite": "res://assets/sprites/upgrade_icons/dark_pulse.png",
 		"name": "Dark Pulse",
-		"description": "Changes BULLET TYPE to Dark. A powerful element, You can shoot a continous pulse that deals high damage and knockback. Can only be stacked once, Lightbolt will not appear if BULLET TYPE is Dark.",
+		"description": "Changes BULLET TYPE to Dark. A powerful element, as such damage modifiers are halfed, You can shoot a continous pulse that deals high damage and knockback. Can only be stacked once.",
 		"weight": 0.085,
 		"rarity": "epic",
 	},
 	"lightbolt": {
 		"sprite": "res://assets/sprites/upgrade_icons/lightbolt.png",
 		"name": "Lightbolt",
-		"description": "Changes BULLET TYPE to Light. A powerful element, You can fire a homing bullet that gets faster, but slows when turning. Can only be stacked once, Dark Pulse will not appear if BULLET TYPE is Light.",
+		"description": "Changes BULLET TYPE to Light. A powerful element, as such damage modifiers are halfed, You can fire a homing bullet that gets faster, but slows when turning. Can only be stacked once.",
 		"weight": 0.085,
 		"rarity": "epic",
 	},
