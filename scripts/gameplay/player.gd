@@ -34,8 +34,6 @@ var ABILITYMAXCOOLDOWN: float # the cooldown that gets set to ABILITYCOOLDOWN
 @onready var GameOver = load("res://scenes/game_over.tscn")
 @onready var UpgradeScreen = load("res://scenes/upgrade_screen.tscn")
 @onready var ExplosionNode = load("res://scenes/explosion.tscn")
-@onready var DashNode = load("res://scenes/dash.tscn")
-@onready var ShieldNode = load("res://scenes/shield.tscn")
 var shaderMaterial = ShaderMaterial.new()
 var knockbackDir: float
 var knockbackPower: float
@@ -52,6 +50,11 @@ var Projectiles = {
 	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
+}
+var AbilityNodes = {
+	"dash": load("res://scenes/dash.tscn"),
+	"shield": load("res://scenes/shield.tscn"),
+	"nature": load("res://scenes/bullet_types/player_leaf_summon.tscn"),
 }
 var UPGRADE = {
 	health = 0,
@@ -278,6 +281,10 @@ func setAbilityStats():
 		ABILITYPOWER = 2 + UPGRADE.abilityPower
 		ABILITYDURATION = 0
 		ABILITYMAXCOOLDOWN = 28 + UPGRADE.abilityCooldown
+	if ABILITY == "nature":
+		ABILITYPOWER = 4 + UPGRADE.abilityPower
+		ABILITYDURATION = 0
+		ABILITYMAXCOOLDOWN = 10 + UPGRADE.abilityCooldown
 
 func shoot(spread, variance):
 	var startDir = -spread / 2
@@ -316,15 +323,24 @@ func activateAbility(delta):
 		if ABILITY == "flashtime":
 			Abilities.flashtime()
 		if ABILITY == "dash":
-			var DASH = DashNode.instantiate()
+			var DASH = AbilityNodes.get("dash").instantiate()
 			DASH.DAMAGE = (4 + UPGRADE.abilityPower + (UPGRADE.damage / 10)) * 2
 			DASH.rotation = (get_global_mouse_position() - global_position).angle() + PI
 			add_child(DASH)
 			$CollisionShape2D.disabled = true
 			Abilities.dash(get_global_mouse_position(), global_position, delta)
 		if ABILITY == "shield":
-			var SHIELD = ShieldNode.instantiate()
+			var SHIELD = AbilityNodes.get("shield").instantiate()
 			add_child(SHIELD)
+		if ABILITY == "leaf_summon":
+			var LEAFSUMMON = AbilityNodes.get("nature").instantiate()
+			LEAFSUMMON.set("global_position", global_position + Vector2(randf_range(-32, 32), randf_range(-32, 32)))
+			LEAFSUMMON.set("TYPE", "nature")
+			LEAFSUMMON.set("SPEED", 250 + (UPGRADE.bulletSpeed))
+			LEAFSUMMON.set("DAMAGE")
+			LEAFSUMMON.set("KNOCKBACK")
+			
+			get_parent().add_child(LEAFSUMMON)
 		ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func _physics_process(delta):

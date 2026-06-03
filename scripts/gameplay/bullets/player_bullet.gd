@@ -90,10 +90,6 @@ func _ready():
 	if TYPE == "boomerang":
 		KNOCKBACK = 8000
 		despawnTimer = 5 + (2 * upgrades)
-	if TYPE == "nature":
-		KNOCKBACK = 4000
-		despawnTimer = 60 + (5 * upgrades)
-		explosiveness = explosiveness * (1 + (0.25 * upgrades))
 
 func _process(delta):
 	if homing > 0 and (TYPE != "light" or TYPE != "nature"):
@@ -102,13 +98,6 @@ func _process(delta):
 	if TYPE == "boomerang":
 		rotation_degrees += SPEED / 10
 		SPEED = clamp(SPEED + 2.5, 125, 500)
-		
-	if TYPE == "nature":
-		rotation = MOVEDIR
-		if get_tree().get_nodes_in_group("enemies").size() > 0:
-			homeOnEnemy(0.05 + (upgrades / 20))
-		else:
-			returnToPlayer(0.05)
 	
 	if TYPE == "dark":
 		rotation = MOVEDIR

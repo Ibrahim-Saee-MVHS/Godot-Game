@@ -157,11 +157,13 @@ func upgrade(selectedUpgrade):
 				else:
 					playerNode.UPGRADE.bulletUpgrades += 1
 			"leaf_summon":
-				if playerNode.bulletType != "nature":
-					playerNode.bulletType = "nature"
-					playerNode.UPGRADE.bulletUpgrades = 0
-					playerNode.UPGRADE.explosiveness = 0
-					playerNode.UPGRADE.ricochet = 0
-					playerNode.UPGRADE.homing = 0
+				if playerNode.ABILITY != "leaf_summon":
+					playerNode.ABILITY = "leaf_summon"
+					Abilities.abilityTimer = 0
+					playerNode.ABILITYCOOLDOWN = 0
+					playerNode.UPGRADE.abilityPower = 0
+					playerNode.UPGRADE.abilityDuration = 0
+					playerNode.UPGRADE.abilityCooldown = 0
 				else:
-					playerNode.UPGRADE.bulletUpgrades += 1
+					playerNode.UPGRADE.abilityPower += 1
+					playerNode.UPGRADE.abilityCooldown -= 2
