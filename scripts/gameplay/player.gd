@@ -116,15 +116,7 @@ func _process(delta):
 	level()
 	setBaseStats()
 	setAbilityStats()
-	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
-	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate if bulletType != "flame" else UPGRADE.firerate / 5), MINFIRERATE, 16)
-	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
-	DEFENSE = clamp(UPGRADE.defense, 0, 256)
-	SPEED = BASESPEED + (UPGRADE.speed * 200) + (1000 * ABILITYPOWER if ABILITY == "flashtime" and Abilities.abilityTimer > 0 else 0.0)
-	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
-	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
-	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, 6, 48)
-	ABILITYCOOLDOWN = clamp(ABILITYCOOLDOWN, 0, ABILITYMAXCOOLDOWN)
+	setTotalStats()
 	
 	if Input.is_action_just_pressed("quick_upgrade") and OS.has_feature("editor"):
 		EXP += EXPMAX
@@ -242,6 +234,41 @@ func setBaseStats():
 		MAXBULLETAMOUNT = 4
 		MINFIRERATE = 4
 
+func setTotalStats():
+	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
+	MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate), MINFIRERATE, 16)
+	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
+	DEFENSE = clamp(UPGRADE.defense, 0, 256)
+	SPEED = BASESPEED + (UPGRADE.speed * 200)
+	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
+	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
+	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, 6, 48)
+	ABILITYCOOLDOWN = clamp(ABILITYCOOLDOWN, 0, ABILITYMAXCOOLDOWN)
+	if bulletType == "light" or bulletType == "dark":
+		DAMAGE = clamp(BASEDAMAGE + (UPGRADE.damage / 2), 0.01, 32)
+	if bulletType == "flame" or bulletType == "water":
+		MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate / 5), MINFIRERATE, 16)
+	if ABILITY == "flashtime" and Abilities.abilityTimer > 0:
+		SPEED = BASESPEED + (UPGRADE.speed * 200) + (1000 * ABILITYPOWER)
+
+func setAbilityStats():
+	if ABILITY == "detonation":
+		ABILITYPOWER = 1 + UPGRADE.abilityPower
+		ABILITYDURATION = 0
+		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
+	if ABILITY == "flashtime":
+		ABILITYPOWER = 1 + UPGRADE.abilityPower
+		ABILITYDURATION = 10 + UPGRADE.abilityDuration
+		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
+	if ABILITY == "dash":
+		ABILITYPOWER = (5 + UPGRADE.abilityPower) * 5
+		ABILITYDURATION = 0.2 + UPGRADE.abilityDuration
+		ABILITYMAXCOOLDOWN = 8 + UPGRADE.abilityCooldown
+	if ABILITY == "shield":
+		ABILITYPOWER = 2 + UPGRADE.abilityPower
+		ABILITYDURATION = 0
+		ABILITYMAXCOOLDOWN = 28 + UPGRADE.abilityCooldown
+
 func shoot(spread, variance):
 	var startDir = -spread / 2
 	var dirSteps = spread / (BULLETAMOUNT - 1)
@@ -289,24 +316,6 @@ func activateAbility(delta):
 			var SHIELD = ShieldNode.instantiate()
 			add_child(SHIELD)
 		ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
-
-func setAbilityStats():
-	if ABILITY == "detonation":
-		ABILITYPOWER = 1 + UPGRADE.abilityPower
-		ABILITYDURATION = 0
-		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
-	if ABILITY == "flashtime":
-		ABILITYPOWER = 1 + UPGRADE.abilityPower
-		ABILITYDURATION = 10 + UPGRADE.abilityDuration
-		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
-	if ABILITY == "dash":
-		ABILITYPOWER = (5 + UPGRADE.abilityPower) * 5
-		ABILITYDURATION = 0.2 + UPGRADE.abilityDuration
-		ABILITYMAXCOOLDOWN = 8 + UPGRADE.abilityCooldown
-	if ABILITY == "shield":
-		ABILITYPOWER = 2 + UPGRADE.abilityPower
-		ABILITYDURATION = 0
-		ABILITYMAXCOOLDOWN = 28 + UPGRADE.abilityCooldown
 
 func _physics_process(delta):
 	var input = getPlayerInput()
