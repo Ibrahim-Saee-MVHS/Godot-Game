@@ -78,7 +78,7 @@ func removeUpgrades(totalUpgrades):
 	if player.BULLETAMOUNT + 1 > player.MAXBULLETAMOUNT or player.UPGRADE.ricochet > 0:
 		totalUpgrades.erase("spread_shot")
 		
-	if ((player.bulletType != "normal" and player.bulletType != "boomerang") or player.UPGRADE.explosiveness >= 2) and player.MAXHEALTH >= 10:
+	if ((player.bulletType != "normal" and player.bulletType != "boomerang") or player.UPGRADE.explosiveness >= 2) and player.MAXHEALTH > 5:
 		totalUpgrades.erase("sulfuric_ammo")
 		
 	if player.MAXFIRERATE - 1 < player.MINFIRERATE:
