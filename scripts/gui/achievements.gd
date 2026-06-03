@@ -204,7 +204,7 @@ func achievementUnlocking():
 			unlockAchievement("dash_smash")
 	
 	if isAchievementUnlocked("explosion_max") == false:
-		if (PlayerNode.ABILITY == "detonation" and PlayerNode.UPGRADE.abilityPower >= 3) and (PlayerNode.bulletType == "normal" and PlayerNode.UPGRADE.bulletUpgrades >= 4 and PlayerNode.UPGRADE.explosiveness >= 2):
+		if (PlayerNode.ABILITY == "detonation" and PlayerNode.ABILITYPOWER >= 3) and (PlayerNode.bulletType == "normal" and PlayerNode.UPGRADE.bulletUpgrades >= 4) and PlayerNode.UPGRADE.explosiveness >= 2:
 			ACHIEVEMENTS.set("explosion_max", true)
 			unlockAchievement("explosion_max")
 	
