@@ -68,6 +68,7 @@ func upgradePlayer():
 	get_parent().get_node("Player").EXP = 0
 	Upgrader.upgrade(selectedUpgrade)
 	if selectedUpgrade == "card_picker":
+		$UpgradeSelector.addUpgradeBoxes()
 		$AnimationPlayer.play("upgradeSelectorIn")
 	else:
 		endUpgrade()

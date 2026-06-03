@@ -7,7 +7,6 @@ var selectedButton: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	UpgradeBoxButtonGroup.pressed.connect(_upgradeSelected)
-	addUpgradeBoxes()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
