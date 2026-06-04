@@ -99,7 +99,9 @@ func _on_body_entered(body: Node2D) -> void:
 			if body.FIRERATE > body.MAXFIRERATE:
 				body.FIRERATE = body.MAXFIRERATE
 			queue_free()
-	if body is EnemyBullet or body is PlayerBullet:
-		if TYPE == "flame" and body.TYPE == "water":
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is EnemyBullet or area is PlayerBullet:
+		if TYPE == "flame" and area.TYPE == "water":
 			$CPUParticles2D.emitting = false
 			$CollisionShape2D.disabled = true

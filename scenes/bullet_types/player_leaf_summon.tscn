@@ -7,8 +7,8 @@
 size = Vector2(22, 12)
 
 [node name="PlayerLeafSummon" type="Area2D" unique_id=2090501352 groups=["playerSummons"]]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 36
+collision_mask = 38
 script = ExtResource("1_ht1kt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=772829289]
@@ -18,4 +18,5 @@ texture = ExtResource("1_hrf85")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=160784527]
 shape = SubResource("RectangleShape2D_ht1kt")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

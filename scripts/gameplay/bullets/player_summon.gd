@@ -13,6 +13,8 @@ var velocity: Vector2
 var ID: int
 var PlayerNode: Player
 
+var ashNode = load("res://scenes/vfx/ash.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if TYPE == "nature":
@@ -75,8 +77,10 @@ func returnToPlayer():
 	else:
 		MOVEDIR = lerp_angle(MOVEDIR, (PlayerNode.global_position - global_position).angle(), 0.05)
 
-
-func _on_body_entered(body: Node2D) -> void:
-	if body is PlayerBullet or body is EnemyBullet:
-		if TYPE == "nature" and body.TYPE == "flame":
+func _on_area_entered(area: Area2D) -> void:
+	if area is PlayerBullet or area is EnemyBullet:
+		if TYPE == "nature" and area.TYPE == "flame":
+			var ASH = ashNode.instantiate()
+			ASH.global_position = global_position
+			get_parent().add_child(ASH)
 			queue_free()

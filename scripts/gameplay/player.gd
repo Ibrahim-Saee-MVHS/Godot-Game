@@ -144,6 +144,7 @@ func _process(delta):
 		shoot(BULLETSPREAD, BULLETVARIANCE)
 	elif FIRERATE > 0 and HEALTH >= 0:
 		FIRERATE -= 10 * delta
+	
 	if Input.is_action_pressed("ability") and ABILITYCOOLDOWN <= 0:
 		activateAbility(delta)
 	elif ABILITYCOOLDOWN > 0:
@@ -153,6 +154,10 @@ func _process(delta):
 			ABILITYCOOLDOWN -= 1 * delta
 			if ABILITY == "dash":
 				$CollisionShape2D.disabled = false
+	# set cooldown to max if all leaves have been summoned
+	if ABILITY == "leaf_summon":
+		if get_tree().get_node_count_in_group("playerSummons") >= ABILITYPOWER:
+			ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 	if HEALTH <= 0:
 		# This is so that certain things are done once
 		if visible == true:

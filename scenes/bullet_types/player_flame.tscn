@@ -13,7 +13,7 @@ point_count = 2
 
 [node name="PlayerFlame" type="Area2D" unique_id=1432198597]
 collision_layer = 4
-collision_mask = 6
+collision_mask = 38
 script = ExtResource("1_qr30t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
@@ -36,3 +36,6 @@ angle_min = -720.0
 angle_max = 720.0
 scale_amount_curve = SubResource("Curve_elrkp")
 color_ramp = ExtResource("3_qr30t")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
