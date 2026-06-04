@@ -79,7 +79,7 @@ func returnToPlayer():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet or area is EnemyBullet:
-		if TYPE == "nature" and area.TYPE == "flame":
+		if TYPE == "nature" and (area.TYPE == "flame" and area.upgrades != 2):
 			var ASH = ashNode.instantiate()
 			ASH.global_position = global_position
 			get_parent().add_child(ASH)
