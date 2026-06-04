@@ -65,6 +65,8 @@ func findNewTarget():
 		var min_distance = INF
 		var nearest_enemy = null
 		for enemy in enemies:
+			if enemy.TYPE == "arsonist":
+				continue
 			var distance = PlayerNode.global_position.distance_squared_to(enemy.global_position)
 			if distance < min_distance:
 				min_distance = distance

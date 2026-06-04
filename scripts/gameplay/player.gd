@@ -295,7 +295,7 @@ func setAbilityStats():
 		ABILITYPOWER = 4 + UPGRADE.abilityPower
 		ABILITYDURATION = 0
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
-		ABILITYMINCOOLDOWN = 12
+		ABILITYMINCOOLDOWN = 8
 
 func shoot(spread, variance):
 	var startDir = -spread / 2

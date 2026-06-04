@@ -166,4 +166,5 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.abilityCooldown = 0
 				else:
 					playerNode.UPGRADE.abilityPower += 1
+					playerNode.UPGRADE.abilityCooldown -= 2
 					playerNode.ABILITYCOOLDOWN = playerNode.ABILITYMAXCOOLDOWN
