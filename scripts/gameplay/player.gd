@@ -30,6 +30,7 @@ var ABILITYPOWER: float # ability power
 var ABILITYDURATION: float # the duration that gets set to Abilities.abilityTimer
 var ABILITYCOOLDOWN: float # the current cooldown for abilities
 var ABILITYMAXCOOLDOWN: float # the cooldown that gets set to ABILITYCOOLDOWN
+var ABILITYMINCOOLDOWN: float
 @onready var Death = load("res://scenes/vfx/player_death.tscn")
 @onready var GameOver = load("res://scenes/game_over.tscn")
 @onready var UpgradeScreen = load("res://scenes/upgrade_screen.tscn")
@@ -255,7 +256,7 @@ func setTotalStats():
 	SPEED = BASESPEED + (UPGRADE.speed * 200)
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
 	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
-	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, 6, 48)
+	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, ABILITYMINCOOLDOWN, 48)
 	ABILITYCOOLDOWN = clamp(ABILITYCOOLDOWN, 0, ABILITYMAXCOOLDOWN)
 	if bulletType == "light" or bulletType == "dark":
 		DAMAGE = clamp(BASEDAMAGE + (UPGRADE.damage / 2), 0.01, 32)
@@ -269,22 +270,27 @@ func setAbilityStats():
 		ABILITYPOWER = 1 + UPGRADE.abilityPower
 		ABILITYDURATION = 0
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
+		ABILITYMINCOOLDOWN = 10
 	if ABILITY == "flashtime":
 		ABILITYPOWER = 1 + UPGRADE.abilityPower
 		ABILITYDURATION = 10 + UPGRADE.abilityDuration
 		ABILITYMAXCOOLDOWN = 16 + UPGRADE.abilityCooldown
+		ABILITYMINCOOLDOWN = 10
 	if ABILITY == "dash":
 		ABILITYPOWER = (5 + UPGRADE.abilityPower) * 5
 		ABILITYDURATION = 0.2 + UPGRADE.abilityDuration
 		ABILITYMAXCOOLDOWN = 8 + UPGRADE.abilityCooldown
+		ABILITYMINCOOLDOWN = 2
 	if ABILITY == "shield":
 		ABILITYPOWER = 2 + UPGRADE.abilityPower
 		ABILITYDURATION = 0
 		ABILITYMAXCOOLDOWN = 28 + UPGRADE.abilityCooldown
-	if ABILITY == "nature":
+		ABILITYMINCOOLDOWN = 6
+	if ABILITY == "leaf_summon":
 		ABILITYPOWER = 4 + UPGRADE.abilityPower
 		ABILITYDURATION = 0
-		ABILITYMAXCOOLDOWN = 10 + UPGRADE.abilityCooldown
+		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
+		ABILITYMINCOOLDOWN = 12
 
 func shoot(spread, variance):
 	var startDir = -spread / 2
@@ -324,7 +330,7 @@ func activateAbility(delta):
 			Abilities.flashtime()
 		if ABILITY == "dash":
 			var DASH = AbilityNodes.get("dash").instantiate()
-			DASH.DAMAGE = (4 + UPGRADE.abilityPower + (UPGRADE.damage / 10)) * 2
+			DASH.DAMAGE = (4 + UPGRADE.abilityPower + (UPGRADE.damage / 5)) * 2
 			DASH.rotation = (get_global_mouse_position() - global_position).angle() + PI
 			add_child(DASH)
 			$CollisionShape2D.disabled = true
@@ -333,14 +339,15 @@ func activateAbility(delta):
 			var SHIELD = AbilityNodes.get("shield").instantiate()
 			add_child(SHIELD)
 		if ABILITY == "leaf_summon":
-			var LEAFSUMMON = AbilityNodes.get("nature").instantiate()
-			LEAFSUMMON.set("global_position", global_position + Vector2(randf_range(-32, 32), randf_range(-32, 32)))
-			LEAFSUMMON.set("TYPE", "nature")
-			LEAFSUMMON.set("SPEED", 250 + (UPGRADE.bulletSpeed))
-			LEAFSUMMON.set("DAMAGE")
-			LEAFSUMMON.set("KNOCKBACK")
-			
-			get_parent().add_child(LEAFSUMMON)
+			if get_tree().get_node_count_in_group("playerSummons") < ABILITYPOWER:
+				var LEAFSUMMON = AbilityNodes.get("nature").instantiate()
+				LEAFSUMMON.set("global_position", global_position + Vector2(randf_range(-16, 16), randf_range(-16, 16)))
+				LEAFSUMMON.set("TYPE", "nature")
+				LEAFSUMMON.set("power", UPGRADE.abilityPower)
+				
+				get_parent().add_child(LEAFSUMMON)
+			else:
+				pass
 		ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func _physics_process(delta):

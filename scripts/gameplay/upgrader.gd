@@ -83,7 +83,7 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.abilityPower += 0.5
 					playerNode.UPGRADE.abilityCooldown -= 4
 			"cooldown_reduction":
-				playerNode.UPGRADE.abilityCooldown -= 5
+				playerNode.UPGRADE.abilityCooldown -= 4
 			"dash":
 				if playerNode.ABILITY != "dash":
 					playerNode.ABILITY = "dash"
@@ -166,4 +166,4 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.abilityCooldown = 0
 				else:
 					playerNode.UPGRADE.abilityPower += 1
-					playerNode.UPGRADE.abilityCooldown -= 2
+					playerNode.ABILITYCOOLDOWN = playerNode.ABILITYMAXCOOLDOWN

@@ -93,7 +93,7 @@ func removeUpgrades(totalUpgrades):
 	if (player.ABILITY == "detonation" and player.ABILITYPOWER >= 3) or (player.ABILITY != "detonation" and player.MAXHEALTH < 40):
 		totalUpgrades.erase("detonation")
 		
-	if player.ABILITYMAXCOOLDOWN <= 6 or player.ABILITY == "none":
+	if player.ABILITYMAXCOOLDOWN <= player.ABILITYMINCOOLDOWN or player.ABILITY == "none":
 		totalUpgrades.erase("cooldown_reduction")
 	
 	if player.ABILITY == "dash" and player.UPGRADE.abilityPower >= 3:
@@ -122,5 +122,8 @@ func removeUpgrades(totalUpgrades):
 		
 	if (player.bulletType == "light" and player.UPGRADE.bulletUpgrades >= 1) or player.bulletType == "dark":
 		totalUpgrades.erase("lightbolt")
+	
+	if player.ABILITY == "leaf_summon" and player.UPGRADE.abilityPower >= 5:
+		totalUpgrades.erase("leaf_summon")
 	
 	return totalUpgrades

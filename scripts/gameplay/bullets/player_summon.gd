@@ -9,32 +9,49 @@ var KNOCKBACK: float
 var despawnTimer = 60
 var power: int
 var target: CollisionObject2D = null
+var velocity: Vector2
 var ID: int
 var PlayerNode: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if TYPE == "nature":
-		SPEED = SPEED + (5 * power)
-		DAMAGE = DAMAGE + (2 * power)
+		SPEED = 250 + (25 * power)
+		DAMAGE = 4 + (2 * power)
+		KNOCKBACK = 100 + (100 * power)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	PlayerNode = get_parent().get_node("Player")
 	
 	if get_tree().get_nodes_in_group("enemies").size() > 0:
 		homeOnEnemy(power)
 	else:
 		returnToPlayer()
-		
+	
+	velocity = Vector2(SPEED, 0).rotated(MOVEDIR) * delta
+	keepDistance(16, 8)
+	
 	rotation = MOVEDIR
-	position += Vector2(SPEED, 0).rotated(MOVEDIR) * delta
+	position += velocity
 
 func despawnSummon():
 	$CollisionShape2D.disabled = true
 	modulate.a -= 5 * get_process_delta_time()
 	if modulate.a <= 0:
 		queue_free()
+
+func keepDistance(min_distance, separation_amount):
+	for node in get_tree().get_nodes_in_group("playerSummons"):
+		if node == self:
+			continue
+		
+		var distance = global_position.distance_to(node.global_position)
+		if distance < min_distance and distance > 0:
+			var push_dir = node.global_position.direction_to(global_position)
+			var push_force = push_dir * (1.0 - (distance / min_distance)) * separation_amount
+			velocity += push_force
 
 func homeOnEnemy(homing_amount):
 	findNewTarget()
@@ -57,3 +74,9 @@ func returnToPlayer():
 		target = PlayerNode
 	else:
 		MOVEDIR = lerp_angle(MOVEDIR, (PlayerNode.global_position - global_position).angle(), 0.05)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is PlayerBullet or body is EnemyBullet:
+		if TYPE == "nature" and body.TYPE == "flame":
+			queue_free()

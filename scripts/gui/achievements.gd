@@ -199,7 +199,7 @@ func achievementUnlocking():
 			unlockAchievement("super_speed")
 	
 	if isAchievementUnlocked("dash_smash") == false:
-		if (PlayerNode.ABILITY == "dash" and PlayerNode.UPGRADE.abilityPower >= 3) and PlayerNode.ABILITYMAXCOOLDOWN <= 6:
+		if (PlayerNode.ABILITY == "dash" and PlayerNode.UPGRADE.abilityPower >= 3) and PlayerNode.ABILITYMAXCOOLDOWN <= 2:
 			ACHIEVEMENTS.set("dash_smash", true)
 			unlockAchievement("dash_smash")
 	
