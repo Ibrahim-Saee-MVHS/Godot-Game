@@ -55,6 +55,10 @@
 		"description": "The Pinacle.\nReach Level 100.",
 		"warn": true,
 	},
+	"nature_flame": {
+		"name": "Unexpected Combo.",
+		"description": "[color=#aaffff11]Or is it totally expected?[/color]\nMax out Leaf Summon Abilty and upgrade Flamethrower to it's 2nd tier.",
+	},
 	"super_speed": {
 		"name": "At The Speed of Bullets",
 		"description": "Max out the Flashtime Abilty and increase SPEED up to 64.",

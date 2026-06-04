@@ -26,6 +26,7 @@ var initialAchievements = {
 		"light": false,
 		"dark": false,
 	},
+	"nature_flame": false,
 	"super_speed": false,
 	"dash_smash": false,
 	"explosion_max": false,
@@ -189,9 +190,17 @@ func achievementUnlocking():
 		if PlayerNode.bulletType == "light" and PlayerNode.UPGRADE.bulletUpgrades >= 1:
 			ACHIEVEMENTS.get("elemental").set("light", true)
 			saveAchievements()
+		if PlayerNode.ABILITY == "leaf_summon" and PlayerNode.UPGRADE.abilityPower >= 5:
+			ACHIEVEMENTS.get("elemental").set("nature", true)
+			saveAchievements()
 		if getAchievementProgress("elemental", false) >= getAchievementProgress("elemental", true):
 			ACHIEVEMENTS.get("elemental").set("unlocked", true)
 			unlockAchievement("elemental")
+	
+	if isAchievementUnlocked("nature_flame") == false:
+		if (PlayerNode.ABILITY == "leaf_summon" and PlayerNode.UPGRADE.abilityPower >= 5) and (PlayerNode.bulletType == "flame" and PlayerNode.UPGRADE.bulletUpgrades == 2):
+			ACHIEVEMENTS.set("nature_flame", true)
+			unlockAchievement("nature_flame")
 	
 	if isAchievementUnlocked("super_speed") == false:
 		if (PlayerNode.ABILITY == "flashtime" and PlayerNode.UPGRADE.abilityPower >= 3) and PlayerNode.UPGRADE.speed >= 64:
