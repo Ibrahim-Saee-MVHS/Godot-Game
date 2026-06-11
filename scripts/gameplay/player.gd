@@ -49,6 +49,7 @@ var Projectiles = {
 	"nature": load("res://scenes/bullet_types/player_leaf.tscn"),
 	"dark": load("res://scenes/bullet_types/player_dark-pulse.tscn"),
 	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
+	"thunder": load("res://scenes/bullet_types/player_lightning_chain.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
@@ -141,9 +142,21 @@ func _process(delta):
 			shaderMaterial.shader = Global.shaders.tint
 	
 	if Input.is_action_pressed("shoot") and FIRERATE <= 0:
-		shoot(BULLETSPREAD, BULLETVARIANCE)
+		if bulletType == "thunder":
+			var BULLET = Projectiles.get(bulletType).instantiate()
+			BULLET.set("DAMAGE", DAMAGE)
+			BULLET.set("upgrades", UPGRADE.bulletUpgrades)
+			add_child(BULLET)
+		else:
+			shoot(BULLETSPREAD, BULLETVARIANCE)
 	elif FIRERATE > 0 and HEALTH >= 0:
 		FIRERATE -= 10 * delta
+	
+	if Input.is_action_pressed("shoot") and has_node("PlayerLightningChain"):
+		FIRERATE = 2
+	elif not Input.is_action_pressed("shoot") and has_node("PlayerLightningChain"):
+		$PlayerLightningChain.queue_free()
+		FIRERATE = 0
 	
 	if Input.is_action_pressed("ability") and ABILITYCOOLDOWN <= 0:
 		activateAbility(delta)
@@ -251,7 +264,16 @@ func setBaseStats():
 		BASEBULLETSPEED = 250
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 6
-		MINFIRERATE = 1 + (0.75 * UPGRADE.bulletUpgrades)
+		MINFIRERATE = 1
+	if bulletType == "thunder":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 2.0
+		BASEDAMAGE = 3.0
+		BASEBULLETSPEED = 250
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 1
+		MINFIRERATE = 2
 
 func setTotalStats():
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
@@ -267,6 +289,8 @@ func setTotalStats():
 		DAMAGE = clamp(BASEDAMAGE + (UPGRADE.damage / 2), 0.01, 32)
 	if bulletType == "flame" or bulletType == "water":
 		MAXFIRERATE = clamp(BASEFIRERATE + (UPGRADE.firerate / 5), MINFIRERATE, 16)
+	if bulletType == "thunder":
+		MAXFIRERATE = clamp(BASEFIRERATE, MINFIRERATE, 2)
 	if ABILITY == "flashtime" and Abilities.abilityTimer > 0:
 		SPEED = BASESPEED + (UPGRADE.speed * 200) + (1000 * ABILITYPOWER)
 

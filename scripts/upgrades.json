@@ -165,4 +165,11 @@
 		"weight": 0.25,
 		"rarity": "uncommon",
 	},
+	"lightning_chain": {
+		"sprite": "res://assets/sprites/upgrade_icons/lightning_chain.png",
+		"name": "Lightning Chain",
+		"description": "Changes BULLET TYPE to Thunder. You can summon a bolt of lightning that can chain to multiple enemies. Stack for more chaining",
+		"weight": 0.090,
+		"rarity": "epic",
+	},
 }

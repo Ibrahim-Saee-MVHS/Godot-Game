@@ -119,11 +119,14 @@ func removeUpgrades(totalUpgrades):
 	
 	if (player.bulletType == "dark" and player.UPGRADE.bulletUpgrades >= 1) or player.bulletType == "light":
 		totalUpgrades.erase("dark_pulse")
-		
+	
 	if (player.bulletType == "light" and player.UPGRADE.bulletUpgrades >= 1) or player.bulletType == "dark":
 		totalUpgrades.erase("lightbolt")
 	
 	if player.ABILITY == "leaf_summon" and player.UPGRADE.abilityPower >= 5:
 		totalUpgrades.erase("leaf_summon")
+	
+	if player.bulletType == "thunder" and player.UPGRADE.bulletUpgrades >= 4:
+		totalUpgrades.erase("lightning_chain")
 	
 	return totalUpgrades
