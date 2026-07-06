@@ -27,6 +27,7 @@ var initialAchievements = {
 		"dark": false,
 	},
 	"nature_flame": false,
+	"electrostatic": false,
 	"super_speed": false,
 	"dash_smash": false,
 	"explosion_max": false,
@@ -193,6 +194,9 @@ func achievementUnlocking():
 		if PlayerNode.ABILITY == "leaf_summon" and PlayerNode.UPGRADE.abilityPower >= 5:
 			ACHIEVEMENTS.get("elemental").set("nature", true)
 			saveAchievements()
+		if PlayerNode.ABILITY == "thunder_strike" and PlayerNode.UPGRADE.abilityPower >= 4:
+			ACHIEVEMENTS.get("elemental").set("thunder", true)
+			saveAchievements()
 		if getAchievementProgress("elemental", false) >= getAchievementProgress("elemental", true):
 			ACHIEVEMENTS.get("elemental").set("unlocked", true)
 			unlockAchievement("elemental")
@@ -201,6 +205,11 @@ func achievementUnlocking():
 		if (PlayerNode.ABILITY == "leaf_summon" and PlayerNode.UPGRADE.abilityPower >= 5) and (PlayerNode.bulletType == "flame" and PlayerNode.UPGRADE.bulletUpgrades == 2):
 			ACHIEVEMENTS.set("nature_flame", true)
 			unlockAchievement("nature_flame")
+			
+	if isAchievementUnlocked("electrostatic") == false:
+		if (PlayerNode.ABILITY == "thunder_strike" and PlayerNode.UPGRADE.abilityPower >= 4) and (PlayerNode.bulletType == "plasma"):
+			ACHIEVEMENTS.set("electrostatic", true)
+			unlockAchievement("electrostatic")
 	
 	if isAchievementUnlocked("super_speed") == false:
 		if (PlayerNode.ABILITY == "flashtime" and PlayerNode.UPGRADE.abilityPower >= 3) and PlayerNode.UPGRADE.speed >= 64:
