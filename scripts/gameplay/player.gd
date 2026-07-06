@@ -380,7 +380,7 @@ func activateAbility(delta):
 				
 				get_parent().add_child(LEAFSUMMON)
 			else:
-				pass
+				return
 		if ABILITY == "thunder_strike":
 			var enemies = get_tree().get_nodes_in_group("enemies")
 			if enemies.size() > 0:
@@ -393,7 +393,7 @@ func activateAbility(delta):
 					get_parent().add_child(THUNDER)
 				Global.SCREENSHAKE(200, 1.5)
 			else:
-				pass
+				return
 		ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
 
 func _physics_process(delta):
