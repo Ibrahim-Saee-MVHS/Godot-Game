@@ -49,7 +49,6 @@ var Projectiles = {
 	"nature": load("res://scenes/bullet_types/player_leaf.tscn"),
 	"dark": load("res://scenes/bullet_types/player_dark-pulse.tscn"),
 	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
-	"thunder": load("res://scenes/bullet_types/player_lightning_chain.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
