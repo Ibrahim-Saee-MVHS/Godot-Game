@@ -168,12 +168,14 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.abilityPower += 1
 					playerNode.UPGRADE.abilityCooldown -= 2
 					playerNode.ABILITYCOOLDOWN = playerNode.ABILITYMAXCOOLDOWN
-			"lightning_chain":
-				if playerNode.bulletType != "thunder":
-					playerNode.bulletType = "thunder"
-					playerNode.UPGRADE.bulletUpgrades = 0
-					playerNode.UPGRADE.explosiveness = 0
-					playerNode.UPGRADE.ricochet = 0
-					playerNode.UPGRADE.homing = 0
+			"thunder_strike":
+				if playerNode.ABILITY != "thunder_strike":
+					playerNode.ABILITY = "thunder_strike"
+					Abilities.abilityTimer = 0
+					playerNode.ABILITYCOOLDOWN = 0
+					playerNode.UPGRADE.abilityPower = 0
+					playerNode.UPGRADE.abilityDuration = 0
+					playerNode.UPGRADE.abilityCooldown = 0
 				else:
-					playerNode.UPGRADE.bulletUpgrades += 1
+					playerNode.UPGRADE.abilityPower += 0.25
+					playerNode.UPGRADE.abilityDuration += 0.25

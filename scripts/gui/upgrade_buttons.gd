@@ -126,7 +126,7 @@ func removeUpgrades(totalUpgrades):
 	if player.ABILITY == "leaf_summon" and player.UPGRADE.abilityPower >= 5:
 		totalUpgrades.erase("leaf_summon")
 	
-	if player.bulletType == "thunder" and player.UPGRADE.bulletUpgrades >= 4:
-		totalUpgrades.erase("lightning_chain")
+	if player.ABILITY == "thunder_strike" and player.UPGRADE.abilityPower >= 2:
+		totalUpgrades.erase("thunder_strike")
 	
 	return totalUpgrades

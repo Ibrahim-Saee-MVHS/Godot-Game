@@ -57,6 +57,7 @@ var AbilityNodes = {
 	"dash": load("res://scenes/dash.tscn"),
 	"shield": load("res://scenes/shield.tscn"),
 	"nature": load("res://scenes/bullet_types/player_leaf_summon.tscn"),
+	"thunder": load("res://scenes/bullet_types/player_thunder_strike.tscn"),
 }
 var UPGRADE = {
 	health = 0,
@@ -320,6 +321,11 @@ func setAbilityStats():
 		ABILITYDURATION = 0
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
 		ABILITYMINCOOLDOWN = 8
+	if ABILITY == "thunder_strike":
+		ABILITYPOWER = 8 + UPGRADE.abilityPower
+		ABILITYDURATION = 2
+		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
+		ABILITYMINCOOLDOWN = 6
 
 func shoot(spread, variance):
 	var startDir = -spread / 2
@@ -375,6 +381,20 @@ func activateAbility(delta):
 				LEAFSUMMON.set("power", UPGRADE.abilityPower)
 				
 				get_parent().add_child(LEAFSUMMON)
+			else:
+				pass
+		if ABILITY == "thunder_strike":
+			var enemies = get_tree().get_nodes_in_group("enemies")
+			if enemies.size() > 0:
+				for enemy in enemies:
+					var THUNDER = AbilityNodes.get("thunder").instantiate()
+					THUNDER.set("DAMAGE", 10 + (DAMAGE/2))
+					THUNDER.set("despawnTimer", ABILITYDURATION)
+					THUNDER.set("upgrades", UPGRADE.abilityPower)
+					THUNDER.set("global_position", enemy.global_position)
+					get_parent().add_child(THUNDER)
+				Global.SCREENSHAKEAMOUNT = 200
+				Global.SCREENSHAKEPOWER = 1.5
 			else:
 				pass
 		ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
