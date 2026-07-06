@@ -12,6 +12,7 @@ var ICONS = {
 	"dash" = preload("res://assets/sprites/ability_icons/dash.png"),
 	"shield" = preload("res://assets/sprites/ability_icons/shield.png"),
 	"leaf_summon" = preload("res://assets/sprites/ability_icons/leaf_summon.png"),
+	"thunder_strike" = preload("res://assets/sprites/ability_icons/thunder_strike.png"),
 }
 
 func _ready() -> void:
