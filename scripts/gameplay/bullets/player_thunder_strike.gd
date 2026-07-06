@@ -4,13 +4,10 @@ extends Area2D
 var INV: float
 var DAMAGE: float
 var upgrades: int
-var max_distance: float
 var start_position: Vector2
 var target_position: Vector2
-var target: Vector2
 var anim_fps: int
 var anim_frame: int
-var isChain: bool
 var despawnTimer = 2
 
 func _ready() -> void:
@@ -18,7 +15,6 @@ func _ready() -> void:
 	target_position = Vector2(0, -720)
 	anim_fps = 3
 	INV = 2 - (0.25 * upgrades)
-	max_distance = 80 + (24 * upgrades)
 	DAMAGE *= 1 + (upgrades)
 
 func _process(delta: float) -> void:
