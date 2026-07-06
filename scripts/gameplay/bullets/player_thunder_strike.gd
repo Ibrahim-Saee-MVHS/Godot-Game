@@ -15,7 +15,7 @@ func _ready() -> void:
 	target_position = Vector2(0, -720)
 	anim_fps = 3
 	INV = 2 - (0.25 * upgrades)
-	DAMAGE *= 1 + (upgrades)
+	DAMAGE *= upgrades
 
 func _process(delta: float) -> void:
 	if anim_frame == 0:
