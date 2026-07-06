@@ -320,7 +320,7 @@ func setAbilityStats():
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
 		ABILITYMINCOOLDOWN = 8
 	if ABILITY == "thunder_strike":
-		ABILITYPOWER = 8 + UPGRADE.abilityPower
+		ABILITYPOWER = 1 + UPGRADE.abilityPower
 		ABILITYDURATION = 2
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
 		ABILITYMINCOOLDOWN = 6
@@ -386,7 +386,7 @@ func activateAbility(delta):
 			if enemies.size() > 0:
 				for enemy in enemies:
 					var THUNDER = AbilityNodes.get("thunder").instantiate()
-					THUNDER.set("DAMAGE", 10 + (DAMAGE/2))
+					THUNDER.set("DAMAGE", 8 + (DAMAGE/2))
 					THUNDER.set("despawnTimer", ABILITYDURATION)
 					THUNDER.set("upgrades", UPGRADE.abilityPower)
 					THUNDER.set("global_position", enemy.global_position)
