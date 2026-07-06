@@ -59,6 +59,16 @@ func setGameModifiers():
 		for i in range(enemySpawn.color.size()):
 			enemySpawn.color.set(enemySpawn.color.keys()[i], enemyColor.get("juggernaut"))
 
+func SCREENSHAKE(intensity, power):
+	if SCREENSHAKEAMOUNT > intensity:
+		SCREENSHAKEAMOUNT += (intensity / 2)
+	else:
+		SCREENSHAKEAMOUNT = intensity
+	if SCREENSHAKEPOWER > power:
+		SCREENSHAKEPOWER += (power / 2)
+	else:
+		SCREENSHAKEPOWER = power
+
 @onready var DAMAGEINDICATOR = preload("res://scenes/vfx/damage_indicator.tscn")
 @onready var SFX = {
 	select = preload("res://assets/sounds/blipSelect.wav"),

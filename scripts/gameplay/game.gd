@@ -115,6 +115,8 @@ func screenShake(delta):
 	$BaseCamera.offset.y = round(Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta)
 	if Global.SCREENSHAKEPOWER > 0.0:
 		Global.SCREENSHAKEPOWER -= 1 * delta
+	if Global.SCREENSHAKEAMOUNT > 0.0:
+		Global.SCREENSHAKEAMOUNT -= 1 * delta
 
 func _on_music_finished():
 	$Music.play()

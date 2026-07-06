@@ -206,8 +206,7 @@ func _process(delta):
 		var DEATH = Death.instantiate()
 		DEATH.global_position = global_position
 		DEATH.TYPE = TYPE
-		Global.SCREENSHAKEAMOUNT = 150
-		Global.SCREENSHAKEPOWER = 0.75
+		Global.SCREENSHAKE(150, 0.75)
 		get_parent().add_child(DEATH)
 		get_parent().get_node("Player").EXP += EXP
 		queue_free()

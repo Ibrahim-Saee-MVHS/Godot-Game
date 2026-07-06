@@ -175,8 +175,7 @@ func _process(delta):
 	if HEALTH <= 0:
 		# This is so that certain things are done once
 		if visible == true:
-			Global.SCREENSHAKEAMOUNT = 400
-			Global.SCREENSHAKEPOWER = 2
+			Global.SCREENSHAKE(400, 2)
 			var DEATHPARTICLE = Death.instantiate()
 			DEATHPARTICLE.global_position = global_position
 			DEATHPARTICLE.emitting = true
@@ -393,8 +392,7 @@ func activateAbility(delta):
 					THUNDER.set("upgrades", UPGRADE.abilityPower)
 					THUNDER.set("global_position", enemy.global_position)
 					get_parent().add_child(THUNDER)
-				Global.SCREENSHAKEAMOUNT = 200
-				Global.SCREENSHAKEPOWER = 1.5
+				Global.SCREENSHAKE(200, 1.5)
 			else:
 				pass
 		ABILITYCOOLDOWN = ABILITYMAXCOOLDOWN
@@ -422,8 +420,9 @@ func explode(power, isPlayer, explosion_position):
 func dealDamage(damage, inv):
 	$Hit.pitch_scale = randf_range(0.9, 1.1)
 	$Hit.playing = true
-	Global.SCREENSHAKEAMOUNT = 100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) )
-	Global.SCREENSHAKEPOWER = 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) )
+	# Global.SCREENSHAKEAMOUNT += 100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) )
+	# Global.SCREENSHAKEPOWER += 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) )
+	Global.SCREENSHAKE(100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) ), 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) ))
 	Global.VIGNETTEINTENSITY = 0.5
 	Global.VIGNETTECOLOR = Vector3(1, 0, 0)
 	shaderMaterial.shader = Global.shaders.flash
