@@ -32,5 +32,3 @@ texture = ExtResource("3_fwsyl")
 stream = ExtResource("4_vfe18")
 volume_db = 24.0
 autoplay = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
