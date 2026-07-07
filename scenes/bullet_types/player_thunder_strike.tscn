@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bejspd2mnbbce" path="res://scripts/gameplay/bullets/player_thunder_strike.gd" id="1_qqokg"]
 [ext_resource type="Texture2D" uid="uid://b2dq1ckasfixr" path="res://assets/sprites/projectiles/lightning.png" id="2_fwsyl"]
 [ext_resource type="Texture2D" uid="uid://d0y2wdpeeqvxa" path="res://assets/sprites/projectiles/lightning_strike.png" id="3_fwsyl"]
+[ext_resource type="AudioStream" uid="uid://b85gn13u1fwav" path="res://assets/sounds/thunderStrike.wav" id="4_vfe18"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qtya8"]
 radius = 32.0
@@ -25,5 +26,10 @@ round_precision = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=822351258]
 texture = ExtResource("3_fwsyl")
+
+[node name="ThunderStrike" type="AudioStreamPlayer" parent="." unique_id=72786264]
+stream = ExtResource("4_vfe18")
+volume_db = 24.0
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
