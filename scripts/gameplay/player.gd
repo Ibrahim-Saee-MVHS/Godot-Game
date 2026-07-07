@@ -386,7 +386,7 @@ func activateAbility(delta):
 			if enemies.size() > 0:
 				for enemy in enemies:
 					var THUNDER = AbilityNodes.get("thunder").instantiate()
-					THUNDER.set("DAMAGE", 8 + (DAMAGE/2))
+					THUNDER.set("DAMAGE", 10 + (DAMAGE))
 					THUNDER.set("despawnTimer", ABILITYDURATION)
 					THUNDER.set("upgrades", UPGRADE.abilityPower)
 					THUNDER.set("global_position", enemy.global_position)
