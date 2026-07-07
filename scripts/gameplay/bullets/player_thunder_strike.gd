@@ -44,11 +44,11 @@ func animateLightningChain(distance):
 	point_array.append(target_position)
 	$Line2D.points = point_array
 
-func _on_body_entered(body):
-	if body is Enemy and body.HITSTUN <= 0:
-		body.get_node("Hit").pitch_scale = randf_range(0.9, 1.1)
-		body.get_node("Hit").playing = true
-		Global.spawnDamageIndicator(body.global_position, -DAMAGE)
-		body.shaderMaterial.shader = Global.shaders.flash
-		body.HEALTH -= DAMAGE
-		body.HITSTUN = INV
+#func _on_body_entered(body):
+	#if body is Enemy and body.HITSTUN <= 0:
+		#body.get_node("Hit").pitch_scale = randf_range(0.9, 1.1)
+		#body.get_node("Hit").playing = true
+		#Global.spawnDamageIndicator(body.global_position, -DAMAGE)
+		#body.shaderMaterial.shader = Global.shaders.flash
+		#body.HEALTH -= DAMAGE
+		#body.HITSTUN = INV

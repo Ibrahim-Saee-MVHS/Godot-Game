@@ -355,6 +355,14 @@ func _gotDamaged(area):
 			shaderMaterial.shader = Global.shaders.flash
 			HEALTH -= area.DAMAGE
 			HITSTUN = 0.5
+		# player thunder strike
+		if area is PlayerThunderStrike:
+			$Hit.pitch_scale = randf_range(0.9, 1.1)
+			$Hit.playing = true
+			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
+			shaderMaterial.shader = Global.shaders.flash
+			HEALTH -= area.DAMAGE
+			HITSTUN = area.INV
 		# explosions
 		if area is Explosion and area.playerExplosion == true:
 			$Hit.pitch_scale = randf_range(0.9, 1.1)
