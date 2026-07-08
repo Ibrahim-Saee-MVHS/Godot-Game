@@ -168,7 +168,7 @@
 	"thunder_strike": {
 		"sprite": "res://assets/sprites/upgrade_icons/thunder_strike.png",
 		"name": "Thunder Strike",
-		"description": "You can strike every enemy on screen with a bolt of lightning",
+		"description": "You can strike every enemy on screen with a bolt of lightning, Stack for longer strike and stronger thunder.",
 		"weight": 0.090,
 		"rarity": "epic",
 	},
