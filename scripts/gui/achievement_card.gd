@@ -2,6 +2,7 @@ extends Control
 
 var ID: String
 var AchievementList
+var ElementalProgress = preload("res://assets/sprites/ui/achievement_bar_elemental.png")
 
 func _process(_delta):
 	AchievementList = Achievements.AchievementList
@@ -26,3 +27,6 @@ func _process(_delta):
 	else:
 		$Card/Progress.max_value = Achievements.getAchievementProgress(ID, true)
 		$Card/Progress.value = Achievements.getAchievementProgress(ID, false)
+	
+	if ID == "elemental":
+		$Card/Progress.texture_progress = ElementalProgress
