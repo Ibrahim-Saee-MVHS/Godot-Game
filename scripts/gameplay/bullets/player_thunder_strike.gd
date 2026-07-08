@@ -3,7 +3,7 @@ extends Area2D
 
 var INV: float
 var DAMAGE: float
-var upgrades: int
+var upgrades: float
 var start_position: Vector2
 var target_position: Vector2
 var anim_fps: int
