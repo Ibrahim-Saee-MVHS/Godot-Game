@@ -177,5 +177,5 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.abilityDuration = 0
 					playerNode.UPGRADE.abilityCooldown = 0
 				else:
-					playerNode.UPGRADE.abilityPower += 0.25
+					playerNode.UPGRADE.abilityPower += 1
 					playerNode.UPGRADE.abilityDuration += 0.25
