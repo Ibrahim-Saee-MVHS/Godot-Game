@@ -9,6 +9,24 @@ var target_position: Vector2
 var anim_fps: int
 var anim_frame: int
 var despawnTimer = 2
+var lightningTypes = [
+	{
+		"line": preload("res://assets/sprites/projectiles/natural_lightning.png"),
+		"strike": preload("res://assets/sprites/projectiles/natural_lightning_strike.png"),
+	},
+	{
+		"line": preload("res://assets/sprites/projectiles/yellow_lightning.png"),
+		"strike": preload("res://assets/sprites/projectiles/yellow_lightning_strike.png"),
+	},
+	{
+		"line": preload("res://assets/sprites/projectiles/lightning.png"),
+		"strike": preload("res://assets/sprites/projectiles/lightning_strike.png"),
+	},
+	{
+		"line": preload("res://assets/sprites/projectiles/red_lightning.png"),
+		"strike": preload("res://assets/sprites/projectiles/red_lightning_strike.png"),
+	},
+]
 
 func _ready() -> void:
 	start_position = Vector2(0, 0)
@@ -17,6 +35,8 @@ func _ready() -> void:
 	INV = 2 - (upgrades/2)
 	DAMAGE *= ((upgrades/2) + 1)
 	despawnTimer = 2 + (upgrades/2)
+	$Line2D.texture = lightningTypes[(upgrades)].get("line")
+	$Sprite2D.texture = lightningTypes[(upgrades)].get("strike")
 
 func _process(delta: float) -> void:
 	if anim_frame == 0:

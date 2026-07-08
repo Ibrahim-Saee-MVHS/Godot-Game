@@ -166,7 +166,13 @@
 		"rarity": "uncommon",
 	},
 	"thunder_strike": {
-		"sprite": "res://assets/sprites/upgrade_icons/thunder_strike.png",
+		"sprites": [
+			"res://assets/sprites/upgrade_icons/thunder_strike_0.png",
+			"res://assets/sprites/upgrade_icons/thunder_strike_1.png",
+			"res://assets/sprites/upgrade_icons/thunder_strike.png",
+			"res://assets/sprites/upgrade_icons/thunder_strike_2.png",
+		],
+		"upgradeVar": "abilityPower",
 		"name": "Thunder Strike",
 		"description": "You can strike every enemy on screen with a bolt of lightning, Stack for longer strike and stronger thunder.",
 		"weight": 0.090,

@@ -19,7 +19,10 @@ func _process(_delta):
 		$Control/Stats.visible = false
 	if player.ABILITY != "none":
 		$Control/Ability.visible = true
-		$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)
+		if Abilities.ICONS.get(player.ABILITY) is Array:
+			$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)[player.UPGRADE.abilityPower]
+		else:
+			$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)
 		$Control/Ability/Frame/Text.text = Global.upgradeInfo.get(player.ABILITY).get("name")
 		if Abilities.abilityTimer <= 0:
 			$Control/Ability/Frame/Bar.max_value = player.ABILITYMAXCOOLDOWN

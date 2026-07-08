@@ -18,6 +18,9 @@ func _ready() -> void:
 		elif UPGRADE == "flamethrower":
 			var upgradeVar = player.UPGRADE.bulletUpgrades + 1 if player.bulletType == "flame" else 0
 			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprites")[upgradeVar]
+		elif UPGRADE == "thunder_strike":
+			var upgradeVar = player.UPGRADE.abilityPower + 1 if player.ABILITY == "thunder_strike" else 0
+			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprites")[upgradeVar]
 		else:
 			$Button/Icon.texture = upgradeInfo.get(UPGRADE).get("sprites")[0]
 		if UPGRADE == "card_picker":
