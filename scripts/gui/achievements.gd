@@ -194,7 +194,7 @@ func achievementUnlocking():
 		if PlayerNode.ABILITY == "leaf_summon" and PlayerNode.UPGRADE.abilityPower >= 5:
 			ACHIEVEMENTS.get("elemental").set("nature", true)
 			saveAchievements()
-		if PlayerNode.ABILITY == "thunder_strike" and PlayerNode.UPGRADE.abilityPower >= 4:
+		if PlayerNode.ABILITY == "thunder_strike" and PlayerNode.UPGRADE.abilityPower >= 3:
 			ACHIEVEMENTS.get("elemental").set("thunder", true)
 			saveAchievements()
 		if getAchievementProgress("elemental", false) >= getAchievementProgress("elemental", true):
@@ -207,7 +207,7 @@ func achievementUnlocking():
 			unlockAchievement("nature_flame")
 			
 	if isAchievementUnlocked("electrostatic") == false:
-		if (PlayerNode.ABILITY == "thunder_strike" and PlayerNode.UPGRADE.abilityPower >= 4) and (PlayerNode.bulletType == "plasma"):
+		if (PlayerNode.ABILITY == "thunder_strike" and PlayerNode.UPGRADE.abilityPower >= 3) and (PlayerNode.bulletType == "plasma"):
 			ACHIEVEMENTS.set("electrostatic", true)
 			unlockAchievement("electrostatic")
 	
