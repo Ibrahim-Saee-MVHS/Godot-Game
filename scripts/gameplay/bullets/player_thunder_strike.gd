@@ -16,6 +16,7 @@ func _ready() -> void:
 	anim_fps = 3
 	INV = 2 - (0.25 * (upgrades*4))
 	DAMAGE *= (upgrades + 1)
+	despawnTimer = 2 + (0.25 * (upgrades*4))
 
 func _process(delta: float) -> void:
 	if anim_frame == 0:
