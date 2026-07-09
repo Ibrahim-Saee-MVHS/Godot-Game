@@ -181,7 +181,7 @@
 	"air_slash": {
 		"sprite": "res://assets/sprites/upgrade_icons/air_slash.png",
 		"name": "Air Slash",
-		"description": "Changes BULLET TYPE to Air. You can create piercing wind slashes that push back enemies but it does weak damage. Stack for faster slashes and more damage.)",
+		"description": "Changes BULLET TYPE to Air. You can create piercing wind slashes that push back enemies but it does weak damage. Stack for faster slashes and more damage.",
 		"weight": 0.25,
 		"rarity": "uncommon",
 	},
