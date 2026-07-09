@@ -40,6 +40,9 @@ func setUpgradeCards():
 	elif UPGRADES[ID - 1] == "flamethrower":
 		var upgradeVar = player.UPGRADE.bulletUpgrades + 1 if player.bulletType == "flame" else 0
 		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[upgradeVar]
+	elif UPGRADES[ID - 1] == "icicle_throw":
+		var upgradeVar = player.UPGRADE.bulletUpgrades + 1 if player.bulletType == "frost" else 0
+		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[upgradeVar]
 	elif UPGRADES[ID - 1] == "thunder_strike":
 		var upgradeVar = player.UPGRADE.abilityPower + 1 if player.ABILITY == "thunder_strike" else 0
 		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[upgradeVar]
@@ -134,5 +137,8 @@ func removeUpgrades(totalUpgrades):
 	
 	if (player.bulletType == "air" and player.UPGRADE.bulletUpgrades >= 2):
 		totalUpgrades.erase("air_slash")
+	
+	if (player.bulletType == "frost" and player.UPGRADE.bulletUpgrades >= 4):
+		totalUpgrades.erase("icicle_throw")
 	
 	return totalUpgrades

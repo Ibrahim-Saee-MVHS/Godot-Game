@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://b03t7a2c5fmlo" path="res://assets/sounds/shoot.wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://dqdc7jsroqtks" path="res://assets/sounds/flameThrow.wav" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://d1s6g5bnf01mj" path="res://assets/sounds/block.wav" id="8_smehm"]
+[ext_resource type="AudioStream" uid="uid://dk4aqush5wop7" path="res://assets/sounds/icicleThrow.wav" id="8_ur7pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(16, 16)
@@ -46,6 +47,12 @@ bus = &"Sound"
 
 [node name="FlameThrow" type="AudioStreamPlayer2D" parent="." unique_id=611977514]
 stream = ExtResource("6_tuyoq")
+max_polyphony = 48
+bus = &"Sound"
+
+[node name="IcicleThrow" type="AudioStreamPlayer2D" parent="." unique_id=201719727]
+stream = ExtResource("8_ur7pv")
+volume_db = 8.0
 max_polyphony = 48
 bus = &"Sound"
 

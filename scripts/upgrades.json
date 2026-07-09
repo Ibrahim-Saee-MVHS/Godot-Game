@@ -185,4 +185,18 @@
 		"weight": 0.25,
 		"rarity": "uncommon",
 	},
+	"icicle_throw": {
+		"sprites": [
+			"res://assets/sprites/upgrade_icons/icicle_throw_0.png",
+			"res://assets/sprites/upgrade_icons/icicle_throw_1.png",
+			"res://assets/sprites/upgrade_icons/icicle_throw.png",
+			"res://assets/sprites/upgrade_icons/icicle_throw_2.png",
+			"res://assets/sprites/upgrade_icons/icicle_throw_3.png",
+		],
+		"upgradeVar": "bulletUpgrades",
+		"name": "Icicle Throw",
+		"description": "Changes BULLET TYPE to Frost. You can rapidly shoot icicles toward enemies. Stack for stronger ice.",
+		"weight": 0.25,
+		"rarity": "uncommon",
+	},
 }

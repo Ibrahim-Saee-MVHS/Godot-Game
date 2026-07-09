@@ -9,6 +9,13 @@ var fireColors = [
 	preload("res://assets/particles/blue_fire.tres"),
 	preload("res://assets/particles/purple_fire.tres"),
 ]
+var icicleTypes = [
+	preload("res://assets/sprites/projectiles/clear_icicle.png"),
+	preload("res://assets/sprites/projectiles/white_icicle.png"),
+	preload("res://assets/sprites/projectiles/icicle.png"),
+	preload("res://assets/sprites/projectiles/blood_icicle.png"),
+	preload("res://assets/sprites/projectiles/blue_icicle.png"),
+]
 
 var TYPE: String
 var SPEED: float
@@ -68,12 +75,21 @@ func _ready():
 		ricochet = 0
 		specialVars.get_or_add("linePoints", 10)
 	if TYPE == "air":
+		global_position += Vector2(16, 0).rotated(MOVEDIR)
 		KNOCKBACK = 16000
 		despawnTimer = 0.5 + (0.25 * upgrades)
 		DAMAGE = (DAMAGE / 20) + 0.95 + (0.5 * upgrades)
 		SPEED = ((SPEED - 500) / 4) + 500 + (100 * upgrades)
 		rotation = MOVEDIR
 		specialVars.get_or_add("start_position", global_position)
+	if TYPE == "frost":
+		scale = Vector2(0.75, 0.75)
+		global_position += Vector2(8, 0).rotated(MOVEDIR)
+		KNOCKBACK = 1000
+		despawnTimer = 2 + (1 * upgrades)
+		DAMAGE = (DAMAGE / 100) + 0.05 + (0.25 * upgrades)
+		rotation = MOVEDIR
+		$Sprite2D.texture = icicleTypes[upgrades]
 	if TYPE == "plasma":
 		KNOCKBACK = 0
 		despawnTimer = 120
@@ -140,7 +156,7 @@ func _process(delta):
 	else:
 		despawnTimer -= 10 * delta
 		
-	if TYPE == "air":
+	if TYPE == "air" or TYPE == "frost":
 		rotation = MOVEDIR
 		
 	position += Vector2(SPEED, 0).rotated(MOVEDIR) * delta
@@ -212,3 +228,5 @@ func _on_area_entered(area: Area2D) -> void:
 		if TYPE == "flame" and area.TYPE == "water":
 			$CPUParticles2D.emitting = false
 			$CollisionShape2D.disabled = true
+		if TYPE == "frost" and area.TYPE == "flame":
+			despawnTimer -= 30 * get_process_delta_time()

@@ -50,6 +50,7 @@ var Projectiles = {
 	"dark": load("res://scenes/bullet_types/player_dark-pulse.tscn"),
 	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
 	"air": load("res://scenes/bullet_types/player_air_slash.tscn"),
+	"frost": load("res://scenes/bullet_types/player_icicle.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
@@ -283,6 +284,15 @@ func setBaseStats():
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 1
 		MINFIRERATE = 1
+	if bulletType == "frost":
+		BULLETSPREAD = deg_to_rad(0 * BULLETAMOUNT)
+		BULLETVARIANCE = 12
+		BASEFIRERATE = 1.0
+		BASEDAMAGE = 1.0
+		BASEBULLETSPEED = 350
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 5
+		MINFIRERATE = 0.5
 
 func setTotalStats():
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
@@ -342,6 +352,9 @@ func shoot(spread, variance):
 	if bulletType == "flame":
 		$FlameThrow.pitch_scale = randf_range(0.5, 1.5)
 		$FlameThrow.playing = true
+	elif bulletType == "frost":
+		$IcicleThrow.pitch_scale = randf_range(0.5, 1.5)
+		$IcicleThrow.playing = true
 	else:
 		$Shoot.pitch_scale = randf_range(0.8, 1.2)
 		$Shoot.playing = true
@@ -363,6 +376,10 @@ func shoot(spread, variance):
 		BULLET.set("upgrades", UPGRADE.bulletUpgrades)
 		BULLET.set("homing", UPGRADE.homing)
 		BULLET.set("MOVEDIR", (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance)))
+		
+		if bulletType == "frost":
+			BULLET.set("global_position", global_position + Vector2(randf_range(-variance, variance), randf_range(-variance, variance)))
+			BULLET.set("MOVEDIR", (get_global_mouse_position() - global_position).angle() + dirOffset)
 		get_parent().add_child(BULLET)
 
 func activateAbility(delta):
