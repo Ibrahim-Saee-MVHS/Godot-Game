@@ -67,6 +67,12 @@ func _ready():
 		despawnTimer = 25
 		ricochet = 0
 		specialVars.get_or_add("linePoints", 10)
+	if TYPE == "air":
+		KNOCKBACK = 16000
+		despawnTimer = 0.5 + (0.25 * upgrades)
+		DAMAGE = (DAMAGE / 20) + 0.95 + (0.5 * upgrades)
+		SPEED = ((SPEED - 500) / 4) + 500 + (100 * upgrades)
+		specialVars.get_or_add("start_position", global_position)
 	if TYPE == "plasma":
 		KNOCKBACK = 0
 		despawnTimer = 120
@@ -133,6 +139,9 @@ func _process(delta):
 	else:
 		despawnTimer -= 10 * delta
 		
+	if TYPE == "air":
+		rotation = MOVEDIR
+		
 	position += Vector2(SPEED, 0).rotated(MOVEDIR) * delta
 	if ricochet > 0:
 		var screenSize = (get_viewport_rect().size / 4) - Vector2(8, 8)
@@ -148,6 +157,13 @@ func _process(delta):
 	if despawnTimer <= 0:
 		if TYPE == "boomerang":
 			returnToPlayer(0.1)
+		elif TYPE == "air":
+			SPEED -= 100 * delta
+			modulate.a -= 5 * delta
+			if modulate.a <= 0.25:
+				$CollisionShape2D.disabled = true
+			elif modulate.a <= 0:
+				queue_free()
 		else:
 			despawnBullet()
 

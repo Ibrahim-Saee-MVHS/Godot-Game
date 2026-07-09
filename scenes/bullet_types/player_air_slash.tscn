@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cqb6dun2qr2xf"]
+
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_wb8wd"]
+[ext_resource type="Texture2D" uid="uid://ccrgogxsu64o5" path="res://assets/sprites/projectiles/air_slash.png" id="2_wmcu8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1lj4"]
+radius = 8.0
+
+[sub_resource type="Gradient" id="Gradient_wmcu8"]
+offsets = PackedFloat32Array(0.2, 0.5, 0.7, 0.9)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wb8wd"]
+gradient = SubResource("Gradient_wmcu8")
+width = 16
+
+[sub_resource type="Gradient" id="Gradient_f7u4r"]
+offsets = PackedFloat32Array(0, 0.2, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[node name="PlayerAirSlash" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_wb8wd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=718132180]
+texture = ExtResource("2_wmcu8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1144235892]
+shape = SubResource("CapsuleShape2D_b1lj4")
+
+[node name="VFX" type="CPUParticles2D" parent="." unique_id=2034627336]
+amount = 16
+texture = SubResource("GradientTexture1D_wb8wd")
+lifetime = 0.09999999999999999
+randomness = 1.0
+emission_shape = 4
+emission_points = PackedVector2Array(-4, 15.5, -4, -15.5)
+emission_colors = PackedColorArray()
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 320.0
+damping_min = 64.0
+damping_max = 100.0
+scale_amount_min = 0.5
+color_ramp = SubResource("Gradient_f7u4r")

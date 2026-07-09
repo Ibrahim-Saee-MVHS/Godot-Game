@@ -132,4 +132,7 @@ func removeUpgrades(totalUpgrades):
 	if player.ABILITY == "thunder_strike" and player.UPGRADE.abilityPower >= 3:
 		totalUpgrades.erase("thunder_strike")
 	
+	if (player.bulletType == "air" and player.UPGRADE.bulletUpgrades >= 2):
+		totalUpgrades.erase("air_slash")
+	
 	return totalUpgrades

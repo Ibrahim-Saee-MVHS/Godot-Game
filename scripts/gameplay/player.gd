@@ -49,6 +49,7 @@ var Projectiles = {
 	"nature": load("res://scenes/bullet_types/player_leaf.tscn"),
 	"dark": load("res://scenes/bullet_types/player_dark-pulse.tscn"),
 	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
+	"air": load("res://scenes/bullet_types/player_air_slash.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
@@ -273,6 +274,15 @@ func setBaseStats():
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 1
 		MINFIRERATE = 2
+	if bulletType == "air":
+		BULLETSPREAD = deg_to_rad(45 * BULLETAMOUNT)
+		BULLETVARIANCE = 0
+		BASEFIRERATE = 4.0
+		BASEDAMAGE = 1.0
+		BASEBULLETSPEED = 500
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 1
+		MINFIRERATE = 1
 
 func setTotalStats():
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)

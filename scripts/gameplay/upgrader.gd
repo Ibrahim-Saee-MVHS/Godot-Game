@@ -179,3 +179,12 @@ func upgrade(selectedUpgrade):
 				else:
 					playerNode.UPGRADE.abilityPower += 1
 					playerNode.UPGRADE.abilityDuration += 0.25
+			"air_slash":
+				if playerNode.bulletType != "air":
+					playerNode.bulletType = "air"
+					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.explosiveness = 0
+					playerNode.UPGRADE.ricochet = 0
+					playerNode.UPGRADE.homing = 0
+				else:
+					playerNode.UPGRADE.bulletUpgrades += 1
