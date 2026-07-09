@@ -57,7 +57,8 @@ func keepDistance(min_distance, separation_amount):
 
 func homeOnEnemy(homing_amount):
 	findNewTarget()
-	MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.1 + (homing_amount / 10))
+	if target != null:
+		MOVEDIR = lerp_angle(MOVEDIR, (target.global_position - global_position).angle(), 0.1 + (homing_amount / 10))
 
 func findNewTarget():
 	var enemies = get_tree().get_nodes_in_group("enemies")
