@@ -72,6 +72,7 @@ func _ready():
 		despawnTimer = 0.5 + (0.25 * upgrades)
 		DAMAGE = (DAMAGE / 20) + 0.95 + (0.5 * upgrades)
 		SPEED = ((SPEED - 500) / 4) + 500 + (100 * upgrades)
+		rotation = MOVEDIR
 		specialVars.get_or_add("start_position", global_position)
 	if TYPE == "plasma":
 		KNOCKBACK = 0
