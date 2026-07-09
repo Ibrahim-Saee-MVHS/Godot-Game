@@ -4,7 +4,13 @@ var ID: String
 var AchievementList
 var ElementalProgress = preload("res://assets/sprites/ui/achievement_bar_elemental.png")
 
+func _ready():
+	setAchievementCard()
+
 func _process(_delta):
+	setAchievementCard()
+	
+func setAchievementCard():
 	AchievementList = Achievements.AchievementList
 	$Card/Frame/Icon.texture = load("res://assets/sprites/achievement_icons/" + str(ID) + ".png")
 	$Card/Name.text = str(AchievementList.get(ID).name)
