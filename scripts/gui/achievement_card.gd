@@ -18,7 +18,7 @@ func setAchievementCard():
 		if ID != "elemental":
 			$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FF001A]This achievement is currently impossible, probably due to lack of content.[/color]")
 		else:
-			$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FF4400]This achievement is possible, however I was unable to finish it by the time of this presentation.[/color]")
+			$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FF4400]I didn't have enough time to add Rock Pellets so this is impossible in the presentation.[/color]")
 	elif AchievementList.get(ID).has("warn") and AchievementList.get(ID).get("warn") == true:
 		$Card/Description.parse_bbcode(str(AchievementList.get(ID).description) + "\n[color=#FFEE88]This achievment hasn't been tested or obtained yet, there is a chance it is impossible.[/color]")
 	else:
