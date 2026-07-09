@@ -27,6 +27,10 @@
 		"name": "Let there be Light.",
 		"description": "Max out the Lightbolt upgrade.",
 	},
+	"air": {
+		"name": "Stonecutter! (Air Edition)",
+		"description": "Max out the Air Slash upgrade.",
+	},
 	"elemental": {
 		"name": "Master of Elements",
 		"description": "Master every elemental upgrade.",

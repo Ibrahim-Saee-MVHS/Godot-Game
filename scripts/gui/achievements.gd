@@ -14,6 +14,7 @@ var initialAchievements = {
 	"water": false,
 	"dark": false,
 	"light": false,
+	"air": false,
 	"elemental": {
 		"unlocked": false,
 		"thunder": false,
@@ -177,7 +178,12 @@ func achievementUnlocking():
 		if PlayerNode.bulletType == "light" and PlayerNode.UPGRADE.bulletUpgrades >= 1:
 			ACHIEVEMENTS.set("light", true)
 			unlockAchievement("light")
-		
+	
+	if isAchievementUnlocked("air") == false:
+		if PlayerNode.bulletType == "air" and PlayerNode.UPGRADE.bulletUpgrades >= 2:
+			ACHIEVEMENTS.set("air", true)
+			unlockAchievement("air")
+	
 	if isAchievementUnlocked("elemental") == false:
 		if PlayerNode.bulletType == "flame" and PlayerNode.UPGRADE.bulletUpgrades >= 4:
 			ACHIEVEMENTS.get("elemental").set("flame", true)
@@ -196,6 +202,9 @@ func achievementUnlocking():
 			saveAchievements()
 		if PlayerNode.ABILITY == "thunder_strike" and PlayerNode.UPGRADE.abilityPower >= 3:
 			ACHIEVEMENTS.get("elemental").set("thunder", true)
+			saveAchievements()
+		if PlayerNode.bulletType == "air" and PlayerNode.UPGRADE.bulletUpgrades >= 2:
+			ACHIEVEMENTS.get("elemental").set("air", true)
 			saveAchievements()
 		if getAchievementProgress("elemental", false) >= getAchievementProgress("elemental", true):
 			ACHIEVEMENTS.get("elemental").set("unlocked", true)
