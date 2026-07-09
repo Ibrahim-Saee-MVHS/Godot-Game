@@ -31,6 +31,10 @@
 		"name": "Stonecutter! (Air Edition)",
 		"description": "Max out the Air Slash upgrade.",
 	},
+	"frost": {
+		"name": "Ice Spikes",
+		"description": "Max out the Icicle Throw upgrade.",
+	},
 	"elemental": {
 		"name": "Master of Elements",
 		"description": "Master every elemental upgrade.",
