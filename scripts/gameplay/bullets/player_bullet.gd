@@ -90,6 +90,11 @@ func _ready():
 		DAMAGE = (DAMAGE / 100) + 0.05 + (0.25 * upgrades)
 		rotation = MOVEDIR
 		$Sprite2D.texture = icicleTypes[upgrades]
+	if TYPE == "earth":
+		scale = Vector2(1.0, 1.0) * (1 + (0.25 * upgrades))
+		global_position += Vector2(8, 0).rotated(MOVEDIR)
+		KNOCKBACK = 8000
+		despawnTimer = 60
 	if TYPE == "plasma":
 		KNOCKBACK = 0
 		despawnTimer = 120

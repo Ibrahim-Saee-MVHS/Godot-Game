@@ -199,4 +199,23 @@
 		"weight": 0.25,
 		"rarity": "uncommon",
 	},
+	"rock_pellets": {
+		"sprite": "res://assets/sprites/upgrade_icons/rock_pellets.png",
+		"name": "Rock Pellets",
+		"description": "Changes BULLET TYPE to Earth. You can hurl inaccurate but powerful rocks. This upgrade has two diverging upgrades.",
+		"weight": 0.25,
+		"rarity": "uncommon",
+	},
+	"polished_earth": {
+		"sprite": "res://assets/sprites/upgrade_icons/polished_earth.png",
+		"name": "Polished Earth",
+		"description": "+8 ACCURACY but -2 MAX BULLETS. Incompatible with Bigger Rocks",
+		"weight": 0.35,
+	},
+	"bigger_rocks": {
+		"sprite": "res://assets/sprites/upgrade_icons/bigger_rocks.png",
+		"name": "Bigger Rocks",
+		"description": "Makes rocks bigger but -1 MAX BULLETS. Incompatible with Polished Earth",
+		"weight": 0.35,
+	},
 }

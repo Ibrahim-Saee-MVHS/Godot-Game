@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dp12uyb0thvfk"]
+
+[ext_resource type="Script" uid="uid://bwpsuav7g1rmb" path="res://scripts/gameplay/bullets/player_bullet.gd" id="1_1dqu7"]
+[ext_resource type="Texture2D" uid="uid://dtyujs1sj42ef" path="res://assets/sprites/projectiles/rock_pellet.png" id="2_4ifva"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
+radius = 7.0
+
+[node name="PlayerRockPellet" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_1dqu7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=718132180]
+texture = ExtResource("2_4ifva")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CircleShape2D_qx7rs")

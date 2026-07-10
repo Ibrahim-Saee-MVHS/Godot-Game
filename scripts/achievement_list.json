@@ -35,10 +35,13 @@
 		"name": "Ice Spikes",
 		"description": "Max out the Icicle Throw upgrade.",
 	},
+	"earth": {
+		"name": "Polished Boulders",
+		"description": "Max out both the Polished Earth and Bigger Rocks upgrades.",
+	},
 	"elemental": {
 		"name": "Master of Elements",
 		"description": "Master every elemental upgrade.",
-		"impossible": true,
 	},
 	"level_10": {
 		"name": "It Only Gets Harder From Here",

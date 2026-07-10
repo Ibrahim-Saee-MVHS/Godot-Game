@@ -141,4 +141,16 @@ func removeUpgrades(totalUpgrades):
 	if (player.bulletType == "frost" and player.UPGRADE.bulletUpgrades >= 4):
 		totalUpgrades.erase("icicle_throw")
 	
+	if player.bulletType == "earth":
+		totalUpgrades.erase("rock_pellets")
+	
+	if player.bulletType != "earth":
+		totalUpgrades.erase("polished_earth")
+		totalUpgrades.erase("bigger_rocks")
+	else:
+		if player.UPGRADE.bulletUpgrades > 0 or player.UPGRADE.bulletVariance <= -16:
+			totalUpgrades.erase("polished_earth")
+		if player.UPGRADE.bulletVariance < 0 or player.UPGRADE.bulletUpgrades >= 2:
+			totalUpgrades.erase("bigger_rocks")
+	
 	return totalUpgrades

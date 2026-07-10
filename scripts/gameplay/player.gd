@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var BASEBULLETSPEED: int = 250
 @export var BASEBULLETAMOUNT: int = 1
 @export var BASEFIRERATE: float = 8
+@export var BASEBULLETVARIANCE: float = 0
 var BULLETVARIANCE: float = 0
 var MAXBULLETAMOUNT: int = 9
 var DAMAGE: float
@@ -51,6 +52,7 @@ var Projectiles = {
 	"light": load("res://scenes/bullet_types/player_lightbolt.tscn"),
 	"air": load("res://scenes/bullet_types/player_air_slash.tscn"),
 	"frost": load("res://scenes/bullet_types/player_icicle.tscn"),
+	"earth": load("res://scenes/bullet_types/player_rock_pellet.tscn"),
 	"plasma": load("res://scenes/bullet_types/player_plasma.tscn"),
 	"boomerang": load("res://scenes/bullet_types/player_boomerang.tscn"),
 }
@@ -144,21 +146,9 @@ func _process(delta):
 			shaderMaterial.shader = Global.shaders.tint
 	
 	if Input.is_action_pressed("shoot") and FIRERATE <= 0:
-		if bulletType == "thunder":
-			var BULLET = Projectiles.get(bulletType).instantiate()
-			BULLET.set("DAMAGE", DAMAGE)
-			BULLET.set("upgrades", UPGRADE.bulletUpgrades)
-			add_child(BULLET)
-		else:
-			shoot(BULLETSPREAD, BULLETVARIANCE)
+		shoot(BULLETSPREAD, BULLETVARIANCE)
 	elif FIRERATE > 0 and HEALTH >= 0:
 		FIRERATE -= 10 * delta
-	
-	if Input.is_action_pressed("shoot") and has_node("PlayerLightningChain"):
-		FIRERATE = 2
-	elif not Input.is_action_pressed("shoot") and has_node("PlayerLightningChain"):
-		$PlayerLightningChain.queue_free()
-		FIRERATE = 0
 	
 	if Input.is_action_pressed("ability") and ABILITYCOOLDOWN <= 0:
 		activateAbility(delta)
@@ -196,7 +186,7 @@ func setBaseStats():
 		BASESPEED = 8000
 	if bulletType == "normal":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 8.0
 		BASEDAMAGE = 4.0
 		BASEBULLETSPEED = 250
@@ -205,7 +195,7 @@ func setBaseStats():
 		MINFIRERATE = 1 + (0.75 * UPGRADE.bulletUpgrades)
 	if bulletType == "flame":
 		BULLETSPREAD = deg_to_rad(45 * BULLETAMOUNT)
-		BULLETVARIANCE = 5
+		BASEBULLETVARIANCE = 5
 		BASEFIRERATE = 1.0
 		BASEDAMAGE = 0.01
 		BASEBULLETSPEED = 125
@@ -214,7 +204,7 @@ func setBaseStats():
 		MINFIRERATE = 1
 	if bulletType == "plasma":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 10.0
 		BASEDAMAGE = 5.0
 		BASEBULLETSPEED = 75
@@ -223,7 +213,7 @@ func setBaseStats():
 		MINFIRERATE = 4
 	if bulletType == "boomerang":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 4.0
 		BASEDAMAGE = 5.0
 		BASEBULLETSPEED = 250
@@ -232,7 +222,7 @@ func setBaseStats():
 		MINFIRERATE = 1
 	if bulletType == "water":
 		BULLETSPREAD = deg_to_rad(45)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 1.0
 		BASEDAMAGE = 0.025
 		BASEBULLETSPEED = 125
@@ -241,7 +231,7 @@ func setBaseStats():
 		MINFIRERATE = 1
 	if bulletType == "dark":
 		BULLETSPREAD = deg_to_rad(25 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 4.0
 		BASEDAMAGE = 8.0
 		BASEBULLETSPEED = 250
@@ -250,7 +240,7 @@ func setBaseStats():
 		MINFIRERATE = 1
 	if bulletType == "light":
 		BULLETSPREAD = deg_to_rad(15 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 8.0
 		BASEDAMAGE = 8.0
 		BASEBULLETSPEED = 0 + (10 * UPGRADE.bulletUpgrades)
@@ -259,7 +249,7 @@ func setBaseStats():
 		MINFIRERATE = 4
 	if bulletType == "nature":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 5.0
 		BASEDAMAGE = 2.0
 		BASEBULLETSPEED = 250
@@ -268,7 +258,7 @@ func setBaseStats():
 		MINFIRERATE = 1
 	if bulletType == "thunder":
 		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 2.0
 		BASEDAMAGE = 3.0
 		BASEBULLETSPEED = 250
@@ -277,7 +267,7 @@ func setBaseStats():
 		MINFIRERATE = 2
 	if bulletType == "air":
 		BULLETSPREAD = deg_to_rad(45 * BULLETAMOUNT)
-		BULLETVARIANCE = 0
+		BASEBULLETVARIANCE = 0
 		BASEFIRERATE = 4.0
 		BASEDAMAGE = 1.0
 		BASEBULLETSPEED = 500
@@ -286,13 +276,22 @@ func setBaseStats():
 		MINFIRERATE = 1
 	if bulletType == "frost":
 		BULLETSPREAD = deg_to_rad(0 * BULLETAMOUNT)
-		BULLETVARIANCE = 12
+		BASEBULLETVARIANCE = 12
 		BASEFIRERATE = 1.0
 		BASEDAMAGE = 1.0
 		BASEBULLETSPEED = 350
 		BASEBULLETAMOUNT = 1
 		MAXBULLETAMOUNT = 5
 		MINFIRERATE = 0.5
+	if bulletType == "earth":
+		BULLETSPREAD = deg_to_rad(6.25 * BULLETAMOUNT)
+		BASEBULLETVARIANCE = 24
+		BASEFIRERATE = 8.0
+		BASEDAMAGE = 8.0 + (2 * UPGRADE.bulletUpgrades)
+		BASEBULLETSPEED = 400
+		BASEBULLETAMOUNT = 1
+		MAXBULLETAMOUNT = 5 - ((2 * (abs(UPGRADE.bulletVariance) / 8)) + UPGRADE.bulletUpgrades)
+		MINFIRERATE = 4
 
 func setTotalStats():
 	HEALTH = clamp(HEALTH, 0, MAXHEALTH)
@@ -300,6 +299,7 @@ func setTotalStats():
 	DAMAGE = clamp(BASEDAMAGE + UPGRADE.damage, 0.01, 32)
 	DEFENSE = clamp(UPGRADE.defense, 0, 256)
 	SPEED = BASESPEED + (UPGRADE.speed * 200)
+	BULLETVARIANCE = clamp(BASEBULLETVARIANCE + (UPGRADE.bulletVariance), 0, 32)
 	BULLETSPEED = clamp(BASEBULLETSPEED + (UPGRADE.bulletSpeed * 10), 75, 1000)
 	BULLETAMOUNT = clamp(BASEBULLETAMOUNT + UPGRADE.bulletAmount, 1, MAXBULLETAMOUNT)
 	ABILITYMAXCOOLDOWN = clamp(ABILITYMAXCOOLDOWN, ABILITYMINCOOLDOWN, 48)

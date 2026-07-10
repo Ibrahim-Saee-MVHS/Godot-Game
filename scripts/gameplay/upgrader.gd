@@ -31,6 +31,7 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "flame":
 					playerNode.bulletType = "flame"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
@@ -40,6 +41,7 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "plasma":
 					playerNode.bulletType = "plasma"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
@@ -48,6 +50,7 @@ func upgrade(selectedUpgrade):
 			"normalcy":
 				playerNode.bulletType = "normal"
 				playerNode.UPGRADE.bulletUpgrades = 0
+				playerNode.UPGRADE.bulletVariance = 0
 				playerNode.UPGRADE.explosiveness = 0
 				playerNode.UPGRADE.ricochet = 0
 				playerNode.UPGRADE.homing = 0
@@ -116,6 +119,7 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "boomerang":
 					playerNode.bulletType = "boomerang"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
@@ -133,6 +137,7 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "water":
 					playerNode.bulletType = "water"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
@@ -142,6 +147,7 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "dark":
 					playerNode.bulletType = "dark"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
@@ -151,6 +157,7 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "light":
 					playerNode.bulletType = "light"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
@@ -183,6 +190,7 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "air":
 					playerNode.bulletType = "air"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
@@ -192,8 +200,23 @@ func upgrade(selectedUpgrade):
 				if playerNode.bulletType != "frost":
 					playerNode.bulletType = "frost"
 					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
 					playerNode.UPGRADE.explosiveness = 0
 					playerNode.UPGRADE.ricochet = 0
 					playerNode.UPGRADE.homing = 0
 				else:
+					playerNode.UPGRADE.bulletUpgrades += 1
+			"rock_pellets":
+				if playerNode.bulletType != "earth":
+					playerNode.bulletType = "earth"
+					playerNode.UPGRADE.bulletUpgrades = 0
+					playerNode.UPGRADE.bulletVariance = 0
+					playerNode.UPGRADE.explosiveness = 0
+					playerNode.UPGRADE.ricochet = 0
+					playerNode.UPGRADE.homing = 0
+			"polished_earth":
+				if playerNode.bulletType == "earth":
+					playerNode.UPGRADE.bulletVariance -= 8
+			"bigger_rocks":
+				if playerNode.bulletType == "earth":
 					playerNode.UPGRADE.bulletUpgrades += 1

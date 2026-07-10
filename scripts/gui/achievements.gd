@@ -16,6 +16,11 @@ var initialAchievements = {
 	"light": false,
 	"air": false,
 	"frost": false,
+	"earth": {
+		"unlocked": false,
+		"polished_earth": false,
+		"bigger_rocks": false,
+	},
 	"elemental": {
 		"unlocked": false,
 		"thunder": false,
@@ -189,6 +194,17 @@ func achievementUnlocking():
 		if PlayerNode.bulletType == "frost" and PlayerNode.UPGRADE.bulletUpgrades >= 4:
 			ACHIEVEMENTS.set("frost", true)
 			unlockAchievement("frost")
+			
+	if isAchievementUnlocked("earth") == false:
+		if PlayerNode.bulletType == "earth" and PlayerNode.UPGRADE.bulletVariance <= -16:
+			ACHIEVEMENTS.get("earth").set("polished_earth", true)
+			saveAchievements()
+		if PlayerNode.bulletType == "earth" and PlayerNode.UPGRADE.bulletUpgrades >= 2:
+			ACHIEVEMENTS.get("earth").set("bigger_rocks", true)
+			saveAchievements()
+		if getAchievementProgress("earth", false) >= getAchievementProgress("earth", true):
+			ACHIEVEMENTS.get("earth").set("unlocked", true)
+			unlockAchievement("earth")
 	
 	if isAchievementUnlocked("elemental") == false:
 		if PlayerNode.bulletType == "flame" and PlayerNode.UPGRADE.bulletUpgrades >= 4:
@@ -214,6 +230,9 @@ func achievementUnlocking():
 			saveAchievements()
 		if PlayerNode.bulletType == "frost" and PlayerNode.UPGRADE.bulletUpgrades >= 4:
 			ACHIEVEMENTS.get("elemental").set("frost", true)
+			saveAchievements()
+		if getAchievementProgress("earth", false) >= getAchievementProgress("earth", true):
+			ACHIEVEMENTS.get("elemental").set("earth", true)
 			saveAchievements()
 		if getAchievementProgress("elemental", false) >= getAchievementProgress("elemental", true):
 			ACHIEVEMENTS.get("elemental").set("unlocked", true)
