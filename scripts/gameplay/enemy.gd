@@ -13,6 +13,7 @@ var MOVEDIR: float
 var BULLETAMOUNT: int = 1
 var BULLETSPEED: float
 var BULLETVARIANCE: float = 0
+var DISTANCING: Array[int] # 0: Distance from player to stop moving. 1: Distance from player to move away. 2: Distance from other enemies to stop and move away.
 var HITSTUN: float
 var currentHitstunTime: float
 var shootPitch: float = 1.0
@@ -30,6 +31,7 @@ var boomerangsThrown: int
 	"frost": preload("res://scenes/bullet_types/enemy_icicle.tscn"),
 }
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
+@onready var BulletWarn = preload("res://scenes/bullet_types/bullet_warn.tscn")
 @onready var ExplosionNode = preload("res://scenes/explosion.tscn")
 var shaderMaterial = ShaderMaterial.new()
 var knockback: Vector2
@@ -40,7 +42,10 @@ func _ready():
 	$HealthBar.max_value = MAXHEALTH
 	HITSTUN = 0
 	HEALTH = MAXHEALTH
-	FIRERATE = MAXFIRERATE
+	if TYPE == "thundermancer":
+		FIRERATE = round(float(MAXFIRERATE) / 2) + randf_range(-4.0, 8.0)
+	else:
+		FIRERATE = MAXFIRERATE
 
 func setStats():
 	$Sprite2D.self_modulate = Global.enemySpawn.color.get(TYPE)
@@ -51,6 +56,7 @@ func setStats():
 		BULLETAMOUNT = 0
 		BULLETSPEED = 0
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = -1
 		EXP = 0
 		UPGRADES = 0
@@ -65,6 +71,7 @@ func setStats():
 		BULLETAMOUNT = 1
 		BULLETSPEED = 200
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 1 * multiplier
 		EXP = 4 * 1 + multiplier / 4
 		UPGRADES = 0
@@ -78,6 +85,7 @@ func setStats():
 		BULLETAMOUNT = 1
 		BULLETSPEED = 250
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 1 * multiplier
 		EXP = 6 * 1 + multiplier / 4
 		UPGRADES = 0
@@ -91,6 +99,7 @@ func setStats():
 		BULLETAMOUNT = 3
 		BULLETSPEED = 200
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 6 * multiplier / 2
 		UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 6)
 		EXP = 8 * 1 + multiplier / 3
@@ -104,6 +113,7 @@ func setStats():
 		BULLETAMOUNT = 16
 		BULLETSPEED = 300
 		BULLETVARIANCE = 0
+		DISTANCING = [0, 0, 0]
 		DAMAGE = 4 * multiplier / 2
 		EXP = 12 * 1 + multiplier / 2
 		UPGRADES = 0
@@ -117,6 +127,7 @@ func setStats():
 		BULLETAMOUNT = clamp(ceil(3 * multiplier), 3, 6)
 		BULLETSPEED = 200
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 2 * multiplier
 		EXP = 6 * 1 + multiplier / 4
 		UPGRADES = 0
@@ -130,6 +141,7 @@ func setStats():
 		BULLETAMOUNT = clamp(floor(1 * multiplier), 1, 3)
 		BULLETSPEED = 200
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 4 * multiplier
 		EXP = 10 * 1 + multiplier / 2
 		UPGRADES = 0
@@ -143,6 +155,7 @@ func setStats():
 		BULLETAMOUNT = 1
 		BULLETSPEED = 200
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 0 + (1 * multiplier / 2)
 		UPGRADES = clamp(round(0 + (0.25 * multiplier * multiplier)), 0, 4)
 		EXP = 8 * 1 + multiplier / 3
@@ -156,6 +169,7 @@ func setStats():
 		BULLETAMOUNT = 1
 		BULLETSPEED = 250
 		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 4 * multiplier
 		EXP = 4 * 1 + multiplier / 4
 		UPGRADES = clamp(round(0.3 * multiplier), 0, 3)
@@ -169,10 +183,25 @@ func setStats():
 		BULLETAMOUNT = clamp(round(1 + (0.1 * multiplier)), 1, 5)
 		BULLETSPEED = 350
 		BULLETVARIANCE = 12
+		DISTANCING = [64, 32, 32]
 		DAMAGE = 1 + (0.25 * multiplier / 4)
 		UPGRADES = clamp(round(0 + (0.25 * (multiplier * multiplier))), 0, 4)
 		EXP = 8 * 1 + multiplier / 3
 		bulletType = "frost"
+		explosiveness = 0
+		shootPitch = 1.0
+	if TYPE == "thundermancer":
+		SPEED = 6000
+		MAXHEALTH = 38 * multiplier
+		MAXFIRERATE = clamp(round(48 - (0.25 * multiplier)), 16, 48)
+		BULLETAMOUNT = clamp(round(1 + (0.15 * (multiplier - 1 * 4))), 1, 6)
+		BULLETSPEED = 350
+		BULLETVARIANCE = clamp(round(128 - (4 * multiplier)), 48, 128)
+		DISTANCING = [128, 128, 32]
+		DAMAGE = 10 + (2 * multiplier / 4)
+		UPGRADES = clamp(round(0 + (0.25 * (multiplier * multiplier))), 0, 3)
+		EXP = 12 * 1 + multiplier / 3
+		bulletType = "thunder"
 		explosiveness = 0
 		shootPitch = 1.0
 	
@@ -220,12 +249,29 @@ func _process(delta):
 		currentHitstunTime = 0
 		shaderMaterial.shader = null
 	
-	if TYPE != "bomber":
-		shoot(delta, deg_to_rad(6.25 * BULLETAMOUNT))
-	else:
+	if TYPE == "bomber":
 		if global_position.distance_to(player_position) <= 32:
 			explode(DAMAGE, false, global_position)
 			queue_free()
+	if TYPE == "thundermancer":
+		if FIRERATE <= 0:
+			for i in range(BULLETAMOUNT):
+				var THUNDERWARNING = BulletWarn.instantiate()
+				THUNDERWARNING.TYPE = "thunder"
+				THUNDERWARNING.spawnTimer = 8
+				THUNDERWARNING.specialVars.damage = DAMAGE
+				THUNDERWARNING.specialVars.duration = 2 + UPGRADES
+				THUNDERWARNING.specialVars.upgrades = UPGRADES
+				if i == 0 and multiplier >= 2:
+					THUNDERWARNING.global_position = player_position
+				else:
+					THUNDERWARNING.global_position = player_position + Vector2(randf_range(-BULLETVARIANCE, BULLETVARIANCE), randf_range(-BULLETVARIANCE, BULLETVARIANCE))
+				get_parent().add_child(THUNDERWARNING)
+			FIRERATE = MAXFIRERATE + randf_range(-4.0, 8.0)
+		else:
+			FIRERATE -= 10 * delta
+	else:
+		shoot(delta, deg_to_rad(6.25 * BULLETAMOUNT))
 	if HEALTH <= 0:
 		var DEATH = Death.instantiate()
 		DEATH.global_position = global_position
@@ -303,13 +349,13 @@ func _physics_process(delta):
 	if knockback == Vector2(0, 0):
 		velocity = initialVelocity
 		for node in enemy_group:
-			if global_position.distance_to(node.global_position) < 32 and TYPE != "bomber":
+			if global_position.distance_to(node.global_position) < DISTANCING[2] and TYPE != "bomber":
 				var newDir = (global_position - node.global_position).angle()
 				velocity = Vector2(SPEED, 0).rotated(lerp_angle(MOVEDIR, newDir, 0.5)) * delta
 				move_and_slide()
-		if global_position.distance_to(player_position) > 64 or TYPE == "bomber":
+		if global_position.distance_to(player_position) > DISTANCING[0] or TYPE == "bomber":
 			move_and_slide()
-		elif global_position.distance_to(player_position) < 32:
+		elif global_position.distance_to(player_position) < DISTANCING[1]:
 			velocity = -initialVelocity
 			move_and_slide()
 	else:

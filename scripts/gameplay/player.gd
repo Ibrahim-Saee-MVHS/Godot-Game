@@ -491,6 +491,9 @@ func _on_area_2d_area_entered(area):
 			elif area.TYPE != "bomb":
 				explode(area.explosiveness, false, area.global_position)
 				area.queue_free()
+		# enemy thunder strike
+		if area is EnemyThunderStrike:
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
 		# explosions
 		if area is Explosion and area.playerExplosion == false:
 			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
