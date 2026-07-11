@@ -9,7 +9,7 @@
 	},
 	"juggernauts_reign_supreme": {
 		"name": "Juggernauts Reign Supreme",
-		"description": "The Juggernauts now rule the world!.\n(All enemies have the same HEALTH(except for Bombers) and color of Juggernauts and have a minimium DAMAGE of 6, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above their Health Bar.)\nWhen paired wtih Trinity of Doom, the Juggernaut will spawn with the trinity.",
+		"description": "The Juggernauts now rule the world!.\n(All enemies have the 1.5x HEALTH(except for Bombers who have 2.5x) and color of Juggernauts and DAMAGE is multiplied by 2.5x, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above Non-Juggernaut's Health Bar.)\nWhen paired wtih any enemy limiting modifier, the Juggernaut will spawn them.",
 	},
 	"no_hit": {
 		"name": "No Hit",
