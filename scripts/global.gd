@@ -9,6 +9,7 @@ var upgradesJson: Dictionary
 var validUpgrades: Array
 var upgradeInfo: Dictionary
 var gameModifierInfo: Dictionary
+var cardPickerSearch: String = ""
 
 func _ready() -> void:
 	loadJSONUpgrades()
