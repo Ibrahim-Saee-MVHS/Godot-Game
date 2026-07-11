@@ -35,6 +35,8 @@ var canMove: bool = true
 
 func _ready():
 	spawn_position = global_position
+	if self.has_node("Outline"):
+		$Outline.self_modulate = Global.playerColor
 	if TYPE == "normal":
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 		explosiveness = explosiveness + (0.25 * upgrades)
@@ -45,8 +47,6 @@ func _ready():
 		$CPUParticles2D.emitting = true
 		$CPUParticles2D.color_ramp = fireColors[upgrades]
 		global_position += Vector2(16, 0).rotated(MOVEDIR)
-	else:
-		$Outline.self_modulate = Global.enemySpawn.color.get(COLOR)
 	if TYPE == "dark":
 		global_position += Vector2(16, 0).rotated(MOVEDIR)
 		KNOCKBACK = 6000
