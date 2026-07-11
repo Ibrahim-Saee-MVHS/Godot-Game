@@ -29,6 +29,7 @@ var boomerangsThrown: int
 	"bomb": preload("res://scenes/bullet_types/enemy_bomb.tscn"),
 	"boomerang": preload("res://scenes/bullet_types/enemy_boomerang.tscn"),
 	"frost": preload("res://scenes/bullet_types/enemy_icicle.tscn"),
+	"air": preload("res://scenes/bullet_types/enemy_air_slash.tscn"),
 	"earth": preload("res://scenes/bullet_types/enemy_rock_pellet.tscn"),
 }
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
@@ -217,6 +218,20 @@ func setStats():
 		DAMAGE = 6 + UPGRADES + (0.25 * multiplier / 4)
 		EXP = 12 * 1 + multiplier / 3
 		bulletType = "earth"
+		explosiveness = 0
+		shootPitch = 1.0
+	if TYPE == "slasher":
+		SPEED = 5400
+		MAXHEALTH = 24 * multiplier
+		MAXFIRERATE = clamp(round(5 - (0.25 * multiplier)), 1, 5)
+		BULLETAMOUNT = 1
+		BULLETSPEED = 500
+		BULLETVARIANCE = 0
+		DISTANCING = [64, 32, 32]
+		UPGRADES = clamp(0 + (0.25 * multiplier), 0, 2)
+		DAMAGE = 1 + (0.25 * multiplier / 2)
+		EXP = 4 * 1 + multiplier / 3
+		bulletType = "air"
 		explosiveness = 0
 		shootPitch = 1.0
 	

@@ -481,7 +481,7 @@ func _on_area_2d_area_entered(area):
 			# air
 			elif area.TYPE == "air":
 				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.25)
-				knockbackPower = clampf(area.KNOCKBACK / 1000, 2, 16)
+				knockbackPower = clampf(area.KNOCKBACK / 3000, 2, 8)
 				knockbackDir = (area.spawn_position - global_position).angle()
 			# normal
 			elif area.explosiveness <= 0:
