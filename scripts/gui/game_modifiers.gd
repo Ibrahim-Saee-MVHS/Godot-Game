@@ -35,7 +35,7 @@ func lockModifiers():
 					if Achievements.isAchievementUnlocked(achievement) == true:
 						requirement += 1
 				else:
-					if Achievements.ACHIEVEMENTS.get(achievement.get(achievement.values()[0])) == true:
+					if Achievements.ACHIEVEMENTS.get(achievement.keys()[0]).get(achievement.values()[0]) == true:
 						requirement += 1
 			if requirement >= Global.gameModifierInfo.get(button.ID).get("achievements_required").size():
 				button.button_disabled = false
