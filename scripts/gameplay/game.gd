@@ -111,7 +111,7 @@ func generateSpawnPosition(padding):
 	return spawnVector
 
 func screenShake(delta):
-	Global.SCREENSHAKEAMOUNT = clamp(Global.SCREENSHAKEAMOUNT, 0.0, 600.0)
+	Global.SCREENSHAKEAMOUNT = clamp(Global.SCREENSHAKEAMOUNT, 0.0, 400.0)
 	Global.SCREENSHAKEPOWER = clamp(Global.SCREENSHAKEPOWER, 0.0, 8.0)
 	$BaseCamera.offset.x = round(Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta)
 	$BaseCamera.offset.y = round(Global.SCREENSHAKEAMOUNT * randf_range(-1, 1) * Global.SCREENSHAKEPOWER * delta)
