@@ -137,7 +137,7 @@ var enemyColor = {
 	"grenadier": Color("df44ffff"),
 	"arsonist": Color("8e3222ff"),
 	"boomeranger": Color("7dc8b9ff"),
-	"frostmancer": Color("a0bbffff"),
+	"frostmancer": Color("6bb0ffff"),
 }
 
 var playerSprite = "default"
