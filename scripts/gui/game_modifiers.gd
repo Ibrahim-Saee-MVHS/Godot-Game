@@ -31,12 +31,10 @@ func lockModifiers():
 		if Global.gameModifierInfo.get(button.ID).has("achievements_required"):
 			var requirement = 0
 			for achievement in Global.gameModifierInfo.get(button.ID).get("achievements_required"):
-				print(achievement)
 				if achievement is String:
 					if Achievements.isAchievementUnlocked(achievement) == true:
 						requirement += 1
 				else:
-					print(Achievements.ACHIEVEMENTS.get(achievement.keys()[0]).get(achievement.values()[0]))
 					if Achievements.ACHIEVEMENTS.get(achievement.get(achievement.values()[0])) == true:
 						requirement += 1
 			if requirement >= Global.gameModifierInfo.get(button.ID).get("achievements_required").size():
