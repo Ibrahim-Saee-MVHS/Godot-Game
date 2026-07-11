@@ -11,9 +11,10 @@ var EXP = 4
 var HEALTH: int
 var MOVEDIR: float
 var BULLETAMOUNT: int = 1
+var BULLETSPEED: float
+var BULLETVARIANCE: float = 0
 var HITSTUN: float
 var currentHitstunTime: float
-var BULLETSPEED: float
 var shootPitch: float = 1.0
 var player_position: Vector2
 var target_position: Vector2
@@ -26,6 +27,7 @@ var boomerangsThrown: int
 	"flame": preload("res://scenes/bullet_types/enemy_flame.tscn"),
 	"bomb": preload("res://scenes/bullet_types/enemy_bomb.tscn"),
 	"boomerang": preload("res://scenes/bullet_types/enemy_boomerang.tscn"),
+	"frost": preload("res://scenes/bullet_types/enemy_icicle.tscn"),
 }
 @onready var Death = preload("res://scenes/vfx/death_particles.tscn")
 @onready var ExplosionNode = preload("res://scenes/explosion.tscn")
@@ -48,6 +50,7 @@ func setStats():
 		MAXFIRERATE = INF
 		BULLETAMOUNT = 0
 		BULLETSPEED = 0
+		BULLETVARIANCE = 0
 		DAMAGE = -1
 		EXP = 0
 		UPGRADES = 0
@@ -61,6 +64,7 @@ func setStats():
 		MAXFIRERATE = 10
 		BULLETAMOUNT = 1
 		BULLETSPEED = 200
+		BULLETVARIANCE = 0
 		DAMAGE = 1 * multiplier
 		EXP = 4 * 1 + multiplier / 4
 		UPGRADES = 0
@@ -73,6 +77,7 @@ func setStats():
 		MAXFIRERATE = clamp(4 + (-0.25 * multiplier), 2.5, 4)
 		BULLETAMOUNT = 1
 		BULLETSPEED = 250
+		BULLETVARIANCE = 0
 		DAMAGE = 1 * multiplier
 		EXP = 6 * 1 + multiplier / 4
 		UPGRADES = 0
@@ -85,6 +90,7 @@ func setStats():
 		MAXFIRERATE = 20
 		BULLETAMOUNT = 3
 		BULLETSPEED = 200
+		BULLETVARIANCE = 0
 		DAMAGE = 6 * multiplier / 2
 		UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 6)
 		EXP = 8 * 1 + multiplier / 3
@@ -97,6 +103,7 @@ func setStats():
 		MAXFIRERATE = 0
 		BULLETAMOUNT = 16
 		BULLETSPEED = 300
+		BULLETVARIANCE = 0
 		DAMAGE = 4 * multiplier / 2
 		EXP = 12 * 1 + multiplier / 2
 		UPGRADES = 0
@@ -109,6 +116,7 @@ func setStats():
 		MAXFIRERATE = 8
 		BULLETAMOUNT = clamp(ceil(3 * multiplier), 3, 6)
 		BULLETSPEED = 200
+		BULLETVARIANCE = 0
 		DAMAGE = 2 * multiplier
 		EXP = 6 * 1 + multiplier / 4
 		UPGRADES = 0
@@ -121,6 +129,7 @@ func setStats():
 		MAXFIRERATE = 16
 		BULLETAMOUNT = clamp(floor(1 * multiplier), 1, 3)
 		BULLETSPEED = 200
+		BULLETVARIANCE = 0
 		DAMAGE = 4 * multiplier
 		EXP = 10 * 1 + multiplier / 2
 		UPGRADES = 0
@@ -133,6 +142,7 @@ func setStats():
 		MAXFIRERATE = 1
 		BULLETAMOUNT = 1
 		BULLETSPEED = 200
+		BULLETVARIANCE = 0
 		DAMAGE = 0 + (1 * multiplier / 2)
 		UPGRADES = clamp(round(0 + (0.25 * multiplier * multiplier)), 0, 4)
 		EXP = 8 * 1 + multiplier / 3
@@ -145,10 +155,24 @@ func setStats():
 		MAXFIRERATE = 6
 		BULLETAMOUNT = 1
 		BULLETSPEED = 250
+		BULLETVARIANCE = 0
 		DAMAGE = 4 * multiplier
 		EXP = 4 * 1 + multiplier / 4
 		UPGRADES = clamp(round(0.3 * multiplier), 0, 3)
 		bulletType = "boomerang"
+		explosiveness = 0
+		shootPitch = 1.0
+	if TYPE == "frostmancer":
+		SPEED = 5000
+		MAXHEALTH = 24 * multiplier
+		MAXFIRERATE = clamp(round(1 - (0.05 * multiplier)), 0.5, 1.5)
+		BULLETAMOUNT = clamp(round(1 + (0.1 * multiplier)), 1, 5)
+		BULLETSPEED = 350
+		BULLETVARIANCE = 12
+		DAMAGE = 1 + (0.25 * multiplier / 4)
+		UPGRADES = clamp(round(0 + (0.25 * (multiplier * multiplier))), 0, 4)
+		EXP = 8 * 1 + multiplier / 3
+		bulletType = "frost"
 		explosiveness = 0
 		shootPitch = 1.0
 	
@@ -230,6 +254,8 @@ func shoot(delta, spread):
 	if FIRERATE <= 0:
 		if TYPE == "arsonist":
 			FIRERATE = MAXFIRERATE + randf_range(0, 6.0) * round(randf_range(0, 1))
+		elif TYPE == "froster":
+			FIRERATE = MAXFIRERATE + randf_range(4.0, 8.0) * round(randf_range(-0.25, 0.6))
 		else:
 			FIRERATE = MAXFIRERATE
 		if bulletType == "boomerang":
@@ -241,6 +267,9 @@ func shoot(delta, spread):
 		if bulletType == "flame":
 			$FlameThrow.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
 			$FlameThrow.playing = true
+		elif bulletType == "frost":
+			$IcicleThrow.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
+			$IcicleThrow.playing = true
 		else:
 			$Shoot.pitch_scale = shootPitch + randf_range(-0.2, 0.2)
 			$Shoot.playing = true
@@ -253,10 +282,16 @@ func shoot(delta, spread):
 			BULLET.set("TYPE", bulletType)
 			BULLET.set("SPEED", BULLETSPEED)
 			BULLET.set("DAMAGE", DAMAGE)
-			BULLET.set("MOVEDIR", MOVEDIR + dirOffset)
+			BULLET.set("MOVEDIR", MOVEDIR + dirOffset + randf_range(-BULLETVARIANCE, BULLETVARIANCE))
 			BULLET.set("upgrades", UPGRADES)
 			BULLET.set("explosiveness", explosiveness)
 			BULLET.set("destination_position", target_position)
+			
+			if bulletType == "frost":
+				var variance = Vector2(randf_range(-BULLETVARIANCE, BULLETVARIANCE), randf_range(-BULLETVARIANCE, BULLETVARIANCE))
+				BULLET.set("global_position", global_position + variance)
+				BULLET.set("MOVEDIR", MOVEDIR + dirOffset)
+				BULLET.set("destination_position", target_position + variance)
 			get_parent().add_child(BULLET)
 	else:
 		FIRERATE -= 10 * delta

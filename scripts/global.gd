@@ -105,6 +105,7 @@ var enemyTypes: Array[String] = [
 	"grenadier",
 	"arsonist",
 	"boomeranger",
+	"frostmancer",
 ]
 
 var enemyWeights: Array[float] = [
@@ -116,6 +117,7 @@ var enemyWeights: Array[float] = [
 	1.5, # grenadier
 	1, # arsonist
 	1.75, # boomeranger
+	1, # frostmancer
 ]
 
 var enemySpawn: Dictionary = {
@@ -135,6 +137,7 @@ var enemyColor = {
 	"grenadier": Color("df44ffff"),
 	"arsonist": Color("8e3222ff"),
 	"boomeranger": Color("7dc8b9ff"),
+	"frostmancer": Color("a0bbffff"),
 }
 
 var playerSprite = "default"
@@ -148,6 +151,7 @@ var enemySprites = {
 	"grenadier": "default",
 	"arsonist": "default",
 	"boomeranger": "default",
+	"frostmancer": "default",
 }
 
 var characterSprites = {

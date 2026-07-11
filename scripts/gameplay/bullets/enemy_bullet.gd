@@ -189,3 +189,5 @@ func _on_area_entered(area: Area2D) -> void:
 		if TYPE == "flame" and area.TYPE == "water":
 			$CPUParticles2D.emitting = false
 			$CollisionShape2D.disabled = true
+		if TYPE == "frost" and area.TYPE == "flame":
+			despawnTimer -= 30 * get_process_delta_time()
