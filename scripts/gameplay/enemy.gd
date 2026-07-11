@@ -220,10 +220,10 @@ func setStats():
 			$TypeIndicator.self_modulate = Global.enemyColor.get(TYPE)
 			$TypeIndicator.visible = true
 			if TYPE != "bomber":
-				DAMAGE = max(DAMAGE, 6)
+				DAMAGE = max(DAMAGE * 2.5, 6)
 				MAXHEALTH *= 2.5
 			else:
-				DAMAGE = 5 * multiplier / 2
+				DAMAGE *= 2.5
 				MAXHEALTH *= 1.5
 			if bulletType == "normal": UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 6)
 			shootPitch = 0.5
