@@ -146,6 +146,13 @@ func _process(delta):
 			queue_free()
 		elif TYPE == "boomerang":
 			returnToSender()
+		elif TYPE == "air":
+			SPEED -= 100 * delta
+			modulate.a -= 5 * delta
+			if modulate.a <= 0.25:
+				$CollisionShape2D.disabled = true
+			elif modulate.a <= 0:
+				queue_free()
 		else:
 			despawnBullet()
 
