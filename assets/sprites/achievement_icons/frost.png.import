@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byhwknxlpgtty"
-path="res://.godot/imported/ice_spikes.png-662d001dc5b76a1dbccbd3c12df6aaa4.ctex"
+uid="uid://cupumvknbg2mc"
+path="res://.godot/imported/frost.png-521db9717c0b9dab32c09dc770f572b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/achievement_icons/ice_spikes.png"
-dest_files=["res://.godot/imported/ice_spikes.png-662d001dc5b76a1dbccbd3c12df6aaa4.ctex"]
+source_file="res://assets/sprites/achievement_icons/frost.png"
+dest_files=["res://.godot/imported/frost.png-521db9717c0b9dab32c09dc770f572b1.ctex"]
 
 [params]
 
