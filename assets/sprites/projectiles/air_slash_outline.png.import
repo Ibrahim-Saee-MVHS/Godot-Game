@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccrgogxsu64o5"
-path="res://.godot/imported/air_slash.png-694a86ba4e305198f786a5694aa63096.ctex"
+uid="uid://c3wgiuy4l411f"
+path="res://.godot/imported/air_slash_outline.png-775d8198afb73d0099b952f26e5c1ec1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/projectiles/air_slash.png"
-dest_files=["res://.godot/imported/air_slash.png-694a86ba4e305198f786a5694aa63096.ctex"]
+source_file="res://assets/sprites/projectiles/air_slash_outline.png"
+dest_files=["res://.godot/imported/air_slash_outline.png-775d8198afb73d0099b952f26e5c1ec1.ctex"]
 
 [params]
 

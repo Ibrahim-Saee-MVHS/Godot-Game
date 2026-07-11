@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dslp3kkt7cnyu"]
+
+[ext_resource type="Script" uid="uid://mxlh621vivac" path="res://scripts/gameplay/bullets/enemy_bullet.gd" id="1_in51m"]
+[ext_resource type="Texture2D" uid="uid://dtyujs1sj42ef" path="res://assets/sprites/projectiles/rock_pellet.png" id="2_vqbwh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx7rs"]
+radius = 7.0
+
+[node name="EnemyRockPellet" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_in51m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=718132180]
+texture = ExtResource("2_vqbwh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+shape = SubResource("CircleShape2D_qx7rs")

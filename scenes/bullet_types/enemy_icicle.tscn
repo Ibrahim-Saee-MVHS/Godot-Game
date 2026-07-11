@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://o8e73boju8rx"]
+
+[ext_resource type="Script" uid="uid://mxlh621vivac" path="res://scripts/gameplay/bullets/enemy_bullet.gd" id="1_ubkl0"]
+[ext_resource type="Texture2D" uid="uid://dp52n3vtejtl4" path="res://assets/sprites/projectiles/icicle.png" id="2_sb0uf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2d67"]
+size = Vector2(20, 11)
+
+[node name="EnemyIcicle" type="Area2D" unique_id=1432198597]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ubkl0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=718132180]
+texture = ExtResource("2_sb0uf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363883897]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_b2d67")

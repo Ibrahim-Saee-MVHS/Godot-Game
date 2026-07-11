@@ -35,6 +35,8 @@ func _ready():
 	start_time = Time.get_ticks_msec()
 	if self.has_node("Outline"):
 		$Outline.self_modulate = Global.playerColor
+	if self.has_node("ColorVFX"):
+		$ColorVFX.color = Global.playerColor
 	if homing > 0:
 		findNewTarget()
 	if TYPE == "normal":
