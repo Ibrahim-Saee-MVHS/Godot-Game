@@ -470,6 +470,19 @@ func _on_area_2d_area_entered(area):
 				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
 				area.get_node("CPUParticles2D").set_deferred("emitting", false)
 				area.get_node("CollisionShape2D").set_deferred("disabled", true)
+			# dark
+			elif area.TYPE == "dark":
+				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.25)
+			# light
+			elif area.TYPE == "light":
+				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 1.5)
+				area.get_node("CPUParticles2D").set_deferred("emitting", false)
+				area.queue_free()
+			# air
+			elif area.TYPE == "air":
+				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.25)
+				knockbackPower = clampf(area.KNOCKBACK / 1000, 2, 16)
+				knockbackDir = (area.spawn_position - global_position).angle()
 			# normal
 			elif area.explosiveness <= 0:
 				dealDamage(area.DAMAGE, MAXINVULNERABILITY)
