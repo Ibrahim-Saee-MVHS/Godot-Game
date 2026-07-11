@@ -328,7 +328,7 @@ func shoot(delta, spread):
 			BULLET.set("TYPE", bulletType)
 			BULLET.set("SPEED", BULLETSPEED)
 			BULLET.set("DAMAGE", DAMAGE)
-			BULLET.set("MOVEDIR", MOVEDIR + dirOffset + randf_range(-BULLETVARIANCE, BULLETVARIANCE))
+			BULLET.set("MOVEDIR", MOVEDIR + dirOffset + deg_to_rad(randf_range(-BULLETVARIANCE, BULLETVARIANCE)))
 			BULLET.set("upgrades", UPGRADES)
 			BULLET.set("explosiveness", explosiveness)
 			BULLET.set("destination_position", target_position)
