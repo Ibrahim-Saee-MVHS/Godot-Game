@@ -192,10 +192,10 @@ func setStats():
 			$TypeIndicator.visible = true
 			if TYPE != "bomber":
 				DAMAGE = max(DAMAGE, 6)
-				MAXHEALTH = 40 * multiplier
+				MAXHEALTH *= 2.5
 			else:
 				DAMAGE = 5 * multiplier / 2
-				MAXHEALTH = 28 * multiplier
+				MAXHEALTH *= 1.5
 			if bulletType == "normal": UPGRADES = clamp(round(0 + (0.25 * multiplier)), 0, 6)
 			shootPitch = 0.5
 	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
