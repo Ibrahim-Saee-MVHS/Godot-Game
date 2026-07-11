@@ -36,7 +36,7 @@ var canMove: bool = true
 func _ready():
 	spawn_position = global_position
 	if self.has_node("Outline"):
-		$Outline.self_modulate = Global.playerColor
+		$Outline.self_modulate = Global.enemyColor.get(COLOR)
 	if TYPE == "normal":
 		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
 		explosiveness = explosiveness + (0.25 * upgrades)
