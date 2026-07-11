@@ -163,7 +163,7 @@ func setStats():
 		explosiveness = 0
 		shootPitch = 1.0
 	if TYPE == "frostmancer":
-		SPEED = 5000
+		SPEED = 3600
 		MAXHEALTH = 24 * multiplier
 		MAXFIRERATE = clamp(round(1 - (0.05 * multiplier)), 0.5, 1.5)
 		BULLETAMOUNT = clamp(round(1 + (0.1 * multiplier)), 1, 5)
