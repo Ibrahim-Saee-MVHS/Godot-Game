@@ -8,7 +8,6 @@ size = Vector2(20, 11)
 
 [node name="EnemyIcicle" type="Area2D" unique_id=1432198597]
 collision_layer = 4
-collision_mask = 2
 script = ExtResource("1_ubkl0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=718132180]
