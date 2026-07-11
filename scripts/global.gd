@@ -53,6 +53,9 @@ func setGameModifiers():
 		get_tree().current_scene.DIFFICULTY = 1
 		get_tree().current_scene.DIFFICULTYINCREMENT = 0.25
 		get_tree().current_scene.add_child(UpgradeScreen.instantiate())
+	if GAMEMODIFIERS.get("elementals", false) == true:
+		enemySpawn.types = ["arsonist", "frostmancer", "thundermancer", "thrower", "slasher"]
+		enemySpawn.weights = [1, 1.25, 0.75, 1, 1.25]
 	if GAMEMODIFIERS.get("juggernauts_reign_supreme", false) == true:
 		if enemySpawn.types.has("juggernaut") == false:
 			enemySpawn.types.insert(3, "juggernaut")
@@ -93,6 +96,7 @@ var GAMEMODIFIERS = {
 	"hard_mode": false,
 	"juggernauts_reign_supreme": false,
 	"no_hit": false,
+	"elementals": false,
 }
 
 # only includes enemy types that spawn

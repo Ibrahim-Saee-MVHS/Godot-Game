@@ -17,10 +17,11 @@
 	},
 	"elementals": {
 		"name": "Elementals",
-		"description": "There exists 9 elements. but you'll only be facing against 5 for now.\n(Arsonists, Thundermancers, Frostmancers, Throwers, and Slashers only.)",
+		"description": "There exists 9 elements. but you'll only be facing against 5 for now.\n\n(Arsonists, Thundermancers, Frostmancers, Throwers, and Slashers only.)\nRequired Achievements: [Arsonist's Best Friend, Master Of Elements:Thunder, Ice Spikes, Polished Boulders, Stonecutter! (Air Edition)]",
+		"achievements_required": ["flame", {"elemental":"thunder"}, "frost", "earth", "air"],
 	},
 	"tbd": {
 		"name": "To Be Decided",
-		"description": "You will see one day.",
+		"description": "Yes this one is different from Elementals.",
 	},
 }
