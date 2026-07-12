@@ -196,12 +196,12 @@ func setStats():
 		SPEED = 6000
 		MAXHEALTH = 38 * multiplier
 		MAXFIRERATE = clamp(round(48 - (0.25 * multiplier)), 16, 48)
-		BULLETAMOUNT = clamp(round(1 + (0.15 * (multiplier - 1 * 4))), 1, 6)
+		BULLETAMOUNT = clamp(round(1 + (0.25 * (multiplier * (multiplier)))), 1, 6)
 		BULLETSPEED = 350
 		BULLETVARIANCE = clamp(round(128 - (4 * multiplier)), 48, 128)
 		DISTANCING = [128, 112, 32]
 		DAMAGE = 10 + (2 * multiplier / 4)
-		UPGRADES = clamp(round(0 + (0.25 * (multiplier * multiplier))), 0, 3)
+		UPGRADES = clamp(round(0 + (0.25 * (multiplier * (multiplier/1.5)))), 0, 3)
 		EXP = 12 * 1 + multiplier / 3
 		bulletType = "thunder"
 		explosiveness = 0
