@@ -327,6 +327,8 @@ func _process(delta):
 func shoot(delta, spread):
 	var startDir = -spread / 2
 	var dirSteps = spread / (BULLETAMOUNT - 1)
+	if TYPE == "bomber":
+		return
 	if FIRERATE <= 0:
 		if TYPE == "arsonist":
 			FIRERATE = MAXFIRERATE + randf_range(0, 6.0) * round(randf_range(0, 1))
