@@ -283,7 +283,7 @@ func _process(delta):
 		if global_position.distance_to(player_position) <= 32:
 			explode(DAMAGE, false, global_position)
 			queue_free()
-	if TYPE == "thundermancer":
+	elif TYPE == "thundermancer":
 		if FIRERATE <= 0:
 			for i in range(BULLETAMOUNT):
 				var THUNDERWARNING = BulletWarn.instantiate()
