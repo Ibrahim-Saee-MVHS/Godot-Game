@@ -2,6 +2,7 @@
 	"trinity_of_doom": {
 		"name": "Trinity of Doom",
 		"description": "[color=#FFFFFFAA][font_size=16]ALT NAME: Hell Trinity[/font_size][/color]\nThe most destructive enemies have come together to create an unstoppable force, perhaps you have become the hero this world needs.\n(Bombers, Grenadiers, and Arsonists only.)",
+		"incompatiblilty_id": "enemy_limiting",
 	},
 	"hard_mode": {
 		"name": "Hard Mode",
@@ -20,6 +21,7 @@
 		"name": "Elementals",
 		"description": "There exists 9 elements. but you'll only be facing against 5 for now.\n(Arsonists, Thundermancers, Frostmancers, Throwers, and Slashers only.)\n[color=#FFFF00FF]Required Achievements: Arsonist's Best Friend, Master Of Elements:Thunder, Ice Spikes, Polished Boulders, Stonecutter! (Air Edition)[/color]",
 		"achievements_required": ["flame", {"elemental":"thunder"}, "frost", "earth", "air"],
+		"incompatiblilty_id": "enemy_limiting",
 	},
 	"tbd": {
 		"name": "To Be Decided",
