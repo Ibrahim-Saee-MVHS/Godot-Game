@@ -1,7 +1,7 @@
 {
 	"trinity_of_doom": {
 		"name": "Trinity of Doom",
-		"description": "The most destructive enemies have come together to create an unstoppable force, perhaps you have become the hero this world needs.\nALT NAME: Hell Trinity\n(Bombers, Grenadiers, and Arsonists only.)",
+		"description": "[color=#FFFFFFAA][font_size=16]ALT NAME: Hell Trinity[/font_size][/color]\nThe most destructive enemies have come together to create an unstoppable force, perhaps you have become the hero this world needs.\n(Bombers, Grenadiers, and Arsonists only.)",
 	},
 	"hard_mode": {
 		"name": "Hard Mode",
@@ -9,16 +9,16 @@
 	},
 	"juggernauts_reign_supreme": {
 		"name": "Juggernauts Reign Supreme",
-		"description": "The Juggernauts now rule the world!.\n(All enemies have the 1.5x HEALTH(except for Bombers who have 2.5x) and color of Juggernauts and DAMAGE is multiplied by 2.5x, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above Non-Juggernaut's Health Bar.)\nWhen paired wtih any enemy limiting modifier, the Juggernaut will spawn them.",
+		"description": "The Juggernauts now rule the world!.\n(All enemies have the 1.5x HEALTH(except for Bombers who have 2.5x) and color of Juggernauts and DAMAGE is multiplied by 2.5x, actual Juggernauts become far more powerful and less common, there is also an Enemy Type indicator above Non-Juggernaut's Health Bar.)\nWhen paired wtih any enemy limiting modifier, the Juggernaut will spawn alongside the limited enemies.",
 	},
 	"no_hit": {
 		"name": "No Hit",
-		"description": "They say what doesn't kill you, only makes you stronger.\n(You are locked with a MAX HEALTH of 1. Enemy SPEED, BULLET SPEED is halfed and FIRERATE is doubled (Slower) and Player SPEED is doubled. Additionally every level up your DAMAGE and SPEED increases and FIRERATE decreases (Faster).) Any Upgrade that decreases MAX HEALTH won't affect it.\n[color=#FFFF00FF]Required Achievement: High Endurance[/color]",
+		"description": "They say what doesn't kill you, only makes you stronger.\n(You are locked with a MAX HEALTH of 1. Enemy SPEED, BULLET SPEED is halfed and FIRERATE is doubled (Slower) and Player SPEED is doubled. Additionally every level up your DAMAGE and SPEED increases and FIRERATE decreases (Faster).) Any Upgrade that modifies MAX HEALTH won't affect it.\n[color=#FFFF00FF]Required Achievement: High Endurance[/color]",
 		"achievements_required": ["level_25"],
 	},
 	"elementals": {
 		"name": "Elementals",
-		"description": "There exists 9 elements. but you'll only be facing against 5 for now.\n(Arsonists, Thundermancers, Frostmancers, Throwers, and Slashers only.)\n[color=#FFFF00FF]Required Achievements: Arsonist's Best Friend, Master Of Elements:Thunder, Ice Spikes, Polished Boulders, Stonecutter! (Air Edition) [/color]",
+		"description": "There exists 9 elements. but you'll only be facing against 5 for now.\n(Arsonists, Thundermancers, Frostmancers, Throwers, and Slashers only.)\n[color=#FFFF00FF]Required Achievements: Arsonist's Best Friend, Master Of Elements:Thunder, Ice Spikes, Polished Boulders, Stonecutter! (Air Edition)[/color]",
 		"achievements_required": ["flame", {"elemental":"thunder"}, "frost", "earth", "air"],
 	},
 	"tbd": {
