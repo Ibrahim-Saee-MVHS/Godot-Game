@@ -43,7 +43,6 @@ func lockModifiers():
 				button.button_disabled = true
 
 func setDescriptionText():
-	$DescriptionBox/Description.text = ""
 	for button in $ScrollContainer/CenterContainer/GridContainer.get_children(false):
 		var description = str(Global.gameModifierInfo.get(button.ID).get("description", ERROR))
 		if button.HOVERING:
