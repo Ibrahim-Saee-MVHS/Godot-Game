@@ -44,9 +44,10 @@ func lockModifiers():
 
 func setDescriptionText():
 	for button in $ScrollContainer/CenterContainer/GridContainer.get_children(false):
+		var title = str("[font_size=48]", Global.gameModifierInfo.get(button.ID).get("name", ""), "[/font_size]")
 		var description = str(Global.gameModifierInfo.get(button.ID).get("description", ERROR))
 		if button.HOVERING:
-			$DescriptionBox/Description.parse_bbcode(description)
+			$DescriptionBox/Description.parse_bbcode(str(title, "\n", description))
 
 func _back():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
