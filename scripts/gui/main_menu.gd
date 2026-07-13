@@ -7,6 +7,11 @@ var CreditsNode = preload("res://scenes/credits.tscn")
 var buttonsDisabled = false
 
 func _ready():
+	var vignetteShader = $BaseCamera/BackgroundFX/Control/Vignette.material
+	Global.VIGNETTECOLOR = Vector3(0, 0, 0)
+	Global.VIGNETTEINTENSITY = 0.25
+	vignetteShader.set_shader_parameter("color", Global.VIGNETTECOLOR)
+	vignetteShader.set_shader_parameter("alpha", Global.VIGNETTEINTENSITY)
 	get_tree().paused = false
 	SettingsGlobal.setAllSettings()
 
