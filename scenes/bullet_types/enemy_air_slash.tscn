@@ -39,6 +39,7 @@ amount = 16
 texture = SubResource("GradientTexture1D_wb8wd")
 lifetime = 0.1
 randomness = 1.0
+local_coords = true
 emission_shape = 4
 emission_points = PackedVector2Array(-4, 15.5, -4, -15.5)
 emission_colors = PackedColorArray()
