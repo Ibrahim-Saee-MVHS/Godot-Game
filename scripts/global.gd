@@ -125,7 +125,7 @@ var enemyWeights: Array[float] = [
 	1, # arsonist
 	1.75, # boomeranger
 	1, # frostmancer
-	0.75, # thundermancer
+	0.85, # thundermancer
 	1.25, # thrower
 	1, # slasher
 ]
