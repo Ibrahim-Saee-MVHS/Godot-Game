@@ -414,87 +414,77 @@ func ricochet(bullet: PlayerBullet):
 		nearest_node = enemies[randi_range(0, enemies.size() - 1)]
 		return (bullet.global_position - (nearest_node.global_position + nearest_node.velocity)).angle() + PI
 
-func _gotDamaged(area):
+func deal_damage(area:Area2D, invulnerablity:float, knockback_type:String = "default"):
 	if HITSTUN <= 0:
-		if area is PlayerBullet:
-			# bullets
-			if area.explosiveness <= 0:
-				$Hit.pitch_scale = randf_range(0.9, 1.1)
-				$Hit.playing = true
-				Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-				shaderMaterial.shader = Global.shaders.flash
-				HEALTH -= area.DAMAGE
-				if area.TYPE == "flame":
-					HITSTUN = 0.5
-				elif area.TYPE == "water":
-					area.get_node("CPUParticles2D").set_deferred("emitting", false)
-					area.get_node("CollisionShape2D").set_deferred("disabled", true)
-					HITSTUN = 0.75
-				elif area.TYPE == "dark":
-					HITSTUN = 1
-					knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
-				elif area.TYPE == "light":
-					area.get_node("CPUParticles2D").set_deferred("emitting", false)
-					HITSTUN = 2
-					knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
-				elif area.TYPE == "air":
-					HITSTUN = 1
-					knockback = Vector2(area.KNOCKBACK, 0).rotated((player_position - global_position).angle())
-				elif area.TYPE == "plasma":
-					HITSTUN = 2
-				else:
-					HITSTUN = 1
-					knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
-					if area.ricochet > 0:
-						area.SPEED += 50
-						area.MOVEDIR = ricochet(area)
-						area.ricochet -= 1
-					else:
-						area.queue_free()
-			# explosive bullets
+		$Hit.pitch_scale = randf_range(0.9, 1.1)
+		$Hit.playing = true
+		Global.spawnDamageIndicator(global_position, -area.DAMAGE)
+		shaderMaterial.shader = Global.shaders.flash
+		HEALTH -= area.DAMAGE
+		HITSTUN = invulnerablity
+		if knockback_type == "none":
+			pass
+		elif knockback_type == "explosion":
+			knockback = Vector2(area.EXPLOSIONPOWER * 500, 0).rotated((area.global_position - global_position).angle())
+		elif knockback_type == "air":
+			knockback = Vector2(area.KNOCKBACK, 0).rotated((player_position - global_position).angle())
+		else:
+			knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
+
+func _gotDamaged(area):
+	if area is PlayerBullet:
+		# bullets
+		if area.explosiveness <= 0:
+			var inv: float = 1
+			var kbType: String = "default"
+			if area.TYPE == "flame":
+				inv = 0.5
+				kbType = "none"
+			elif area.TYPE == "water":
+				area.get_node("CPUParticles2D").set_deferred("emitting", false)
+				area.get_node("CollisionShape2D").set_deferred("disabled", true)
+				inv = 0.75
+				kbType = "none"
+			elif area.TYPE == "dark":
+				inv = 0.5
+			elif area.TYPE == "light":
+				area.get_node("CPUParticles2D").set_deferred("emitting", false)
+				inv = 2
+			elif area.TYPE == "air":
+				inv = 1
+				kbType = "none"
+			elif area.TYPE == "plasma":
+				inv = 2
+				kbType = "none"
 			else:
-				$Hit.pitch_scale = randf_range(0.9, 1.1)
-				$Hit.playing = true
-				Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-				HEALTH -= area.DAMAGE
-				explode(area.explosiveness, true, area.global_position)
-				knockback = Vector2(area.KNOCKBACK, 0).rotated((area.global_position - global_position).angle())
+				inv = 1
+				kbType = "default"
 				if area.ricochet > 0:
 					area.SPEED += 50
 					area.MOVEDIR = ricochet(area)
 					area.ricochet -= 1
 				else:
 					area.queue_free()
-		# player summons
-		if area is PlayerSummon:
-			$Hit.pitch_scale = randf_range(0.9, 1.1)
-			$Hit.playing = true
-			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-			shaderMaterial.shader = Global.shaders.flash
-			HEALTH -= area.DAMAGE
-			HITSTUN = 0.5
-		# player thunder strike
-		if area is PlayerThunderStrike:
-			$Hit.pitch_scale = randf_range(0.9, 1.1)
-			$Hit.playing = true
-			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-			shaderMaterial.shader = Global.shaders.flash
-			HEALTH -= area.DAMAGE
-			HITSTUN = area.INV
-		# explosions
-		if area is Explosion and area.playerExplosion == true:
-			$Hit.pitch_scale = randf_range(0.9, 1.1)
-			$Hit.playing = true
-			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-			shaderMaterial.shader = Global.shaders.flash
-			HEALTH -= area.DAMAGE
-			HITSTUN = 4
-			knockback = Vector2(area.EXPLOSIONPOWER * 500, 0).rotated((area.global_position - global_position).angle())
-		# dash
-		if area is Dash:
-			$Hit.pitch_scale = randf_range(0.9, 1.1)
-			$Hit.playing = true
-			Global.spawnDamageIndicator(global_position, -area.DAMAGE)
-			shaderMaterial.shader = Global.shaders.flash
-			HEALTH -= area.DAMAGE
-			HITSTUN = 0.5
+			deal_damage(area, inv, kbType)
+		# explosive bullets
+		else:
+			deal_damage(area, 0, "none")
+			explode(area.explosiveness, true, area.global_position)
+			if area.ricochet > 0:
+				area.SPEED += 50
+				area.MOVEDIR = ricochet(area)
+				area.ricochet -= 1
+			else:
+				area.queue_free()
+	# player summons
+	if area is PlayerSummon:
+		deal_damage(area, 0.5, "none")
+	# player thunder strike
+	if area is PlayerThunderStrike:
+		deal_damage(area, area.INV, "none")
+	# explosions
+	if area is Explosion and area.playerExplosion == true:
+		deal_damage(area, 4, "explosion")
+	# dash
+	if area is Dash:
+		deal_damage(area, 0.5, "none")
