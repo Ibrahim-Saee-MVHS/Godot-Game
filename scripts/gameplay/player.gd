@@ -443,62 +443,61 @@ func explode(power, isPlayer, explosion_position):
 	EXPLOSION.playerExplosion = isPlayer
 	get_parent().call_deferred("add_child", EXPLOSION)
 
-func dealDamage(damage, inv):
-	$Hit.pitch_scale = randf_range(0.9, 1.1)
-	$Hit.playing = true
-	# Global.SCREENSHAKEAMOUNT += 100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) )
-	# Global.SCREENSHAKEPOWER += 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) )
-	Global.SCREENSHAKE(100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) ), 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) ))
-	Global.VIGNETTEINTENSITY = 0.5
-	Global.VIGNETTECOLOR = Vector3(1, 0, 0)
-	shaderMaterial.shader = Global.shaders.flash
-	currentInvulnerabilityTime = inv
-	INVULNERABILITY = inv
-	damage = damage - (DEFENSE / 2) if damage - (DEFENSE / 2) >= 1 else 1
-	HEALTH -= round(damage)
-	Global.spawnDamageIndicator(global_position, -damage)
+func dealDamage(damage: float, inv: float, knockback_power = 0, area_position: Vector2 = Vector2.ZERO):
+	if INVULNERABILITY <= 0 and not has_node("Shield"):
+		$Hit.pitch_scale = randf_range(0.9, 1.1)
+		$Hit.playing = true
+		# Global.SCREENSHAKEAMOUNT += 100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) )
+		# Global.SCREENSHAKEPOWER += 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) )
+		Global.SCREENSHAKE(100 * 1 + (damage / max(round(float(MAXHEALTH) / 25), 1) ), 0.5 + (damage / max(round(float(MAXHEALTH) / 5), 1) ))
+		Global.VIGNETTEINTENSITY = 0.5
+		Global.VIGNETTECOLOR = Vector3(1, 0, 0)
+		shaderMaterial.shader = Global.shaders.flash
+		currentInvulnerabilityTime = inv
+		INVULNERABILITY = inv
+		damage = damage - (DEFENSE / 2) if damage - (DEFENSE / 2) >= 1 else 1.0
+		HEALTH -= round(damage)
+		Global.spawnDamageIndicator(global_position, -damage)
+		
+		knockbackPower = clampf(knockback_power, 2, 16)
+		knockbackDir = (area_position - global_position).angle()
 
 func _on_area_2d_area_entered(area):
-	if INVULNERABILITY <= 0 and not has_node("Shield"):
-		# bullets
-		if area is EnemyBullet:
-			# flame
-			if area.TYPE == "flame":
-				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
-			# water
-			if area.TYPE == "water":
-				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
-				area.get_node("CPUParticles2D").set_deferred("emitting", false)
-				area.get_node("CollisionShape2D").set_deferred("disabled", true)
-			# dark
-			elif area.TYPE == "dark":
-				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.25)
-			# light
-			elif area.TYPE == "light":
-				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 1.5)
-				area.get_node("CPUParticles2D").set_deferred("emitting", false)
-				area.queue_free()
-			# air
-			elif area.TYPE == "air":
-				dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.25)
-				knockbackPower = clampf(area.KNOCKBACK / 3000, 2, 8)
-				knockbackDir = (area.spawn_position - global_position).angle()
-			# normal
-			elif area.explosiveness <= 0:
-				dealDamage(area.DAMAGE, MAXINVULNERABILITY)
-				area.queue_free()
-			# explosive bullets
-			elif area.TYPE != "bomb":
-				explode(area.explosiveness, false, area.global_position)
-				area.queue_free()
-		# enemy thunder strike
-		if area is EnemyThunderStrike:
-			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
-		# explosions
-		if area is Explosion and area.playerExplosion == false:
-			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
-			knockbackPower = clampf(area.EXPLOSIONPOWER, 2, 16)
-			knockbackDir = (area.global_position - global_position).angle()
+	# bullets
+	if area is EnemyBullet:
+		# flame
+		if area.TYPE == "flame":
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
+		# water
+		if area.TYPE == "water":
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
+			area.get_node("CPUParticles2D").set_deferred("emitting", false)
+			area.get_node("CollisionShape2D").set_deferred("disabled", true)
+		# dark
+		elif area.TYPE == "dark":
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.25)
+		# light
+		elif area.TYPE == "light":
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 1.5)
+			area.get_node("CPUParticles2D").set_deferred("emitting", false)
+		# air
+		elif area.TYPE == "air":
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.25, (area.KNOCKBACK/3000), area.spawn_position)
+		# normal
+		elif area.explosiveness <= 0:
+			dealDamage(area.DAMAGE, MAXINVULNERABILITY)
+			area.queue_free()
+		# explosive bullets
+		elif area.TYPE != "bomb":
+			explode(area.explosiveness, false, area.global_position)
+			area.queue_free()
+	# enemy thunder strike
+	if area is EnemyThunderStrike:
+		dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2)
+	# explosions
+	if area is Explosion and area.playerExplosion == false:
+		dealDamage(area.DAMAGE, MAXINVULNERABILITY * 2, area.EXPLOSIONPOWER, area.global_position)
+	
 	if area is HealthBox and HEALTH < MAXHEALTH:
 		$Health.pitch_scale = randf_range(0.9, 1.1)
 		$Health.playing = true
