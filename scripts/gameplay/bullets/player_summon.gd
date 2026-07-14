@@ -17,15 +17,18 @@ var ashNode = load("res://scenes/vfx/ash.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	setStats(power)
+	
+func setStats(multiplier):
 	if TYPE == "nature":
-		SPEED = 250 + (25 * power)
-		DAMAGE = 4 + (2 * power)
-		KNOCKBACK = 100 + (100 * power)
+		SPEED = 250 + (25 * multiplier)
+		DAMAGE = 4 + (2 * multiplier)
+		KNOCKBACK = 100 + (100 * multiplier)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	PlayerNode = get_parent().get_node("Player")
+	setStats(PlayerNode.UPGRADE.abilityPower)
 	
 	if get_tree().get_nodes_in_group("enemies").size() > 0:
 		homeOnEnemy(power)
