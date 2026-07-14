@@ -270,6 +270,8 @@ func _process(delta):
 		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 2.5) - global_position).angle()
 	elif TYPE == "arsonist":
 		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 4) - global_position).angle()
+	elif TYPE == "thrower":
+		MOVEDIR = ((player_position + get_parent().get_node("Player").velocity / 2) - global_position).angle()
 	else:
 		MOVEDIR = (player_position - global_position).angle()
 	
