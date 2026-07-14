@@ -218,4 +218,15 @@
 		"description": "Makes rocks bigger but -1 MAX BULLETS. Incompatible with Polished Earth",
 		"weight": 0.35,
 	},
+	"thermal_leaf": {
+		"sprites": [
+			"res://assets/sprites/upgrade_icons/thermal_leaf_1.png",
+			"res://assets/sprites/upgrade_icons/thermal_leaf_2.png",
+		],
+		"upgradeVar": "abilitySpecial:leaf_upgrade",
+		"name": "Thermal Leaves",
+		"description": "You can upgrade your leaves to make it lose it's elemental weakness, but -2 SUMMONS.",
+		"weight": 0.15,
+		"rarity": "rare",
+	},
 }

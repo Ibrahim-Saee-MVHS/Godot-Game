@@ -20,7 +20,10 @@ func _process(_delta):
 	if player.ABILITY != "none":
 		$Control/Ability.visible = true
 		if Abilities.ICONS.get(player.ABILITY) is Array:
-			$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)[player.UPGRADE.abilityPower]
+			if player.ABILITY == "leaf_summon":
+				$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)[player.UPGRADE.abilitySpecial.get("leaf_upgrade", 0)]
+			else:
+				$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)[player.UPGRADE.abilityPower]
 		else:
 			$Control/Ability/Frame/Icon.texture = Abilities.ICONS.get(player.ABILITY)
 		$Control/Ability/Frame/Text.text = Global.upgradeInfo.get(player.ABILITY).get("name")

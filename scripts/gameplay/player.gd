@@ -80,6 +80,7 @@ var UPGRADE = {
 	abilityPower = 0,
 	abilityDuration = 0,
 	abilityCooldown = 0,
+	abilitySpecial = {}
 }
 
 func _ready() -> void:
@@ -339,6 +340,7 @@ func setAbilityStats():
 		ABILITYDURATION = 0
 		ABILITYMAXCOOLDOWN = 24 + UPGRADE.abilityCooldown
 		ABILITYMINCOOLDOWN = 8
+		UPGRADE.abilitySpecial.get_or_add("leaf_upgrade", 0)
 	if ABILITY == "thunder_strike":
 		ABILITYPOWER = 1 + UPGRADE.abilityPower
 		ABILITYDURATION = 2
@@ -404,6 +406,7 @@ func activateAbility(delta):
 				LEAFSUMMON.set("global_position", global_position + Vector2(randf_range(-16, 16), randf_range(-16, 16)))
 				LEAFSUMMON.set("TYPE", "nature")
 				LEAFSUMMON.set("power", UPGRADE.abilityPower)
+				LEAFSUMMON.set("upgrades", UPGRADE.abilitySpecial.get("leaf_upgrade", 0))
 				
 				get_parent().add_child(LEAFSUMMON)
 			else:

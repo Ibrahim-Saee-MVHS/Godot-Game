@@ -6,8 +6,9 @@ var SPEED: float
 var DAMAGE: float
 var MOVEDIR: float
 var KNOCKBACK: float
+var upgrades: int
 var despawnTimer = 60
-var power: int
+var power: float
 var target: CollisionObject2D = null
 var velocity: Vector2
 var ID: int
@@ -17,18 +18,33 @@ var ashNode = load("res://scenes/vfx/ash.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	setStats(power)
+	ID = get_tree().get_nodes_in_group("playerSummons").size()
+	setStats(get_parent().get_node("Player"))
 	
-func setStats(multiplier):
+func setStats(player: Player):
 	if TYPE == "nature":
-		SPEED = 250 + (25 * multiplier)
-		DAMAGE = 4 + (2 * multiplier)
-		KNOCKBACK = 100 + (100 * multiplier)
+		power = player.UPGRADE.abilityPower
+		upgrades = player.UPGRADE.abilitySpecial.get("leaf_upgrade")
+		SPEED = 250 + (25 * power)
+		DAMAGE = 4 + (2 * power)
+		KNOCKBACK = 100 + (100 * power)
+		match upgrades:
+			0:
+				$Sprite2D.texture = load("res://assets/sprites/leaf_summon.png")
+			1:
+				$Sprite2D.texture = load("res://assets/sprites/burning_leaf_summon.png")
+				DAMAGE += 2
+			2:
+				$Sprite2D.texture = load("res://assets/sprites/thermic_leaf_summon.png")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	PlayerNode = get_parent().get_node("Player")
-	setStats(PlayerNode.UPGRADE.abilityPower)
+	setStats(PlayerNode)
+	
+	if TYPE == "nature":
+		if ID >= PlayerNode.ABILITYPOWER:
+			despawnSummon()
 	
 	if get_tree().get_nodes_in_group("enemies").size() > 0:
 		homeOnEnemy(power)
@@ -85,8 +101,10 @@ func returnToPlayer():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet or area is EnemyBullet:
-		if TYPE == "nature" and (area.TYPE == "flame" and area.upgrades != 2):
+		if (TYPE == "nature" and upgrades == 0) and (area.TYPE == "flame" and area.upgrades != 2):
 			var ASH = ashNode.instantiate()
 			ASH.global_position = global_position
 			get_parent().add_child(ASH)
 			queue_free()
+		if (TYPE == "nature" and upgrades == 1) and area.TYPE == "water":
+			upgrades = 0

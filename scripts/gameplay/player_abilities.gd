@@ -11,7 +11,11 @@ var ICONS = {
 	"detonation" = preload("res://assets/sprites/ability_icons/detonation.png"),
 	"dash" = preload("res://assets/sprites/ability_icons/dash.png"),
 	"shield" = preload("res://assets/sprites/ability_icons/shield.png"),
-	"leaf_summon" = preload("res://assets/sprites/ability_icons/leaf_summon.png"),
+	"leaf_summon" = [
+		preload("res://assets/sprites/ability_icons/leaf_summon.png"),
+		preload("res://assets/sprites/ability_icons/leaf_summon_1.png"),
+		preload("res://assets/sprites/ability_icons/leaf_summon_2.png"),
+	],
 	"thunder_strike" = [
 		preload("res://assets/sprites/ability_icons/thunder_strike_0.png"),
 		preload("res://assets/sprites/ability_icons/thunder_strike_1.png"),

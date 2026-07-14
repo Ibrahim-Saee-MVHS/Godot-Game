@@ -46,6 +46,9 @@ func setUpgradeCards():
 	elif UPGRADES[ID - 1] == "thunder_strike":
 		var upgradeVar = player.UPGRADE.abilityPower + 1 if player.ABILITY == "thunder_strike" else 0
 		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[upgradeVar]
+	elif UPGRADES[ID - 1] == "thermal_leaf":
+		var upgradeVar = player.UPGRADE.abilitySpecial.leaf_upgrade
+		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[upgradeVar]
 	else:
 		$Button/Icon.texture = upgradeInfo.get(UPGRADES[ID - 1]).get("sprites")[0]
 	$Button/Title.text = upgradeInfo.get(UPGRADES[ID - 1]).get("name")
@@ -152,5 +155,8 @@ func removeUpgrades(totalUpgrades):
 			totalUpgrades.erase("polished_earth")
 		if player.UPGRADE.bulletVariance < 0 or player.UPGRADE.bulletUpgrades >= 2:
 			totalUpgrades.erase("bigger_rocks")
+	
+	if player.ABILITY != "leaf_summon" or player.UPGRADE.abilitySpecial.get("leaf_upgrade") >= 2:
+		totalUpgrades.erase("thermal_leaf")
 	
 	return totalUpgrades

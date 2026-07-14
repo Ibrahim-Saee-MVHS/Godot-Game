@@ -171,6 +171,7 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.abilityPower = 0
 					playerNode.UPGRADE.abilityDuration = 0
 					playerNode.UPGRADE.abilityCooldown = 0
+					playerNode.UPGRADE.abilitySpecial.get_or_add("leaf_upgrade", 0)
 				else:
 					playerNode.UPGRADE.abilityPower += 1
 					playerNode.UPGRADE.abilityCooldown -= 2
@@ -220,3 +221,5 @@ func upgrade(selectedUpgrade):
 			"bigger_rocks":
 				if playerNode.bulletType == "earth":
 					playerNode.UPGRADE.bulletUpgrades += 1
+			"thermal_leaf":
+				playerNode.UPGRADE.abilitySpecial.leaf_upgrade += 1
