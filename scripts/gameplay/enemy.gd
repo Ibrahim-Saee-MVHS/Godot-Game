@@ -259,7 +259,7 @@ func setStats():
 			shootPitch = 0.5
 	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
 		SPEED /= 2
-		FIRERATE *= 2
+		MAXFIRERATE *= 2
 		BULLETSPEED /= 2
 
 func _process(delta):
