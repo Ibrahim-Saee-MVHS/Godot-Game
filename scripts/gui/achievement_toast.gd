@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var timer = 0
+signal achievement_finished
 
 func _ready() -> void:
 	$AnimationPlayer.play("popup")
@@ -11,7 +12,7 @@ func _process(delta: float) -> void:
 		$AnimationPlayer.play("popdown")
 
 func done():
-	pass
+	emit_signal("achievement_finished")
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "popdown":

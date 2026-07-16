@@ -110,16 +110,16 @@ func unlockAchievement(achievementID):
 	if not AchievementToastQueue.has(achievementID):
 		AchievementToastQueue.append(achievementID)
 		
-	if AchievementToastQueue[0] != achievementID and get_tree().current_scene.has_node("AchievementToast"):
-		var firstID = AchievementToastQueue[0]
-		await get_tree().create_timer(4.5).timeout
-		AchievementToastQueue.erase(firstID)
-		
 	if get_tree().current_scene is GameScene:
-		var AchievementToast = TOAST.instantiate()
-		AchievementToast.get_node("Control/Toast/Frame/Icon").texture = load(str("res://assets/sprites/achievement_icons/", achievementID, ".png"))
-		AchievementToast.get_node("Control/Toast/Name").text = AchievementList[achievementID].get("name")
-		get_tree().current_scene.add_child(AchievementToast)
+		if AchievementToastQueue[0] != achievementID and get_tree().current_scene.has_node("AchievementToast"):
+			await get_tree().current_scene.get_node("AchievementToast").achievement_finished
+			AchievementToastQueue.remove_at(0)
+			
+		if AchievementToastQueue[0] == achievementID:
+			var AchievementToast = TOAST.instantiate()
+			AchievementToast.get_node("Control/Toast/Frame/Icon").texture = load(str("res://assets/sprites/achievement_icons/", achievementID, ".png"))
+			AchievementToast.get_node("Control/Toast/Name").text = AchievementList[achievementID].get("name")
+			get_tree().current_scene.add_child(AchievementToast)
 
 func isAchievementUnlocked(achievementID: String):
 	if ACHIEVEMENTS.get(achievementID) is bool:
