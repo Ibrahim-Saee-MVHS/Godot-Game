@@ -40,7 +40,7 @@ func _ready():
 	if self.has_node("ColorVFX"):
 		$ColorVFX.color = Global.enemyColor.get(COLOR)
 	if TYPE == "normal":
-		scale = Vector2(1 + (0.25 * upgrades), 1 + (0.25 * upgrades))
+		scale *= (1 + (0.25 * upgrades))
 		explosiveness = explosiveness + (0.25 * upgrades)
 	if TYPE == "flame":
 		KNOCKBACK = 0
@@ -70,7 +70,7 @@ func _ready():
 		rotation = MOVEDIR
 		specialVars.get_or_add("start_position", global_position)
 	if TYPE == "frost":
-		scale = Vector2(0.75, 0.75)
+		scale *= 0.75
 		global_position += Vector2(8, 0).rotated(MOVEDIR)
 		KNOCKBACK = 1000
 		despawnTimer = 2 + (1 * upgrades)
@@ -78,7 +78,7 @@ func _ready():
 		rotation = MOVEDIR
 		$Sprite2D.texture = icicleTypes[upgrades]
 	if TYPE == "earth":
-		scale = Vector2(1.0, 1.0) * (1 + (0.25 * upgrades))
+		scale *= (1 + (0.25 * upgrades))
 		global_position += Vector2(8, 0).rotated(MOVEDIR)
 		KNOCKBACK = 8000
 		despawnTimer = 60
