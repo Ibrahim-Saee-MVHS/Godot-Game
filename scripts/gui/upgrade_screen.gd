@@ -37,7 +37,6 @@ func _process(_delta: float) -> void:
 		$AnimationPlayer.speed_scale = speed / Engine.time_scale
 	else:
 		$AnimationPlayer.speed_scale = speed
-	print($AnimationPlayer.speed_scale, ", ", speed)
 	
 	$Control/Control/HBoxContainer/Upgrade1/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade2/Button.disabled = buttonsDisabled
