@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var selectedUpgrade: String
 @export var buttonsDisabled = true
+var speed: float = 2.0
 
 var UPGRADEGLINTS = {
 	"common": Color("#FFFFFF00"),
@@ -26,13 +27,17 @@ func _process(_delta: float) -> void:
 	if get_parent().get_node("Player").HEALTH <= 0:
 		get_tree().paused = false
 		queue_free()
-	if Engine.time_scale < 1.0:
-		$AnimationPlayer.speed_scale = 2.0 / Engine.time_scale
 	
-	if get_parent().get_node("HUD").debug_mode == true and $AnimationPlayer.speed_scale < 4.0:
-		$AnimationPlayer.speed_scale = 4.0
-	elif get_parent().get_node("HUD").debug_mode == false and $AnimationPlayer.speed_scale > 2.0:
-		$AnimationPlayer.speed_scale = 2.0
+	if get_parent().get_node("HUD").debug_mode == true:
+		speed = 3.0 + SettingsGlobal.settings.get_value("misc", "upgrade_speed", 1.0)
+	elif get_parent().get_node("HUD").debug_mode == false:
+		speed = 1.0 + SettingsGlobal.settings.get_value("misc", "upgrade_speed", 1.0)
+		
+	if Engine.time_scale < 1.0:
+		$AnimationPlayer.speed_scale = speed / Engine.time_scale
+	else:
+		$AnimationPlayer.speed_scale = speed
+	print($AnimationPlayer.speed_scale, ", ", speed)
 	
 	$Control/Control/HBoxContainer/Upgrade1/Button.disabled = buttonsDisabled
 	$Control/Control/HBoxContainer/Upgrade2/Button.disabled = buttonsDisabled

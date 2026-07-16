@@ -9,6 +9,7 @@ func _process(_delta):
 	$"Audio/MasterVolume".text = "Master Volume: " + str(roundi($"Audio/MasterVolume/HSlider".value))
 	$"Audio/MusicVolume".text = "Music Volume: " + str(roundi($"Audio/MusicVolume/HSlider".value))
 	$"Audio/SoundVolume".text = "Sound Volume: " + str(roundi($"Audio/SoundVolume/HSlider".value))
+	$"Misc/UpgradeUISpeed/HSlider/Label".text = str($"Misc/UpgradeUISpeed/HSlider".value, "x")
 
 func loadSettings():
 	var settings = ConfigFile.new()
@@ -19,6 +20,7 @@ func loadSettings():
 	$"Audio/MasterVolume/HSlider".value = settings.get_value("audio", "master_volume", 100)
 	$"Audio/MusicVolume/HSlider".value = settings.get_value("audio", "music_volume", 100)
 	$"Audio/SoundVolume/HSlider".value = settings.get_value("audio", "sound_volume", 100)
+	$"Misc/UpgradeUISpeed/HSlider".value = settings.get_value("misc", "upgrade_speed", 1.0)
 
 func save():
 	var settings = ConfigFile.new()
@@ -29,6 +31,8 @@ func save():
 	settings.set_value("audio", "master_volume", $"Audio/MasterVolume/HSlider".value)
 	settings.set_value("audio", "music_volume", $"Audio/MusicVolume/HSlider".value)
 	settings.set_value("audio", "sound_volume", $"Audio/SoundVolume/HSlider".value)
+	
+	settings.set_value("misc", "upgrade_speed", $"Misc/UpgradeUISpeed/HSlider".value)
 	
 	SettingsGlobal.checkSaveDir()
 	settings.save(SettingsGlobal.save_directory + "settings.cfg")

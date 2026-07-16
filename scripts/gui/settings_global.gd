@@ -34,6 +34,7 @@ func checkSettingsConfig():
 		defaultSettings.set_value("audio", "master_volume", 100)
 		defaultSettings.set_value("audio", "music_volume", 100)
 		defaultSettings.set_value("audio", "sound_volume", 100)
+		defaultSettings.set_value("misc", "upgrade_speed", 1.0)
 		defaultSettings.save(save_directory + "settings.cfg")
 
 func setAllSettings():
