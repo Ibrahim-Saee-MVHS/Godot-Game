@@ -27,8 +27,10 @@ func _modifierSelected(button: BaseButton):
 
 func lockModifiers():
 	for button in $ScrollContainer/CenterContainer/GridContainer.get_children(false):
+		var achievement_requirement: bool = true
+		var incompatible: bool = false
 		if button.ID == "tbd":
-			button.button_disabled = true
+			incompatible = true
 		# achievement required game modifiers
 		if Global.gameModifierInfo.get(button.ID).has("achievements_required"):
 			var requirement = 0
@@ -40,9 +42,9 @@ func lockModifiers():
 					if Achievements.ACHIEVEMENTS.get(achievement.keys()[0]).get(achievement.values()[0]) == true:
 						requirement += 1
 			if requirement >= Global.gameModifierInfo.get(button.ID).get("achievements_required").size():
-				button.button_disabled = false
+				achievement_requirement = true
 			else:
-				button.button_disabled = true
+				achievement_requirement = false
 		# incompatible game modifiers
 		if Global.gameModifierInfo.get(button.ID).has("incompatiblilty_id"):
 			var id = Global.gameModifierInfo.get(button.ID).get("incompatiblilty_id")
@@ -51,10 +53,14 @@ func lockModifiers():
 					pass
 				elif Global.gameModifierInfo.get(button2.ID).get("incompatiblilty_id") == id:
 					if Global.GAMEMODIFIERS.get(button2.ID) == true:
-						button.button_disabled = true
+						incompatible = true
 					else:
-						button.button_disabled = false
+						incompatible = false
 						
+		if achievement_requirement == true and incompatible == false:
+			button.button_disabled = false
+		else:
+			button.button_disabled = true
 
 func setDescriptionText():
 	for button in $ScrollContainer/CenterContainer/GridContainer.get_children(false):
