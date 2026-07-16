@@ -235,6 +235,10 @@ func setStats():
 		explosiveness = 0
 		shootPitch = 1.0
 	
+	if Global.GAMEMODIFIERS.get("hard_mode", false) == true:
+		MAXHEALTH *= 1.25
+		DAMAGE *= 1.15
+		SPEED *= 1.1
 	if Global.GAMEMODIFIERS.get("juggernauts_reign_supreme", false) == true:
 		if TYPE == "juggernaut":
 			SPEED = 4000

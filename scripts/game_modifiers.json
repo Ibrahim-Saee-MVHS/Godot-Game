@@ -6,7 +6,7 @@
 	},
 	"hard_mode": {
 		"name": "Hard Mode",
-		"description": "Looks like you're in for a hard time.\n(DIFFICULTY starts at 1 rather than 0, and increments by 0.25 rather than 0.1.)",
+		"description": "Looks like you're in for a hard time.\n(Enemy HEALTH is multiplied by 1.25x, DAMAGE by 1.15x, and SPEED by 1.1x\nAdditionally, DIFFICULTY starts at 1 rather than 0, and increments by 0.25 rather than 0.1.)",
 	},
 	"juggernauts_reign_supreme": {
 		"name": "Juggernauts Reign Supreme",
