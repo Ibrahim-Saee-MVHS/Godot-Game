@@ -85,6 +85,7 @@ var UPGRADE = {
 
 func _ready() -> void:
 	$Sprite2D.self_modulate = Global.playerColor
+	$ShootIndicator.COLOR = Global.playerColor
 	if Global.GAMEMODIFIERS.get("no_hit", false) == true:
 		MAXHEALTH = 1
 	else:
@@ -128,6 +129,7 @@ func _process(delta):
 	setBaseStats()
 	setAbilityStats()
 	setTotalStats()
+	$ShootIndicator.ROTATION = (get_global_mouse_position() - global_position).angle()
 	
 	if Input.is_action_just_pressed("quick_upgrade") and OS.has_feature("editor"):
 		EXP += EXPMAX

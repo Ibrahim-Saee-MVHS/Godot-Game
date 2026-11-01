@@ -40,6 +40,7 @@ var knockback: Vector2
 var UPGRADES: int
 
 func _ready():
+	if SettingsGlobal.settings.get_value("misc", "enemy_dir_indicator", false) == false: $ShootIndicator.queue_free()
 	setStats()
 	$HealthBar.max_value = MAXHEALTH
 	HITSTUN = 0
@@ -51,6 +52,7 @@ func _ready():
 
 func setStats():
 	$Sprite2D.self_modulate = Global.enemySpawn.color.get(TYPE)
+	if has_node("ShootIndicator"): $ShootIndicator.COLOR = Global.enemySpawn.color.get(TYPE)
 	if TYPE == "dummy":
 		SPEED = 0
 		MAXHEALTH = 20
@@ -280,6 +282,7 @@ func _process(delta):
 		MOVEDIR = (player_position - global_position).angle()
 	
 	$HealthBar.value = HEALTH
+	if has_node("ShootIndicator"): $ShootIndicator.ROTATION = MOVEDIR
 	
 	if HITSTUN <= 0:
 		currentHitstunTime = 0

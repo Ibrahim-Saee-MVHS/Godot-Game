@@ -21,6 +21,7 @@ func loadSettings():
 	$"Audio/MusicVolume/HSlider".value = settings.get_value("audio", "music_volume", 100)
 	$"Audio/SoundVolume/HSlider".value = settings.get_value("audio", "sound_volume", 100)
 	$"Misc/UpgradeUISpeed/HSlider".value = settings.get_value("misc", "upgrade_speed", 1.0)
+	$"Misc/EnemyDirectionIndicators/CheckButton".button_pressed = settings.get_value("misc", "enemy_dir_indicator", false)
 
 func save():
 	var settings = ConfigFile.new()
@@ -33,6 +34,7 @@ func save():
 	settings.set_value("audio", "sound_volume", $"Audio/SoundVolume/HSlider".value)
 	
 	settings.set_value("misc", "upgrade_speed", $"Misc/UpgradeUISpeed/HSlider".value)
+	settings.set_value("misc", "enemy_dir_indicator", bool($"Misc/EnemyDirectionIndicators/CheckButton".button_pressed))
 	
 	SettingsGlobal.checkSaveDir()
 	settings.save(SettingsGlobal.save_directory + "settings.cfg")

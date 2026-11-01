@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bolcfvu48gblp"]
+
+[ext_resource type="Script" uid="uid://bcdy0887qncsh" path="res://scripts/gameplay/shoot_indicator.gd" id="1_dj1vg"]
+[ext_resource type="Texture2D" uid="uid://cc6yrx4vdcd4x" path="res://assets/sprites/shoot_indicator_outline.png" id="2_wv55j"]
+[ext_resource type="Texture2D" uid="uid://dgij53axidxe3" path="res://assets/sprites/shoot_indicator_core.png" id="3_0x5dn"]
+
+[node name="ShootIndicator" type="Node2D" unique_id=78047786]
+modulate = Color(1, 1, 1, 0.5019608)
+script = ExtResource("1_dj1vg")
+
+[node name="Outline" type="Sprite2D" parent="." unique_id=1098098233]
+modulate = Color(0.6, 0.6, 0.6, 1)
+position = Vector2(16, 0)
+texture = ExtResource("2_wv55j")
+
+[node name="Core" type="Sprite2D" parent="." unique_id=1834887729]
+position = Vector2(16, 0)
+texture = ExtResource("3_0x5dn")
