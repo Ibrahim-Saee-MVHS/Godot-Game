@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://cxuka5qi4cp0j"]
 
+[ext_resource type="PackedScene" uid="uid://m5dipgqiagb" path="res://scenes/base_camera.tscn" id="1_5tddo"]
+[ext_resource type="Script" uid="uid://bye7ik2m6iikt" path="res://scripts/gui/control_settings.gd" id="1_cywyo"]
+
 [node name="Controls" type="Control" unique_id=1783551365]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +10,71 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cywyo")
+
+[node name="BaseCamera" parent="." unique_id=1945318831 instance=ExtResource("1_5tddo")]
+position = Vector2(0, 8)
+
+[node name="Back" type="Button" parent="." unique_id=874377473]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 184.0
+offset_bottom = 92.0
+text = "< Back"
+
+[node name="Panel" type="Panel" parent="." unique_id=1365313435]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -212.0
+offset_right = 304.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=1409788935]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 584.0
+offset_bottom = 57.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=27593210]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 88.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/ScrollContainer" unique_id=800457568]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/ScrollContainer/PanelContainer" unique_id=1890206109]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Control" type="VBoxContainer" parent="Panel/ScrollContainer/PanelContainer/MarginContainer" unique_id=1345139153]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
