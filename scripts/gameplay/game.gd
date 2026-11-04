@@ -4,7 +4,10 @@ extends Node2D
 @onready var EnemySpawnParticles = preload("res://scenes/vfx/spawning_particles.tscn")
 @onready var HealthSpawnParticles = preload("res://scenes/vfx/health_spawn_particles.tscn")
 @export var DIFFICULTY: float = 0
-@export var ENEMYSPAWNAMOUNT: int = 1
+@export var ENEMYSPAWNAMOUNT: int = 1 # Used for spawning
+@export var ENEMYAMOUNTVARIANCE: float = 2.5 # Varience for spawn amounts
+@export var ENEMYMAXAMOUNT: int = 6 # Max amount of enemies that can spawn
+@export var ENEMYMINAMOUNT: int = 1 # Min amount of enemies that can spawn
 @export var ENEMYMAXSPAWNTIMER: int = 24
 @export var ENEMYMINSPAWNTIMER: int = 8
 @export var HEALTHMAXSPAWNTIMER: int = 48
@@ -78,7 +81,7 @@ func spawnEnemies():
 			add_child(newSpawnParticles)
 		DIFFICULTY += DIFFICULTYINCREMENT
 		
-		ENEMYSPAWNAMOUNT = clamp(1 + floori(DIFFICULTY), 1, 6)
+		ENEMYSPAWNAMOUNT = clamp(round(1 + randf_range(0, DIFFICULTY) + randf_range(0, (ENEMYAMOUNTVARIANCE/10))), ENEMYMINAMOUNT, ENEMYMAXAMOUNT)
 		ENEMYMAXSPAWNTIMER = clamp(ENEMYMAXSPAWNTIMER - floori(DIFFICULTY / 2), 16, 64)
 
 func vignetteUpdate(delta):
