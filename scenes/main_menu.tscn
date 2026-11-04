@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnbyw4tw3gat2" path="res://assets/sprites/ui/achievements.png" id="3_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://dp8r53bj83q21" path="res://assets/sprites/glints/glint.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://c12m3fw8jbh3f" path="res://assets/sprites/glints/electric_glint.png" id="4_wu84c"]
+[ext_resource type="Texture2D" uid="uid://diuy07ubyfe7x" path="res://assets/sprites/ui/controls.png" id="5_tbmy8"]
 
 [sub_resource type="Animation" id="Animation_l6cm7"]
 length = 0.001
@@ -71,8 +72,6 @@ grow_vertical = 2
 script = ExtResource("1_l6cm7")
 
 [node name="BaseCamera" parent="." unique_id=1945318831 instance=ExtResource("2_oa1go")]
-anchor_mode = 0
-zoom = Vector2(1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=645406527]
 libraries/ = SubResource("AnimationLibrary_bqqt6")
@@ -154,6 +153,25 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "How to Play"
+
+[node name="Controls" type="Button" parent="Instructions" unique_id=2123805258 groups=["mainMenuButtons"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -32.0
+offset_right = -168.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/icon_max_width = 48
+icon = ExtResource("5_tbmy8")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
 
 [node name="Settings" type="Button" parent="." unique_id=246424040 groups=["mainMenuButtons"]]
 layout_mode = 1
@@ -276,6 +294,7 @@ vertical_alignment = 2
 [connection signal="pressed" from="PlayGame/GameModifiers" to="." method="_game_modifiers"]
 [connection signal="pressed" from="PlayGame/Achievements" to="." method="_achievements"]
 [connection signal="pressed" from="Instructions" to="." method="_instructions"]
+[connection signal="pressed" from="Instructions/Controls" to="." method="_controls"]
 [connection signal="pressed" from="Settings" to="." method="_settings"]
 [connection signal="pressed" from="Exit" to="." method="_exit"]
 [connection signal="pressed" from="Credits" to="." method="_credits"]

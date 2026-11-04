@@ -3,6 +3,7 @@ extends Control
 var color = 0
 var buildType = ""
 var InstructionBoardNode = preload("res://scenes/instructions_board.tscn")
+var ControlsNode = preload("res://scenes/controls.tscn")
 var CreditsNode = preload("res://scenes/credits.tscn")
 var buttonsDisabled = false
 
@@ -47,3 +48,8 @@ func _game_modifiers():
 
 func _achievements() -> void:
 	get_tree().change_scene_to_file("res://scenes/achievement_menu.tscn")
+
+
+func _controls() -> void:
+	add_child(ControlsNode.instantiate())
+	buttonsDisabled = true

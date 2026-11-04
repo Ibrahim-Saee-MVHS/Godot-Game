@@ -51,9 +51,22 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
 text = "Instructions"
 horizontal_alignment = 1
-autowrap_mode = 2
 
-[node name="WASD" type="TextureRect" parent="Panel" unique_id=662925240]
+[node name="Control" type="Control" parent="Panel" unique_id=1827295131]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WASD" type="TextureRect" parent="Panel/Control" unique_id=662925240]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,7 +82,7 @@ grow_vertical = 2
 texture = ExtResource("1_2v8nb")
 stretch_mode = 5
 
-[node name="Move" type="Label" parent="Panel/WASD" unique_id=1183032411]
+[node name="Move" type="Label" parent="Panel/Control/WASD" unique_id=1183032411]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -84,7 +97,7 @@ grow_vertical = 0
 text = "Move"
 horizontal_alignment = 1
 
-[node name="Mouse" type="TextureRect" parent="Panel" unique_id=575493945]
+[node name="Mouse" type="TextureRect" parent="Panel/Control" unique_id=575493945]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,7 +113,7 @@ grow_vertical = 2
 texture = ExtResource("2_t46oc")
 stretch_mode = 5
 
-[node name="Shoot" type="Label" parent="Panel/Mouse" unique_id=962935958]
+[node name="Shoot" type="Label" parent="Panel/Control/Mouse" unique_id=962935958]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -112,7 +125,7 @@ grow_vertical = 0
 text = "Shoot"
 horizontal_alignment = 2
 
-[node name="Ability" type="Label" parent="Panel/Mouse" unique_id=90042871]
+[node name="Ability" type="Label" parent="Panel/Control/Mouse" unique_id=90042871]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -126,7 +139,24 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Ability"
 
+[node name="Text" type="Label" parent="Panel/Control" unique_id=1161568456]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -205.0
+offset_top = -112.0
+offset_right = 205.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "You should know, shouldn't you?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Tips" type="Label" parent="Panel" unique_id=739195535]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.58900005
