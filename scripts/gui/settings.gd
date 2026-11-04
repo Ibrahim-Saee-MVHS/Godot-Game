@@ -44,4 +44,5 @@ func _on_save_pressed() -> void:
 	SettingsGlobal.setAllSettings()
 
 func _back() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_parent().buttonsDisabled = false
+	queue_free()

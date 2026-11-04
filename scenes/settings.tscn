@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://6wf6cllyw0ed"]
 
 [ext_resource type="Script" uid="uid://hc8yp0k8cfwe" path="res://scripts/gui/settings.gd" id="1_6wm04"]
-[ext_resource type="PackedScene" uid="uid://m5dipgqiagb" path="res://scenes/base_camera.tscn" id="2_r6d6q"]
 
 [node name="Settings" type="Control" unique_id=158664138]
 layout_mode = 3
@@ -13,7 +12,14 @@ grow_vertical = 2
 script = ExtResource("1_6wm04")
 metadata/_edit_lock_ = true
 
-[node name="BaseCamera" parent="." unique_id=1945318831 instance=ExtResource("2_r6d6q")]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=653507358]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
 
 [node name="Back" type="Button" parent="." unique_id=447174479]
 layout_mode = 0
