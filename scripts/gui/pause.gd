@@ -1,6 +1,9 @@
 extends CanvasLayer
 
+var SettingsNode = preload("res://scenes/settings.tscn")
+var ControlsNode = preload("res://scenes/controls.tscn")
 var canPause = true
+var buttonsDisabled = false
 
 func _ready():
 	visible = false
@@ -31,14 +34,27 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("escape"):
 		pause()
+	
+	$Control/Continue.disabled = buttonsDisabled
+	$Control/Settings.disabled = buttonsDisabled
+	$Control/Controls.disabled = buttonsDisabled
+	$Control/Menu.disabled = buttonsDisabled
 
 func _on_continue_pressed():
 	pause()
 
+func _settings() -> void:
+	add_child(SettingsNode.instantiate())
+	buttonsDisabled = true
+	
+func _controls() -> void:
+	add_child(ControlsNode.instantiate())
+	buttonsDisabled = true
+	
 func _on_menu_pressed():
 	canPause = false
-	$Control/Continue.disabled = true
-	$Control/Menu.disabled = true
+	buttonsDisabled = true
+	
 	$Control/AnimationPlayer.play("fade_out")
 
 func _on_animation_player_animation_finished(_anim_name):
