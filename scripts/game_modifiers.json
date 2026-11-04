@@ -23,8 +23,16 @@
 		"achievements_required": ["flame", {"elemental":"thunder"}, "frost", "earth", "air"],
 		"incompatiblilty_id": "enemy_limiting",
 	},
+	"extra_enemies": {
+		"name": "Extra Enemies",
+		"description": "More enemies can spawn in each... Wave? Round? Idk what to call it but more enemies spawn.",
+	},
+	"increased_spawn_rate": {
+		"name": "Increased Spawn Rate",
+		"description": "Enemies can spawn more frequently",
+	},
 	"tbd": {
 		"name": "To Be Decided",
-		"description": "Yes this one is different from Elementals.",
+		"description": "Yes.. this is also different from Extra Enemies and Increased Spawn Rate...",
 	},
 }
