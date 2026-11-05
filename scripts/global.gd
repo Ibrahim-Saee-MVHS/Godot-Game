@@ -1,5 +1,8 @@
 extends Node
 
+var isMobileDevice: bool = false
+var usingController: bool = false
+
 var SCREENSHAKEAMOUNT: float = 0.0
 var SCREENSHAKEPOWER: float = 0.0
 var VIGNETTECOLOR: Vector3 = Vector3(0, 0, 0)
@@ -12,8 +15,15 @@ var gameModifierInfo: Dictionary
 var cardPickerSearch: String = ""
 
 func _ready() -> void:
+	Input.joy_connection_changed.connect(controller_connection_changed)
+	if OS.has_feature("mobile"): isMobileDevice = true
+	if Input.get_connected_joypads().size() > 0: usingController = true
 	loadJSONUpgrades()
 	loadJSONGameModifiers()
+
+func controller_connection_changed(_device_id: int, connected: bool):
+	if connected: usingController = true
+	else: usingController = false
 
 func _process(_delta):
 	pass

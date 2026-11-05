@@ -3,6 +3,8 @@ extends Node2D
 
 @onready var EnemySpawnParticles = preload("res://scenes/vfx/spawning_particles.tscn")
 @onready var HealthSpawnParticles = preload("res://scenes/vfx/health_spawn_particles.tscn")
+@onready var MobileControlsNode = preload("res://scenes/mobile.tscn")
+@onready var CrosshairNode = preload("res://scenes/crosshair.tscn")
 @export var DIFFICULTY: float = 0
 @export var ENEMYSPAWNAMOUNT: int = 1 # Used for spawning
 @export var ENEMYAMOUNTVARIANCE: float = 2.5 # Varience for spawn amounts
@@ -21,6 +23,8 @@ var shake: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if (Global.isMobileDevice or Global.usingController) and not has_node(CrosshairNode): add_child(CrosshairNode)
+	if Global.isMobileDevice and not has_node(MobileControlsNode): add_child(MobileControlsNode)
 	Global.SCREENSHAKEAMOUNT = 0
 	Global.SCREENSHAKEPOWER = 0
 	Global.VIGNETTECOLOR = Vector3(0, 0, 0)

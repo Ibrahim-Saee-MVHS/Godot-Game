@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwh7m5ec8xxs1"
-path="res://.godot/imported/joystick_knob.png-a6e0b438260f52933eb6e9cf11fd4858.ctex"
+uid="uid://c7baagb7708sf"
+path="res://.godot/imported/ability_button_pressed.png-c60865350f9b7a6158ff10eb4a8d39a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/joystick_knob.png"
-dest_files=["res://.godot/imported/joystick_knob.png-a6e0b438260f52933eb6e9cf11fd4858.ctex"]
+source_file="res://assets/sprites/ui/ability_button_pressed.png"
+dest_files=["res://.godot/imported/ability_button_pressed.png-c60865350f9b7a6158ff10eb4a8d39a4.ctex"]
 
 [params]
 

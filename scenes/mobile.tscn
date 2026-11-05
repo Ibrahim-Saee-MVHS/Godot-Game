@@ -1,9 +1,106 @@
 [gd_scene format=3 uid="uid://joh78m6exk8m"]
 
-[node name="Mobile" type="Control" unique_id=192876292]
+[ext_resource type="Texture2D" uid="uid://b8a3cvvggvjk7" path="res://assets/sprites/ui/joystick_ring.png" id="1_gb6av"]
+[ext_resource type="Script" uid="uid://daylwrrwomaud" path="res://scripts/gameplay/mobile.gd" id="1_vwgfj"]
+[ext_resource type="Texture2D" uid="uid://cfmidk1y7s0nt" path="res://assets/sprites/ui/shooting_knob.png" id="2_gb6av"]
+[ext_resource type="Texture2D" uid="uid://dxjnx7qexryi3" path="res://assets/sprites/ui/movement_knob.png" id="2_jnc8d"]
+[ext_resource type="Texture2D" uid="uid://rdqltur126yr" path="res://assets/sprites/ui/ability_button.png" id="3_jnc8d"]
+[ext_resource type="Texture2D" uid="uid://c7baagb7708sf" path="res://assets/sprites/ui/ability_button_pressed.png" id="5_h83ty"]
+[ext_resource type="Texture2D" uid="uid://bc00e7k2eggl7" path="res://assets/sprites/ui/ability_button_disabled.png" id="6_vwgfj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xp3t8"]
+texture = ExtResource("1_gb6av")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2t62u"]
+texture = ExtResource("2_jnc8d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h83ty"]
+texture = ExtResource("2_jnc8d")
+modulate_color = Color(0.735357, 0.735357, 0.735357, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvuet"]
+texture = ExtResource("1_gb6av")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dinhu"]
+texture = ExtResource("2_gb6av")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vwgfj"]
+texture = ExtResource("2_gb6av")
+modulate_color = Color(0.735357, 0.735357, 0.735357, 1)
+
+[node name="Mobile" type="CanvasLayer" unique_id=931413155]
+script = ExtResource("1_vwgfj")
+
+[node name="Control" type="Control" parent="." unique_id=1838014188]
+modulate = Color(1, 1, 1, 0.39215687)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Move" type="VirtualJoystick" parent="Control" unique_id=2089076906]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -320.0
+offset_right = 320.0
+offset_bottom = -64.0
+grow_vertical = 0
+theme_override_styles/normal_joystick = SubResource("StyleBoxTexture_xp3t8")
+theme_override_styles/normal_tip = SubResource("StyleBoxTexture_2t62u")
+theme_override_styles/pressed_joystick = SubResource("StyleBoxTexture_xp3t8")
+theme_override_styles/pressed_tip = SubResource("StyleBoxTexture_h83ty")
+joystick_size = 224.0
+tip_size = 128.0
+action_left = &"left"
+action_right = &"right"
+action_up = &"up"
+action_down = &"down"
+
+[node name="Shoot" type="VirtualJoystick" parent="Control" unique_id=1940428329]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -320.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal_joystick = SubResource("StyleBoxTexture_kvuet")
+theme_override_styles/normal_tip = SubResource("StyleBoxTexture_dinhu")
+theme_override_styles/pressed_joystick = SubResource("StyleBoxTexture_kvuet")
+theme_override_styles/pressed_tip = SubResource("StyleBoxTexture_vwgfj")
+joystick_size = 224.0
+tip_size = 128.0
+action_left = &"shoot_left"
+action_right = &"shoot_right"
+action_up = &"shoot_up"
+action_down = &"shoot_down"
+
+[node name="Ability" type="TextureButton" parent="Control" unique_id=261097894]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -448.0
+offset_top = -176.0
+offset_right = -352.0
+offset_bottom = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("3_jnc8d")
+texture_pressed = ExtResource("5_h83ty")
+texture_disabled = ExtResource("6_vwgfj")
+
+[connection signal="button_down" from="Control/Ability" to="." method="_ability_press"]
+[connection signal="button_up" from="Control/Ability" to="." method="_ability_release"]

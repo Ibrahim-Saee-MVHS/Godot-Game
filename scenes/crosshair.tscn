@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://hy2kud2wxtp4"]
+
+[ext_resource type="Texture2D" uid="uid://cmt8g41sqrudw" path="res://assets/sprites/crosshair.png" id="1_norqy"]
+[ext_resource type="Script" uid="uid://dy2er8g4a23ge" path="res://scripts/gameplay/crosshair.gd" id="2_qnjby"]
+
+[node name="Crosshair" type="Sprite2D" unique_id=963881540]
+modulate = Color(1, 1, 1, 0.5019608)
+z_index = 10
+texture = ExtResource("1_norqy")
+script = ExtResource("2_qnjby")

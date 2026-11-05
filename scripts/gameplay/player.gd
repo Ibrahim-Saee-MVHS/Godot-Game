@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var BASEBULLETAMOUNT: int = 1
 @export var BASEFIRERATE: float = 8
 @export var BASEBULLETVARIANCE: float = 0
+var target_position: Vector2
 var BULLETVARIANCE: float = 0
 var MAXBULLETAMOUNT: int = 9
 var DAMAGE: float
@@ -125,11 +126,13 @@ func getPlayerInput():
 	return Input.get_vector("left", "right", "up", "down")
 
 func _process(delta):
+	if Global.isMobileDevice == false and Global.usingController == false: target_position = get_global_mouse_position()
+	else: target_position = get_parent().get_node("Crosshair").global_position
 	level()
 	setBaseStats()
 	setAbilityStats()
 	setTotalStats()
-	$ShootIndicator.ROTATION = (get_global_mouse_position() - global_position).angle()
+	$ShootIndicator.ROTATION = (target_position - global_position).angle()
 	
 	if Input.is_action_just_pressed("quick_upgrade") and OS.has_feature("editor"):
 		EXP += EXPMAX
@@ -379,11 +382,11 @@ func shoot(spread, variance):
 		BULLET.set("explosiveness", UPGRADE.explosiveness)
 		BULLET.set("upgrades", UPGRADE.bulletUpgrades)
 		BULLET.set("homing", UPGRADE.homing)
-		BULLET.set("MOVEDIR", (get_global_mouse_position() - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance)))
+		BULLET.set("MOVEDIR", (target_position - global_position).angle() + dirOffset + deg_to_rad(randf_range(-variance, variance)))
 		
 		if bulletType == "frost":
 			BULLET.set("global_position", global_position + Vector2(randf_range(-variance, variance), randf_range(-variance, variance)))
-			BULLET.set("MOVEDIR", (get_global_mouse_position() - global_position).angle() + dirOffset)
+			BULLET.set("MOVEDIR", (target_position - global_position).angle() + dirOffset)
 		get_parent().add_child(BULLET)
 
 func activateAbility(delta):
@@ -395,10 +398,10 @@ func activateAbility(delta):
 		if ABILITY == "dash":
 			var DASH = AbilityNodes.get("dash").instantiate()
 			DASH.DAMAGE = (4 + UPGRADE.abilityPower + (UPGRADE.damage / 5)) * 2
-			DASH.rotation = (get_global_mouse_position() - global_position).angle() + PI
+			DASH.rotation = (target_position - global_position).angle() + PI
 			add_child(DASH)
 			$CollisionShape2D.disabled = true
-			Abilities.dash(get_global_mouse_position(), global_position, delta)
+			Abilities.dash(target_position, global_position, delta)
 		if ABILITY == "shield":
 			var SHIELD = AbilityNodes.get("shield").instantiate()
 			add_child(SHIELD)
