@@ -62,10 +62,10 @@ func setGameModifiers():
 		enemySpawn.weights.insert(enemySpawn.types.find("juggernaut"), 0.75)
 		for i in range(enemySpawn.color.size()):
 			enemySpawn.color.set(enemySpawn.color.keys()[i], enemyColor.get("juggernaut"))
-	if GAMEMODIFIERS.get("extra_enemies", false) == true:
+	if GAMEMODIFIERS.get("bigger_batch", false) == true:
 		get_tree().current_scene.ENEMYAMOUNTVARIANCE = 7.5
 		get_tree().current_scene.ENEMYMAXAMOUNT = 12
-	if GAMEMODIFIERS.get("increased_spawn_rate", false) == true:
+	if GAMEMODIFIERS.get("quick_deploy", false) == true:
 		get_tree().current_scene.ENEMYMAXSPAWNTIMER = 18
 		get_tree().current_scene.ENEMYMINSPAWNTIMER = 4
 
@@ -103,8 +103,8 @@ var GAMEMODIFIERS = {
 	"juggernauts_reign_supreme": false,
 	"no_hit": false,
 	"elementals": false,
-	"extra_enemies": false,
-	"increased_spawn_rate": false,
+	"bigger_batch": false,
+	"quick_deploy": false,
 }
 
 # only includes enemy types that spawn

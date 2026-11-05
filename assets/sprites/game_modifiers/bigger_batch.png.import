@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu4k0n7ivdx4l"
-path="res://.godot/imported/increased_spawn_rate.png-084d2ab8c279685f723ac613f13be42e.ctex"
+uid="uid://bjhhviqn1gttw"
+path="res://.godot/imported/bigger_batch.png-d2e92620d8061c24e469b958aaf54472.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/game_modifiers/increased_spawn_rate.png"
-dest_files=["res://.godot/imported/increased_spawn_rate.png-084d2ab8c279685f723ac613f13be42e.ctex"]
+source_file="res://assets/sprites/game_modifiers/bigger_batch.png"
+dest_files=["res://.godot/imported/bigger_batch.png-d2e92620d8061c24e469b958aaf54472.ctex"]
 
 [params]
 

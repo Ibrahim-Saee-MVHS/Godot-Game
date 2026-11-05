@@ -23,16 +23,16 @@
 		"achievements_required": ["flame", {"elemental":"thunder"}, "frost", "earth", "air"],
 		"incompatiblilty_id": "enemy_limiting",
 	},
-	"extra_enemies": {
-		"name": "Extra Enemies",
-		"description": "More enemies can spawn in each... Wave? Round? Idk what to call it but more enemies spawn.",
+	"bigger_batch": {
+		"name": "Bigger Batch",
+		"description": "More enemies are likely to spawn in each spawn batch. Maximum enemies per batch is now 12 instead of 6 aswell.",
 	},
-	"increased_spawn_rate": {
-		"name": "Increased Spawn Rate",
-		"description": "Enemies can spawn more frequently",
+	"quick_deploy": {
+		"name": "Quick Deploy",
+		"description": "Enemies are sent out far faster than usual.\n(Minimum Spawn Timer is set to 6 instead of 8, and Maximum Spawn Timer is set to 18 instead of 24)",
 	},
 	"tbd": {
 		"name": "To Be Decided",
-		"description": "Yes.. this is also different from Extra Enemies and Increased Spawn Rate...",
+		"description": "Yes.. this is also different from Bigger Batch and Quick Deploy...",
 	},
 }
