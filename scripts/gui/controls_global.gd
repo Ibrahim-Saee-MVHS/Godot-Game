@@ -48,7 +48,8 @@ func loadControls():
 		InputMap.action_erase_event(action, desktopControls.get("default").get(action))
 		InputMap.action_add_event(action, controls.get_value("desktop", action, desktopControls.get("default").get(action)))
 	for setting in mobileControls:
-		mobileControls.set(setting, controls.get_value("mobile", setting))
+		if controls.has_section("mobile"):
+			mobileControls.set(setting, controls.get_value("mobile", setting))
 
 func _process(_delta: float) -> void:
 	for action in actions:

@@ -90,20 +90,15 @@ func _input(event):
 			remapping_action = null
 			remapping_button = null
 			accept_event()
-			saveDesktop()
+			save()
 	
 func updateControl(button, event):
 	button.get_node("Remapper/Keybind").text = event.as_text().trim_suffix(" - Physical")
 
-func saveDesktop():
+func save():
 	var controls = ConfigFile.new()
 	for action in actions.keys():
 		controls.set_value("desktop", action, InputMap.action_get_events(action)[0])
-	SettingsGlobal.checkSaveDir()
-	controls.save(ControlsGlobal.save_directory + "controls.cfg")
-
-func saveMobile():
-	var controls = ConfigFile.new()
 	for setting in ControlsGlobal.mobileControls:
 		controls.set_value("mobile", setting, ControlsGlobal.mobileControls.get(setting))
 	SettingsGlobal.checkSaveDir()
@@ -111,8 +106,7 @@ func saveMobile():
 
 func _exit() -> void:
 	get_parent().buttonsDisabled = false
-	if Global.isMobileDevice: saveMobile()
-	else: saveDesktop()
+	save()
 	queue_free()
 
 func _reset() -> void:
@@ -125,8 +119,8 @@ func _reset() -> void:
 		ControlsGlobal.mobileControls.set("directional_aiming", true)
 		ControlsGlobal.mobileControls.set("sensitivity", 0.5)
 		ControlsGlobal.mobileControls.set("movement_style", 0)
-		saveMobile()
+		save()
 	else:
 		InputMap.load_from_project_settings()
-		saveDesktop()
+		save()
 		generateDesktopControls()
