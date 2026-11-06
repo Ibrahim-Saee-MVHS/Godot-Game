@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 			despawnSummon()
 	
 	if get_tree().get_nodes_in_group("enemies").size() > 0:
-		homeOnEnemy(power)
+		homeOnEnemy(min(power, 5))
 	else:
 		returnToPlayer()
 	
