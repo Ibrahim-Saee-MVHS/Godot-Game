@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rdqltur126yr"
-path="res://.godot/imported/ability_button.png-8157d47cf241afed08ce1c00a1eb6f1f.ctex"
+uid="uid://b8a3cvvggvjk7"
+path="res://.godot/imported/joystick_ring.png-987196c67bc026cd5955a4fe33965018.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/ability_button.png"
-dest_files=["res://.godot/imported/ability_button.png-8157d47cf241afed08ce1c00a1eb6f1f.ctex"]
+source_file="res://assets/sprites/ui/controls/joystick_ring.png"
+dest_files=["res://.godot/imported/joystick_ring.png-987196c67bc026cd5955a4fe33965018.ctex"]
 
 [params]
 

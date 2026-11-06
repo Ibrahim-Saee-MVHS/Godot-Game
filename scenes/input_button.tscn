@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cn0vschawipg5"]
 
-[ext_resource type="Texture2D" uid="uid://dpy3obyvpwpdx" path="res://assets/sprites/ui/controls_key.png" id="1_xvydj"]
+[ext_resource type="Texture2D" uid="uid://dpy3obyvpwpdx" path="res://assets/sprites/ui/controls/controls_key.png" id="1_xvydj"]
 
 [node name="InputButton" type="Control" unique_id=1172319244]
 custom_minimum_size = Vector2(0, 64)

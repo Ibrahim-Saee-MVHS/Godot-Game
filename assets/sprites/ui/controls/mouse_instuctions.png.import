@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8a3cvvggvjk7"
-path="res://.godot/imported/joystick_ring.png-19c5de3b2fb39f8ba2e3b8fb185e8739.ctex"
+uid="uid://b2kttn3l15k43"
+path="res://.godot/imported/mouse_instuctions.png-f71e2ead70e0d53d3ad927af500eae8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/joystick_ring.png"
-dest_files=["res://.godot/imported/joystick_ring.png-19c5de3b2fb39f8ba2e3b8fb185e8739.ctex"]
+source_file="res://assets/sprites/ui/controls/mouse_instuctions.png"
+dest_files=["res://.godot/imported/mouse_instuctions.png-f71e2ead70e0d53d3ad927af500eae8d.ctex"]
 
 [params]
 

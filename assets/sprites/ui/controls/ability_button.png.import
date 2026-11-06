@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxjnx7qexryi3"
-path="res://.godot/imported/movement_knob.png-b28d4a9717209d81b391123a0b14f7ca.ctex"
+uid="uid://rdqltur126yr"
+path="res://.godot/imported/ability_button.png-ed6667d3bee834133fb788ffe4348499.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/movement_knob.png"
-dest_files=["res://.godot/imported/movement_knob.png-b28d4a9717209d81b391123a0b14f7ca.ctex"]
+source_file="res://assets/sprites/ui/controls/ability_button.png"
+dest_files=["res://.godot/imported/ability_button.png-ed6667d3bee834133fb788ffe4348499.ctex"]
 
 [params]
 

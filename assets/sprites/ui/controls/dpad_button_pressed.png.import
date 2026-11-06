@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8qtyt3f4ux4m"
-path="res://.godot/imported/wasd.png-a45f870197550ed521e6c172d5317595.ctex"
+uid="uid://ccg0xfwfg55eh"
+path="res://.godot/imported/dpad_button_pressed.png-7f9fe53867ece96d08b1a946cb4e4f1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/wasd.png"
-dest_files=["res://.godot/imported/wasd.png-a45f870197550ed521e6c172d5317595.ctex"]
+source_file="res://assets/sprites/ui/controls/dpad_button_pressed.png"
+dest_files=["res://.godot/imported/dpad_button_pressed.png-7f9fe53867ece96d08b1a946cb4e4f1a.ctex"]
 
 [params]
 

@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b3bqveygt4usp" path="res://assets/sprites/ability_icons/detonation.png" id="3_047uy"]
 [ext_resource type="Texture2D" uid="uid://bg3x81203eqxv" path="res://assets/sprites/ui/ability_bar.png" id="4_5pdws"]
 [ext_resource type="Texture2D" uid="uid://csllm0qy4g848" path="res://assets/sprites/ui/ability_bar_fill.png" id="5_hd3ao"]
-[ext_resource type="Texture2D" uid="uid://bm81rg661yvo6" path="res://assets/sprites/ui/rmb.png" id="6_047uy"]
-[ext_resource type="Texture2D" uid="uid://dpy3obyvpwpdx" path="res://assets/sprites/ui/controls_key.png" id="7_5pdws"]
+[ext_resource type="Texture2D" uid="uid://bm81rg661yvo6" path="res://assets/sprites/ui/controls/rmb.png" id="6_047uy"]
+[ext_resource type="Texture2D" uid="uid://dpy3obyvpwpdx" path="res://assets/sprites/ui/controls/controls_key.png" id="7_5pdws"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1917983879]
 process_mode = 3

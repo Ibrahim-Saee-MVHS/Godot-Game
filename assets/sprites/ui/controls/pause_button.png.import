@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfmidk1y7s0nt"
-path="res://.godot/imported/shooting_knob.png-2f09cd586cd4d9d3fbb8fb89c2f7b25f.ctex"
+uid="uid://cmwkxwvk5y47g"
+path="res://.godot/imported/pause_button.png-354a81606cc38efbbfe4ca6ee979321d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/shooting_knob.png"
-dest_files=["res://.godot/imported/shooting_knob.png-2f09cd586cd4d9d3fbb8fb89c2f7b25f.ctex"]
+source_file="res://assets/sprites/ui/controls/pause_button.png"
+dest_files=["res://.godot/imported/pause_button.png-354a81606cc38efbbfe4ca6ee979321d.ctex"]
 
 [params]
 

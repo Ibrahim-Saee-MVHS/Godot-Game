@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cu2dthyu35gv3"]
 
-[ext_resource type="Texture2D" uid="uid://c8qtyt3f4ux4m" path="res://assets/sprites/ui/wasd.png" id="1_2v8nb"]
+[ext_resource type="Texture2D" uid="uid://c8qtyt3f4ux4m" path="res://assets/sprites/ui/controls/keyboard_instructions.png" id="1_2v8nb"]
 [ext_resource type="Script" uid="uid://ch5b8rqmfm8jl" path="res://scripts/gui/instructions_board.gd" id="1_t46oc"]
-[ext_resource type="Texture2D" uid="uid://b2kttn3l15k43" path="res://assets/sprites/ui/mouse.png" id="2_t46oc"]
+[ext_resource type="Texture2D" uid="uid://b2kttn3l15k43" path="res://assets/sprites/ui/controls/mouse_instuctions.png" id="2_t46oc"]
+[ext_resource type="Texture2D" uid="uid://c31ssbr2p5iu0" path="res://assets/sprites/ui/controls/mobile_instructions.png" id="4_c5lwo"]
 
 [node name="InstructionBoard" type="Control" unique_id=1364031321]
 layout_mode = 3
@@ -66,7 +67,21 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WASD" type="TextureRect" parent="Panel/Control" unique_id=662925240]
+[node name="Desktop" type="Control" parent="Panel/Control" unique_id=839822157]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WASD" type="TextureRect" parent="Panel/Control/Desktop" unique_id=662925240]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -82,7 +97,7 @@ grow_vertical = 2
 texture = ExtResource("1_2v8nb")
 stretch_mode = 5
 
-[node name="Move" type="Label" parent="Panel/Control/WASD" unique_id=1183032411]
+[node name="Move" type="Label" parent="Panel/Control/Desktop/WASD" unique_id=1183032411]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -97,7 +112,7 @@ grow_vertical = 0
 text = "Move"
 horizontal_alignment = 1
 
-[node name="Mouse" type="TextureRect" parent="Panel/Control" unique_id=575493945]
+[node name="Mouse" type="TextureRect" parent="Panel/Control/Desktop" unique_id=575493945]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -113,7 +128,7 @@ grow_vertical = 2
 texture = ExtResource("2_t46oc")
 stretch_mode = 5
 
-[node name="Shoot" type="Label" parent="Panel/Control/Mouse" unique_id=962935958]
+[node name="Shoot" type="Label" parent="Panel/Control/Desktop/Mouse" unique_id=962935958]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -125,7 +140,7 @@ grow_vertical = 0
 text = "Shoot"
 horizontal_alignment = 2
 
-[node name="Ability" type="Label" parent="Panel/Control/Mouse" unique_id=90042871]
+[node name="Ability" type="Label" parent="Panel/Control/Desktop/Mouse" unique_id=90042871]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -139,7 +154,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Ability"
 
-[node name="Text" type="Label" parent="Panel/Control" unique_id=1161568456]
+[node name="Text" type="Label" parent="Panel/Control/Desktop" unique_id=1161568456]
 visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
@@ -154,6 +169,85 @@ theme_override_font_sizes/font_size = 48
 text = "You should know, shouldn't you?"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="Mobile" type="TextureRect" parent="Panel/Control" unique_id=733788026]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -165.0
+offset_right = 168.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_c5lwo")
+stretch_mode = 5
+
+[node name="Move" type="Label" parent="Panel/Control/Mobile" unique_id=58248446]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -120.0
+offset_right = 94.0
+offset_bottom = -91.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Move"
+horizontal_alignment = 1
+
+[node name="Aim" type="Label" parent="Panel/Control/Mobile" unique_id=1681772368]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -120.0
+offset_right = -40.0
+offset_bottom = -91.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Aim"
+horizontal_alignment = 1
+
+[node name="Ability" type="Label" parent="Panel/Control/Mobile" unique_id=771439189]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -80.0
+offset_right = -102.0
+offset_bottom = -51.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Ability"
+horizontal_alignment = 1
+
+[node name="Pause" type="Label" parent="Panel/Control/Mobile" unique_id=147765875]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = 48.0
+offset_right = 35.0
+offset_bottom = 77.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Pause"
+horizontal_alignment = 1
 
 [node name="Tips" type="Label" parent="Panel" unique_id=739195535]
 custom_minimum_size = Vector2(64, 64)

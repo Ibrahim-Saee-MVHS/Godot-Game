@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvddlgnyu2jv"
-path="res://.godot/imported/pause_button_pressed.png-ed58ac106f82cd6e5b6e47950195b5f8.ctex"
+uid="uid://dxjnx7qexryi3"
+path="res://.godot/imported/movement_knob.png-6286755a740b9fdfe320a2c3946fa7ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/pause_button_pressed.png"
-dest_files=["res://.godot/imported/pause_button_pressed.png-ed58ac106f82cd6e5b6e47950195b5f8.ctex"]
+source_file="res://assets/sprites/ui/controls/movement_knob.png"
+dest_files=["res://.godot/imported/movement_knob.png-6286755a740b9fdfe320a2c3946fa7ce.ctex"]
 
 [params]
 

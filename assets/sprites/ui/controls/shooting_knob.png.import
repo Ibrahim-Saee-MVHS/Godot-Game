@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x032cvsirynf"
-path="res://.godot/imported/lmb.png-000f542247e884f2672f8e69193d6949.ctex"
+uid="uid://cfmidk1y7s0nt"
+path="res://.godot/imported/shooting_knob.png-4b2e2442d3f8419e1aaacd0ae3530555.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/lmb.png"
-dest_files=["res://.godot/imported/lmb.png-000f542247e884f2672f8e69193d6949.ctex"]
+source_file="res://assets/sprites/ui/controls/shooting_knob.png"
+dest_files=["res://.godot/imported/shooting_knob.png-4b2e2442d3f8419e1aaacd0ae3530555.ctex"]
 
 [params]
 

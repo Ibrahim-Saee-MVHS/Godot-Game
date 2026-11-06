@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bngcfspxraary"
-path="res://.godot/imported/ability_key.png-6343f56cfec0abe2ac6c3a1ae4d96eb7.ctex"
+uid="uid://bvsyyw78pb5ks"
+path="res://.godot/imported/dpad_button.png-597666c9b14c729c6dc144b36a35873f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/ability_key.png"
-dest_files=["res://.godot/imported/ability_key.png-6343f56cfec0abe2ac6c3a1ae4d96eb7.ctex"]
+source_file="res://assets/sprites/ui/controls/dpad_button.png"
+dest_files=["res://.godot/imported/dpad_button.png-597666c9b14c729c6dc144b36a35873f.ctex"]
 
 [params]
 
