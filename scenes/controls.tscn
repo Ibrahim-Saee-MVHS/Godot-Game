@@ -89,11 +89,127 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Control" type="VBoxContainer" parent="Panel/ScrollContainer/PanelContainer/MarginContainer" unique_id=1345139153]
+[node name="DesktopControls" type="VBoxContainer" parent="Panel/ScrollContainer/PanelContainer/MarginContainer" unique_id=1345139153]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 4
+
+[node name="MobileControls" type="VBoxContainer" parent="Panel/ScrollContainer/PanelContainer/MarginContainer" unique_id=1395425294]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AnchorCrosshair" type="Label" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls" unique_id=1670865161]
+layout_mode = 2
+text = "Move Crosshair
+with player:"
+
+[node name="CheckButton" type="CheckButton" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls/AnchorCrosshair" unique_id=1603060025]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="DirectionalAiming" type="Label" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls" unique_id=1774717910]
+layout_mode = 2
+tooltip_text = "or is it relative?
+circular?
+give me name ideas
+for this setting"
+mouse_filter = 0
+text = "Directional Aiming:"
+
+[node name="CheckButton" type="CheckButton" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls/DirectionalAiming" unique_id=1077233395]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+button_pressed = true
+alignment = 1
+
+[node name="Sensitivity" type="Label" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls" unique_id=1580518576]
+visible = false
+layout_mode = 2
+tooltip_text = "or is it relative?
+circular?
+give me name ideas
+for this setting"
+mouse_filter = 0
+text = "Sensitivity:"
+
+[node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls/Sensitivity" unique_id=1667807042]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -16.0
+offset_right = -56.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls/Sensitivity" unique_id=915599855]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -14.5
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "50%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MovementStyle" type="Label" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls" unique_id=1721133124]
+layout_mode = 2
+text = "Movement Style: "
+
+[node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls/MovementStyle" unique_id=1484126299]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Joystick"
+popup/item_0/id = 0
+popup/item_1/text = "D-Pad"
+popup/item_1/id = 1
 
 [connection signal="pressed" from="Back" to="." method="_exit"]
 [connection signal="pressed" from="Reset" to="." method="_reset"]

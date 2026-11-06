@@ -1,7 +1,9 @@
 extends Control
 
 @onready var InputButton = preload("res://scenes/input_button.tscn")
-@onready var ControlsList = $Panel/ScrollContainer/PanelContainer/MarginContainer/Control
+@onready var DesktopControlsList = $Panel/ScrollContainer/PanelContainer/MarginContainer/DesktopControls
+@onready var MobileControlsList = $Panel/ScrollContainer/PanelContainer/MarginContainer/MobileControls
+#@onready var ControllerControlsList = $Panel/ScrollContainer/PanelContainer/MarginContainer/ControllerControls/Controls
 var remapping = false
 var remapping_action = null
 var remapping_button = null
@@ -14,13 +16,32 @@ var actions = {
 	"down": "Move Down",
 	"right": "Move Right",
 }
+var controllerActions = {
+	"shoot": "Shoot",
+	"ability": "Use Ability",
+	"up": "Move Up",
+	"left": "Move Left",
+	"down": "Move Down",
+	"right": "Move Right",
+	"shoot_up": "Aim Up",
+	"shoot_left": "Aim Left",
+	"shoot_down": "Aim Down",
+	"shoot_right": "Aim Right",
+}
 
 func _ready():
-	generateControls()
+	if not Global.isMobileDevice:
+		DesktopControlsList.visible = true
+		MobileControlsList.visible = false
+		generateDesktopControls()
+	else:
+		DesktopControlsList.visible = false
+		MobileControlsList.visible = true
+		setMobileControls()
 	
-func generateControls():
+func generateDesktopControls():
 	#InputMap.load_from_project_settings() Will reset controls everytime you open controls menu
-	for item in ControlsList.get_children():
+	for item in DesktopControlsList.get_children():
 		item.queue_free()
 	
 	for action in actions:
@@ -33,9 +54,24 @@ func generateControls():
 			keybindLabel.text = events[0].as_text().trim_suffix(" - Physical")
 		else: keybindLabel.text = "[Not Bound]"
 		
-		ControlsList.add_child(button)
+		DesktopControlsList.add_child(button)
 		button.get_node("Remapper").pressed.connect(rebindAction.bind(action, button))
 		
+func setMobileControls():
+	MobileControlsList.get_node("AnchorCrosshair/CheckButton").button_pressed = ControlsGlobal.mobileControls.get("anchor_crosshair")
+	MobileControlsList.get_node("DirectionalAiming/CheckButton").button_pressed = ControlsGlobal.mobileControls.get("directional_aiming")
+	MobileControlsList.get_node("Sensitivity/HSlider").value = ControlsGlobal.mobileControls.get("sensitivity")
+	MobileControlsList.get_node("MovementStyle/OptionButton").selected = ControlsGlobal.mobileControls.get("movement_style")
+
+func _process(_delta):
+	if Global.isMobileDevice:
+		ControlsGlobal.mobileControls.set("anchor_crosshair", MobileControlsList.get_node("AnchorCrosshair/CheckButton").button_pressed)
+		ControlsGlobal.mobileControls.set("directional_aiming", MobileControlsList.get_node("DirectionalAiming/CheckButton").button_pressed)
+		ControlsGlobal.mobileControls.set("sensitivity", MobileControlsList.get_node("Sensitivity/HSlider").value)
+		ControlsGlobal.mobileControls.set("movement_style", MobileControlsList.get_node("MovementStyle/OptionButton").selected)
+		MobileControlsList.get_node("Sensitivity").visible = !ControlsGlobal.mobileControls.get("directional_aiming")
+		MobileControlsList.get_node("Sensitivity/Label").text = str(int(MobileControlsList.get_node("Sensitivity/HSlider").value*100), "%")
+
 func rebindAction(action, button):
 	if !remapping:
 		remapping = true
@@ -54,23 +90,43 @@ func _input(event):
 			remapping_action = null
 			remapping_button = null
 			accept_event()
-			save()
+			saveDesktop()
 	
 func updateControl(button, event):
 	button.get_node("Remapper/Keybind").text = event.as_text().trim_suffix(" - Physical")
 
-func save():
+func saveDesktop():
 	var controls = ConfigFile.new()
 	for action in actions.keys():
 		controls.set_value("desktop", action, InputMap.action_get_events(action)[0])
 	SettingsGlobal.checkSaveDir()
 	controls.save(ControlsGlobal.save_directory + "controls.cfg")
 
+func saveMobile():
+	var controls = ConfigFile.new()
+	for setting in ControlsGlobal.mobileControls:
+		controls.set_value("mobile", setting, ControlsGlobal.mobileControls.get(setting))
+	SettingsGlobal.checkSaveDir()
+	controls.save(ControlsGlobal.save_directory + "controls.cfg")
+
 func _exit() -> void:
 	get_parent().buttonsDisabled = false
+	if Global.isMobileDevice: saveMobile()
+	else: saveDesktop()
 	queue_free()
 
 func _reset() -> void:
-	InputMap.load_from_project_settings()
-	save()
-	generateControls()
+	if Global.isMobileDevice:
+		MobileControlsList.get_node("AnchorCrosshair/CheckButton").button_pressed = false
+		MobileControlsList.get_node("DirectionalAiming/CheckButton").button_pressed = true
+		MobileControlsList.get_node("Sensitivity/HSlider").value = 0.5
+		MobileControlsList.get_node("MovementStyle/OptionButton").selected = 0
+		ControlsGlobal.mobileControls.set("anchor_crosshair", false)
+		ControlsGlobal.mobileControls.set("directional_aiming", true)
+		ControlsGlobal.mobileControls.set("sensitivity", 0.5)
+		ControlsGlobal.mobileControls.set("movement_style", 0)
+		saveMobile()
+	else:
+		InputMap.load_from_project_settings()
+		saveDesktop()
+		generateDesktopControls()

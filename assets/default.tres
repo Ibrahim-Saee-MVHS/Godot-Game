@@ -186,6 +186,7 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_s2nva")
 HSlider/styles/slider = SubResource("StyleBoxFlat_uhhto")
 OptionButton/icons/arrow = ExtResource("5_27h7j")
 Panel/styles/panel = SubResource("StyleBoxTexture_0t5d3")
+TooltipLabel/font_sizes/font_size = 24
 VScrollBar/constants/padding_left = 4
 VScrollBar/constants/padding_right = 4
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_f1d2v")

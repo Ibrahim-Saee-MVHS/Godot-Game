@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var SPEED: float = 250
+@export var SPEED: float = 125
 @export var RADIUS: float = 96
 var PlayerNode: Player
 
@@ -12,10 +12,13 @@ func getInput():
 
 func _process(delta):
 	var screenSize = get_viewport_rect().size / 4
-	if Global.isMobileDevice == true and Global.usingController == false:
+	var mobileControls = ControlsGlobal.mobileControls
+	if mobileControls.get("anchor_crosshair"):
+		global_position += PlayerNode.velocity * delta
+	if mobileControls.get("directional_aiming"):
 		global_position += getInput() * RADIUS
 		var distance = global_position - PlayerNode.global_position
 		if distance.length() > RADIUS: global_position = PlayerNode.global_position + distance.normalized() * RADIUS
-	else: global_position += getInput() * SPEED * delta
+	else: global_position += getInput() * (SPEED + (mobileControls.get("sensitivity") * 500)) * delta
 		
 	global_position = global_position.clamp(-screenSize + Vector2(8, 8), screenSize - Vector2(8, 8))

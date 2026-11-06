@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	if not Global.isMobileDevice:
-		if str(ControlsGlobal.currentControls) != str(ControlsGlobal.defaultControls):
+		if str(ControlsGlobal.desktopControls.get("current")) != str(ControlsGlobal.desktopControls.get("default")):
 			$Panel/Control/Desktop/WASD.visible = false
 			$Panel/Control/Desktop/Mouse.visible = false
 			$Panel/Control/Desktop/Text.visible = true

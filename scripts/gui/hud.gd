@@ -4,9 +4,9 @@ var player
 var debug_mode = false
 
 var controlIndicatorSprites = {
-	"lmb": preload("res://assets/sprites/ui/lmb.png"),
-	"rmb": preload("res://assets/sprites/ui/rmb.png"),
-	"mobile": preload("res://assets/sprites/ui/ability_button_hud.png"),
+	"lmb": preload("res://assets/sprites/ui/controls/lmb.png"),
+	"rmb": preload("res://assets/sprites/ui/controls/rmb.png"),
+	"mobile": preload("res://assets/sprites/ui/controls/ability_button_hud.png"),
 }
 
 func _ready():

@@ -10,14 +10,19 @@ func _process(_delta):
 	if PlayerNode:
 		if PlayerNode.ABILITY != "none":
 			$Control/Ability.visible = true
-			if PlayerNode.ABILITYCOOLDOWN > 0: $Control/Ability.disabled = true
-			else: $Control/Ability.disabled = false
+			if PlayerNode.ABILITYCOOLDOWN > 0: $Control/Ability.modulate = Color(0.5, 0.5, 0.5, 1.0)
+			else: $Control/Ability.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		else:
 			$Control/Ability.visible = false
-			$Control/Ability.disabled = true
+		if ControlsGlobal.mobileControls.get("movement_style") == 0:
+			$Control/Move/Joystick.visible = true
+			$Control/Move/DPad.visible = false
+		else:
+			$Control/Move/Joystick.visible = false
+			$Control/Move/DPad.visible = true
 
-func _ability_press():
-	Input.action_press("ability")
+func _shoot_pressed():
+	Input.action_press("shoot")
 
-func _ability_release():
-	Input.action_release("ability")
+func _shoot_released(_input_vector):
+	Input.action_release("shoot")

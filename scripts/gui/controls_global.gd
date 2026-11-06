@@ -9,7 +9,7 @@ func _ready():
 	checkControls()
 	controls.load(save_directory + "controls.cfg")
 	loadControls()
-	if Global.isMobileDevice: InputMap.action_erase_event("shoot", defaultControls.get("shoot"))
+	if Global.isMobileDevice: InputMap.action_erase_event("shoot", desktopControls.get("default").get("shoot"))
 
 var actions = [
 	"shoot",
@@ -20,24 +20,38 @@ var actions = [
 	"right"
 ]
 
-var defaultControls: Dictionary = {}
-var currentControls: Dictionary = {}
+var desktopControls: Dictionary = {
+	"default": {},
+	"current": {}
+}
+var mobileControls: Dictionary = {
+	"anchor_crosshair": false,
+	"directional_aiming": true,
+	"sensitivity": 0.5,
+	"movement_style": 0
+}
 
 func getDefaultControls():
 	InputMap.load_from_project_settings()
-	for action in actions: defaultControls.set(action, InputMap.action_get_events(action)[0])
+	for action in actions: desktopControls.get("default").set(action, InputMap.action_get_events(action)[0])
 
 func checkControls():
 	var newControls = ConfigFile.new()
 	var check = newControls.load(save_directory + "controls.cfg")
 	if check != OK:
-		for action in actions: newControls.set_value("desktop", action, defaultControls.get(action))
+		for action in actions: newControls.set_value("desktop", action, desktopControls.get("default").get(action))
+		for setting in mobileControls: newControls.set_value("mobile", setting, mobileControls.get(setting))
 		newControls.save(save_directory + "controls.cfg")
 		
 func loadControls():
 	for action in actions:
-		InputMap.action_erase_event(action, defaultControls.get(action))
-		InputMap.action_add_event(action, controls.get_value("desktop", action, defaultControls.get(action)))
+		InputMap.action_erase_event(action, desktopControls.get("default").get(action))
+		InputMap.action_add_event(action, controls.get_value("desktop", action, desktopControls.get("default").get(action)))
+	for setting in mobileControls:
+		mobileControls.set(setting, controls.get_value("mobile", setting))
 
 func _process(_delta: float) -> void:
-	for action in actions: currentControls.set(action, InputMap.action_get_events(action)[0])
+	for action in actions:
+		if not Global.usingController:
+			if not Global.isMobileDevice:
+				desktopControls.get("current").set(action, InputMap.action_get_events(action)[0])
