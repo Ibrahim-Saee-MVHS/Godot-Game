@@ -63,7 +63,7 @@
 	"sulfuric_ammo": {
 		"sprite": "res://assets/sprites/upgrade_icons/sulfuric_ammo.png",
 		"name": "Sulfuric Ammo",
-		"description": "+0.25 EXPLOSIVENESS but -5 HEALTH, Only works with Normal & Boomerang BULLET TYPE",
+		"description": "+0.25 EXPLOSIVENESS but -5 HEALTH, Only works with Norma, Boomerang, & Earth BULLET TYPE",
 		"weight": 0.5,
 	},
 	"cailber_increase": {
