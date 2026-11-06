@@ -15,6 +15,8 @@ var gameModifierInfo: Dictionary
 var cardPickerSearch: String = ""
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_window().size = DisplayServer.screen_get_size()
 	Input.joy_connection_changed.connect(controller_connection_changed)
 	if OS.has_feature("mobile"): isMobileDevice = true
 	if Input.get_connected_joypads().size() > 0: usingController = true
@@ -26,7 +28,9 @@ func controller_connection_changed(_device_id: int, connected: bool):
 	else: usingController = false
 
 func _process(_delta):
-	pass
+	if get_tree().current_scene is not GameScene or get_tree().paused == true:
+		get_tree().quit_on_go_back = true
+	else: get_tree().quit_on_go_back = false
 
 func spawnDamageIndicator(globalPos, damage):
 	var damageIndicator = DAMAGEINDICATOR.instantiate()

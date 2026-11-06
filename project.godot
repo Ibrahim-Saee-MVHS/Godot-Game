@@ -13,6 +13,7 @@ config_version=5
 config/name="Level Shooter"
 config/version="2.0.4"
 run/main_scene="uid://cbk6dfldu3sbl"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://dmjpwof5b0fst"
 
@@ -30,6 +31,7 @@ ControlsGlobal="*uid://himcm1v3jhr7"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+window/stretch/aspect.mobile="expand"
 
 [editor]
 

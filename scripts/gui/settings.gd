@@ -3,6 +3,9 @@ extends Control
 func _ready() -> void:
 	SettingsGlobal.checkSaveDir()
 	loadSettings()
+	if Global.isMobileDevice:
+		$Video/Fullscreen.visible = false
+		$Video/Fullscreen/CheckButton.disabled = true
 
 func _process(_delta):
 	$"Video/BloomIntensity".text = "Bloom Intensity: " + str(($"Video/BloomIntensity/HSlider".value))

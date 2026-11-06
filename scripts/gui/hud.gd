@@ -3,11 +3,19 @@ extends CanvasLayer
 var player
 var debug_mode = false
 
+var controlIndicatorSprites = {
+	"lmb": preload("res://assets/sprites/ui/lmb.png"),
+	"rmb": preload("res://assets/sprites/ui/rmb.png"),
+	"mobile": preload("res://assets/sprites/ui/ability_button_hud.png"),
+}
+
 func _ready():
 	player = get_parent().get_node("Player")
 	$Control/Ability.visible = false
+	setControlIndicator()
 
 func _process(_delta):
+	setControlIndicator()
 	player = get_parent().get_node("Player")
 	$Control/Health.text = "Health: " + str(player.HEALTH) + "/" + str(player.MAXHEALTH)
 	$Control/Level.text = "Level: " + str(player.LEVEL)
@@ -39,6 +47,21 @@ func _process(_delta):
 	if Input.is_action_just_pressed("debug_key"):
 		debug_mode = !debug_mode
 	
+func setControlIndicator():
+	$Control/Ability/Frame/KeybindIndicator.visible = false
+	$Control/Ability/Frame/ControlIndicator.visible = true
+	if Global.isMobileDevice: 
+		$Control/Ability/Frame/ControlIndicator.texture = controlIndicatorSprites.get("mobile")
+	else:
+		if InputMap.action_get_events("ability")[0] is InputEventMouseButton:
+			if InputMap.action_get_events("ability")[0].button_index == MOUSE_BUTTON_LEFT:
+				$Control/Ability/Frame/ControlIndicator.texture = controlIndicatorSprites.get("lmb")
+			else: $Control/Ability/Frame/ControlIndicator.texture = controlIndicatorSprites.get("rmb")
+		else:
+			$Control/Ability/Frame/KeybindIndicator.visible = true
+			$Control/Ability/Frame/ControlIndicator.visible = false
+			$Control/Ability/Frame/KeybindIndicator/Label.text = InputMap.action_get_events("ability")[0].as_text().trim_suffix(" - Physical")
+
 func generateStats():
 	var STATS = str(
 		str("Difficulty: ", get_parent().DIFFICULTY, "\n"),

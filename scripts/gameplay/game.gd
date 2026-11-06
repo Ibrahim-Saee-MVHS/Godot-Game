@@ -23,8 +23,11 @@ var shake: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if (Global.isMobileDevice or Global.usingController) and not has_node(CrosshairNode): add_child(CrosshairNode)
-	if Global.isMobileDevice and not has_node(MobileControlsNode): add_child(MobileControlsNode)
+	if (Global.isMobileDevice or Global.usingController) and not has_node("Crosshair"): add_child(CrosshairNode.instantiate())
+	if Global.isMobileDevice and not has_node("Mobile"):
+		var mobileNode = MobileControlsNode.instantiate()
+		mobileNode.get_node("Control/Pause").pressed.connect($Pause.pause)
+		add_child(mobileNode)
 	Global.SCREENSHAKEAMOUNT = 0
 	Global.SCREENSHAKEPOWER = 0
 	Global.VIGNETTECOLOR = Vector3(0, 0, 0)

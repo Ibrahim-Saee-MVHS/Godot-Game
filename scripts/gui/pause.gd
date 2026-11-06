@@ -7,6 +7,8 @@ var buttonsDisabled = false
 
 func _ready():
 	visible = false
+	if Global.isMobileDevice:
+		get_tree().get_root().go_back_requested.connect(pause)
 
 func pause():
 	if canPause == true:

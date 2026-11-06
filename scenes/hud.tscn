@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bg3x81203eqxv" path="res://assets/sprites/ui/ability_bar.png" id="4_5pdws"]
 [ext_resource type="Texture2D" uid="uid://csllm0qy4g848" path="res://assets/sprites/ui/ability_bar_fill.png" id="5_hd3ao"]
 [ext_resource type="Texture2D" uid="uid://bm81rg661yvo6" path="res://assets/sprites/ui/rmb.png" id="6_047uy"]
+[ext_resource type="Texture2D" uid="uid://dpy3obyvpwpdx" path="res://assets/sprites/ui/controls_key.png" id="7_5pdws"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1917983879]
 process_mode = 3
@@ -133,16 +134,54 @@ text = "Detonation"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/Ability/Frame" unique_id=752660626]
+[node name="ControlIndicator" type="TextureRect" parent="Control/Ability/Frame" unique_id=752660626]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = 4.0
-offset_bottom = 36.0
+offset_left = -48.0
+offset_top = 6.0
+offset_bottom = 54.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("6_047uy")
+
+[node name="KeybindIndicator" type="TextureRect" parent="Control/Ability/Frame" unique_id=1540555166]
+visible = false
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = 10.0
+offset_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("7_5pdws")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Control/Ability/Frame/KeybindIndicator" unique_id=1286114324]
+custom_maximum_size = Vector2(152, 29)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -23.0
+offset_right = 76.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+text = "[...]"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true

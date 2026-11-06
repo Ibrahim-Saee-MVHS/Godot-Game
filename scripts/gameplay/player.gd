@@ -127,7 +127,8 @@ func getPlayerInput():
 
 func _process(delta):
 	if Global.isMobileDevice == false and Global.usingController == false: target_position = get_global_mouse_position()
-	else: target_position = get_parent().get_node("Crosshair").global_position
+	else:
+		if get_parent().has_node("Crosshair"): target_position = get_parent().get_node("Crosshair").global_position
 	level()
 	setBaseStats()
 	setAbilityStats()

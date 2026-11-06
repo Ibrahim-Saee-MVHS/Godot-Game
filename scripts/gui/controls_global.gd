@@ -9,6 +9,7 @@ func _ready():
 	checkControls()
 	controls.load(save_directory + "controls.cfg")
 	loadControls()
+	if Global.isMobileDevice: InputMap.action_erase_event("shoot", defaultControls.get("shoot"))
 
 var actions = [
 	"shoot",
