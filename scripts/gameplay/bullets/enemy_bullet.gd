@@ -187,7 +187,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is EnemyBullet or area is PlayerBullet:
 		if TYPE == "flame" and area.TYPE == "water":
-			$CPUParticles2D.emitting = false
-			$CollisionShape2D.disabled = true
+			$CPUParticles2D.set_deferred("emitting", false)
+			$CollisionShape2D.set_deferred("visible", true)
 		if TYPE == "frost" and area.TYPE == "flame":
 			despawnTimer -= 30 * get_process_delta_time()

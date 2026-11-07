@@ -478,7 +478,7 @@ func _on_area_2d_area_entered(area):
 		if area.TYPE == "flame":
 			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
 		# water
-		if area.TYPE == "water":
+		elif area.TYPE == "water":
 			dealDamage(area.DAMAGE, MAXINVULNERABILITY * 0.5)
 			area.get_node("CPUParticles2D").set_deferred("emitting", false)
 			area.get_node("CollisionShape2D").set_deferred("disabled", true)
