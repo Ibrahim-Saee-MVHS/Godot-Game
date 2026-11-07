@@ -159,4 +159,7 @@ func removeUpgrades(totalUpgrades):
 	if player.ABILITY != "leaf_summon" or player.UPGRADE.abilitySpecial.get("leaf_upgrade") >= 2:
 		totalUpgrades.erase("thermal_leaf")
 	
+	if player.BULLETSPEED <= 150:
+		totalUpgrades.erase("slow_steady")
+	
 	return totalUpgrades

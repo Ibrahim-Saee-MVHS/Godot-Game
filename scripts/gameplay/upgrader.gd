@@ -223,3 +223,7 @@ func upgrade(selectedUpgrade):
 					playerNode.UPGRADE.bulletUpgrades += 1
 			"thermal_leaf":
 				playerNode.UPGRADE.abilitySpecial.leaf_upgrade += 1
+			"slow_steady":
+				playerNode.UPGRADE.bulletSpeed -= 6
+				playerNode.UPGRADE.damage += 2
+				playerNode.UPGRADE.defense += 3

@@ -26,7 +26,7 @@
 	"bullet_enhancer": {
 		"sprite": "res://assets/sprites/upgrade_icons/bullet_enhancer.png",
 		"name": "Bullet Enhancer",
-		"description": "+4 DAMAGE but +2 FIRERATE",
+		"description": "+4 DAMAGE but +2 FIRERATE (Slower)",
 		"weight": 1.0,
 	},
 	"reinforced_chamber": {
@@ -228,5 +228,11 @@
 		"description": "You can upgrade your leaves to make it lose it's elemental weakness, but -2 SUMMONS.",
 		"weight": 0.15,
 		"rarity": "rare",
+	},
+	"slow_steady": {
+		"sprite": "res://assets/sprites/upgrade_icons/slow_steady.png",
+		"name": "Slow & Steady",
+		"description": "-6 BULLET SPEED but +2 DAMAGE & +3 DEFENSE.",
+		"weight": 0.35,
 	},
 }
